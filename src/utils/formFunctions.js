@@ -31,4 +31,6 @@ const checkTypeInput = (valueInput, typeDato) => {
     if(typeDato === 'email' && !valueInput.match(/^([a-zA-Z0-9_.])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9)]{2,4})+$/)) return true;
 }
 
-export default {checkNext, typingInput} 
+const functionExport = {checkNext, typingInput};
+
+export default functionExport
