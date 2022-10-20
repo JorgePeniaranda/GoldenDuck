@@ -1,224 +1,99 @@
-/* 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-    Estilos generales para la web
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-calendars/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-dropdowns/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-grids/styles/material.css";
 
-*/
-
-/* Pantalla de Carga */
-
-#root:not(.loaded) #loadingScreen{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    background-color: var(--backColor);
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    &::after{
-        content: '';
-        width: 10rem;
-        height: 10rem;
-        background: url(./assets/img/favicon.ico);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        transition: all 2s;
-    }
-}
-.loaded{
-    #loadingScreen{
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        .leftPanel{
-            background-color: var(--backColor);
-            display: flex;
-            align-items: center;
-            justify-content: right;
-            width: 50%;
-            height: 100%;
-            &::after{
-                content: '';
-                width: 10rem;
-                height: 10rem;
-                background: url(./assets/img/favicon.ico);
-                background-position: 5rem center;
-                background-repeat: no-repeat;
-                background-size: contain;
-            }
-            transform: translateX(-100%);
-            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000), background-color 0s;
-        }
-        .rightPanel{
-            background-color: var(--backColor);
-            display: flex;
-            align-items: center;
-            justify-content: left;
-            width: 50%;
-            height: 100%;
-            &::after{
-                content: '';
-                width: 10rem;
-                height: 10rem;
-                background: url(./assets/img/favicon.ico);
-                background-position: -5rem center;
-                background-repeat: no-repeat;
-                background-size: contain;
-            }
-            visibility: hidden;
-            transform: translateX(100%);
-            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000), background-color 0s;
-        }
-        visibility: hidden;
-        transform: translateY(-100%);
-        transition: all 0.3s 1s ease-out;
-    }
-}
+// Estilos generales para la web
 
 /* Tamaño de Fuente y Scroll Suave */
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* Fuentes */
 
 @font-face {
-    font-family: Nevis;
-    src: url(assets/font/nevis.ttf);
-    font-display:block;
+  font-family: Nevis;
+  src: url(assets/font/nevis.ttf);
+  font-display: block;
 }
 @font-face {
-    font-family: Poppins-ExtraLight;
-    src: url(assets/font/Poppins-ExtraLight.ttf);
-    font-display:block;
+  font-family: Poppins-ExtraLight;
+  src: url(assets/font/Poppins-ExtraLight.ttf);
+  font-display: block;
 }
 @font-face {
-    font-family: Poppins-Light;
-    src: url(assets/font/Poppins-Light.ttf);
-    font-display:block;
+  font-family: Poppins-Light;
+  src: url(assets/font/Poppins-Light.ttf);
+  font-display: block;
 }
 @font-face {
-    font-family: Poppins-Regular;
-    src: url(assets/font/Poppins-Regular.ttf);
-    font-display:block;
+  font-family: Poppins-Regular;
+  src: url(assets/font/Poppins-Regular.ttf);
+  font-display: block;
 }
 @font-face {
-    font-family: Poppins-Bold;
-    src: url(assets/font/Poppins-Bold.ttf);
-    font-display:block;
+  font-family: Poppins-Bold;
+  src: url(assets/font/Poppins-Bold.ttf);
+  font-display: block;
 }
-*{
-    font-family: 'Poppins-Light';
+* {
+  font-family: "Poppins-Light";
 }
-small{
-    font-family: 'Poppins-ExtraLight';
+small {
+  font-family: "Poppins-ExtraLight";
 }
-span, a{
-    font-family: 'Poppins-Regular';
+span,
+a {
+  font-family: "Poppins-Regular";
 }
-h1, h2, h3, h4, h5, h6{
-    font-family: 'Poppins-Bold';
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins-Bold";
 }
 
 /* Transicion general */
 
-body{
-    transition: all 0.3s ease;
-}
-
-/* Definó Colores */
-
-:root{
-    --white: #F0F3F4;
-    --primaryColor: #F1C40F;
-    --primaryColorDark: #d1ac1a;
-    --backColor: #5268f2;
-    --backColorDark: #3d4685;
-    --dark: #1f1f1f;
-    --fontBlack: #272727;
-    --fontWhite: #E5E7E9;
+body {
+  transition: all 0.3s ease;
 }
 
 /* Estilo para Scrollbar */
-
-html, body{
-    overflow: overlay;
+html,
+body {
+  overflow: overlay;
 }
 * {
-scrollbar-width: none;
-scrollbar-color: #b3b6b7 transparent;
+  scrollbar-width: none;
+  scrollbar-color: #b3b6b7 transparent;
 }
 *::-webkit-scrollbar {
-width: 10px;
-height: 100%;
+  width: 10px;
+  height: 100%;
 }
 *::-webkit-scrollbar-track {
-background: transparent;
+  background: transparent;
 }
 *::-webkit-scrollbar-thumb {
-background-color: #b3b6b7;
-border-radius: 10px;
-border: none;
+  background-color: rgb(216, 216, 216);
+  border-radius: 40px;
+  border: none;
 }
-*::-webkit-scrollbar-track-piece{
-background-color: transparent;
-color: transparent;
-}
-
-/* Responsive */
-
-@media screen and (min-width: 320px){
-    html{
-        font-size: 5px;
-    }
-}
-@media screen and (min-width: 370px){
-    html{
-        font-size: 5.3px;
-    }
-}
-@media screen and (min-width: 420px){
-    html{
-        font-size: 6.4px;
-    }
-}
-@media screen and (min-width: 760px){
-    html{
-        font-size: 8px;
-    }
-}
-@media screen and (min-width: 1020px){
-    html{
-        font-size: 7px;
-    }
-}
-@media screen and (min-width: 1430px){
-    html{
-        font-size: 9px;
-    }
-}
-@media screen and (min-width: 2560px){
-    html{
-        font-size: 16px;
-    }
-}
-@media screen and (min-width: 3000px){
-    html{
-        font-size: 20px;
-    }
-}
-@media screen and (min-width: 4000px){
-    html{
-        font-size: 30px;
-    }
+*::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+  color: transparent;
 }

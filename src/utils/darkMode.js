@@ -8,7 +8,7 @@ const DarkMode = () => {
   } else {
     document.body.classList.add("light");
   }
-}
+};
 
 const switchTheme = (e) => {
   if (document.body.classList.contains("dark")) {
@@ -20,6 +20,8 @@ const switchTheme = (e) => {
     e.target.classList.add("clicked");
     localStorage.setItem("theme", "dark");
   }
-}
+};
 
-export default {DarkMode, switchTheme};
+const functionExport = { DarkMode, switchTheme };
+
+export default functionExport;
