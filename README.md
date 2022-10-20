@@ -27,4 +27,4 @@ With this command we create an optimized build ready to be deployed at productio
 
 [Watch GoldenDuck live](https://goldenduck.netlify.app/)
 
-# (falta pasos para base de datos e instalación de laravel)
+# (Some steps are missing for setting up the SQL Server database)
