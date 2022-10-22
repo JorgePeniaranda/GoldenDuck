@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import {MdExpandMore} from 'react-icons/md';
 
 import GoldenDuckLogo from "../../../assets/img/GoldenDuckLogo.png";
-import { useStateContext } from '../../../contexts/ContextProvider';
+import { useStateContext } from '../contexts/ContextProvider';
 import { contextMenuItems, links } from '../assets/img/dummy'
 
 const Sidebar = () => {

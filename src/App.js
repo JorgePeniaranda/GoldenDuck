@@ -29,7 +29,7 @@ import {
   Support,
   Transfer,
   Wallet,
-} from "./pages";
+} from "./pages/Dashboard/pages";
 import {
   Area,
   Bar,

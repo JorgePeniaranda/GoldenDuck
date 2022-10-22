@@ -1,18 +1,10 @@
 import React, { Component } from "react";
+import './dashboard.scss';
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
-import { useStateContext } from "../../contexts/ContextProvider";
-/* import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; */
+import { useStateContext } from "./contexts/ContextProvider";
 import { Outlet } from 'react-router-dom';
-
-/* import GoldenDuckLogo from "../../assets/img/logo512.png";
-import profilePhoto from "./assets/img/defaultProfilePhoto.jpg"; */
-import { AutoDebit, Calendar, Cards, Claims, Editor, Expenses, FixedTerm, Insurances, Investment, Loan, Money, Payment, Settings, Support, Transfer, Wallet } from '../';
-import { Area, Bar, Financial, Line, Pie, Pyramid, Stacked} from '../Charts';
 import { Sidebar, Navbar } from './components';
-/* import PanelOption from "./components/mainPanelSelect";
-import darkMode from "../../utils/darkMode";
-import { act } from "react-dom/test-utils"; */
 
 const Dashboard = () => {
     const { activeMenu } = useStateContext();

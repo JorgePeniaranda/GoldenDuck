@@ -4,8 +4,8 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import { BsDownload } from 'react-icons/bs';
 
 import Button from '@mui/material/Button';
-import { Stacked, Pie, SparkLine } from './Dashboard/components';
-import { earningData, SparklineAreaData, ecomPieChartDat} from './Dashboard/assets/img/dummy';
+import { Stacked, Pie, SparkLine } from '../components';
+import { earningData, SparklineAreaData, ecomPieChartDat} from '../assets/img/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const Money = () => {

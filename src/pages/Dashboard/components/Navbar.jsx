@@ -9,7 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 import avatar from '../assets/img/avatar.jpg';
 import { Chat, Notification, Profile, Support, Wallet } from '.';
-import { useStateContext } from '../../../contexts/ContextProvider';
+import { useStateContext } from '../contexts/ContextProvider';
 
 const Navbar = () => {
   const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick, screenSize, setScreenSize } = useStateContext();
