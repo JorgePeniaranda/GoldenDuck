@@ -74,6 +74,7 @@ export default function App() {
         <Route path="/forgot-my-password" element={<Forget />} />
         <Route path="/dashboard" element={<Dashboard />}>
           {/* Control panel routes  */}
+          <Route path="/dashboard" element={<Money />} />
           <Route path="/dashboard/auto-debit" element={<AutoDebit />} />
           <Route path="/dashboard/calendar" element={<Calendar />} />
           <Route path="/dashboard/cards" element={<Cards />} />
@@ -84,7 +85,6 @@ export default function App() {
           <Route path="/dashboard/insurances" element={<Insurances />} />
           <Route path="/dashboard/investments" element={<Investment />} />
           <Route path="/dashboard/loans" element={<Loan />} />
-          <Route path="/dashboard/money" element={<Money />} />
           <Route path="/dashboard/payment" element={<Payment />} />
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/support" element={<Support />} />
