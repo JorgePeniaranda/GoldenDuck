@@ -2,10 +2,15 @@ import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { ContextProvider } from "./contexts/ContextProvider";
+// Registering Syncfusion license key
+import { registerLicense } from '@syncfusion/ej2-base';
+
 
 import "./index.scss";
 import "./assets/font/fontIcon.css";
 const App = lazy(() => import("./App"));
+
+registerLicense('ORg4AjUWIQA/Gnt2VVhjQlFaclhJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRd0VhWH1dc3ZQRGhVV0E=');
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
