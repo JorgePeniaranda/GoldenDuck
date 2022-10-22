@@ -5,8 +5,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import { styled } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
 import {MdExpandMore} from 'react-icons/md';
 
 import GoldenDuckLogo from "../../../assets/img/GoldenDuckLogo.png";

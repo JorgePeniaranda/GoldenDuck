@@ -1,11 +1,10 @@
 import React from 'react';
-import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock, AiOutlineThunderbolt } from 'react-icons/ai';
-import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
+import { AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock, AiOutlineThunderbolt } from 'react-icons/ai';
+import { FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
 import { FaRegMoneyBillAlt, FaRegCreditCard, FaRegHandshake } from 'react-icons/fa';
 import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft, BsPiggyBank } from 'react-icons/bs';
 import { BiColorFill, BiTransferAlt } from 'react-icons/bi';
-import { IoMdContacts } from 'react-icons/io';
-import { RiContactsLine, RiStockLine, RiHandHeartLine } from 'react-icons/ri';
+import { RiStockLine, RiHandHeartLine } from 'react-icons/ri';
 import { MdOutlineSupervisorAccount, MdOutlinePayments } from 'react-icons/md';
 import { HiOutlineRefresh } from 'react-icons/hi';
 import { TiTick } from 'react-icons/ti';

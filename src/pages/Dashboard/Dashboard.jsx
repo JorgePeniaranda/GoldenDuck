@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import './dashboard.scss';
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
