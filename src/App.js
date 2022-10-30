@@ -72,9 +72,9 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<Register />} />
         <Route path="/forgot-my-password" element={<Forget />} />
-        <Route path="/dashboard" element={<Dashboard />}>
+        <Route path="/dashboard/" element={<Dashboard />}>
           {/* Control panel routes  */}
-          <Route path="/dashboard" element={<Money />} />
+          <Route path="/dashboard/money" element={<Money />} />
           <Route path="/dashboard/auto-debit" element={<AutoDebit />} />
           <Route path="/dashboard/calendar" element={<Calendar />} />
           <Route path="/dashboard/cards" element={<Cards />} />

@@ -64,7 +64,7 @@ const Sidebar = () => {
                       item.links.map((link)=>(
                           <NavLink
                             key={link.name}
-                            to={`/dashboard/${link.link}`}
+                            to={link.link}
                             onClick={handleAutoClose()}
                             className={
                               ( { isActive } ) => 

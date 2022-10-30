@@ -478,17 +478,17 @@ export const links = [
     links: [
       {
         name: 'Tu dinero',
-        link: 'money',
+        link: '/dashboard/money',
         icon: <FaRegMoneyBillAlt />,
       },
       {
         name: 'Gastos',
-        link: 'expenses',
+        link: '/dashboard/expenses',
         icon: <TbReportMoney />,
       },
       {
         name: 'Tus tarjetas',
-        link: 'cards',
+        link: '/dashboard/cards',
         icon: <FaRegCreditCard />,
       },
     ],
@@ -499,17 +499,17 @@ export const links = [
     links: [
       {
         name: 'Inversiones',
-        link: 'investments',
+        link: '/dashboard/investments',
         icon: <GiReceiveMoney />,
       },
       {
         name: 'Pagar',
-        link: 'payment',
+        link: '/dashboard/payment',
         icon: <MdOutlinePayments />,
       },
       {
         name: 'Transferencia',
-        link: 'transfer',
+        link: '/dashboard/transfer',
         icon: <BiTransferAlt />,
       },
     ],
@@ -519,27 +519,27 @@ export const links = [
     links: [
       {
         name: 'Préstamos',
-        link: 'loans',
+        link: '/dashboard/loans',
         icon: <FaRegHandshake />,
       },
       {
         name: 'Plazos fijos',
-        link: 'fixed-term',
+        link: '/dashboard/fixed-term',
         icon: <BsPiggyBank />,
       },
       {
         name: 'Débito automático',
-        link: 'auto-debit',
+        link: '/dashboard/auto-debit',
         icon: <AiOutlineThunderbolt />,
       },
       {
         name: 'Seguros',
-        link: 'insurances',
+        link: '/dashboard/insurances',
         icon: <RiHandHeartLine />,
       },
       {
         name: 'Reclamos online',
-        link: 'claims',
+        link: '/dashboard/claims',
         icon: <TbMessageReport />,
       },
     ],
