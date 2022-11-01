@@ -1,7 +1,7 @@
 import React from "react";
 import './dashboard.scss';
 import { FiSettings } from "react-icons/fi";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
+import Tooltip from '@mui/material/Tooltip';
 import { useStateContext } from "./contexts/ContextProvider";
 import { Outlet } from 'react-router-dom';
 import { Sidebar, Navbar } from './components';
@@ -13,7 +13,7 @@ const Dashboard = () => {
       <div>
         <div className="flex relative dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
-            <TooltipComponent content="Settings" position="Top">
+            <Tooltip title="Settings" placement="top" arrow>
               <button
                 type="button"
                 className="text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white"
@@ -21,7 +21,7 @@ const Dashboard = () => {
               >
                 <FiSettings />
               </button>
-            </TooltipComponent>
+            </Tooltip>
           </div>
           {activeMenu ? (
             <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white">
