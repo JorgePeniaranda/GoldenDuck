@@ -80,7 +80,7 @@ const Money = () => {
                 <p>
                   <span className="text-3xl font-semibold">56,355.05 ARS</span>
                   <span className="p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white bg-green-400 ml-3 text-xs">
-                    34%
+                    +34%
                   </span>
                 </p>
                 <p>Ingresos totales</p>
