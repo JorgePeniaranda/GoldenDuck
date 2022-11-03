@@ -7,7 +7,6 @@ import {
   Search,
   Inject,
 } from "@syncfusion/ej2-react-grids";
-import Card from "react-credit-cards";
 import Stack from "@mui/material/Stack";
 import Button from '@mui/material/Button';
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa';
@@ -24,29 +23,8 @@ const Cards = () => {
       </div>
       <Header category="Panel de control" title="Tus tarjetas" />
       <div className="grid grid-cols-3 gap-5 place-content-center">
-        {cardsData.map((item, index) => (
-          <Card
-            id={index}
-            preview
-            name={item.name}
-            number={item.number.replace(/\d{4}(?= \d{4})/g, "****")}
-            expiry={item.expiry.replace(/^[^/]*/g, "**")}
-            issuer={item.issuer}
-            cvc={item.cvc}
-            locale={{
-              valid: "Expira en",
-            }}
-          />
-        ))}
+        TARJETUNGAS
       </div>
-      {/*     <CardLayout
-      cvc="111"
-      expiry="12/18"
-      preview
-      issuer="visa"
-      name="OMAR ZAPATA"
-      number={cardNumber.replace(/\d{4}(?= \d{4})/g, "****")}
-    /> */}
     </div>
   );
 };
