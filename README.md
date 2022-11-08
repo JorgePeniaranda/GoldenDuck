@@ -33,8 +33,19 @@ With this command we create an optimized build ready to be deployed at productio
 
 
 
-### ¿Como importar la base de datos?
-No sé
+### How to import the database?
+Steps to import GoldenDuck database:
+    - Open SQL Server
+    - Right click on the "Databases" folder
+    - Click on "Import Data-tier Application...".
+    - Next
+    - In "Import from local disk", select "Browse".
+    - Browse for ".bacpac" files found in the repository folder "./baseDB".
+    - Select either of the two
+    - Next
+    - Next
+    - Finish
+    - Repeat with the remaining file
 
 
 
@@ -87,11 +98,13 @@ Allow Access:
     - Go to the security category
     - Select "SQL Server and Windows Authentication mode".
 
-#### Configure .env
+
+
+### Configure .env
     - In the "api" folder create a copy of ".env.example" and delete rename it to ".env".
     - Inside ".env" modify "DB_USERNAME" and "DB_PASSWORD" with the users previously created.
     - Save changes to file
 
 [Watch GoldenDuck live](https://goldenduck.netlify.app/)
 
-# (Faltan los pasos para importar base de datos y mas configuración de .env)
+# (Faltan mas configuración de .env)
