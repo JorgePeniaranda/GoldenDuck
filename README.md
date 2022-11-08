@@ -1,5 +1,3 @@
-hola me llamo rosel y vivo
-
 # GoldenDuck
 Project for educational and illustrative purposes, non-commercial project. No use is made or authorized for profit due to copyright and unauthorized licensing issues.
 
