@@ -50,44 +50,44 @@ Steps to import GoldenDuck database:
 
 ### How to set up the database connection?
 
-#### `composer global require laravel/installer`.
+#### `composer global require laravel/installer`
 With this command we install laravel on our computer
 
 #### [Download Drivers Here](https://learn.microsoft.com/en-us/sql/connect/php/download-drivers-php-sql-server?view=sql-server-ver15)
 These drivers are necessary to make the connection from Laravel to SQL Server.
 Steps to install:
 
-        - Go to "C:xampppppext".
+        - Go to "C:/xampp/php/ext".
         - Paste the respective files according to this table¹ (php_pdo_sqlsrv and php_sqlsrv of your corresponding PHP² version)
-        - In the php.ini file located in "C:xampp" add the following lines with the name corresponding to the added file:
+        - In the php.ini file located in "C:/xampp/php" add the following lines with the name corresponding to the added file:
             extension=php_sqlsrv_80_ts_x64.dll
             extension=php_pdo_sqlsrv_80_ts_x64.dll
         - Restart XAMPP
 
-[1: Table](http://localhost/dashboard/phpinfo.php)
+[1: Table](https://i.stack.imgur.com/wgHTf.png)
 
 [2: Check PHP Version](http://localhost/dashboard/phpinfo.php)
 
 #### Enable ports to SQL Server
     - Open "SQL Server Configuration Manager
-    - Open "SQL Server Network Configuration".
-    - Open "Protocols for [SQL Name]".
+    - Open "SQL Server Network Configuration"
+    - Open "Protocols for [SQL Name]"
     - Double-click on "TCP/IP" and enable
-    - Go to "SQL Server Services" right click on SQL Server([SQL Name]) and restart it.
+    - Go to "SQL Server Services" right click on SQL Server([SQL Name]) and restart it
 
 #### Create user in the database and allow access to it
 Create user:
 
     - Expand "Security" folder
-    - Right click on "Logins".
-    - Click on "New Login".
+    - Right click on "Logins"
+    - Click on "New Login"
     - Enter name
-    - Select "SQL Server authentication
+    - Select "SQL Server authentication"
     - Enter password if necessary
     - In the category "Server Roles" check all options
     - In the category "User Mapping" select the databases "HomebankingUsar" and "HomebankingPassUsar".
     - In the category "Securables" click on "Search" and select "The server '[Server Name]'" and accept
-    - Click on "OK" to create the account.
+    - Click on "OK" to create the account
 
 Allow Access:
 
@@ -95,7 +95,7 @@ Allow Access:
     - Right click on the SQL Server
     - Click on properties
     - Go to the security category
-    - Select "SQL Server and Windows Authentication mode".
+    - Select "SQL Server and Windows Authentication mode"
 
 
 
