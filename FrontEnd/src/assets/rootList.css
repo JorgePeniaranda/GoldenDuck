@@ -1,0 +1,22 @@
+:root {
+    /* Main */
+    --primaryColor: #fbbf24;
+    --backColor: #4f46e5;
+    --backColorDark: #3730a3;
+    
+    --white: #f0f3f4;
+    --dark: #1f1f1f;
+    --fontBlack: #272727;
+    --fontWhite: #e5e7e9;
+
+    /* Login */
+    --sizeInputs: 25rem;
+    --loginBackgroundForm: #f8fafc;
+    --loginBackgroundFormDark: #262626;
+
+    /* Register */
+    --backRegisterColor: #6366f1;
+    --backMainRegisterColor: #e2e8f0;
+    --backRegisterColorDark: #30315b;
+    --backMainRegisterColorDark: #262626;
+}

@@ -1,30 +1,97 @@
+hola me llamo rosel y vivo
+
 # GoldenDuck
 Project for educational and illustrative purposes, non-commercial project. No use is made or authorized for profit due to copyright and unauthorized licensing issues.
+
+
 
 ## Instructions
 The following programs are required to run GoldenDuck:
 
-### `Node.JS`
+#### [Node.JS](https://nodejs.org/es/download/)
 Used to use Laravel with React.js
 
-### `SQL Server`
+#### [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 Used for implementing a database.
 
-### `Composer`
+#### [Composer](https://getcomposer.org/download/)
 Important for Laravel implementation.
+
+
 
 ### How to start GoldenDuck?
 After installing all the corresponding programs, to start GoldenDuck we need to open a console and enter the following commands:
 
-### `npm ci`
+#### `npm ci`
 With this command we download the dependencies and install them.
 
-### `npm start`
+#### `npm start`
 With this command we start GoldenDuck.
 
-### `npm run build`
+#### `npm run build`
 With this command we create an optimized build ready to be deployed at production level.
+
+
+
+### ¿Como importar la base de datos?
+No sé
+
+
+
+### How to set up the database connection?
+
+#### `composer global require laravel/installer`.
+With this command we install laravel on our computer
+
+#### [Download Drivers Here](https://learn.microsoft.com/en-us/sql/connect/php/download-drivers-php-sql-server?view=sql-server-ver15)
+These drivers are necessary to make the connection from Laravel to SQL Server.
+    
+    Steps to install:
+        - Go to "C:xampppppext".
+        - Paste the respective files according to this table¹ (php_pdo_sqlsrv and php_sqlsrv of your corresponding PHP² version)
+        - In the php.ini file located in "C:xampp" add the following lines with the name corresponding to the added file:
+            extension=php_sqlsrv_80_ts_x64.dll
+            extension=php_pdo_sqlsrv_80_ts_x64.dll
+        - Restart XAMPP
+
+[1: Table](http://localhost/dashboard/phpinfo.php)
+
+[2: Check PHP Version](http://localhost/dashboard/phpinfo.php)
+
+#### Enable ports to SQL Server
+    - Open "SQL Server Configuration Manager
+    - Open "SQL Server Network Configuration".
+    - Open "Protocols for [SQL Name]".
+    - Double-click on "TCP/IP" and enable
+    - Go to "SQL Server Services" right click on SQL Server([SQL Name]) and restart it.
+
+#### Create user in the database and allow access to it
+Create user:
+
+    - Expand "Security" folder
+    - Right click on "Logins".
+    - Click on "New Login".
+    - Enter name
+    - Select "SQL Server authentication
+    - Enter password if necessary
+    - In the category "Server Roles" check all options
+    - In the category "User Mapping" select the databases "HomebankingUsar" and "HomebankingPassUsar".
+    - In the category "Securables" click on "Search" and select "The server '[Server Name]'" and accept
+    - Click on "OK" to create the account.
+
+Allow Access:
+
+    - Start SQL Server and log in
+    - Right click on the SQL Server
+    - Click on properties
+    - Go to the security category
+    - Select "SQL Server and Windows Authentication mode".
+
+#### Configure .env
+    - In the "api" folder create a copy of ".env.example" and delete rename it to ".env".
+    - Inside ".env" modify "DB_USERNAME" and "DB_PASSWORD" with the users previously created.
+    - Save changes to file
 
 [Watch GoldenDuck live](https://goldenduck.netlify.app/)
 
-# (Some steps are missing for setting up the SQL Server database)
+# (Faltan los pasos para importar base de datos y mas configuración de .env)
