@@ -35,17 +35,18 @@ With this command we create an optimized build ready to be deployed at productio
 
 ### How to import the database?
 Steps to import GoldenDuck database:
-    - Open SQL Server
-    - Right click on the "Databases" folder
-    - Click on "Import Data-tier Application...".
-    - Next
-    - In "Import from local disk", select "Browse".
-    - Browse for ".bacpac" files found in the repository folder "./baseDB".
-    - Select either of the two
-    - Next
-    - Next
-    - Finish
-    - Repeat with the remaining file
+
+        - Open SQL Server
+        - Right click on the "Databases" folder
+        - Click on "Import Data-tier Application...".
+        - Next
+        - In "Import from local disk", select "Browse".
+        - Browse for ".bacpac" files found in the repository folder "./baseDB".
+        - Select either of the two
+        - Next
+        - Next
+        - Finish
+        - Repeat with the remaining file
 
 
 
@@ -56,8 +57,8 @@ With this command we install laravel on our computer
 
 #### [Download Drivers Here](https://learn.microsoft.com/en-us/sql/connect/php/download-drivers-php-sql-server?view=sql-server-ver15)
 These drivers are necessary to make the connection from Laravel to SQL Server.
-    
-    Steps to install:
+Steps to install:
+
         - Go to "C:xampppppext".
         - Paste the respective files according to this table¹ (php_pdo_sqlsrv and php_sqlsrv of your corresponding PHP² version)
         - In the php.ini file located in "C:xampp" add the following lines with the name corresponding to the added file:
