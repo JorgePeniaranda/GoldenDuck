@@ -9,7 +9,7 @@ import LaptopDark from "../../assets/laptopDark.svg";
 const Home = () => {
   // En react: {text}
   // asp.net [text]
-  const [ text ] = useTypewriter({
+  const [text] = useTypewriter({
     words: [
       " Confianza",
       " Tranferencias",

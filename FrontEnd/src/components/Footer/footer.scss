@@ -18,7 +18,7 @@ footer {
     flex-direction: column;
     margin: 1.123rem auto;
     p {
-      font-size: .78rem;
+      font-size: 0.78rem;
       font-family: "Poppins-Regular";
       margin: 0;
       color: #d0d3d4;
@@ -101,8 +101,8 @@ footer {
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.3);
     pointer-events: none;
-    font-size: .67rem;
-    padding: .449rem;
+    font-size: 0.67rem;
+    padding: 0.449rem;
     user-select: none;
   }
 }
@@ -135,7 +135,7 @@ footer {
 [tooltip]::before,
 [tooltip]::after {
   text-transform: none; /* opinion 2 */
-  font-size: .84rem; /* opinion 3 */
+  font-size: 0.84rem; /* opinion 3 */
   line-height: 1;
   user-select: none;
   pointer-events: none;
@@ -164,7 +164,7 @@ footer {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: .56rem 1.123rem;
+  padding: 0.56rem 1.123rem;
   border-radius: 0.3ch;
   box-shadow: 0 1em 2em -0.5em rgba(0, 0, 0, 0.35);
   background: #333;

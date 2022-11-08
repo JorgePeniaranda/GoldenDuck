@@ -19,7 +19,7 @@ export default class Register extends Component {
     password: "",
     files: "",
     captchaApproves: false,
-    termsAccepted: false
+    termsAccepted: false,
   };
 
   handleInputChange = (event) => {
@@ -28,13 +28,12 @@ export default class Register extends Component {
     });
   };
   siguientePaso = (event, notCheck = false) => {
-    if (notCheck === true){
+    if (notCheck === true) {
       const { paso } = this.state;
       this.setState({
         paso: paso + 1,
       });
-    }
-    else if (formFunctions.checkNext()) {
+    } else if (formFunctions.checkNext()) {
       const { paso } = this.state;
       this.setState({
         paso: paso + 1,
@@ -62,53 +61,61 @@ export default class Register extends Component {
         return (
           <main id="registerSection">
             <section id="registerForm">
-              <Link to='/'><img src={GoldenDuckLogo} alt="logo"/></Link>
+              <Link to="/">
+                <img src={GoldenDuckLogo} alt="logo" />
+              </Link>
               <h1>Registración</h1>
-                <Paso1
-                  handleInputChange={this.handleInputChange}
-                  siguientePaso={this.siguientePaso}
-                  values={values}
-                />
+              <Paso1
+                handleInputChange={this.handleInputChange}
+                siguientePaso={this.siguientePaso}
+                values={values}
+              />
             </section>
           </main>
         );
-        case 2:
-          return (
-            <main id="registerSection">
-              <section id="registerForm">
-                <Link to='/'><img src={GoldenDuckLogo} alt="logo"/></Link>
-                <h1>Registración</h1>
-                  <Paso2
-                    handleInputChange={this.handleInputChange}
-                    siguientePaso={this.siguientePaso}
-                    values={values}
-                  />
-              </section>
-            </main>
-          );
-          case 3:
-            return (
-              <main id="registerSection">
-                <section id="registerForm">
-                  <Link to='/'><img src={GoldenDuckLogo} alt="logo"/></Link>
-                    <Paso3
-                      handleInputChange={this.handleInputChange}
-                      siguientePaso={this.siguientePaso}
-                      values={values}
-                    />
-                </section>
-              </main>
-            );
-          default:
-            return (
-              <main id="registerSection">
-                <section id="registerForm">
-                  <Link to='/'><img src={GoldenDuckLogo} alt="logo"/></Link>
-                  <h1>Error</h1>
-                  <Link to="/">Volver</Link>
-                </section>
-              </main>
-            );
+      case 2:
+        return (
+          <main id="registerSection">
+            <section id="registerForm">
+              <Link to="/">
+                <img src={GoldenDuckLogo} alt="logo" />
+              </Link>
+              <h1>Registración</h1>
+              <Paso2
+                handleInputChange={this.handleInputChange}
+                siguientePaso={this.siguientePaso}
+                values={values}
+              />
+            </section>
+          </main>
+        );
+      case 3:
+        return (
+          <main id="registerSection">
+            <section id="registerForm">
+              <Link to="/">
+                <img src={GoldenDuckLogo} alt="logo" />
+              </Link>
+              <Paso3
+                handleInputChange={this.handleInputChange}
+                siguientePaso={this.siguientePaso}
+                values={values}
+              />
+            </section>
+          </main>
+        );
+      default:
+        return (
+          <main id="registerSection">
+            <section id="registerForm">
+              <Link to="/">
+                <img src={GoldenDuckLogo} alt="logo" />
+              </Link>
+              <h1>Error</h1>
+              <Link to="/">Volver</Link>
+            </section>
+          </main>
+        );
     }
   }
 }

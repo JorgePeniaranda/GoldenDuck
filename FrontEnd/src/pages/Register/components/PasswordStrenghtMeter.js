@@ -1,11 +1,11 @@
 import React from 'react';
 import zxcvbn from 'zxcvbn';
 
-const PasswordStrenghtMeter = props =>{
+const PasswordStrenghtMeter = props => {
     const testResult = zxcvbn(props.password);
-    const num = testResult.score * 100/4;
+    const num = testResult.score * 100 / 4;
 
-    const funcProgressColor= () => {
+    const funcProgressColor = () => {
         switch (testResult.score) {
             case 0:
                 return '#828282'
@@ -28,11 +28,11 @@ const PasswordStrenghtMeter = props =>{
         height: '.5rem',
     })
 
-  return (
-    <div className='progress'>
-        <div id='progress-bar' style={changePasswordColor()}/>
-    </div>
-  );
+    return (
+        <div className='progress'>
+            <div id='progress-bar' style={changePasswordColor()} />
+        </div>
+    );
 }
 
 export default PasswordStrenghtMeter;

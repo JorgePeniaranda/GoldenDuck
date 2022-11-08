@@ -14,6 +14,7 @@ const footer = () => {
       <div className="redes">
         <a
           href="https://www.facebook.com/profile.php?id=100081120383944"
+          target="_blank"
           rel="noreferrer"
           title="Facebook"
         >
@@ -21,6 +22,7 @@ const footer = () => {
         </a>
         <a
           href="https://www.instagram.com/lycokat/"
+          target="_blank"
           rel="noreferrer"
           title="Instagram"
         >
@@ -28,6 +30,7 @@ const footer = () => {
         </a>
         <a
           href="mailto:lycokat.co@gmail.com"
+          target="_blank"
           rel="noreferrer"
           tooltip="LycoKat.Co@Gmail.Com"
         >
@@ -35,12 +38,18 @@ const footer = () => {
         </a>
         <a
           href="https://www.linkedin.com/in/LycoKat"
+          target="_blank"
           rel="noreferrer"
           title="LinkedIn"
         >
           L
         </a>
-        <a href="https://twitter.com/lycokat" rel="noreferrer" title="Twitter">
+        <a
+          href="https://twitter.com/lycokat"
+          rel="noreferrer"
+          target="_blank"
+          title="Twitter"
+        >
           T
         </a>
       </div>

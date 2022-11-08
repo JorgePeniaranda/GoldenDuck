@@ -22,8 +22,11 @@ export default class inputPasswordShowBTN extends Component {
           className="material-icons-outlined"
           id="showBTN"
           onClick={(e) => {
-            ShowInput(e)
-          }}>visibility</span>
+            ShowInput(e);
+          }}
+        >
+          visibility
+        </span>
         <input
           type="password"
           id="passwordShowInput"
