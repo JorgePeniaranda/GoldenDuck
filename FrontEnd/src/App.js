@@ -47,10 +47,10 @@ import DarkMode from "./utils/darkMode";
 const oneTab = () => {
   localStorage.openpages = Date.now();
   var onLocalStorageEvent = function(e){
-      if(e.key == "openpages"){
+      if(e.key === "openpages"){
         localStorage.page_available = Date.now();
       }
-      if(e.key == "page_available"){
+      if(e.key === "page_available"){
         alert("GoldenDuck abierto en 2 o mas pestañas")
       }
   };

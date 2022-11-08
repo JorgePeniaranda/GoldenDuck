@@ -28,7 +28,7 @@ export default class Register extends Component {
     });
   };
   siguientePaso = (event, notCheck = false) => {
-    if (notCheck == true){
+    if (notCheck === true){
       const { paso } = this.state;
       this.setState({
         paso: paso + 1,
@@ -96,6 +96,16 @@ export default class Register extends Component {
                       siguientePaso={this.siguientePaso}
                       values={values}
                     />
+                </section>
+              </main>
+            );
+          default:
+            return (
+              <main id="registerSection">
+                <section id="registerForm">
+                  <Link to='/'><img src={GoldenDuckLogo} alt="logo"/></Link>
+                  <h1>Error</h1>
+                  <Link to="/">Volver</Link>
                 </section>
               </main>
             );
