@@ -1,4 +1,8 @@
-section.Home {
+main.Home{
+  nav{
+    height: 15% !important;
+  }
+  section.Home {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -205,6 +209,7 @@ section.Home {
     }
     padding-bottom: 22.5rem;
   }
+}
   /* Animaciones */
 
   @keyframes color {
