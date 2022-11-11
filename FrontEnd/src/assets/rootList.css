@@ -13,10 +13,14 @@
     --sizeInputs: 25rem;
     --loginBackgroundForm: #f8fafc;
     --loginBackgroundFormDark: #262626;
-
-    /* Register */
+    
+    /* Forgot */
     --backRegisterColor: #6366f1;
     --backMainRegisterColor: #e2e8f0;
-    --backRegisterColorDark: #30315b;
-    --backMainRegisterColorDark: #262626;
+
+    /* Forgot */
+    --backForgotColor: #6366f1;
+    --backMainForgotColor: #e2e8f0;
+    --backForgotColorDark: #30315b;
+    --backMainForgotColorDark: #262626;
 }

@@ -26,7 +26,7 @@ const Paso2 = props => {
     <div className="pasos" id='paso2' onKeyDown={props.handleEnterKey}>
       <span>Suba una foto del frente y dorso del DNI, junto a una foto suya de frente para confirmar su identidad</span>
       <FileUploader handleChange={handleChange} hoverTitle="Suelte aquí" minSize={3} classes="fileDrop" name="files" types={fileTypes} label="Suba los archivos aquí" />
-      <ReCAPTCHA sitekey="l o l" id='ReCAPTCHA' /* onChange={onChange} */ />
+      <ReCAPTCHA sitekey="6LeVMaEgAAAAAKS-1eaRymKZPEZDB9D56UG0RWp2" id='ReCAPTCHA' /* onChange={onChange} */ />
       <div id='PESTEL'>
         <input type='checkbox' id='checkPESTEL' />
         <label>Acepto <Link to={'/Terms-And-Conditions'}>Terminos y Condiciones</Link></label>
