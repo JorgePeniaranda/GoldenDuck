@@ -15,9 +15,6 @@
 }
 
 /* Modo Oscuro */
-body.dark {
-  #upButton {
-    background-color: var(--primaryColorDark);
-    color: #000000;
-  }
+body.dark #upButton {
+  color: #000000;
 }

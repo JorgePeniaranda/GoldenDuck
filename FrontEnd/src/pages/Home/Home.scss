@@ -266,19 +266,19 @@ body.dark {
     }
     background-color: var(--backColorDark);
     .topWave {
-      transition: background 0.3s ease;
-      background: url(assets/topWaveDark.svg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: top left;
-      background-size: 100%;
+      transition: background 0.3s ease !important;
+      background: url(assets/topWaveDark.svg) !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-position: top left !important;
+      background-size: 100% !important;
     }
     .bottomWave {
-      transition: background 0.3s ease;
-      background: url(assets/bottomWaveDark.svg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center left;
+      transition: background 0.3s ease !important;
+      background: url(assets/bottomWaveDark.svg) !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-position: center left !important;
     }
   }
   #Possibilities {
