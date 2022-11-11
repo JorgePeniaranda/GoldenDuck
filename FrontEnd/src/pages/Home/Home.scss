@@ -334,12 +334,14 @@ body.dark {
         .blob {
           order: 2;
           margin-top: 10rem;
+          background: none;
           .phone {
             background: url(../../assets/img/phone.webp);
             background-repeat: no-repeat;
             background-position: top;
             background-size: contain;
             transform: none;
+            width: 100vw;
           }
           .contentPhone {
             background: url(../../assets/img/backgroundPhone.jfif);
