@@ -141,3 +141,19 @@ body.dark {
     display: flex;
   }
 }
+
+
+@media screen and (max-width: 1001px) {
+  body {
+    main.loginSection {
+      display: flex;
+      flex-direction: column;
+      #registerOption{
+        order: 2;
+      }
+      #loginForm{
+        order: 1;
+      }
+    }
+  }
+}
