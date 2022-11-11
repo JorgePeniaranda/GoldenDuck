@@ -100,7 +100,7 @@ Allow Access:
 
 
 ### Configure .env
-    - In the "api" folder create a copy of ".env.example" and delete rename it to ".env".
+    - In the "api" folder create a copy of ".env.example" and rename it to ".env".
     - Inside ".env" modify "DB_USERNAME" and "DB_PASSWORD" with the users previously created.
     - Save changes to file
 
