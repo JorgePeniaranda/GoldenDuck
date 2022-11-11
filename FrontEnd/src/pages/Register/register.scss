@@ -45,6 +45,7 @@ main#registerSection {
           left: 0;
           z-index: 10;
           padding: 0.2rem;
+          font-size: 2rem;
           &#showInputSpan {
             margin-bottom: 1rem;
           }
@@ -181,6 +182,16 @@ body.dark {
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1001px) {
+  body {
+    main#registerSection section#registerForm{
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
     }
   }
 }
