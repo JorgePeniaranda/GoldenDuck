@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import "./login.scss";
 
-import GoldenDuckLogo from "../../assets/img/GoldenDuckLogo.png";
 import NavList from "../../components/Navbar/Nav";
 
 const Login = () => {

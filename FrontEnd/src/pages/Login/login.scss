@@ -136,12 +136,13 @@ body.dark {
     main#loginSection{
       height: fit-content;
       nav{
-        padding: 0;
+        height: 20%;
+        padding: 2rem 0;
       }
       .content{
         display: flex;
         flex-direction: column;
-        height: 80vh;
+        height: 80%;
         background-color: transparent;
         #loginForm{
           height: 100%;

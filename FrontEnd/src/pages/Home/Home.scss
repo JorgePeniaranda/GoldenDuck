@@ -1,4 +1,4 @@
-main.Home{
+main#Home{
   nav{
     height: 15% !important;
   }
@@ -101,11 +101,11 @@ main.Home{
           position: absolute;
           width: 16.8rem;
           height: 35rem;
-          background: url(../../assets/img/backgroundPhone.jfif);
+          background: url(../../assets/img/backgroundPhone.png);
           background-position: top;
           background-size: cover;
           transform: skew(7deg);
-          animation: slide 20s linear infinite;
+          animation: slide 50s linear infinite;
         }
       }
       .text {
@@ -321,10 +321,11 @@ body.dark {
 /* Responsive */
 
 @media screen and (max-width: 1001px) {
-  section.Home {
+  main#Home section.Home {
     #AboutUs {
       #AboutUsSection {
         align-items: center;
+        text-align: center;
         h1 {
           margin: 0;
         }
@@ -349,7 +350,7 @@ body.dark {
             width: 100vw;
           }
           .contentPhone {
-            background: url(../../assets/img/backgroundPhone.jfif);
+            background: url(../../assets/img/backgroundPhone.png);
             background-position: top;
             background-size: cover;
             transform: none;

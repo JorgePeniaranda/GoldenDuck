@@ -16,14 +16,16 @@
     
     /* Regiser */
     --registerBackgroundColor: #444cf7;
+    --registerBackgroundColorDark: rgb(137, 155, 244);
+    --registerTextDarkColor: #e5e7eb;
     --buttonSend: #6366f1;
     --borderButtonSend: #6390f1;
     --backMainRegisterColor: #e5e5f7;
-    --backMainRegisterColorDark: #000000;
+    --backMainRegisterColorDark: #334155;
 
     /* Forgot */
     --backForgotColor: #6366f1;
     --backMainForgotColor: #e2e8f0;
     --backForgotColorDark: #30315b;
-    --backMainForgotColorDark: #262626;
+    --backMainForgotColorDark: #3f3f46;
 }

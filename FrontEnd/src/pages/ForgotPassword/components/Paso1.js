@@ -1,42 +1,54 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Swal from "sweetalert2";
+import ReCAPTCHA from 'react-google-recaptcha'
+import randomString from '../../../utils/randomString'
+import md5 from 'md5'
 
 import formFunctions from '../../../utils/formFunctions';
-import PasswordStrenghtMeter from './PasswordStrenghtMeter';
-import InputPasswordShowBTN from '../../../components/InputPasswordShowBTN/inputPasswordShowBTN';
+
+const recaptchaRef = React.createRef();
+
+
+const generateCode = () => {
+  var eqovcevqEqfg = randomString(6);
+  sessionStorage.setItem("eqovcevqEqfg", md5(eqovcevqEqfg)); // Pasar directamente con randomString() y borrar variable
+
+  console.log('codeContact: ' + eqovcevqEqfg) /* Sacar al terminar xd */
+  console.log('codeContact Encriptado: ' + sessionStorage.getItem("eqovcevqEqfg")) /* Sacar al terminar xd */
+
+  console.log(""); /* Sacar al terminar xd */
+  console.log(""); /* Sacar al terminar xd */
+}
 
 const Paso1 = props => {
+  const nextButton = (e) =>{
+    if (recaptchaRef.current.getValue() != '') {
+      generateCode();
+      props.siguientePaso(e);
+    }
+    else{
+      Swal.fire({
+        title: "Error",
+        text: "Complete el Captcha",
+        icon: "error",
+      });
+    }
+  }
   return (
     <div onKeyDown={props.handleEnterKey}>
-      <label>Nombre:</label> {/* Posibilidad de cambiar a Email para el forgot y agregar validacion por mail */}
-      <div className="input" id='NameCamp'> {/* Nombre */}
-        <span class="material-icons-outlined">person</span>
-        <input type="text" name="name" value={props.values.name} className="form-input" id="name" autoFocus autoComplete="off" onChange={e => {
+      <label>Email o Telefono:</label> {/* Posibilidad de cambiar a Email para el forgot y agregar validacion por mail */}
+      <div className="input">
+        <span class="material-icons-outlined">alternate_email</span>
+        <input type="text" name="Correo" value={props.values.Correo} className="form-input" id="name" autoFocus autoComplete="off" onChange={e => {
           props.handleInputChange(e)
-          formFunctions.typingInput(e, 1, false, 'text')
+          formFunctions.typingInput(e, 1, false, 'email')
         }} />
       </div>
+      <ReCAPTCHA sitekey="6LeVMaEgAAAAAKS-1eaRymKZPEZDB9D56UG0RWp2" id='ReCAPTCHA' ref={recaptchaRef} />
 
-      <label>DNI:</label>
-      <div className="input" id='SurnameCamp'> {/* DNI */}
-        <span class="material-icons-outlined">fingerprint</span>
-        <input type="text" name="dni" value={props.values.dni} minLength={8} maxLength={8} className="form-input" autoComplete="off" onChange={e => {
-          props.handleInputChange(e)
-          formFunctions.typingInput(e, 8, true, 'int')
-        }} />
-      </div>
-
-      <label>Contraseña:</label> {/* Contraseña */}
-      <div className="input" id='passwordShowBarContainer'>
-        <span class="material-icons-outlined" id='showInputSpan'>lock</span>
-        <div id='password'>
-          <InputPasswordShowBTN name='password' value={props.values.password} onChange={props.handleInputChange} />
-          <PasswordStrenghtMeter password={props.values.password} />
-        </div>
-      </div>
-
-      <button id='Next' onClick={props.siguientePaso}>Siguiente</button>
-      <Link to='/Login' id='loginRedirect'>Ya tengo una cuenta</Link>
+      <button id='Next' onClick={nextButton}>Siguiente</button>
+      <Link to='/Login' id='optionBottom'>Ya tengo una cuenta</Link>
     </div>
   );
 }

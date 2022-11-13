@@ -1,37 +1,36 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import ReCAPTCHA from 'react-google-recaptcha'
-import { FileUploader } from "react-drag-drop-files";
+import ReactCodeInput from 'react-code-input'
 import Swal from 'sweetalert2';
-
-const fileTypes = ["JPG", "PNG"];
+import md5 from 'md5';
 
 const Paso2 = props => {
-  const handleChange = (file) => {
-    console.log(file) // pasar archivos al estado
-  };
   const sendButton = () => {
-    if (document.getElementById("checkPESTEL").checked) {
-      props.siguientePaso(null, true) // aca tiene que ir la comprobación de los archivos y la wea
+    if (props.values.Codigo === "") {
+      Swal.fire({
+        title: "Error",
+        text: "Ingrese Código",
+        icon: "error",
+      });
+    }
+    else if (sessionStorage.getItem("eqovcevqEqfg") === md5(props.values.Codigo)) {
+      props.siguientePaso(null, true)
     }
     else {
       Swal.fire({
         title: "Error",
-        text: "Debes aceptar los terminos y condiciones",
+        text: "Código Erróneo",
         icon: "error",
       });
     }
   }
   return (
     <div className="pasos" id='paso2' onKeyDown={props.handleEnterKey}>
-      <span>Suba una foto del frente y dorso del DNI, junto a una foto suya de frente para confirmar su identidad</span>
-      <FileUploader handleChange={handleChange} hoverTitle="Suelte aquí" minSize={3} classes="fileDrop" name="files" types={fileTypes} label="Suba los archivos aquí" />
-      <ReCAPTCHA sitekey="6LeVMaEgAAAAAKS-1eaRymKZPEZDB9D56UG0RWp2" id='ReCAPTCHA' /* onChange={onChange} */ />
-      <div id='PESTEL'>
-        <input type='checkbox' id='checkPESTEL' />
-        <label>Acepto <Link to={'/Terms-And-Conditions'}>Terminos y Condiciones</Link></label>
-      </div>
-      <button onClick={sendButton}>Enviar</button>
+      <p>Compruebe el correo <span>{props.values.Correo}</span> para encontrar el codigo de verificación, recuerda que puede encontrarse en "spam"</p>
+      <ReactCodeInput type='text' fields={6} onChange={e =>{
+          props.handleInputChange(e, true, "Codigo", e);
+        }}/>
+      <button onClick={sendButton}>Siguiente</button>
+      <span onClick={props.anteriorPaso} id='optionBottom'>Atrás</span>
     </div>
   );
 }

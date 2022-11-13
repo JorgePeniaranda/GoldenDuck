@@ -13,45 +13,58 @@ import formFunctions from "../../utils/formFunctions";
 
 export default class Register extends Component {
   state = {
-    paso: 1,
-    name: "",
-    dni: "",
-    password: "",
-    files: "",
-    captchaApproves: false,
-    termsAccepted: false,
+    paso: 2,
+    Correo: "testCorreo@test.com",
+    Codigo: "",
+    newPass: "",
+    confirmationNewPass: ""
   };
-
-  handleInputChange = (event) => {
-    this.setState({
+  
+  handleInputChange = (event, directValue = false, name, value) => {
+    if (directValue) this.setState({
+      [name]: value,
+    });
+    else this.setState({
       [event.target.name]: event.target.value,
     });
   };
+  
   siguientePaso = (event, notCheck = false) => {
     if (notCheck === true) {
       const { paso } = this.state;
       this.setState({
         paso: paso + 1,
       });
-    } else if (formFunctions.checkNext()) {
+    } else if (false) {
       const { paso } = this.state;
       this.setState({
         paso: paso + 1,
       });
-    } else
+    } else if (formFunctions.checkNext(1) === 0) {
+      const { paso } = this.state;
+      this.setState({
+        paso: paso + 1,
+      });
+    } else if (formFunctions.checkNext(1)[0] === 1){
       Swal.fire({
         title: "Error",
-        text: "Verifique los campos",
+        text: 'Rellene campo ' + formFunctions.checkNext(1)[2],
+        icon: "error",
+      });
+    } else if (formFunctions.checkNext(1)[0] === 2)
+      Swal.fire({
+        title: "Error",
+        text: 'Compruebe campo ' + formFunctions.checkNext(1)[2],
         icon: "error",
       });
   };
+
   anteriorPaso = (event) => {
     const { paso } = this.state;
     this.setState({
       paso: paso - 1,
     });
   };
-  /* Poner que los value sean igual a los state */
 
   render() {
     let values = this.state;
@@ -64,7 +77,7 @@ export default class Register extends Component {
               <Link to="/">
                 <img src={GoldenDuckLogo} alt="logo" />
               </Link>
-              <h1>Registración</h1>
+              <h2>Cambiar Contraseña</h2>
               <Paso1
                 handleInputChange={this.handleInputChange}
                 siguientePaso={this.siguientePaso}
@@ -80,10 +93,11 @@ export default class Register extends Component {
               <Link to="/">
                 <img src={GoldenDuckLogo} alt="logo" />
               </Link>
-              <h1>Registración</h1>
+              <h2>Cambiar Contraseña</h2>
               <Paso2
                 handleInputChange={this.handleInputChange}
                 siguientePaso={this.siguientePaso}
+                anteriorPaso={this.anteriorPaso}
                 values={values}
               />
             </section>
@@ -96,41 +110,19 @@ export default class Register extends Component {
               <Link to="/">
                 <img src={GoldenDuckLogo} alt="logo" />
               </Link>
+              <h2>Cambiar Contraseña</h2>
               <Paso3
                 handleInputChange={this.handleInputChange}
                 siguientePaso={this.siguientePaso}
-                values={values}
-              />
-            </section>
-          </main>
-        );
-      case 4:
-        return (
-          <main id="forgotSection">
-            <section id="forgotSection">
-              <Link to="/">
-                <img src={GoldenDuckLogo} alt="logo" />
-              </Link>
-              <Paso3
-                handleInputChange={this.handleInputChange}
-                siguientePaso={this.siguientePaso}
+                anteriorPaso={this.anteriorPaso}
                 values={values}
               />
             </section>
           </main>
         );
       default:
-        return (
-          <main id="forgotSection">
-            <section id="forgotSection">
-              <Link to="/">
-                <img src={GoldenDuckLogo} alt="logo" />
-              </Link>
-              <h1>Error</h1>
-              <Link to="/">Volver</Link>
-            </section>
-          </main>
-        );
+        alert("Lo sentimos, hubo un error.");
+        window.location.href = "/";
     }
   }
 }

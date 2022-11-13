@@ -13,7 +13,7 @@ import "./Home.scss";
 
 const Home = () => {
   return (
-    <main className="Home">
+    <main id="Home">
       <Nav />
       <Header />
       <section className="Home">

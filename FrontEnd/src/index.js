@@ -12,7 +12,7 @@ const App = lazy(() => import("./App"));
 
 registerLicense('ORg4AjUWIQA/Gnt2VVhjQlFaclhJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRd0VhWH1dc3ZQRGhVV0E=');
 
-const root = ReactDOM.createRoot(document.body);
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     {/* Pantalla de Carga */}
