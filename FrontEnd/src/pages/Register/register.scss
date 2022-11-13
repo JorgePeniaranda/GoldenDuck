@@ -1,19 +1,130 @@
 main#registerSection{
-  background-color: var(--backMainRegisterColor);
+  opacity: 0.8;
+  background-image:  radial-gradient(var(--registerBackgroundColor) 0.5px, transparent 0.5px), radial-gradient(var(--registerBackgroundColor) 0.5px, var(--backMainRegisterColor) 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0,10px 10px;
   width: 100vw;
   height: 100vh;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1{
+    margin-bottom: 3rem;
+    color: var(--registerBackgroundColor);
+  }
   section#registerSection{
+    height: max-content;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: repeat(3, 33%);
     div.inputsList{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      display: grid;
+      grid-template-rows: 4rem 2.5rem 3rem;
       gap: 3rem;
-      input{
-        width: 19rem;
-        border: none;
+      justify-content: center;
+      margin: 0 3rem;
+      span{
+        color: var(--registerBackgroundColor);
+      }
+      div.inputContainer{
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        width: fit-content;
+        input{
+          width: 19rem;
+          height: 2rem;
+          padding: 1.2rem 1rem;
+          margin: 0 auto;
+        }
+        span#nacSpan{
+          font-size: .8rem;
+          font-family: Poppins-Light;
+          user-select: none;
+          color: unset;
+        }
+        &#sexInputRadio{
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto;
+          user-select: none;
+          label{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            input{
+              height: 1rem;
+              width: 2rem;
+            }
+            &:first-child{
+              margin-right: 2rem;
+            }
+          }
+        }
+        &#passwordInputDiv{
+          span{
+            color: unset;
+            &.clicked{
+              color: var(--registerBackgroundColor);
+            }
+          }
+          .progress{
+            height: 1rem;
+            border-radius: 0;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+  span#acceptTerms{
+    margin: 2.5rem 0;
+    user-select: none;
+  }
+  button{
+    width: 6rem;
+    height: 2.7rem;
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    color: #fff;
+    background-color: var(--buttonSend);
+    border: none;
+    box-shadow: .03rem .02rem .2rem .1rem var(--borderButtonSend);
+    transition: all 200ms ease;
+    &:hover{
+      filter: brightness(120%);
+    }
+  }
+}
+
+body.dark {
+  main#registerSection {
+    background-image:  radial-gradient(var(--registerBackgroundColor) 0.5px, transparent 0.5px), radial-gradient(var(--registerBackgroundColor) 0.5px, var(--backMainRegisterColorDark) 0.5px);
+  }
+}
+
+@media screen and (max-width: 1001px) {
+  body {
+    main#registerSection{
+      height: fit-content;
+      padding-bottom: 5rem;
+      h1{
+        margin-top: 2rem;
+        color: var(--registerBackgroundColor);
+      }
+      section#registerSection{
+        display: flex;
+        flex-direction: column;
+        grid-template: none;
+        height: fit-content;
+        div.inputsList{
+          margin: 3rem 0;
+          height: fit-content;
+          &:first-child{
+            margin-top: 0;
+          }
+        }
       }
     }
   }

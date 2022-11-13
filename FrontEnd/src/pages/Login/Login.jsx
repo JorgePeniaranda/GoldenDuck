@@ -8,7 +8,7 @@ import NavList from "../../components/Navbar/Nav";
 
 const Login = () => {
   return (
-    <main className="loginSection">
+    <main id="loginSection">
       <NavList.SingleNavResponsive />
       <div className="content">
         <div id="registerOption">

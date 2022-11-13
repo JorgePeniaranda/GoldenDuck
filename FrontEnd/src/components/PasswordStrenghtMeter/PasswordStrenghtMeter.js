@@ -5,6 +5,8 @@ const PasswordStrenghtMeter = props => {
     const testResult = zxcvbn(props.password);
     const num = testResult.score * 100 / 4;
 
+    console.log(props.password + " " + zxcvbn(props.password))
+
     const funcProgressColor = () => {
         switch (testResult.score) {
             case 0:

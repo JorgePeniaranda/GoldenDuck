@@ -14,9 +14,12 @@
     --loginBackgroundForm: #f8fafc;
     --loginBackgroundFormDark: #262626;
     
-    /* Forgot */
-    --backRegisterColor: #6366f1;
-    --backMainRegisterColor: #e2e8f0;
+    /* Regiser */
+    --registerBackgroundColor: #444cf7;
+    --buttonSend: #6366f1;
+    --borderButtonSend: #6390f1;
+    --backMainRegisterColor: #e5e5f7;
+    --backMainRegisterColorDark: #000000;
 
     /* Forgot */
     --backForgotColor: #6366f1;

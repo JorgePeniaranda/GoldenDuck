@@ -1,8 +1,12 @@
-main.loginSection {
+main#loginSection {
   height: 100vh;
   background-color: #f3f4f6;
-  nav a.home{
-    color: var(--backColor) !important;
+  nav{
+    height: 15%;
+    padding-top: 2rem;
+    a.home{
+      color: var(--backColor) !important;
+    }
   }
   .content{
     display: grid;
@@ -11,7 +15,7 @@ main.loginSection {
     transition: all 200ms ease;
     height: 80%;
     #registerOption {
-      height: 100%;
+      height: 80%;
       padding-left: 10%;
       h1 {
         margin: 10rem 0 0.75rem 0;
@@ -35,7 +39,7 @@ main.loginSection {
     }
     #loginForm {
       flex-direction: column;
-      height: 100%;
+      height: 80%;
       padding-right: 10%;
       display: flex;
       .loginInputs {
@@ -44,7 +48,7 @@ main.loginSection {
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         margin: 10% auto;
         width: 60%;
-        height: 70%;
+        height: 90%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -79,6 +83,7 @@ main.loginSection {
         button,
         a#login {
           margin-top: 3rem;
+          margin-bottom: 7rem;
           background-color: var(--backColor);
           color: #fff;
           padding: 0.5rem 2rem;
@@ -95,7 +100,7 @@ main.loginSection {
 }
 
 body.dark {
-  main.loginSection {
+  main#loginSection {
     background-color: var(--loginBackgroundFormDark);
     #registerOption p{
       margin-bottom: 8rem;
@@ -128,7 +133,7 @@ body.dark {
 
 @media screen and (max-width: 1001px) {
   body {
-    main.loginSection{
+    main#loginSection{
       height: fit-content;
       nav{
         padding: 0;
