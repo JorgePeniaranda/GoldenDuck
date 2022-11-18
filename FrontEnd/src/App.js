@@ -107,15 +107,6 @@ export default function App() {
           <Route path="/dashboard/support" element={<Support />} />
           <Route path="/dashboard/transfer" element={<Transfer />} />
           <Route path="/dashboard/wallet" element={<Wallet />} />
-
-          {/* Testing charts */}
-          <Route path="/dashboard/charts/area" element={<Area />} />
-          <Route path="/dashboard/charts/bar" element={<Bar />} />
-          <Route path="/dashboard/charts/financial" element={<Financial />} />
-          <Route path="/dashboard/charts/line" element={<Line />} />
-          <Route path="/dashboard/charts/pie" element={<Pie />} />
-          <Route path="/dashboard/charts/pyramid" element={<Pyramid />} />
-          <Route path="/dashboard/charts/stacked" element={<Stacked />} />
         </Route>
       </Routes>
     </Router>

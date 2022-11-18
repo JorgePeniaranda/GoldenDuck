@@ -3,6 +3,7 @@
   "version": "latest",
   "private": true,
   "dependencies": {
+    "@mui/icons-material": "^5.10.14",
     "@mui/material": "^5.10.10",
     "@mui/styled-engine-sc": "^5.10.6",
     "@syncfusion/ej2": "^20.3.50",
