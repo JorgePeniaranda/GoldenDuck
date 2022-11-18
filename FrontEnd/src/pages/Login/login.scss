@@ -56,10 +56,10 @@ main#loginSection {
           color: var(--backColor);
           text-align: center;
           margin-top: 20%;
-        }
+        }/* 
         input {
           border: none;
-          margin: 2rem 0 2rem 0;
+          margin: 0;
           background: none;
           border-bottom: solid 0.1rem #d4d4d4;
           text-align: center;
@@ -74,13 +74,15 @@ main#loginSection {
             margin-bottom: 1rem;
           }
         }
+        #registeMobileButton{
+          display: none;
+        }*/
         a {
           font-size: 0.8rem;
         }
         #registeMobileButton{
           display: none;
         }
-        button,
         a#login {
           margin-top: 3rem;
           margin-bottom: 7rem;
