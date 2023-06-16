@@ -20,7 +20,7 @@ const Home = () => {
         <div id="LycoKat">
           <div className="LycoKatIco" />
           <p>
-            <a href="https://lycokat.com.ar/" target="_blank" rel="noreferrer">
+            <a href="https://lycokat.netlify.app/" target="_blank" rel="noreferrer">
               Lycokat
               <span className="material-icons-outlined">open_in_new</span>{" "}
             </a>
