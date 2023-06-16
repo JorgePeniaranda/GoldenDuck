@@ -86,8 +86,7 @@ const Home = () => {
             <p>
               Aquí podrás comunicarte con nosotros en caso de tener algún
               problema. Como robo, perdida de la cuenta, problemas a la hora de
-              hacer transacciones o cualquier cosa que necesites (Incluso para
-              Tomar un Café 😉)
+              hacer transacciones o cualquier cosa que necesites.
             </p>
             <p>
               También podrás ingresar dinero, recibir préstamos, obtener plazos
