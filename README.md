@@ -104,6 +104,4 @@ Allow Access:
     - Inside ".env" modify "DB_USERNAME" and "DB_PASSWORD" with the users previously created.
     - Save changes to file
 
-[Watch GoldenDuck live](https://beta-goldenduck.netlify.app/)
-
-# (Faltan mas configuración de .env)
+[Watch GoldenDuck live](https://goldenduck.netlify.app/)
