@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: GoldenText;
+  src: url("/assets/font/Poppins-Light.ttf");
+}
+
 :root {
   --dominant: #f9f7f7;
   --primary: #4f46e5;
@@ -19,4 +24,5 @@
 
 body {
   background-color: var(--dominant);
+  font-family: GoldenText;
 }
