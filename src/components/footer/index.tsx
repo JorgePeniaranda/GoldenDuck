@@ -21,20 +21,40 @@ export default function Footer() {
             <Cursor cursorStyle="|" />
         </p>
         <div id='SocialMedia'>
-            <a href="#">
-                <Image src="/assets/img/" width={50} height={50} alt="" />
+            <a
+              href="https://www.facebook.com/profile.php?id=100081120383944"
+              target="_blank"
+              rel="noreferrer"
+              aria-label='Facebook'
+            >
+                <Image src="/assets/img/Facebook.svg" width={50} height={50} alt="Facebook logo" />
             </a>
-            <a href="#">
-                <Image src="/assets/img/" width={50} height={50} alt="" />
+            <a
+              href="https://www.instagram.com/lycokat"
+              target="_blank"
+              rel="noreferrer"
+              aria-label='Instagram'
+            >
+                <Image src="/assets/img/Instagram.svg" width={50} height={50} alt="Instagram logo" />
             </a>
-            <a href="#">
-                <Image src="/assets/img/" width={50} height={50} alt="" />
+            <a href="mailto:lycokat.co@gmail.Com" aria-label='Email'>
+                <Image src="/assets/img/Mail.webp" width={50} height={50} alt="Email logo" />
             </a>
-            <a href="#">
-                <Image src="/assets/img/" width={50} height={50} alt="" />
+            <a
+              href="https://www.linkedin.com/in/LycoKat"
+              target="_blank"
+              rel="noreferrer"
+              aria-label='Linkedin'
+            >
+                <Image src="/assets/img/Linkedin.svg" width={50} height={50} alt="Linkedin logo" />
             </a>
-            <a href="#">
-                <Image src="/assets/img/" width={50} height={50} alt="" />
+            <a
+              href="https://twitter.com/lycokat"
+              target="_blank"
+              rel="noreferrer"
+              aria-label='Twitter'
+            >
+                <Image src="/assets/img/Twitter.svg" width={50} height={50} alt="Twitter logo" />
             </a>
         </div>
         <small>Lycokat™ 2022 | Todos los derechos reservados</small>

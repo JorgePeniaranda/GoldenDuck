@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import style from './style.module.scss'
+import Link from 'next/link'
 
 export default function Navbar() {
   return (
@@ -22,7 +23,7 @@ export default function Navbar() {
                 <a href="#">Sedes</a>
             </li>
         </ul>
-        <button>Unete</button>
+        <Link href='/login'>Unete</Link>
     </nav>
   )
 }
