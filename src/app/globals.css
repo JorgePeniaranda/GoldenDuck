@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --dominant: #f9f7f7;
+  --primary: #4f46e5;
+  --details: #ffc04f;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dominant: #1f1f1f;
+    --primary: #3730a3;
+    color-scheme: dark;
+  }
+}
+
+body {
+  background-color: var(--dominant);
+}
