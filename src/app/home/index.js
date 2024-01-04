@@ -1,16 +1,50 @@
+"use client";
+
 import Image from "next/image";
 import style from "./style.module.scss";
+import { Cursor, useTypewriter } from "react-simple-typewriter";
 import React from "react";
 import Slider from "@/components/Sliders";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function Home() {
+  const [text] = useTypewriter({
+    words: [
+      " Confianza",
+      " Tranferencias",
+      " Seguridad",
+      " Confort",
+      " Inversiones",
+      " Servicios",
+      " Todos",
+      " Plazos Fijos",
+      " Prestamos",
+      " Ingresos",
+      " Agilidad",
+      " Rapidez",
+      " Emprendedores",
+      " Productividad",
+    ],
+    autoStart: true,
+    loop: 0,
+    typeSpeed: 50,
+    deleteSpeed: 30,
+    delaySpeed: 1000,
+  });
+
   return (
     <>
+      <Navbar />
       <header className={style.header}>
         <article>
           <h1>Golden Duck</h1>
           <p>
-            Tu banca online de <span>Productividad</span>
+            Tu banca online de{" "}
+            <span>
+              {text}
+              <Cursor cursorStyle="|" />
+            </span>
           </p>
         </article>
         <figure>
@@ -170,6 +204,7 @@ export default function Home() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }
