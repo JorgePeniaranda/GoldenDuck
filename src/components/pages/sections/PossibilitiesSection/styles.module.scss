@@ -1,0 +1,11 @@
+.Possibilities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    color: var(--primary);
+    span {
+      color: var(--details);
+    }
+  }
+}

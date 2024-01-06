@@ -1,4 +1,4 @@
-import HomeContent from './home';
+import HomeContent from './home/index';
 
 export default function Home() {
   return <HomeContent />

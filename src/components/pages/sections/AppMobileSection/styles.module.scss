@@ -1,0 +1,64 @@
+.AppMobile {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 5rem;
+  figure {
+    min-width: 20rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    div[class="phone"] {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+      img {
+        height: 100%;
+        z-index: 5;
+        &:last-child {
+          width: 65%;
+          height: 90%;
+          position: absolute;
+          top: 5%;
+          z-index: 1;
+          object-fit: cover;
+          animation: ShowContent 10s linear infinite alternate;
+          @keyframes ShowContent {
+            0% {
+              object-position: top;
+            }
+            100% {
+              object-position: bottom;
+            }
+          }
+        }
+      }
+      @media (width > 1024px) {
+        transform: skew(6deg);
+      }
+    }
+    img[class="blob"] {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+    }
+  }
+  article {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-items: center;
+    text-align: center;
+    p {
+      max-width: 50rem;
+    }
+    img {
+      margin-top: 2rem;
+    }
+  }
+}

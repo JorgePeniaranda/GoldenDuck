@@ -1,0 +1,124 @@
+.header {
+  height: 100vh;
+  width: 100%;
+  background-color: var(--primary);
+  display: flex;
+  flex-wrap: wrap;
+  article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+    flex: 1;
+    h1 {
+      margin-bottom: 1.7rem;
+      color: var(--details);
+      text-align: center;
+    }
+    p {
+      color: #ecf0f1;
+      span {
+        color: var(--details);
+      }
+      @media (width < 768px) {
+        text-align: center;
+      }
+    }
+  }
+  figure {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    position: relative;
+    img[alt="blob"] {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation: rightleft 5s linear infinite alternate;
+      @keyframes rightleft {
+        0% {
+          object-position: 3rem;
+        }
+        50% {
+          object-position: 0;
+        }
+        100% {
+          object-position: 3rem -3rem;
+        }
+      }
+      @media (width < 768px) {
+        display: none;
+      }
+    }
+    picture img {
+      position: absolute;
+      top: 30%;
+      right: 0;
+      transform: translatey(-30%);
+      object-position: 10rem;
+      @media (width < 768px) {
+        position: inherit;
+        width: 90%;
+        object-position: 0;
+        margin: 0 auto;
+      }
+    }
+  }
+  figure[id="waves"] {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url(/assets/img/headerWave.png);
+      transition: background 0.3s ease;
+      @media (prefers-color-scheme: dark) {
+        background: url(/assets/img/headerWaveDark.png);
+      }
+    }
+    wave:nth-child(1) {
+      animation: animate 15s linear infinite alternate;
+      z-index: 100;
+      opacity: 1;
+      animation-delay: 0s;
+      bottom: 0;
+    }
+    wave:nth-child(2) {
+      animation: animate 15s linear infinite alternate;
+      z-index: 99;
+      opacity: 0.5;
+      animation-delay: -5s;
+      bottom: 10px;
+    }
+    wave:nth-child(3) {
+      animation: animate 30s linear infinite alternate;
+      z-index: 98;
+      opacity: 0.2;
+      animation-delay: -2s;
+      bottom: 15px;
+    }
+    wave:nth-child(4) {
+      animation: animate 5s linear infinite alternate;
+      z-index: 97;
+      opacity: 0.7;
+      animation-delay: -2s;
+      bottom: 2px;
+    }
+    @keyframes animate {
+      0% {
+        background-position-x: 0;
+      }
+      100% {
+        background-position-x: 1000px;
+      }
+    }
+  }
+  @media (width < 768px) {
+    flex-direction: column;
+  }
+}

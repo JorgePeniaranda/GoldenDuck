@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { Baloo_2 } from 'next/font/google'
+import { Poppins as PoppinsFont } from 'next/font/google'
 import './globals.css'
 
-const inter = Baloo_2({ subsets: ['latin'] })
+const Poppins = PoppinsFont({weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ["latin"]})
 
 export const metadata: Metadata = {
   title: 'GoldenDuck',
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={inter.className}>{children}</body>
+      <body className={Poppins.className}>{children}</body>
     </html>
   )
 }

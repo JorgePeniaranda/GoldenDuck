@@ -1,0 +1,10 @@
+.AboutUs {
+  p {
+    max-width: 75rem;
+    margin: 0 0 2rem 2rem;
+    text-align: justify;
+    @media (width < 768px) {
+      margin: 2rem 0;
+    }
+  }
+}
