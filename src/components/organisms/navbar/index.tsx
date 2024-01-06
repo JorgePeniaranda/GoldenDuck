@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import style from './style.module.scss'
-import Link from 'next/link'
+import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 
 export default function Navbar() {
   return (
@@ -8,22 +8,22 @@ export default function Navbar() {
         <Image src="/assets/img/GoldenDuckLogo.png" width={100} height={87} alt='GoldenDuck Logo' />
         <ul>
             <li>
-                <a href="#">LycoKat</a>
+                <InternalLinkText href="#Lycokat">LycoKat</InternalLinkText>
             </li>
             <li>
-                <a href="#">Sobre Nosotros</a>
+                <InternalLinkText href="#AboutUs">Sobre Nosotros</InternalLinkText>
             </li>
             <li>
-                <a href="#">App Móvil</a>
+                <InternalLinkText href="#AppMobile">App Móvil</InternalLinkText>
             </li>
             <li>
-                <a href="#">Posibilidades</a>
+                <InternalLinkText href="#Possibilities">Posibilidades</InternalLinkText>
             </li>
             <li>
-                <a href="#">Sedes</a>
+                <InternalLinkText href="#Sedes">Sedes</InternalLinkText>
             </li>
         </ul>
-        <Link href='/login'>Unete</Link>
+        <InternalLinkText href='/login'>Unete</InternalLinkText>
     </nav>
   )
 }
