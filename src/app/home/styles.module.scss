@@ -9,7 +9,7 @@
     position: relative;
     padding-block: 15rem 25rem;
     margin-top: 10rem;
-    color: var(--waveSection-Color);
+    color: $waveSection-Color;
     padding-inline: $padding-waveSection;
     h1 {
       color: var(--details);
