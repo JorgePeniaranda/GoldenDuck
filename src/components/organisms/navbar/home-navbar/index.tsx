@@ -1,10 +1,14 @@
 import Image from 'next/image'
-import style from './style.module.scss'
+import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 
-export default function Navbar() {
+interface Props {
+    position?: "fixed" | "absolute" | "relative" | "static" | "sticky";
+}
+
+export default function HomeNavbar({position} : Props) {
   return (
-    <nav className={style.navbar}>
+    <nav className={style.navbar} style={{position}}>
         <Image src="/assets/img/logos/GoldenDuck.webp" width={100} height={87} alt='GoldenDuck Logo' />
         <ul>
             <li>

@@ -1,4 +1,4 @@
-import Navbar from "@/components/organisms/navbar";
+import Navbar from "@/components/organisms/navbar/home-navbar";
 import HomeHeader from "@/components/pages/headers/HomeHeader";
 import Footer from "@/components/organisms/footer";
 import PossibilitiesSection from "@/components/pages/sections/PossibilitiesSection";
@@ -11,7 +11,7 @@ import AboutUsSection from "@/components/pages/sections/AboutUsSection";
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <Navbar position="absolute"/>
       <HomeHeader />
       <main id="Home" className={style.Home}>
         <LycokatSection />
