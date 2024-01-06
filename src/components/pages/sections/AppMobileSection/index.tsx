@@ -21,7 +21,7 @@ export default function AppMobileSection() {
             />
             </div>
             <Image
-            src="/assets/img/patterns/blob-phone-wavesection.svg"
+            src="/assets/img/patterns/blob-phone-wavesection.webp"
             className="blob"
             width={500}
             height={900}
@@ -36,7 +36,7 @@ export default function AppMobileSection() {
             para pagar servicios o incluso tomar un café.
             </Text>
             <Image
-            src="/assets/img/misc/qr-mobile-app.png"
+            src="/assets/img/misc/qr-mobile-app.webp"
             width={225}
             height={225}
             alt="AppQR"

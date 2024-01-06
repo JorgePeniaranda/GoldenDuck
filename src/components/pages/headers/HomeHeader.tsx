@@ -34,18 +34,18 @@ export default function HomeHeader() {
         </article>
         <figure>
             <Image
-            src="/assets/img/patterns/blob-laptop-header.svg"
+            src="/assets/img/patterns/blob-laptop-header.webp"
             width={360}
             height={360}
             alt="blob"
             />
             <picture>
                 <source
-                    srcSet="/assets/img/mockups/laptop-dark.svg"
+                    srcSet="/assets/img/mockups/laptop-dark.webp"
                     media="(prefers-color-scheme: dark)"
                 />
                 <Image
-                    src="/assets/img/mockups/laptop.svg"
+                    src="/assets/img/mockups/laptop.webp"
                     width={1000}
                     height={506}
                     alt="laptop-with-golden-duck"
