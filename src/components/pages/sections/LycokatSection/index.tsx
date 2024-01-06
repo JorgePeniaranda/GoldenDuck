@@ -7,7 +7,7 @@ export default function LycokatSection() {
   return (
     <section id="Lycokat" className={style.Lycokat}>
         <Image
-        src="/assets/img/Lycokat-Logo-YellowVariant.svg"
+        src="/assets/img/logos/lycokat-yellow.svg"
         width={360}
         height={360}
         alt="lycokat-logo"

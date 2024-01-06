@@ -8,20 +8,20 @@ export default function AppMobileSection() {
         <figure>
             <div className="phone">
             <Image
-                src="/assets/img/phone.webp"
+                src="/assets/img/mockups/phone.webp"
                 width={472}
                 height={720}
                 alt="phone"
             />
             <Image
-                src="/assets/img/backgroundPhone.webp"
+                src="/assets/img/misc/backgroundPhone.webp"
                 width={300}
                 height={650}
                 alt="phone-content"
             />
             </div>
             <Image
-            src="/assets/img/blob2.svg"
+            src="/assets/img/patterns/blob-phone-wavesection.svg"
             className="blob"
             width={500}
             height={900}
@@ -36,7 +36,7 @@ export default function AppMobileSection() {
             para pagar servicios o incluso tomar un café.
             </Text>
             <Image
-            src="/assets/img/qr-mobile-app.png"
+            src="/assets/img/misc/qr-mobile-app.png"
             width={225}
             height={225}
             alt="AppQR"

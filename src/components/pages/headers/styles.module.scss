@@ -75,10 +75,10 @@
       left: 0;
       width: 100%;
       height: 100px;
-      background: url(/assets/img/headerWave.png);
+      background: url(/assets/img/patterns/home-header-wave.png);
       transition: background 0.3s ease;
       @media (prefers-color-scheme: dark) {
-        background: url(/assets/img/headerWaveDark.png);
+        background: url(/assets/img/patterns/home-header-wave-dark.png);
       }
     }
     wave:nth-child(1) {

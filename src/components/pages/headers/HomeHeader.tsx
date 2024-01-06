@@ -34,22 +34,22 @@ export default function HomeHeader() {
         </article>
         <figure>
             <Image
-            src="/assets/img/blob1.svg"
+            src="/assets/img/patterns/blob-laptop-header.svg"
             width={360}
             height={360}
             alt="blob"
             />
             <picture>
-            <source
-                srcSet="/assets/img/laptopDark.svg"
-                media="(prefers-color-scheme: dark)"
-            />
-            <Image
-                src="/assets/img/Laptop.svg"
-                width={1000}
-                height={506}
-                alt="laptop-with-golden-duck"
-            />
+                <source
+                    srcSet="/assets/img/mockups/laptop-dark.svg"
+                    media="(prefers-color-scheme: dark)"
+                />
+                <Image
+                    src="/assets/img/mockups/laptop.svg"
+                    width={1000}
+                    height={506}
+                    alt="laptop-with-golden-duck"
+                />
             </picture>
         </figure>
         <figure id="waves">
