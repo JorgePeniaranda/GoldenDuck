@@ -10,6 +10,7 @@
   color-scheme: light;
 
   --base-nav-height: 17vh;
+  --base-nav-x-padding: 10rem;
 }
 
 @media (prefers-color-scheme: dark) {

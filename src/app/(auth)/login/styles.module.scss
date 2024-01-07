@@ -1,7 +1,7 @@
 .LoginSection {
   display: grid;
   grid-template-columns: 65% 35%;
-  padding-inline: 10rem;
+  padding-inline: var(--base-nav-x-padding);
   section {
     height: calc(100vh - var(--base-nav-height));
     padding-bottom: var(--base-nav-height);
