@@ -1,0 +1,85 @@
+.LoginSection {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  padding-inline: 10rem;
+  section {
+    height: calc(100vh - var(--base-nav-height));
+    padding-bottom: var(--base-nav-height);
+    display: flex;
+    flex-direction: column;
+    &:nth-child(1) {
+      justify-content: center;
+      h1 {
+        color: var(--primary);
+      }
+      p {
+        color: #f1f1f1;
+      }
+      a {
+        width: 9rem;
+        background-color: var(--primary);
+        text-align: center;
+        margin-top: 10rem;
+        padding-block: 0.8rem;
+        border-radius: 0.6rem;
+        transition: transform 0.2s ease-in-out;
+        &:active {
+          transform: scale(0.9);
+          cursor: grabbing;
+        }
+      }
+    }
+    &:nth-child(2) {
+      justify-content: center;
+      align-items: flex-end;
+      form {
+        height: 70%;
+        width: 65%;
+        background-color: #f5f5f4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-radius: 2rem;
+        gap: 1.45rem;
+        h1 {
+          color: var(--primary);
+        }
+        input {
+          width: 50%;
+          background: transparent;
+          color: black;
+          text-align: center;
+          padding: 0.5ch;
+          box-shadow: 0 8px 24px hsla(210, 11%, 65%, 0.2);
+          border-bottom: 2px solid #9ca3af;
+          outline: none;
+          &:focus {
+            border-bottom: 2px solid var(--primary);
+          }
+        }
+        a {
+          color: var(--LinkColor);
+          text-decoration: underline;
+          &:hover {
+            filter: brightness(1.2);
+          }
+        }
+        button {
+          background-color: var(--primary);
+          padding: 0.7rem 1.6rem;
+          border-radius: 0.6rem;
+          transition: transform 0.2s ease-in-out;
+          &:active {
+            transform: scale(0.9);
+            cursor: grabbing;
+          }
+        }
+        @media (width > 1024px) {
+          margin-right: 5rem;
+        }
+      }
+    }
+  }
+}
