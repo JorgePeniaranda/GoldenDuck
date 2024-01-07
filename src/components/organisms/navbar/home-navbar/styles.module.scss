@@ -37,6 +37,7 @@
     }
     &:active {
       transform: scale(1);
+      cursor: grabbing;
     }
   }
 }
