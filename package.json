@@ -11,6 +11,7 @@
   "dependencies": {
     "next": "14.0.4",
     "react": "18",
+    "react-code-input": "^3.10.1",
     "react-dom": "18",
     "react-simple-typewriter": "^5.0.1",
     "react-slick": "^0.29.0",
