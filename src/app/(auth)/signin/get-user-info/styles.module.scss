@@ -1,14 +1,11 @@
 .SignIn {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   padding-top: 2rem;
   gap: 2rem;
   section {
     flex: 1;
-    h2 {
-      width: 100%;
-      text-align: start;
-    }
     article {
       display: grid;
       gap: 3rem;
@@ -37,19 +34,8 @@
       color: var(--LinkColor);
     }
   }
-  button {
-    background-color: var(--primary);
-    margin: 0 auto;
-    padding: 0.7rem 1.3rem;
-    border-radius: 0.5rem;
-    font-size: 1.1rem;
-    transition: transform 0.3s ease;
-    &:active {
-      transform: scale(0.95);
-      cursor: grabbing;
-    }
-  }
   @media (width > 1024px) {
     width: 60%;
   }
 }
+
