@@ -1,13 +1,13 @@
 "use client";
 
-import { Cursor, useTypewriter } from 'react-simple-typewriter';
+import { Cursor, useTypewriter } from "react-simple-typewriter";
 
-interface Props{
-  words: string[],
-  cursor: boolean
+interface Props {
+  words: string[];
+  cursor: boolean;
 }
 
-export default function TypewriterText({words, cursor = true}: Props) {
+export default function TypewriterText({ words, cursor = true }: Props) {
   const [text] = useTypewriter({
     words,
     autoStart: true,
@@ -19,8 +19,8 @@ export default function TypewriterText({words, cursor = true}: Props) {
 
   return (
     <>
-        {text}
-        {cursor && <Cursor cursorStyle="|" />}
+      {text}
+      {cursor && <Cursor cursorStyle="|" />}
     </>
-  )
+  );
 }
