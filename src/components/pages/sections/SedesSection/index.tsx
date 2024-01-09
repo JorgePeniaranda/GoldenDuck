@@ -1,11 +1,11 @@
-import Text from "@/components/atoms/text/Text";
-import style from "./styles.module.scss";
+import Text from '@/components/atoms/text/Text'
+import style from './styles.module.scss'
 
 export default function SedesSection() {
   return (
     <section id="Sedes" className={style.Sedes}>
       <article>
-        <Text tag="h1" size={"1.6rem"} weight="700">
+        <Text tag="h1" size={'1.6rem'} weight="700">
           Nuestras Sedes
         </Text>
         <Text>
@@ -27,5 +27,5 @@ export default function SedesSection() {
         />
       </div>
     </section>
-  );
+  )
 }

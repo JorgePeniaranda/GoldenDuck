@@ -1,6 +1,6 @@
-import InternalLinkText from "@/components/atoms/text/InternalLinkText";
-import Image from "next/image";
-import style from "./styles.module.scss";
+import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import Image from 'next/image'
+import style from './styles.module.scss'
 
 export default function Navbar() {
   return (
@@ -25,5 +25,5 @@ export default function Navbar() {
         </svg>
       </InternalLinkText>
     </nav>
-  );
+  )
 }

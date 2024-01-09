@@ -1,8 +1,8 @@
-import Image from "next/image";
-import styles from "./styles.module.scss";
-import ExternalLinkText from "@/components/atoms/text/ExternalLinkText";
-import TypewriterText from "@/components/atoms/text/TypewriterText";
-import Text from "@/components/atoms/text/Text";
+import Image from 'next/image'
+import styles from './styles.module.scss'
+import ExternalLinkText from '@/components/atoms/text/ExternalLinkText'
+import TypewriterText from '@/components/atoms/text/TypewriterText'
+import Text from '@/components/atoms/text/Text'
 
 export default function Footer() {
   return (
@@ -13,9 +13,9 @@ export default function Footer() {
         height={150}
         alt="Lycokat Logo"
       />
-      <Text size={"0.8rem"}>
+      <Text size={'0.8rem'}>
         <TypewriterText
-          words={["Fortuna y seguridad, en un solo lugar"]}
+          words={['Fortuna y seguridad, en un solo lugar']}
           cursor={false}
         />
       </Text>
@@ -73,9 +73,9 @@ export default function Footer() {
           />
         </ExternalLinkText>
       </div>
-      <Text tag="small" size={".6rem"} weight="300">
+      <Text tag="small" size={'.6rem'} weight="300">
         Lycokat™ 2022 | Todos los derechos reservados
       </Text>
     </footer>
-  );
+  )
 }

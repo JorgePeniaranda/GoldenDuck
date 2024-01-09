@@ -1,4 +1,4 @@
-import style from "./styles.module.scss";
+import style from './styles.module.scss'
 
 export default function TermsAndConditions() {
   return (
@@ -1811,5 +1811,5 @@ export default function TermsAndConditions() {
         versión en idiomas distintos al inglés,
       </section>
     </main>
-  );
+  )
 }

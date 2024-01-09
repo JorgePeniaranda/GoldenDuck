@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { CSSProperties, ReactNode } from "react";
+import Link from 'next/link'
+import { CSSProperties, ReactNode } from 'react'
 
 interface Props {
-  href: string;
-  children?: ReactNode;
-  arialLabel?: string;
-  className?: string;
-  style?: CSSProperties;
+  href: string
+  children?: ReactNode
+  arialLabel?: string
+  className?: string
+  style?: CSSProperties
 }
 
 export default function InternalLinkText({
@@ -25,5 +25,5 @@ export default function InternalLinkText({
     >
       {children}
     </Link>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import Navbar from "@/components/organisms/navbar/base";
-import style from "./styles.module.scss";
-import Text from "@/components/atoms/text/Text";
-import InternalLinkText from "@/components/atoms/text/InternalLinkText";
-import FormWithValidation from "@/components/molecules/forms/FormWithValidation";
-import BaseButton from "@/components/molecules/buttons/BaseButton";
+import Navbar from '@/components/organisms/navbar/base'
+import style from './styles.module.scss'
+import Text from '@/components/atoms/text/Text'
+import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
+import BaseButton from '@/components/molecules/buttons/BaseButton'
 
 export default function Login() {
   return (
@@ -12,7 +12,7 @@ export default function Login() {
       <main className={style.LoginSection}>
         <section>
           <article>
-            <Text tag="h1" size={"2.6rem"} weight="800">
+            <Text tag="h1" size={'2.6rem'} weight="800">
               Crear tu cuenta Golden Duck ahora mismo
             </Text>
             <Text>
@@ -33,7 +33,7 @@ export default function Login() {
         </section>
         <section>
           <FormWithValidation>
-            <Text tag="h1" size={"1.9rem"} weight="700">
+            <Text tag="h1" size={'1.9rem'} weight="700">
               Iniciar Sesión
             </Text>
             <input type="text" placeholder="Usuario" />
@@ -48,5 +48,5 @@ export default function Login() {
         </section>
       </main>
     </>
-  );
+  )
 }

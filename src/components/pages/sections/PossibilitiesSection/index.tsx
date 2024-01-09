@@ -1,6 +1,6 @@
-import Text from "@/components/atoms/text/Text";
-import Slider from "@/components/organisms/Sliders";
-import style from "./styles.module.scss";
+import Text from '@/components/atoms/text/Text'
+import Slider from '@/components/organisms/Sliders'
+import style from './styles.module.scss'
 
 const CardsInfo = [
   {
@@ -17,7 +17,7 @@ const CardsInfo = [
         />
       </svg>
     ),
-    text: "Ingresos",
+    text: 'Ingresos',
   },
   {
     Logo: (
@@ -33,7 +33,7 @@ const CardsInfo = [
         />
       </svg>
     ),
-    text: "Traferencias",
+    text: 'Traferencias',
   },
   {
     Logo: (
@@ -49,7 +49,7 @@ const CardsInfo = [
         />
       </svg>
     ),
-    text: "Consumos",
+    text: 'Consumos',
   },
   {
     Logo: (
@@ -65,7 +65,7 @@ const CardsInfo = [
         />
       </svg>
     ),
-    text: "Prestamos",
+    text: 'Prestamos',
   },
   {
     Logo: (
@@ -81,7 +81,7 @@ const CardsInfo = [
         />
       </svg>
     ),
-    text: "Inversiones",
+    text: 'Inversiones',
   },
   {
     Logo: (
@@ -97,21 +97,21 @@ const CardsInfo = [
         />
       </svg>
     ),
-    text: "Plazos Fijos",
+    text: 'Plazos Fijos',
   },
-];
+]
 
 export default function PossibilitiesSection() {
   return (
     <section id="Possibilities" className={style.Possibilities}>
-      <Text tag="h1" size={"2.3rem"} weight="700">
-        Con{" "}
-        <Text tag="span" size={"2.3rem"} weight="600">
+      <Text tag="h1" size={'2.3rem'} weight="700">
+        Con{' '}
+        <Text tag="span" size={'2.3rem'} weight="600">
           Golden Duck
-        </Text>{" "}
+        </Text>{' '}
         Podrás Hacer:
       </Text>
       <Slider CardsInfo={CardsInfo} />
     </section>
-  );
+  )
 }

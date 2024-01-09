@@ -1,13 +1,13 @@
-"use client";
+'use client'
 
-import SliderSlick from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import style from "./style.module.scss";
-import ContentWithTitleCard from "@/components/molecules/cards/ContentWithTitleCard";
+import SliderSlick from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import style from './style.module.scss'
+import ContentWithTitleCard from '@/components/molecules/cards/ContentWithTitleCard'
 
 const settingsSlider = {
-  className: "center",
+  className: 'center',
   centerMode: true,
   focusOnSelect: true,
   dots: true,
@@ -45,15 +45,15 @@ const settingsSlider = {
       },
     },
   ],
-};
+}
 
 interface Props {
-  CardsInfo: CardContent[];
+  CardsInfo: CardContent[]
 }
 
 interface CardContent {
-  Logo: React.ReactNode;
-  text: string;
+  Logo: React.ReactNode
+  text: string
 }
 
 export default function Slider({ CardsInfo }: Props) {
@@ -67,9 +67,9 @@ export default function Slider({ CardsInfo }: Props) {
               Logo={card.Logo}
               text={card.text}
             />
-          );
+          )
         })}
       </SliderSlick>
     </section>
-  );
+  )
 }

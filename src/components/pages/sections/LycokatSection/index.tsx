@@ -1,7 +1,7 @@
-import ExternalLinkText from "@/components/atoms/text/ExternalLinkText";
-import Text from "@/components/atoms/text/Text";
-import Image from "next/image";
-import style from "./styles.module.scss";
+import ExternalLinkText from '@/components/atoms/text/ExternalLinkText'
+import Text from '@/components/atoms/text/Text'
+import Image from 'next/image'
+import style from './styles.module.scss'
 
 export default function LycokatSection() {
   return (
@@ -40,5 +40,5 @@ export default function LycokatSection() {
         </Text>
       </article>
     </section>
-  );
+  )
 }

@@ -10,18 +10,18 @@
       display: grid;
       gap: 3rem;
       min-width: 21rem;
-      input:not([type="radio"]) {
+      input:not([type='radio']) {
         width: 100%;
         padding: 0.6rem 1rem;
       }
-      div[id="sex"] {
+      div[id='sex'] {
         width: 100%;
         display: flex;
         justify-content: space-around;
         * {
           cursor: pointer;
         }
-        input:is([type="radio"]) {
+        input:is([type='radio']) {
           margin-right: 1ch;
         }
       }

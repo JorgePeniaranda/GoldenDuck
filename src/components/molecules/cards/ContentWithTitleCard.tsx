@@ -1,9 +1,9 @@
-import Text from "@/components/atoms/text/Text";
-import React from "react";
+import Text from '@/components/atoms/text/Text'
+import React from 'react'
 
 interface Props {
-  text: string;
-  Logo: React.ReactNode;
+  text: string
+  Logo: React.ReactNode
 }
 
 export default function ContentWithTitleCard({ text, Logo }: Props) {
@@ -14,5 +14,5 @@ export default function ContentWithTitleCard({ text, Logo }: Props) {
         {text}
       </Text>
     </article>
-  );
+  )
 }

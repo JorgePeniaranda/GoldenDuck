@@ -1,9 +1,9 @@
-import Text from "@/components/atoms/text/Text";
-import style from "./styles.module.scss";
-import InternalLinkText from "@/components/atoms/text/InternalLinkText";
-import FormWithValidation from "@/components/molecules/forms/FormWithValidation";
-import BaseButton from "@/components/molecules/buttons/BaseButton";
-import Image from "next/image";
+import Text from '@/components/atoms/text/Text'
+import style from './styles.module.scss'
+import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
+import BaseButton from '@/components/molecules/buttons/BaseButton'
+import Image from 'next/image'
 
 export default function Login() {
   return (
@@ -28,5 +28,5 @@ export default function Login() {
         <InternalLinkText href="">asd</InternalLinkText>
       </section>
     </main>
-  );
+  )
 }

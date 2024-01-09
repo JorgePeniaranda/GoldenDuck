@@ -1,9 +1,9 @@
-import Navbar from "@/components/organisms/navbar/base";
-import style from "./styles.module.scss";
+import Navbar from '@/components/organisms/navbar/base'
+import style from './styles.module.scss'
 
 interface Props {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }
 
 export default function ContainerCenteredItemsWithNavbar({
@@ -15,5 +15,5 @@ export default function ContainerCenteredItemsWithNavbar({
       <Navbar />
       <main className={`${style.Container} ${className}`}>{children}</main>
     </>
-  );
+  )
 }

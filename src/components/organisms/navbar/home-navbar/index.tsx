@@ -1,10 +1,10 @@
-import Image from "next/image";
-import style from "./styles.module.scss";
-import InternalLinkText from "@/components/atoms/text/InternalLinkText";
-import BaseButton from "@/components/molecules/buttons/BaseButton";
+import Image from 'next/image'
+import style from './styles.module.scss'
+import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import BaseButton from '@/components/molecules/buttons/BaseButton'
 
 interface Props {
-  position?: "fixed" | "absolute" | "relative" | "static" | "sticky";
+  position?: 'fixed' | 'absolute' | 'relative' | 'static' | 'sticky'
 }
 
 export default function HomeNavbar({ position }: Props) {
@@ -46,5 +46,5 @@ export default function HomeNavbar({ position }: Props) {
         Unete
       </BaseButton>
     </nav>
-  );
+  )
 }

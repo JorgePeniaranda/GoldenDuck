@@ -1,19 +1,19 @@
-import Text from "@/components/atoms/text/Text";
-import style from "./styles.module.scss";
-import ContainerCenteredItemsWithNavbar from "@/components/pages/container-centered-items-with-navbar";
-import InternalLinkText from "@/components/atoms/text/InternalLinkText";
-import { FormEvent } from "react";
-import FormWithValidation from "@/components/molecules/forms/FormWithValidation";
-import BaseButton from "@/components/molecules/buttons/BaseButton";
+import Text from '@/components/atoms/text/Text'
+import style from './styles.module.scss'
+import ContainerCenteredItemsWithNavbar from '@/components/pages/container-centered-items-with-navbar'
+import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import { FormEvent } from 'react'
+import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
+import BaseButton from '@/components/molecules/buttons/BaseButton'
 
 interface Props {
-  handleNext: (event: FormEvent<HTMLFormElement>) => void;
+  handleNext: (event: FormEvent<HTMLFormElement>) => void
 }
 
 export default function GetUserInfo({ handleNext }: Props) {
   return (
     <ContainerCenteredItemsWithNavbar>
-      <Text tag="h1" size={"2.6rem"} weight="700">
+      <Text tag="h1" size={'2.6rem'} weight="700">
         Registrarse
       </Text>
       <FormWithValidation onSubmit={handleNext} className={style.SignIn}>
@@ -54,14 +54,14 @@ export default function GetUserInfo({ handleNext }: Props) {
           </article>
         </section>
         <Text>
-          Al continuar y enviar este formulario aceptá los{" "}
+          Al continuar y enviar este formulario aceptá los{' '}
           <InternalLinkText href="/TermsAndConditions">
             Terminos y Condiciones
-          </InternalLinkText>{" "}
+          </InternalLinkText>{' '}
           de Golden Duck
         </Text>
         <BaseButton fontSize="1.1rem">Siguiente</BaseButton>
       </FormWithValidation>
     </ContainerCenteredItemsWithNavbar>
-  );
+  )
 }

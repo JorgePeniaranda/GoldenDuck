@@ -1,10 +1,10 @@
-@import "@/const/HomeConst.scss";
+@import '@/const/HomeConst.scss';
 
 .Home {
   section {
     padding-inline: $padding-section;
   }
-  section[id="waveSection"] {
+  section[id='waveSection'] {
     background-color: var(--primary);
     position: relative;
     padding-block: 15rem 25rem;
@@ -24,10 +24,10 @@
       color: var(--dominant);
       position: absolute;
       left: 0;
-      &[id="topWave"] {
+      &[id='topWave'] {
         top: 0;
       }
-      &[id="bottomWave"] {
+      &[id='bottomWave'] {
         bottom: 0;
       }
     }

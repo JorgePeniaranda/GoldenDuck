@@ -1,10 +1,10 @@
 .sliderContainer {
   width: 70%;
-  & [class*="slick-slider"] {
+  & [class*='slick-slider'] {
     color: #797d7f;
     max-width: 70rem;
     margin: 0 auto;
-    [class*="card"] {
+    [class*='card'] {
       display: flex !important;
       flex-direction: column;
       justify-content: center;
@@ -19,7 +19,7 @@
     }
 
     // center card style
-    [class*="slick-center"] {
+    [class*='slick-center'] {
       color: var(--details);
       svg {
         width: 5rem;
@@ -31,18 +31,18 @@
     }
 
     // lateral button slider
-    & [class*="slick-next"]:before,
-    & [class*="slick-prev"]:before {
+    & [class*='slick-next']:before,
+    & [class*='slick-prev']:before {
       color: black;
     }
 
     @media (prefers-color-scheme: dark) {
       color: #d0d3d4;
-      & [class*="slick-dots"] li button:before {
+      & [class*='slick-dots'] li button:before {
         color: white;
       }
-      & [class*="slick-next"]:before,
-      & [class*="slick-prev"]:before {
+      & [class*='slick-next']:before,
+      & [class*='slick-prev']:before {
         color: white;
       }
     }

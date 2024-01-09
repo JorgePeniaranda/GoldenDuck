@@ -1,8 +1,8 @@
-import Navbar from "@/components/organisms/navbar/base";
-import Footer from "@/components/organisms/footer";
-import Text from "@/components/atoms/text/Text";
-import Image from "next/image";
-import InternalLinkText from "@/components/atoms/text/InternalLinkText";
+import Navbar from '@/components/organisms/navbar/base'
+import Footer from '@/components/organisms/footer'
+import Text from '@/components/atoms/text/Text'
+import Image from 'next/image'
+import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 
 export default function NotFound() {
   return (
@@ -22,12 +22,12 @@ export default function NotFound() {
                 />
               </InternalLinkText>
             </figure>
-            <Text size={"2rem"} weight="700">
+            <Text size={'2rem'} weight="700">
               Página no encontrada
             </Text>
           </article>
         </section>
       </main>
     </>
-  );
+  )
 }

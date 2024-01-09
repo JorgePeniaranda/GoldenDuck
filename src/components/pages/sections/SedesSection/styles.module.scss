@@ -1,4 +1,4 @@
-@import "@/const/HomeConst.scss";
+@import '@/const/HomeConst.scss';
 
 .Sedes {
   display: flex;
@@ -20,7 +20,7 @@
       text-align: justify;
     }
   }
-  div[class="map"] {
+  div[class='map'] {
     position: relative;
     min-width: 20rem;
     flex: 1;
@@ -39,7 +39,7 @@
       }
     }
     &::before {
-      content: "";
+      content: '';
       display: flex;
       background-color: var(--primary);
       transform: translateX($padding-section);

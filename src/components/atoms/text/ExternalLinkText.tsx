@@ -1,10 +1,10 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 interface Props {
-  href: string;
-  children?: React.ReactNode;
-  arialLabel?: string;
-  className?: string;
+  href: string
+  children?: React.ReactNode
+  arialLabel?: string
+  className?: string
 }
 
 export default function ExternalLinkText({
@@ -23,5 +23,5 @@ export default function ExternalLinkText({
     >
       {children}
     </Link>
-  );
+  )
 }

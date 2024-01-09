@@ -1,6 +1,6 @@
-import Text from "@/components/atoms/text/Text";
-import Image from "next/image";
-import style from "./styles.module.scss";
+import Text from '@/components/atoms/text/Text'
+import Image from 'next/image'
+import style from './styles.module.scss'
 
 export default function AppMobileSection() {
   return (
@@ -29,10 +29,10 @@ export default function AppMobileSection() {
         />
       </figure>
       <article>
-        <Text tag="h1" size={"2.3rem"} weight="700">
+        <Text tag="h1" size={'2.3rem'} weight="700">
           ¡Tenemos una app para Móvil!
         </Text>
-        <Text size={"1.25rem"}>
+        <Text size={'1.25rem'}>
           Descarga GoldenDuck en tu celular y maneja tu dinero con un 200% de
           eficiencia, lleva tu cartera online a donde sea que vayas para pagar
           servicios o incluso tomar un café.
@@ -45,5 +45,5 @@ export default function AppMobileSection() {
         />
       </article>
     </article>
-  );
+  )
 }

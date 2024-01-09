@@ -1,12 +1,12 @@
-import Navbar from "@/components/organisms/navbar/home-navbar";
-import HomeHeader from "@/components/pages/headers/HomeHeader";
-import Footer from "@/components/organisms/footer";
-import PossibilitiesSection from "@/components/pages/sections/PossibilitiesSection";
-import LycokatSection from "@/components/pages/sections/LycokatSection";
-import SedesSection from "@/components/pages/sections/SedesSection";
-import style from "./styles.module.scss";
-import AppMobileSection from "@/components/pages/sections/AppMobileSection";
-import AboutUsSection from "@/components/pages/sections/AboutUsSection";
+import Navbar from '@/components/organisms/navbar/home-navbar'
+import HomeHeader from '@/components/pages/headers/HomeHeader'
+import Footer from '@/components/organisms/footer'
+import PossibilitiesSection from '@/components/pages/sections/PossibilitiesSection'
+import LycokatSection from '@/components/pages/sections/LycokatSection'
+import SedesSection from '@/components/pages/sections/SedesSection'
+import style from './styles.module.scss'
+import AppMobileSection from '@/components/pages/sections/AppMobileSection'
+import AboutUsSection from '@/components/pages/sections/AboutUsSection'
 
 export default function Home() {
   return (
@@ -46,5 +46,5 @@ export default function Home() {
       </main>
       <Footer />
     </>
-  );
+  )
 }
