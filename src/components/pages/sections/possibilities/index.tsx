@@ -1,5 +1,5 @@
 import Text from '@/components/atoms/text/Text'
-import Slider from '@/components/organisms/Sliders'
+import Slider from '@/components/organisms/sliders/slider-card'
 import style from './styles.module.scss'
 
 const CardsInfo = [

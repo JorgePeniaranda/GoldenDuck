@@ -1,5 +1,5 @@
 import Text from '@/components/atoms/text/Text'
-import BaseButton from '@/components/molecules/buttons/BaseButton'
+import BaseButton from '@/components/molecules/buttons/base-button'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import ContainerCenteredItemsWithNavbar from '@/components/pages/container-centered-items-with-navbar'
 import { FormEvent } from 'react'

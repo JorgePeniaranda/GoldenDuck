@@ -1,12 +1,12 @@
 import Navbar from '@/components/organisms/navbar/home-navbar'
-import HomeHeader from '@/components/pages/headers/HomeHeader'
+import HomeHeader from '@/components/pages/headers/header-home'
 import Footer from '@/components/organisms/footer'
-import PossibilitiesSection from '@/components/pages/sections/PossibilitiesSection'
-import LycokatSection from '@/components/pages/sections/LycokatSection'
-import SedesSection from '@/components/pages/sections/SedesSection'
+import PossibilitiesSection from '@/components/pages/sections/possibilities'
+import LycokatSection from '@/components/pages/sections/about-lycokat'
+import SedesSection from '@/components/pages/sections/sedes'
 import style from './styles.module.scss'
-import AppMobileSection from '@/components/pages/sections/AppMobileSection'
-import AboutUsSection from '@/components/pages/sections/AboutUsSection'
+import AppMobileSection from '@/components/pages/sections/app-mobile'
+import AboutUsSection from '@/components/pages/sections/about-us'
 
 export default function Home() {
   return (

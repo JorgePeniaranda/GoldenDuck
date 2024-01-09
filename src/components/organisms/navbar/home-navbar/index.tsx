@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
-import BaseButton from '@/components/molecules/buttons/BaseButton'
+import BaseButton from '@/components/molecules/buttons/base-button'
 
 interface Props {
   position?: 'fixed' | 'absolute' | 'relative' | 'static' | 'sticky'

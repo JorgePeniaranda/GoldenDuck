@@ -4,7 +4,7 @@ import ContainerCenteredItemsWithNavbar from '@/components/pages/container-cente
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import { FormEvent } from 'react'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
-import BaseButton from '@/components/molecules/buttons/BaseButton'
+import BaseButton from '@/components/molecules/buttons/base-button'
 
 interface Props {
   handleNext: (event: FormEvent<HTMLFormElement>) => void

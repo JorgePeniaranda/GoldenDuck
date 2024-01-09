@@ -3,7 +3,7 @@ import style from './styles.module.scss'
 import Text from '@/components/atoms/text/Text'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
-import BaseButton from '@/components/molecules/buttons/BaseButton'
+import BaseButton from '@/components/molecules/buttons/base-button'
 
 export default function Login() {
   return (
