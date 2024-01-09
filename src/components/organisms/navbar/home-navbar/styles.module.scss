@@ -27,25 +27,10 @@
       display: none;
     }
   }
-  > a {
-    background-color: var(--details);
-    padding: 0.5rem 1.3rem;
-    border-radius: 0.7rem;
-    font-size: 1.2rem;
-    color: white;
-    font-weight: 800;
-    transition: transform 0.3s ease;
-    &:hover {
-      transform: scale(1.05);
-    }
-    &:active {
-      transform: scale(1);
-      cursor: grabbing;
-    }
-  }
   @media (width < 728px) {
     justify-content: space-between;
     @import "@/const/HomeConst.scss";
     padding-inline: $padding-section;
   }
 }
+

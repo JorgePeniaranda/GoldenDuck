@@ -3,6 +3,7 @@ import style from './styles.module.scss'
 import Text from '@/components/atoms/text/Text'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import FormWithCheck from '@/components/molecules/forms/FormWithCheck'
+import BaseButton from '@/components/molecules/buttons/BaseButton'
 
 export default function Login() {
   return (
@@ -14,7 +15,7 @@ export default function Login() {
             <Text tag='h1' size={"2.6rem"} weight='800'>Crear tu cuenta Golden Duck ahora mismo</Text>
             <Text>¡Registrate para obtener los beneficios que Golden Duck te ofrece!</Text>
           </article>
-          <InternalLinkText href='/signin'>Registrarse</InternalLinkText>
+          <BaseButton type='InternalLinkText' href='/signin' className='mt-40' xPadding='1rem' yPadding='.8rem' fontSize='1.1rem' fontWeight='500'>Registrarse</BaseButton>
         </section>
         <section>
           <FormWithCheck>
@@ -22,7 +23,7 @@ export default function Login() {
             <input type="text" placeholder='Usuario'/>
             <input type="password" placeholder='Contraseña'/>
             <InternalLinkText href='/forgot'>Olvide mi contraseña</InternalLinkText>
-            <button>Ingresar</button>
+            <BaseButton yPadding="0.7rem" xPadding="1.6rem">Ingresar</BaseButton>
           </FormWithCheck>
         </section>
       </main>

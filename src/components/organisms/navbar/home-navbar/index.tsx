@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import BaseButton from '@/components/molecules/buttons/BaseButton';
 
 interface Props {
     position?: "fixed" | "absolute" | "relative" | "static" | "sticky";
@@ -27,7 +28,7 @@ export default function HomeNavbar({position} : Props) {
                 <InternalLinkText href="#Sedes">Sedes</InternalLinkText>
             </li>
         </ul>
-        <InternalLinkText href='/login'>Unete</InternalLinkText>
+        <BaseButton type='InternalLinkText' href='/login' backgroundColor='var(--details)' xPadding='1.3rem' fontSize="1.2rem" fontWeight='800'>Unete</BaseButton>
     </nav>
   )
 }

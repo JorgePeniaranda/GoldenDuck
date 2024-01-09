@@ -1,4 +1,5 @@
 import Text from "@/components/atoms/text/Text";
+import BaseButton from "@/components/molecules/buttons/BaseButton";
 import FormWithCheck from "@/components/molecules/forms/FormWithCheck";
 import NavbarBaseWithContainer from "@/components/pages/navbar-base-with-container";
 import { FormEvent } from "react";
@@ -19,7 +20,7 @@ export default function ConfirmUserInfo({handlePrev}: Props) {
                 </Text>
                 <FormWithCheck className="w-full flex flex-col justify-center items-center mt-7">
                     <ReactCodeInput type='text' name="EmailCode" inputMode="email" fields={6}/>
-                    <button className="mt-20">Confirmar</button>
+                    <BaseButton fontSize="1.1rem" className="mt-20">Confirmar</BaseButton>
                 </FormWithCheck>
             </article>
         </section>
