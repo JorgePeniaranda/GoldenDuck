@@ -2,7 +2,7 @@ import Navbar from '@/components/organisms/navbar/base'
 import style from './styles.module.scss'
 import Text from '@/components/atoms/text/Text'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
-import FormWithCheck from '@/components/molecules/forms/FormWithCheck'
+import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import BaseButton from '@/components/molecules/buttons/BaseButton'
 
 export default function Login() {
@@ -18,13 +18,13 @@ export default function Login() {
           <BaseButton type='InternalLinkText' href='/signin' className='mt-40' xPadding='1rem' yPadding='.8rem' fontSize='1.1rem' fontWeight='500'>Registrarse</BaseButton>
         </section>
         <section>
-          <FormWithCheck>
+          <FormWithValidation>
             <Text tag='h1' size={"1.9rem"} weight='700'>Iniciar Sesión</Text>
             <input type="text" placeholder='Usuario'/>
             <input type="password" placeholder='Contraseña'/>
             <InternalLinkText href='/forgot'>Olvide mi contraseña</InternalLinkText>
             <BaseButton yPadding="0.7rem" xPadding="1.6rem">Ingresar</BaseButton>
-          </FormWithCheck>
+          </FormWithValidation>
         </section>
       </main>
     </>

@@ -1,9 +1,9 @@
 import Text from "@/components/atoms/text/Text";
-import NavbarBaseWithContainer from "@/components/pages/navbar-base-with-container";
 import style from './styles.module.scss'
+import ContainerCenteredItemsWithNavbar from "@/components/pages/container-centered-items-with-navbar";
 import InternalLinkText from "@/components/atoms/text/InternalLinkText";
 import { FormEvent } from "react";
-import FormWithCheck from "@/components/molecules/forms/FormWithCheck";
+import FormWithValidation from "@/components/molecules/forms/FormWithValidation";
 import BaseButton from "@/components/molecules/buttons/BaseButton";
 
 interface Props {
@@ -12,9 +12,9 @@ interface Props {
 
 export default function GetUserInfo({handleNext}: Props) {
   return (
-    <NavbarBaseWithContainer>
+    <ContainerCenteredItemsWithNavbar>
         <Text tag='h1' size={"2.6rem"} weight='700'>Registrarse</Text>
-        <FormWithCheck onSubmit={handleNext} className={style.SignIn}>
+        <FormWithValidation onSubmit={handleNext} className={style.SignIn}>
             <section>
                 <Text tag='h2'>Datos</Text>
                 <article>
@@ -55,7 +55,7 @@ export default function GetUserInfo({handleNext}: Props) {
                 Al continuar y enviar este formulario aceptá los <InternalLinkText href='/TermsAndConditions'>Terminos y Condiciones</InternalLinkText> de Golden Duck
             </Text>
             <BaseButton fontSize="1.1rem">Siguiente</BaseButton>
-        </FormWithCheck>
-    </NavbarBaseWithContainer>
+        </FormWithValidation>
+    </ContainerCenteredItemsWithNavbar>
   )
 }

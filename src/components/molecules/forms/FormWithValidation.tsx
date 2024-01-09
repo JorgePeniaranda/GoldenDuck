@@ -9,7 +9,7 @@ interface Props{
     className?: string
 }
 
-export default function FormWithCheck({children, onSubmit, className}: Props) {
+export default function FormWithValidation({children, onSubmit, className}: Props) {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault()
 
