@@ -1,0 +1,10 @@
+.BaseButton {
+  border-radius: 0.75ch;
+  font-size: 1rem;
+  transition: transform 300ms ease;
+  &:active {
+    transform: scale(0.9);
+    cursor: grabbing;
+  }
+}
+
