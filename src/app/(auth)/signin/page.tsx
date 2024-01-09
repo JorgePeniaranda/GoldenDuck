@@ -8,19 +8,19 @@ import ConfirmUserInfo from './confirm-user-info'
 export default function Login() {
   const [step , setStep] = useState<number>(0);
 
-  const handlePrev = (event: FormEvent<HTMLButtonElement>) => {
+  const handlePrev = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     setStep(step - 1)
   }
 
-  const handleNext = (event: FormEvent<HTMLButtonElement>) => {
+  const handleNext = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     setStep(step + 1)
   }
 
-  const handleConfirm = (event: FormEvent<HTMLButtonElement>) => {
+  const handleConfirm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
       
     setStep(step + 1)
