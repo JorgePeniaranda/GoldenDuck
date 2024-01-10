@@ -1,0 +1,50 @@
+.sliderContainer {
+  width: 70%;
+  & [class*='slick-slider'] {
+    color: #797d7f;
+    max-width: 70rem;
+    margin: 0 auto;
+    [class*='card'] {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-block: 4rem;
+      transition: all 500ms ease;
+      svg {
+        width: 3rem;
+        height: auto;
+      }
+    }
+
+    // center card style
+    [class*='slick-center'] {
+      color: var(--details);
+      svg {
+        width: 5rem;
+        height: auto;
+      }
+      h2 {
+        font-size: 1.7rem !important;
+      }
+    }
+
+    // lateral button slider
+    & [class*='slick-next']:before,
+    & [class*='slick-prev']:before {
+      color: black;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      color: #d0d3d4;
+      & [class*='slick-dots'] li button:before {
+        color: white;
+      }
+      & [class*='slick-next']:before,
+      & [class*='slick-prev']:before {
+        color: white;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@import '@/const/HomeConst.scss';
+
+.Home {
+  section {
+    padding-inline: $padding-section;
+  }
+  section[id='waveSection'] {
+    background-color: var(--primary);
+    position: relative;
+    padding-block: 15rem 25rem;
+    margin-top: 10rem;
+    color: $waveSection-Color;
+    padding-inline: $padding-waveSection;
+    h1 {
+      color: var(--details);
+      margin-bottom: 1rem;
+      @media (width < 768px) {
+        text-align: center;
+      }
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      color: var(--dominant);
+      position: absolute;
+      left: 0;
+      &[id='topWave'] {
+        top: 0;
+      }
+      &[id='bottomWave'] {
+        bottom: 0;
+      }
+    }
+    @media (width < 768px) {
+      padding-inline: $padding-section;
+    }
+  }
+}

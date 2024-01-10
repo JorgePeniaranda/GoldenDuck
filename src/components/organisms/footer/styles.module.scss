@@ -1,0 +1,36 @@
+.footer {
+  padding-top: 1rem;
+  background-color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  p {
+    color: #d0d3d4;
+    text-align: center;
+    letter-spacing: 0.15em;
+  }
+  div[id='SocialMedia'] {
+    display: flex;
+    gap: 1.2rem;
+    margin-block: 2.5rem;
+    a {
+      border-radius: 100%;
+      img {
+        width: 2.5rem;
+        height: 2.5rem;
+        transition: transform 0.3s ease;
+        &:hover {
+          transform: rotate(25deg) translateY(-0.5rem);
+        }
+      }
+    }
+  }
+  small {
+    width: 100%;
+    text-align: center;
+    letter-spacing: 0.15em;
+    color: #d0d3d4;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}

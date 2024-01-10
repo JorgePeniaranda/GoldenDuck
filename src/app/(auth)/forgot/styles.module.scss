@@ -1,0 +1,41 @@
+.Forgot {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--primary);
+  display: grid;
+  place-items: center;
+  section {
+    height: 80%;
+    max-width: 30rem;
+    max-height: 50rem;
+    background-color: var(--dominant);
+    padding: 3rem;
+    border-radius: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    article {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      align-items: center;
+      img {
+        width: 5rem;
+      }
+    }
+    form {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 2rem 5rem;
+    }
+    a,
+    p[id='link'] {
+      color: var(--LinkColor);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
