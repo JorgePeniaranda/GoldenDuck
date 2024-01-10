@@ -4,34 +4,38 @@ import { FormEvent, useState } from 'react'
 import { redirect } from 'next/navigation'
 import GetUserInfo from './get-user-info'
 import ConfirmUserInfo from './confirm-user-info'
+import ContainerCenteredItemsWithNavbar from '@/components/pages/container-centered-items-with-navbar'
+import Text from '@/components/atoms/text/Text'
+
+const steps = {
+  0: GetUserInfo,
+  1: ConfirmUserInfo,
+}
 
 export default function Login() {
   const [step, setStep] = useState<number>(0)
 
-  const handlePrev = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    setStep(step - 1)
+  const formActions = {
+    next: (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      setStep(step + 1)
+    },
+    back: (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      setStep(step - 1)
+    },
+    submit: (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      redirect('/home')
+    },
   }
 
-  const handleNext = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    setStep(step + 1)
-  }
-
-  const handleConfirm = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    setStep(step + 1)
-  }
-
-  switch (step) {
-    case 0:
-      return <GetUserInfo handleNext={handleNext} />
-    case 1:
-      return <ConfirmUserInfo handlePrev={handlePrev} />
-    default:
-      return redirect('/404')
-  }
+  return (
+    <ContainerCenteredItemsWithNavbar>
+      <Text tag="h1" size={'2.6rem'} weight="700">
+        Registrarse
+      </Text>
+      {steps[step](formActions)} {/* tarea para casa */}
+    </ContainerCenteredItemsWithNavbar>
+  )
 }

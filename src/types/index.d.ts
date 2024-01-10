@@ -42,3 +42,9 @@ export type InputProps = {
   min?: number
   list?: string
 }
+
+export type formActions = {
+  next: (event: FormEvent<HTMLFormElement>) => void
+  back: (event: FormEvent<HTMLFormElement>) => void
+  submit: (event: FormEvent<HTMLFormElement>) => void
+}
