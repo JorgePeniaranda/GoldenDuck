@@ -42,7 +42,7 @@ export default function Login() {
               }
             />
           </label>
-          <BaseButton>Siguiente</BaseButton>
+          <BaseButton fontSize="1.2rem">Siguiente</BaseButton>
         </FormWithValidation>
         <InternalLinkText href="/login">Ya tengo una cuenta</InternalLinkText>
       </section>
