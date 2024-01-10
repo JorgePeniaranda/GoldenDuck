@@ -5,7 +5,7 @@ import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import { formActions } from '@/types'
 import ReactCodeInput from 'react-code-input'
 
-export default function ConfirmUserInfo({ next, back, submit }: formActions) {
+export default function ConfirmUserInfo({ submit }: formActions) {
   return (
     <section className={style.ConfirmUserInfo}>
       <article>
@@ -18,7 +18,7 @@ export default function ConfirmUserInfo({ next, back, submit }: formActions) {
           la categoria {'"Spam"'}
         </Text>
       </article>
-      <FormWithValidation onSubmit={next}>
+      <FormWithValidation onSubmit={submit}>
         <ReactCodeInput
           type="text"
           name="EmailCode"

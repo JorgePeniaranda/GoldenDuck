@@ -5,7 +5,7 @@ import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import { formActions } from '@/types'
 
-export default function GetUserInfo({ next, back, submit }: formActions) {
+export default function GetUserInfo({ next }: formActions) {
   return (
     <FormWithValidation onSubmit={next} className={style.SignIn}>
       <section>
