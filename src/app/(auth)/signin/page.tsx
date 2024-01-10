@@ -6,6 +6,7 @@ import GetUserInfo from './get-user-info'
 import ConfirmUserInfo from './confirm-user-info'
 import ContainerCenteredItemsWithNavbar from '@/components/pages/container-centered-items-with-navbar'
 import Text from '@/components/atoms/text/Text'
+import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 
 const steps = {
   0: GetUserInfo,
@@ -32,30 +33,22 @@ export default function Login() {
 
   return (
     <ContainerCenteredItemsWithNavbar>
-      {step !== 0 && (
-        <div
-          onClick={formActions.back}
-          className="absolute left-[var(--base-nav-x-padding)] flex items-center cursor-pointer text-xl active:scale-90 transition-transform active:cursor-grabbing"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            className="w-[2ch]"
-          >
-            <path
-              fill="currentColor"
-              d="M10 22L0 12L10 2l1.775 1.775L3.55 12l8.225 8.225z"
-            />
-          </svg>
-          <Text size={'1.2rem'}>Volver</Text>
-        </div>
-      )}
       <Text tag="h1" size={'2.6rem'} weight="700">
         Registrarse
       </Text>
       {steps[step](formActions)} {/* tarea para casa */}
+      {step === 0 ? (
+        <InternalLinkText
+          href="/login"
+          className="absolute bottom-10 text-[var(--LinkColor)] underline"
+        >
+          Ya tengo una cuenta
+        </InternalLinkText>
+      ) : (
+        <p onClick={formActions.back} className="absolute bottom-10 text-[var(--LinkColor)] underline cursor-pointer">
+          Volver
+        </p>
+      )}
     </ContainerCenteredItemsWithNavbar>
   )
 }
