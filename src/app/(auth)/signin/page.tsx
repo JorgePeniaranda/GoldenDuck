@@ -35,7 +35,7 @@ export default function Login() {
       {step !== 0 && (
         <div
           onClick={formActions.back}
-          className="absolute left-[var(--base-nav-x-padding)] flex items-center cursor-pointer text-xl"
+          className="absolute left-[var(--base-nav-x-padding)] flex items-center cursor-pointer text-xl active:scale-90 transition-transform active:cursor-grabbing"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
