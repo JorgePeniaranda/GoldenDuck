@@ -16,15 +16,15 @@ export default function Login() {
   const [step, setStep] = useState<number>(0)
 
   const formActions = {
-    next: (event: FormEvent<HTMLFormElement>) => {
+    next: (event: FormEvent) => {
       event.preventDefault()
       setStep(step + 1)
     },
-    back: (event: FormEvent<HTMLFormElement>) => {
+    back: (event: FormEvent) => {
       event.preventDefault()
       setStep(step - 1)
     },
-    submit: (event: FormEvent<HTMLFormElement>) => {
+    submit: (event: FormEvent) => {
       event.preventDefault()
       redirect('/home')
     },
@@ -32,6 +32,26 @@ export default function Login() {
 
   return (
     <ContainerCenteredItemsWithNavbar>
+      {step !== 0 && (
+        <div
+          onClick={formActions.back}
+          className="absolute left-[var(--base-nav-x-padding)] flex items-center cursor-pointer text-xl"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            className="w-[2ch]"
+          >
+            <path
+              fill="currentColor"
+              d="M10 22L0 12L10 2l1.775 1.775L3.55 12l8.225 8.225z"
+            />
+          </svg>
+          <Text size={'1.2rem'}>Volver</Text>
+        </div>
+      )}
       <Text tag="h1" size={'2.6rem'} weight="700">
         Registrarse
       </Text>
