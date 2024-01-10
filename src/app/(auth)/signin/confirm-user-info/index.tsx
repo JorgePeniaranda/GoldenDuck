@@ -1,4 +1,5 @@
 import Text from '@/components/atoms/text/Text'
+import style from './styles.module.scss'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import { formActions } from '@/types'
@@ -6,7 +7,7 @@ import ReactCodeInput from 'react-code-input'
 
 export default function ConfirmUserInfo({ next, back, submit }: formActions) {
   return (
-    <section>
+    <section className={style.ConfirmUserInfo}>
       <article>
         <Text size={'1.1rem'}>
           Revisa tu mail{' '}
@@ -17,19 +18,14 @@ export default function ConfirmUserInfo({ next, back, submit }: formActions) {
           la categoria {'"Spam"'}
         </Text>
       </article>
-      <FormWithValidation
-        onSubmit={next}
-        className="w-full flex flex-col justify-center items-center mt-7"
-      >
+      <FormWithValidation onSubmit={next}>
         <ReactCodeInput
           type="text"
           name="EmailCode"
           inputMode="email"
           fields={6}
         />
-        <BaseButton fontSize="1.1rem" className="mt-20">
-          Confirmar
-        </BaseButton>
+        <BaseButton fontSize="1.1rem">Confirmar</BaseButton>
       </FormWithValidation>
     </section>
   )
