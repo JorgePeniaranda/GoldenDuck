@@ -44,7 +44,7 @@ export type InputProps = {
 }
 
 export type formActions = {
-  next: (event: FormEvent<HTMLFormElement>) => void
-  back: (event: FormEvent<HTMLFormElement>) => void
-  submit: (event: FormEvent<HTMLFormElement>) => void
+  next: (event: FormEvent) => void
+  back: (event: FormEvent) => void
+  submit: (event: FormEvent) => void
 }

@@ -31,9 +31,11 @@
       justify-content: space-between;
       padding-block: 2rem 5rem;
     }
-    a {
+    a,
+    p[id='link'] {
       color: var(--LinkColor);
       text-decoration: underline;
+      cursor: pointer;
     }
   }
 }
