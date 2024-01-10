@@ -11,30 +11,45 @@ export default function GetUserInfo({ next, back, submit }: formActions) {
       <section>
         <Text tag="h2">Datos</Text>
         <article>
-          <input type="text" placeholder="Nombre" required />
-          <input type="text" placeholder="Apellido" required />
-          <input type="text" placeholder="DNI" required />
+          <input type="text" placeholder="nombre" value="Test" required />
+          <input type="text" placeholder="apellido" value="Test" required />
+          <input type="number" placeholder="dni" value={12345678} required />
         </article>
       </section>
       <section>
         <Text tag="h2">Cuenta y Contacto</Text>
         <article>
-          <input type="text" placeholder="Email" required />
-          <input type="text" placeholder="Télefono" required />
-          <input type="text" placeholder="Contraseña" required />
+          <input
+            type="email"
+            placeholder="email"
+            value="email@test.com"
+            required
+          />
+          <input
+            type="number"
+            placeholder="telefono"
+            value={1234567890}
+            required
+          />
+          <input
+            type="text"
+            placeholder="contraseña"
+            value={12345678}
+            required
+          />
         </article>
       </section>
       <section>
         <Text tag="h2">Información</Text>
         <article>
-          <input type="text" placeholder="Domicilio" required />
+          <input type="text" placeholder="domicilio" value="test" required />
           <label>
             <input type="date" />
             Fecha de Nacimiento
           </label>
           <div id="sex">
             <label>
-              <input type="radio" name="sex" required />
+              <input type="radio" name="sex" required checked />
               Masculino
             </label>
             <label>
