@@ -6,9 +6,9 @@ import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import { formActions } from '@/types'
 import ReactCodeInput from 'react-code-input'
 
-export default function ConfirmUserMail({ submit }: formActions) {
+export default function ConfirmUserMail({ next }: formActions) {
   return (
-    <FormWithValidation onSubmit={submit} className={style.ConfirmUserEmail}>
+    <FormWithValidation onSubmit={next} className={style.ConfirmUserEmail}>
       <Text>
         Compruebe el correo <span>testCorreo@test.com</span> para encontrar el
         codigo de verificación, recuerda que puede encontrarse en {'"spam"'}

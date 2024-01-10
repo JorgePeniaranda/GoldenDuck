@@ -21,9 +21,9 @@ const PasswordIcon = (
   </svg>
 )
 
-export default function ChangePasswordUser({ next }: formActions) {
+export default function ChangePasswordUser({ submit }: formActions) {
   return (
-    <FormWithValidation onSubmit={next} className={style.ConfirmUserEmail}>
+    <FormWithValidation onSubmit={submit} className={style.ConfirmUserEmail}>
       <label>
         Nueva contraseña:
         <InputWithIcon type="password" name="email" icon={PasswordIcon} />
