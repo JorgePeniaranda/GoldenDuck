@@ -6,5 +6,5 @@
   align-items: center;
   padding-top: 3rem;
   padding-inline: $padding-section;
-  height: calc(100vh - var(--base-nav-height));
+  min-height: calc(100vh - var(--base-nav-height));
 }
