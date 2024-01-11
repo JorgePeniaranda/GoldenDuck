@@ -1,6 +1,6 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
+import { FormEvent, ReactElement, useState } from 'react'
 import { redirect } from 'next/navigation'
 import GetUserInfo from './get-user-info'
 import style from './styles.module.scss'
@@ -8,8 +8,13 @@ import ConfirmUserInfo from './confirm-user-info'
 import ContainerCenteredItemsWithNavbar from '@/components/pages/container-centered-items-with-navbar'
 import Text from '@/components/atoms/text/Text'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import { formActions } from '@/types'
 
-const steps = {
+interface StepComponent {
+  (formActions: formActions): ReactElement;
+}
+
+const steps: Record<number, StepComponent> = {
   0: GetUserInfo,
   1: ConfirmUserInfo,
 }
@@ -37,7 +42,7 @@ export default function Login() {
       <Text tag="h1" size={'2.6rem'} weight="700">
         Registrarse
       </Text>
-      {steps[step](formActions)} {/* tarea para casa */}
+      {steps[step](formActions)}
       <div className={style.OptionContainer}>
         {step === 0 ? (
           <InternalLinkText

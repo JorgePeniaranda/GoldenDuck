@@ -3,14 +3,20 @@
 import Text from '@/components/atoms/text/Text'
 import style from './styles.module.scss'
 import Image from 'next/image'
-import { FormEvent, useState } from 'react'
+import { FormEvent, ReactElement, useState } from 'react'
 import { redirect } from 'next/navigation'
 import GetUserMail from './get-user-mail'
 import ConfirmUserMail from './confirm-user-mail'
 import ChangePasswordUser from './change-password-user'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import { formActions } from '@/types'
 
-const steps = {
+
+interface StepComponent {
+  (formActions: formActions): ReactElement;
+}
+
+const steps: Record<number, StepComponent> = {
   0: GetUserMail,
   1: ConfirmUserMail,
   2: ChangePasswordUser,
