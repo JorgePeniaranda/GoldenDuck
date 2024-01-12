@@ -11,9 +11,8 @@ import ChangePasswordUser from './change-password-user'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import { formActions } from '@/types'
 
-
 interface StepComponent {
-  (formActions: formActions): ReactElement;
+  (formActions: formActions): ReactElement
 }
 
 const steps: Record<number, StepComponent> = {
