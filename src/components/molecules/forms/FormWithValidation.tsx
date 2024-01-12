@@ -17,15 +17,7 @@ export default function FormWithValidation({
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    try {
-      if (onSubmit) return onSubmit(event)
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: error.message,
-      })
-    }
+    if (onSubmit) return onSubmit(event)
   }
 
   return (

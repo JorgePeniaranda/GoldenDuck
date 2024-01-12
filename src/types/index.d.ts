@@ -1,3 +1,10 @@
+// custom tag
+declare namespace JSX {
+  interface IntrinsicElements {
+    wave: any
+  }
+}
+
 export type InputProps = {
   type:
     | 'button'

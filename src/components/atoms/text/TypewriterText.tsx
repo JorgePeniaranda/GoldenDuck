@@ -4,7 +4,7 @@ import { Cursor, useTypewriter } from 'react-simple-typewriter'
 
 interface Props {
   words: string[]
-  cursor: boolean
+  cursor?: boolean
 }
 
 export default function TypewriterText({ words, cursor = true }: Props) {
