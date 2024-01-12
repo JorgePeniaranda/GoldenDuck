@@ -44,7 +44,19 @@ export type InputProps = {
 }
 
 export type formActions = {
-  next: (event: FormEvent) => void
-  back: (event: FormEvent) => void
-  submit: (event: FormEvent) => void
+  next: (event?: any) => void
+  back: (event?: any) => void
+  submit: (event?: any) => void
+}
+
+type SignupForm = {
+  name: string
+  lastName: string
+  phoneNumber: string
+  dni: string
+  birthDate: string
+  address: string
+  email: string
+  password: string
+  sex: 'male' | 'female' | ''
 }
