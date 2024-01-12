@@ -23,6 +23,7 @@ const SignInContainer = ({ children }: { children: React.ReactNode }) => {
 }
 
 export default function SignIn() {
+  const [step, setStep] = useState<number>(0)
   const [form, setForm] = useState<SignupForm>({
     name: '',
     lastName: '',
@@ -34,7 +35,6 @@ export default function SignIn() {
     password: '',
     sex: '',
   })
-  const [step, setStep] = useState<number>(0)
 
   const FormActions = {
     next: () => {
