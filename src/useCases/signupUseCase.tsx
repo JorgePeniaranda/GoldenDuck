@@ -1,6 +1,6 @@
 import Alerts from '@/services/alertService'
+import ConfirmationCode from '@/services/confirmationCodeService'
 import { SignupForm } from '@/types'
-import { randomAlphanumeric } from '@/utils'
 import { z } from 'zod'
 
 export const SignUpSchema = z.object({
@@ -29,23 +29,6 @@ export const SignUpSchema = z.object({
   sex: z.enum(['male', 'female'], { required_error: 'El sexo es requerido' }),
 })
 
-export class ConfirmCode {
-  private code: string = randomAlphanumeric(6)
-
-  private regenerateCode() {
-    this.code = randomAlphanumeric(6)
-  }
-
-  sendCode() {
-    this.regenerateCode()
-    return console.log('Código enviado: ' + this.code)
-  }
-
-  checkCode(code: string) {
-    return code === this.code
-  }
-}
-
 export const CheckForm = (SignupForm: SignupForm): boolean => {
   const result = SignUpSchema.safeParse(SignupForm)
 
@@ -55,6 +38,10 @@ export const CheckForm = (SignupForm: SignupForm): boolean => {
   }
 
   return true
+}
+
+export const generateConfirmationCode = () => {
+  return new ConfirmationCode()
 }
 
 export const CreateUser = (SignupForm: SignupForm) => {

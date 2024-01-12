@@ -7,7 +7,7 @@ import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import { formActions } from '@/types'
 import ReactCodeInput from 'react-code-input'
 import { FormEvent, useMemo, useState } from 'react'
-import { ConfirmCode as Code } from '@/useCases/signupUseCase'
+import { generateConfirmationCode } from '@/useCases/signupUseCase'
 
 interface Props {
   FormActions: formActions
@@ -16,7 +16,7 @@ interface Props {
 export default function ConfirmUserInfo({ FormActions }: Props) {
   const [EmailCode, setEmailCode] = useState<string>('')
 
-  const code = useMemo(() => new Code(), [])
+  const code = useMemo(() => generateConfirmationCode(), [])
 
   const handleChange = (value: string) => {
     setEmailCode(value)
@@ -24,6 +24,7 @@ export default function ConfirmUserInfo({ FormActions }: Props) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
     if (code.checkCode(EmailCode)) {
       FormActions.submit()
     } else {
