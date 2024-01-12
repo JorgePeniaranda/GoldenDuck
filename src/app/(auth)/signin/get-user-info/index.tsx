@@ -16,7 +16,6 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setForm({ ...form, [name]: value })
-    console.log(value)
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
