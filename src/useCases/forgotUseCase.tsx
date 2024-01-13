@@ -28,7 +28,10 @@ export const CheckEmail = (email: string): boolean => {
   return true
 }
 
-export const CheckPasswords = (password: string, confirmPassword: string): boolean => {
+export const CheckPasswords = (
+  password: string,
+  confirmPassword: string,
+): boolean => {
   const result = PasswordSchema.safeParse({ password })
 
   if (password !== confirmPassword) {
@@ -49,5 +52,5 @@ export const generateConfirmationCode = () => {
 }
 
 export const UpdatePassword = (ForgotForm: ForgotForm) => {
-    return Alerts.success('Contraseña actualizada con éxito')
+  return Alerts.success('Contraseña actualizada con éxito')
 }

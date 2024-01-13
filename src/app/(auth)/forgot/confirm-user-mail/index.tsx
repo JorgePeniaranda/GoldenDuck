@@ -31,7 +31,10 @@ export default function ConfirmUserMail({ FormActions }: Props) {
   }
 
   return (
-    <FormWithValidation onSubmit={handleSubmit} className={style.ConfirmUserEmail}>
+    <FormWithValidation
+      onSubmit={handleSubmit}
+      className={style.ConfirmUserEmail}
+    >
       <Text>
         Compruebe el correo <span>testCorreo@test.com</span> para encontrar el
         codigo de verificación, recuerda que puede encontrarse en {'"spam"'}

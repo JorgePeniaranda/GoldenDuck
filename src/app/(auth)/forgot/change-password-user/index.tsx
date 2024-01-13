@@ -27,12 +27,16 @@ interface Props {
   setForm: React.Dispatch<React.SetStateAction<ForgotForm>>
 }
 
-export default function ChangePasswordUser({ FormActions, form, setForm }: Props) {
+export default function ChangePasswordUser({
+  FormActions,
+  form,
+  setForm,
+}: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setForm({ ...form, [name]: value })
   }
-  
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -42,15 +46,30 @@ export default function ChangePasswordUser({ FormActions, form, setForm }: Props
   }
 
   return (
-    <FormWithValidation onSubmit={handleSubmit} className={style.ConfirmUserEmail}>
+    <FormWithValidation
+      onSubmit={handleSubmit}
+      className={style.ConfirmUserEmail}
+    >
       <label>
         Nueva contraseña:
-        <InputWithIcon type="password" name="password" value={form.password} onChange={handleChange} icon={PasswordIcon} />
+        <InputWithIcon
+          type="password"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          icon={PasswordIcon}
+        />
       </label>
 
       <label>
         Confirme su nueva contraseña:
-        <InputWithIcon type="password" name="confirmPassword" value={form.confirmPassword} onChange={handleChange} icon={PasswordIcon} />
+        <InputWithIcon
+          type="password"
+          name="confirmPassword"
+          value={form.confirmPassword}
+          onChange={handleChange}
+          icon={PasswordIcon}
+        />
       </label>
       <BaseButton fontSize="1.2rem">Siguiente</BaseButton>
     </FormWithValidation>
