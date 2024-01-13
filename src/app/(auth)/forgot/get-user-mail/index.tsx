@@ -1,18 +1,39 @@
-import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import InputWithIcon from '@/components/molecules/inputs/input-with-icon'
-import { formActions } from '@/types'
+import { ForgotForm, formActions } from '@/types'
+import { CheckEmail } from '@/useCases/forgotUseCase'
 import React from 'react'
 
-export default function GetUserMail({ next }: formActions) {
+interface Props {
+  FormActions: formActions
+  form: ForgotForm
+  setForm: React.Dispatch<React.SetStateAction<ForgotForm>>
+}
+
+export default function GetUserMail({ FormActions, form, setForm }: Props) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setForm({ ...form, [name]: value })
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (CheckEmail(form.email)) {
+      FormActions.next()
+    }
+  }
+
   return (
-    <FormWithValidation onSubmit={next}>
+    <FormWithValidation onSubmit={handleSubmit}>
       <label>
         Email:
         <InputWithIcon
           type="text"
           name="email"
+          value={form.email}
+          onChange={handleChange}
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
