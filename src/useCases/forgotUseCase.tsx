@@ -52,5 +52,7 @@ export const generateConfirmationCode = () => {
 }
 
 export const UpdatePassword = (ForgotForm: ForgotForm) => {
-  return Alerts.success('Contraseña actualizada con éxito')
+  return Alerts.success('Contraseña actualizada con éxito', () =>
+    window.location.replace('/'),
+  )
 }

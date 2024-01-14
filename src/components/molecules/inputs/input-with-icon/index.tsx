@@ -35,7 +35,7 @@ export default function InputWithIcon({
   return (
     <div className={styles.InputWithIcon} id={position}>
       {position === 'left' && icon}
-      <input
+      <BaseInput
         type={type}
         name={name}
         id={id}

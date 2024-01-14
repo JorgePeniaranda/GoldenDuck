@@ -5,6 +5,7 @@ import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import { SignupForm, formActions } from '@/types'
 import { CheckForm } from '@/useCases/signupUseCase'
+import BaseInput from '@/components/molecules/inputs/base-input'
 
 interface Props {
   FormActions: formActions
@@ -31,21 +32,21 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
       <section>
         <Text tag="h2">Datos</Text>
         <article>
-          <input
+          <BaseInput
             type="text"
             placeholder="nombre"
             value={form.name}
             name="name"
             onChange={handleChange}
           />
-          <input
+          <BaseInput
             type="text"
             placeholder="apellido"
             value={form.lastName}
             name="lastName"
             onChange={handleChange}
           />
-          <input
+          <BaseInput
             type="number"
             placeholder="dni"
             value={form.dni}
@@ -57,21 +58,21 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
       <section>
         <Text tag="h2">Cuenta y Contacto</Text>
         <article>
-          <input
+          <BaseInput
             type="email"
             placeholder="email"
             value={form.email}
             name="email"
             onChange={handleChange}
           />
-          <input
+          <BaseInput
             type="number"
             placeholder="telefono"
             value={form.phoneNumber}
             name="phoneNumber"
             onChange={handleChange}
           />
-          <input
+          <BaseInput
             type="password"
             placeholder="contraseña"
             value={form.password}
@@ -83,7 +84,7 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
       <section>
         <Text tag="h2">Información</Text>
         <article>
-          <input
+          <BaseInput
             type="text"
             placeholder="domicilio"
             value={form.address}
@@ -91,7 +92,7 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
             onChange={handleChange}
           />
           <label>
-            <input
+            <BaseInput
               type="date"
               name="birthDate"
               value={form.birthDate}
@@ -101,7 +102,7 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
           </label>
           <div id="sex">
             <label>
-              <input
+              <BaseInput
                 type="radio"
                 name="sex"
                 value="male"
@@ -111,7 +112,7 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
               Masculino
             </label>
             <label>
-              <input
+              <BaseInput
                 type="radio"
                 name="sex"
                 value="female"
@@ -130,7 +131,9 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
         </InternalLinkText>{' '}
         de Golden Duck
       </Text>
-      <BaseButton fontSize="1.1rem">Siguiente</BaseButton>
+      <BaseButton fontSize="1.1rem" fontColor="#fff">
+        Siguiente
+      </BaseButton>
     </FormWithValidation>
   )
 }

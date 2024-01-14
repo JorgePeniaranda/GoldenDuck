@@ -14,12 +14,13 @@ export default function Footer() {
         alt="Lycokat Logo"
       />
       <Text size={'0.8rem'}>
+        F
         <TypewriterText
-          words={['Fortuna y seguridad, en un solo lugar']}
+          words={['ortuna y seguridad, en un solo lugar']}
           cursor={false}
         />
       </Text>
-      <div id="SocialMedia">
+      <div className={styles.SocialMedia}>
         <ExternalLinkText
           href="https://www.facebook.com/profile.php?id=100081120383944"
           arialLabel="Facebook"

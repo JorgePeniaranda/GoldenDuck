@@ -1,7 +1,12 @@
 import { InputProps } from '@/types'
-import React from 'react'
+import styles from './styles.module.scss'
+
+interface Props extends InputProps {
+  BaseStyle?: boolean
+}
 
 export default function BaseInput({
+  BaseStyle = true,
   type,
   name,
   id,
@@ -22,7 +27,8 @@ export default function BaseInput({
   max,
   min,
   list,
-}: InputProps) {
+  checked,
+}: Props) {
   return (
     <input
       type={type}
@@ -30,7 +36,7 @@ export default function BaseInput({
       id={id}
       onChange={onChange}
       onBlur={onBlur}
-      className={className}
+      className={`${BaseStyle && styles.BaseInput} ${className}}`}
       style={style}
       required={required}
       placeholder={placeholder}
@@ -45,6 +51,7 @@ export default function BaseInput({
       max={max}
       min={min}
       list={list}
+      checked={checked}
     />
   )
 }
