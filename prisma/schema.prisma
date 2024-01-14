@@ -12,13 +12,14 @@ datasource db {
 
 model Users {
   id          Int         @id @default(autoincrement())
-  lastname    String
   name        String
-  phoneNumber Int         @unique
+  lastname    String
   dni         Int         @unique
-  domicilio   String
   email       String      @unique
+  phoneNumber Int         @unique
   password    String
+  address     String
+  birthDate   DateTime
   updateDate  DateTime    @default(now())
   deleted     Boolean     @default(false)
 }
