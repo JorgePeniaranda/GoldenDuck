@@ -1,0 +1,9 @@
+{
+  "name": "Golden Duck",
+  "short_name": "GoldenDuck",
+  "description": "Una banca online donde podrá, no solo gestionar su dinero, sino que incluso invertirlo. Siempre llevando un registro de cuanto dinero es ingresado y cuanto dinero es gastado, contando con categorías para saber en qué lo gasta. También podrá pagar servicios, tales como servicios de Telefonía Móvil o servicios esenciales.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9f7f7",
+  "theme_color": "#4f46e5"
+}
