@@ -1,6 +1,7 @@
 import Alerts from '@/services/alertService'
 import ConfirmationCode from '@/services/confirmationCodeService'
 import { ForgotForm } from '@/types'
+import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 export const EmailSchema = z.object({
@@ -52,5 +53,5 @@ export const generateConfirmationCode = () => {
 }
 
 export const UpdatePassword = (ForgotForm: ForgotForm) => {
-  return Alerts.success('Contraseña actualizada con éxito')
+  return Alerts.success('Contraseña actualizada con éxito', () => window.location.replace("/"))
 }

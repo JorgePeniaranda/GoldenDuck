@@ -45,5 +45,5 @@ export const generateConfirmationCode = () => {
 }
 
 export const CreateUser = (SignupForm: SignupForm) => {
-  return Alerts.success('Usuario creado con éxito')
+  return Alerts.success('Usuario creado con éxito', () => window.location.replace("/"))
 }
