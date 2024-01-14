@@ -24,10 +24,10 @@
       color: var(--dominant);
       position: absolute;
       left: 0;
-      &[id='topWave'] {
+      &.TopWave {
         top: 0;
       }
-      &[id='bottomWave'] {
+      &.BottomWave {
         bottom: 0;
       }
     }

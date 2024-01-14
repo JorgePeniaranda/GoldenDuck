@@ -54,11 +54,11 @@ export default function HomeHeader() {
           />
         </picture>
       </figure>
-      <figure id="waves">
-        <div className="wave" />
-        <div className="wave" />
-        <div className="wave" />
-        <div className="wave" />
+      <figure className={style.waves}>
+        <div className={style.wave} />
+        <div className={style.wave} />
+        <div className={style.wave} />
+        <div className={style.wave} />
       </figure>
     </header>
   )

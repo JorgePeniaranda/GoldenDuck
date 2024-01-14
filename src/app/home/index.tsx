@@ -17,7 +17,7 @@ export default function Home() {
         <LycokatSection />
         <section className={style.WaveSection}>
           <svg
-            id="topWave"
+            className={style.TopWave}
             version="1.2"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 900 123"
@@ -30,7 +30,7 @@ export default function Home() {
           <AboutUsSection />
           <AppMobileSection />
           <svg
-            id="bottomWave"
+            className={style.BottomWave}
             version="1.2"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 900 101"
