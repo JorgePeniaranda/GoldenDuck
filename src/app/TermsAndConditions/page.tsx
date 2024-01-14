@@ -1,5 +1,10 @@
 import ContainerCenteredItemsWithNavbar from '@/components/pages/container-centered-items-with-navbar'
 import Text from '@/components/atoms/text/Text'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Términos y Condiciones | Golden Duck',
+}
 
 export default function TermsAndConditions() {
   return (
