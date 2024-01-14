@@ -1,7 +1,6 @@
 import Alerts from '@/services/alertService'
 import ConfirmationCode from '@/services/confirmationCodeService'
 import { ForgotForm } from '@/types'
-import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 export const EmailSchema = z.object({
