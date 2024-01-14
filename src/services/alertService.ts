@@ -4,7 +4,7 @@ const Alerts = {
   success: (message: string, then?: () => void) => {
     Swal.fire({
       icon: 'success',
-      title: 'Success',
+      title: '¡Hecho!',
       text: message,
     }).then(() => {
       if (then) then()
