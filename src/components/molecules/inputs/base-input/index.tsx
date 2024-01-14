@@ -1,8 +1,7 @@
 import { InputProps } from '@/types'
 import styles from './styles.module.scss'
 
-
-interface Props extends InputProps{
+interface Props extends InputProps {
   BaseStyle?: boolean
 }
 
@@ -28,7 +27,7 @@ export default function BaseInput({
   max,
   min,
   list,
-  checked
+  checked,
 }: Props) {
   return (
     <input

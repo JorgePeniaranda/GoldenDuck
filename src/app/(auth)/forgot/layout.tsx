@@ -7,7 +7,6 @@ export const metadata: Metadata = {
   title: 'Cambiar contraseña | Golden Duck',
 }
 
-
 const ForgotContainer = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className={style.Forgot}>
@@ -34,9 +33,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-      <ForgotContainer>
-        {children}
-      </ForgotContainer>
-  )
+  return <ForgotContainer>{children}</ForgotContainer>
 }

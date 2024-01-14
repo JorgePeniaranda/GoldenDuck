@@ -7,7 +7,6 @@ export const metadata: Metadata = {
   title: 'Registrarse | Golden Duck',
 }
 
-
 const SignInContainer = ({ children }: { children: React.ReactNode }) => {
   return (
     <ContainerCenteredItemsWithNavbar className={style.SignIn}>
@@ -24,9 +23,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-      <SignInContainer>
-        {children}
-      </SignInContainer>
-  )
+  return <SignInContainer>{children}</SignInContainer>
 }

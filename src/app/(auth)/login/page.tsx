@@ -38,8 +38,18 @@ export default function Login() {
             <Text tag="h1" size={'1.9rem'} weight="700">
               Iniciar Sesión
             </Text>
-            <BaseInput type="text" placeholder="Usuario" name='user' BaseStyle={false}/>
-            <BaseInput type="password" placeholder="Contraseña"  name='password' BaseStyle={false}/>
+            <BaseInput
+              type="text"
+              placeholder="Usuario"
+              name="user"
+              BaseStyle={false}
+            />
+            <BaseInput
+              type="password"
+              placeholder="Contraseña"
+              name="password"
+              BaseStyle={false}
+            />
             <InternalLinkText href="/forgot">
               Olvide mi contraseña
             </InternalLinkText>
