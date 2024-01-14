@@ -33,7 +33,7 @@ const ForgotContainer = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default function Login() {
+export default function Forgot() {
   const [step, setStep] = useState<number>(0)
   const [form, setForm] = useState<ForgotForm>({
     email: '',
