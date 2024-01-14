@@ -5,22 +5,9 @@ import { redirect } from 'next/navigation'
 import GetUserInfo from './get-user-info'
 import style from './styles.module.scss'
 import ConfirmUserInfo from './confirm-user-info'
-import ContainerCenteredItemsWithNavbar from '@/components/pages/container-centered-items-with-navbar'
-import Text from '@/components/atoms/text/Text'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import { SignupForm } from '@/types'
 import { CreateUser } from '@/useCases/signupUseCase'
-
-const SignInContainer = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <ContainerCenteredItemsWithNavbar className={style.SignIn}>
-      <Text tag="h1" size={'2.6rem'} weight="700">
-        Registrarse
-      </Text>
-      {children}
-    </ContainerCenteredItemsWithNavbar>
-  )
-}
 
 export default function SignIn() {
   const [step, setStep] = useState<number>(0)
@@ -51,27 +38,25 @@ export default function SignIn() {
   switch (step) {
     case 0:
       return (
-        <SignInContainer>
+        <>
           <GetUserInfo
             FormActions={FormActions}
             form={form}
             setForm={setForm}
           />
-          <div className={style.OptionContainer}>
-            <InternalLinkText href="/login">
-              Ya tengo una cuenta
-            </InternalLinkText>
-          </div>
-        </SignInContainer>
+          <InternalLinkText href="/login" className={style.LinkStyle}>
+            Ya tengo una cuenta
+          </InternalLinkText>
+        </>
       )
     case 1:
       return (
-        <SignInContainer>
+        <>
           <ConfirmUserInfo FormActions={FormActions} />
-          <div className={style.OptionContainer}>
-            <p onClick={FormActions.back}>Volver</p>
-          </div>
-        </SignInContainer>
+          <p onClick={FormActions.back} className={style.LinkStyle}>
+            Volver
+          </p>
+        </>
       )
     default:
       return redirect('/404')

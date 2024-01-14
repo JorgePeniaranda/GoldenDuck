@@ -1,10 +1,3 @@
-// custom tag
-declare namespace JSX {
-  interface IntrinsicElements {
-    wave: any
-  }
-}
-
 export type InputProps = {
   type:
     | 'button'
@@ -48,6 +41,7 @@ export type InputProps = {
   max?: number
   min?: number
   list?: string
+  checked?: boolean
 }
 
 export type formActions = {

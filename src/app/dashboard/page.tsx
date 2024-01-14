@@ -1,5 +1,10 @@
+import { Metadata } from 'next'
 import style from './styles.module.scss'
 
-export default function Login() {
+export const metadata: Metadata = {
+  title: 'Panel de Control | Golden Duck',
+}
+
+export default function Dashboard() {
   return <div></div>
 }
