@@ -55,10 +55,10 @@ export default function HomeHeader() {
         </picture>
       </figure>
       <figure id="waves">
-        <wave />
-        <wave />
-        <wave />
-        <wave />
+        <div className="wave" />
+        <div className="wave" />
+        <div className="wave" />
+        <div className="wave" />
       </figure>
     </header>
   )
