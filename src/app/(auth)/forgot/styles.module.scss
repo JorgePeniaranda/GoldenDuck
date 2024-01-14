@@ -31,8 +31,7 @@
       justify-content: space-between;
       padding-block: 2rem 5rem;
     }
-    a,
-    p[id='link'] {
+    .LinkStyle {
       color: var(--LinkColor);
       text-decoration: underline;
       cursor: pointer;

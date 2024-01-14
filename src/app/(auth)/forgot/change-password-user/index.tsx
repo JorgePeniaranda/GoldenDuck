@@ -1,4 +1,3 @@
-import style from './styles.module.scss'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import { ForgotForm, formActions } from '@/types'
@@ -46,10 +45,7 @@ export default function ChangePasswordUser({
   }
 
   return (
-    <FormWithValidation
-      onSubmit={handleSubmit}
-      className={style.ConfirmUserEmail}
-    >
+    <FormWithValidation onSubmit={handleSubmit}>
       <label>
         Nueva contraseña:
         <InputWithIcon
@@ -71,7 +67,9 @@ export default function ChangePasswordUser({
           icon={PasswordIcon}
         />
       </label>
-      <BaseButton fontSize="1.2rem">Siguiente</BaseButton>
+      <BaseButton fontSize="1.2rem" fontColor="#fff">
+        Siguiente
+      </BaseButton>
     </FormWithValidation>
   )
 }

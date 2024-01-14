@@ -33,7 +33,7 @@ const ForgotContainer = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default function Login() {
+export default function Forgot() {
   const [step, setStep] = useState<number>(0)
   const [form, setForm] = useState<ForgotForm>({
     email: '',
@@ -62,14 +62,16 @@ export default function Login() {
             form={form}
             setForm={setForm}
           />
-          <InternalLinkText href="/login">Ya tengo una cuenta</InternalLinkText>
+          <InternalLinkText href="/login" className={style.LinkStyle}>
+            Ya tengo una cuenta
+          </InternalLinkText>
         </ForgotContainer>
       )
     case 1:
       return (
         <ForgotContainer>
           <ConfirmUserMail FormActions={formActions} />
-          <p onClick={formActions.back} id="link">
+          <p onClick={formActions.back} className={style.LinkStyle}>
             Volver
           </p>
         </ForgotContainer>
@@ -82,7 +84,7 @@ export default function Login() {
             form={form}
             setForm={setForm}
           />
-          <p onClick={formActions.back} id="link">
+          <p onClick={formActions.back} className={style.LinkStyle}>
             Volver
           </p>
         </ForgotContainer>

@@ -57,20 +57,18 @@ export default function SignIn() {
             form={form}
             setForm={setForm}
           />
-          <div className={style.OptionContainer}>
-            <InternalLinkText href="/login">
-              Ya tengo una cuenta
-            </InternalLinkText>
-          </div>
+          <InternalLinkText href="/login" className={style.LinkStyle}>
+            Ya tengo una cuenta
+          </InternalLinkText>
         </SignInContainer>
       )
     case 1:
       return (
         <SignInContainer>
           <ConfirmUserInfo FormActions={FormActions} />
-          <div className={style.OptionContainer}>
-            <p onClick={FormActions.back}>Volver</p>
-          </div>
+          <p onClick={FormActions.back} className={style.LinkStyle}>
+            Volver
+          </p>
         </SignInContainer>
       )
     default:
