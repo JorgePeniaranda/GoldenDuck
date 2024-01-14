@@ -4,7 +4,7 @@ import Text from '@/components/atoms/text/Text'
 import ContainerCenteredItemsWithNavbar from '@/components/pages/container-centered-items-with-navbar'
 
 export const metadata: Metadata = {
-  title: 'Ingresar | Golden Duck',
+  title: 'Registrarse | Golden Duck',
 }
 
 
