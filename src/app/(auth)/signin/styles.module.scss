@@ -1,14 +1,7 @@
 .SignIn {
   position: relative;
   padding-bottom: 5rem;
-
-  //  className="absolute bottom-10 text-[var(--LinkColor)] underline cursor-pointer"
-  //   className="absolute bottom-10 text-[var(--LinkColor)] underline"
-}
-
-.OptionContainer {
-  a,
-  p {
+  .LinkStyle {
     position: absolute;
     bottom: 2.5rem;
     left: 50%;

@@ -15,7 +15,7 @@ export default function Home() {
       <HomeHeader />
       <main id="Home" className={style.Home}>
         <LycokatSection />
-        <section id="waveSection">
+        <section className={style.WaveSection}>
           <svg
             id="topWave"
             version="1.2"

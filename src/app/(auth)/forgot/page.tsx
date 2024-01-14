@@ -62,14 +62,16 @@ export default function Forgot() {
             form={form}
             setForm={setForm}
           />
-          <InternalLinkText href="/login">Ya tengo una cuenta</InternalLinkText>
+          <InternalLinkText href="/login" className={style.LinkStyle}>
+            Ya tengo una cuenta
+          </InternalLinkText>
         </ForgotContainer>
       )
     case 1:
       return (
         <ForgotContainer>
           <ConfirmUserMail FormActions={formActions} />
-          <p onClick={formActions.back} id="link">
+          <p onClick={formActions.back} className={style.LinkStyle}>
             Volver
           </p>
         </ForgotContainer>
@@ -82,7 +84,7 @@ export default function Forgot() {
             form={form}
             setForm={setForm}
           />
-          <p onClick={formActions.back} id="link">
+          <p onClick={formActions.back} className={style.LinkStyle}>
             Volver
           </p>
         </ForgotContainer>

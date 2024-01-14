@@ -4,13 +4,13 @@
   section {
     padding-inline: $padding-section;
   }
-  section[id='waveSection'] {
+  .WaveSection {
     background-color: var(--primary);
     position: relative;
     padding-block: 15rem 25rem;
     margin-top: 10rem;
     color: $waveSection-Color;
-    padding-inline: $padding-waveSection;
+    padding-inline: $padding-waveSection !important;
     h1 {
       color: var(--details);
       margin-bottom: 1rem;
