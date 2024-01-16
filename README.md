@@ -9,6 +9,7 @@
 This project is intended for educational and illustrative purposes only and is non-commercial. Its use for profit is strictly prohibited due to copyright and unauthorized licensing issues.
 
 ## Technology Stack
+
 <div align="center">
   <img src="https://www.prisma.io/images/favicon-32x32.png" height="40" alt="prisma logo"  />
   <img width="12" />

@@ -16,12 +16,14 @@
       img {
         height: 100%;
         z-index: 5;
-        &:last-child {
-          width: 65%;
-          height: 90%;
-          position: absolute;
-          top: 5%;
-          z-index: 1;
+      }
+      picture {
+        width: 65%;
+        height: 90%;
+        position: absolute;
+        top: 5%;
+        z-index: 1;
+        img {
           object-fit: cover;
           animation: ShowContent 10s linear infinite alternate;
           @keyframes ShowContent {

@@ -13,12 +13,19 @@ export default function AppMobileSection() {
             height={720}
             alt="phone"
           />
-          <Image
-            src="/assets/img/misc/backgroundPhone.webp"
-            width={300}
-            height={650}
-            alt="phone-content"
-          />
+
+          <picture>
+            <source
+              srcSet="/assets/img/misc/backgroundPhone-dark.webp"
+              media="(prefers-color-scheme: dark)"
+            />
+            <Image
+              src="/assets/img/misc/backgroundPhone.webp"
+              width={300}
+              height={650}
+              alt="phone-content"
+            />
+          </picture>
         </div>
         <Image
           src="/assets/img/patterns/blob-phone-wavesection.webp"
