@@ -32,7 +32,7 @@
       }
     }
     @media (width < 768px) {
-      padding-inline: $padding-section;
+      padding-inline: $padding-section !important;
     }
   }
 }

@@ -1,3 +1,5 @@
+@import '@/const/HomeConst.scss';
+
 .nav {
   width: 100%;
   height: var(--base-nav-height);
@@ -36,5 +38,8 @@
         transform: rotate(0);
       }
     }
+  }
+  @media (width < 768px) {
+    padding-inline: $padding-section;
   }
 }
