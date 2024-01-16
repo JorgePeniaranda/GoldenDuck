@@ -8,6 +8,27 @@
 
 This project is intended for educational and illustrative purposes only and is non-commercial. Its use for profit is strictly prohibited due to copyright and unauthorized licensing issues.
 
+## Technology Stack
+<div align="center">
+  <img src="https://www.prisma.io/images/favicon-32x32.png" height="40" alt="prisma logo"  />
+  <img width="12" />
+  <img src="https://nextjs.org/favicon.ico" height="40" alt="nextjs logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="react logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40" alt="html5 logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="40" alt="css3 logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40" alt="javascript logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40" alt="typescript logo"  />
+  <img width="12" />
+  <img src="https://tailwindcss.com/favicons/favicon-32x32.png?v=3" height="40" alt="tailwindcss logo"  />
+  <img width="12" />
+  <img src="https://sass-lang.com/favicon.ico" height="40" alt="sass logo"  />
+</div>
+
 ## Requirements to Start GoldenDuck
 
 - [Git](https://www.git-scm.com/downloads)
