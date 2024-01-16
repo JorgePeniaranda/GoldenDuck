@@ -1,6 +1,7 @@
 import ContainerCenteredItemsWithNavbar from '@/components/pages/container-centered-items-with-navbar'
 import Text from '@/components/atoms/text/Text'
 import { Metadata } from 'next'
+import style from './styles.module.scss'
 
 export const metadata: Metadata = {
   title: 'Términos y Condiciones | Golden Duck',
@@ -8,12 +9,12 @@ export const metadata: Metadata = {
 
 export default function TermsAndConditions() {
   return (
-    <ContainerCenteredItemsWithNavbar>
+    <ContainerCenteredItemsWithNavbar className={style.TermsAndConditions}>
       <Text tag="h1" size={'2rem'}>
         Términos y Condiciones de{' '}
-        <span className="text-[var(--details)] font-bold">Golden Duck</span>
+        <Text tag='span' size={"inherit"} weight='700'>Golden Duck</Text>
       </Text>
-      <article className="mt-7 text-justify">
+      <article className={style.text}>
         <Text>
           Condiciones y términos Leyes de protección al consumidor Estas
           Condiciones de Uso entrarán en vigor para todos los usuarios a partir
