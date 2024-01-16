@@ -1,26 +1,37 @@
+@import '@/const/HomeConst.scss';
+
 .LoginSection {
-  display: grid;
-  grid-template-columns: 65% 35%;
-  padding-inline: var(--base-nav-x-padding);
+  display: flex;
+  flex-wrap: wrap-reverse;
+  padding-inline: $padding-section;
+  min-height: calc(100vh - var(--base-nav-height));
   section {
-    height: calc(100vh - var(--base-nav-height));
+    flex: 3;
     padding-bottom: var(--base-nav-height);
     display: flex;
     flex-direction: column;
     &.TextSide {
       display: flex;
-      align-items: flex-start;
+      text-align: center;
+      align-items: center;
       justify-content: center;
       h1 {
         color: var(--primary);
       }
+      @media (width > 768px) {
+        text-align: start;
+        align-items: flex-start;
+      }
     }
     &.FormSide {
+      flex: 1;
+      min-width: max-content;
       justify-content: center;
-      align-items: flex-end;
+      align-items: center;
       form {
-        height: 70%;
-        width: 65%;
+        height: clamp(25rem, 50%, 32rem);
+        min-height: 25rem;
+        width: clamp(20rem, 65%, 27rem);
         background-color: #f5f5f4;
         box-shadow: 0 8px 28px 5px hsla(0, 0%, 31%, 0.2);
         display: flex;
@@ -56,6 +67,12 @@
           margin-right: 5rem;
         }
       }
+      @media (width > 768px) {
+        align-items: flex-end;
+      }
     }
+  }
+  @media (width > 768px) {
+    padding-inline: var(--base-nav-x-padding);
   }
 }

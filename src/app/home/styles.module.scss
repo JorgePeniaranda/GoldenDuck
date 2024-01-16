@@ -10,7 +10,7 @@
     padding-block: 15rem 25rem;
     margin-top: 10rem;
     color: $waveSection-Color;
-    padding-inline: $padding-waveSection !important;
+    padding-inline: $padding-section !important;
     h1 {
       color: var(--details);
       margin-bottom: 1rem;
@@ -31,8 +31,8 @@
         bottom: 0;
       }
     }
-    @media (width < 768px) {
-      padding-inline: $padding-section;
+    @media (width > 768px) {
+      padding-inline: $padding-waveSection !important;
     }
   }
 }

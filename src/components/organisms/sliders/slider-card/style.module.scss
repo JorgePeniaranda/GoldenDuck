@@ -1,5 +1,5 @@
 .sliderContainer {
-  width: 70%;
+  width: 100%;
   & [class*='slick-slider'] {
     color: #797d7f;
     max-width: 70rem;
@@ -46,5 +46,9 @@
         color: white;
       }
     }
+  }
+
+  @media (width > 768px) {
+    width: 70%;
   }
 }

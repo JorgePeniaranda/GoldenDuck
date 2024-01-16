@@ -1,10 +1,12 @@
+@import '@/const/HomeConst.scss';
+
 .nav {
   width: 100%;
   height: var(--base-nav-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: var(--base-nav-x-padding);
+  padding-inline: $padding-section;
   a {
     transition: transform 300ms ease;
     svg {
@@ -36,5 +38,8 @@
         transform: rotate(0);
       }
     }
+  }
+  @media (width > 768px) {
+    padding-inline: var(--base-nav-x-padding);
   }
 }
