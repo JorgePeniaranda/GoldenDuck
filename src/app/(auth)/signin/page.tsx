@@ -9,7 +9,7 @@ import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import { SignupForm } from '@/types'
 import { CreateUser } from '@/useCases/signupUseCase'
 
-export default function SignIn() {
+export default function Signin() {
   const [step, setStep] = useState<number>(0)
   const [form, setForm] = useState<SignupForm>({
     name: '',

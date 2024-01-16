@@ -3,40 +3,41 @@ import Image from 'next/image'
 import style from './styles.module.scss'
 import TypewriterText from '@/components/atoms/text/TypewriterText'
 
+const TypewriterWords = [
+  ' Confianza',
+  ' Tranferencias',
+  ' Seguridad',
+  ' Confort',
+  ' Inversiones',
+  ' Servicios',
+  ' Todos',
+  ' Plazos Fijos',
+  ' Prestamos',
+  ' Ingresos',
+  ' Agilidad',
+  ' Rapidez',
+  ' Emprendedores',
+  ' Productividad',
+]
+
 export default function HomeHeader() {
   return (
     <header className={style.header}>
-      <article>
+      <article className={style.text}>
         <Text tag="h1" size={'4.5rem'} weight="700">
           Golden Duck
         </Text>
         <Text tag="p" size={'1.4rem'} weight="400">
           Tu banca online de{' '}
           <Text tag="span" size={'1.4rem'} weight="800">
-            <TypewriterText
-              words={[
-                ' Confianza',
-                ' Tranferencias',
-                ' Seguridad',
-                ' Confort',
-                ' Inversiones',
-                ' Servicios',
-                ' Todos',
-                ' Plazos Fijos',
-                ' Prestamos',
-                ' Ingresos',
-                ' Agilidad',
-                ' Rapidez',
-                ' Emprendedores',
-                ' Productividad',
-              ]}
-            />
+            <TypewriterText words={TypewriterWords} />
           </Text>
         </Text>
       </article>
-      <figure>
+      <figure className={style.laptop}>
         <Image
           src="/assets/img/patterns/blob-laptop-header.webp"
+          className={style.blob}
           width={360}
           height={360}
           alt="blob"

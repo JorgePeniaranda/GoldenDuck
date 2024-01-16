@@ -7,7 +7,7 @@
   flex-wrap: wrap;
   gap: 5rem;
   padding-block: 5rem 10rem;
-  article {
+  article.text {
     flex: 1;
     display: grid;
     justify-content: center;
@@ -20,7 +20,7 @@
       text-align: justify;
     }
   }
-  div[class='map'] {
+  div.map {
     position: relative;
     min-width: 20rem;
     flex: 1;
