@@ -1,6 +1,9 @@
 .TermsAndConditions {
-  h1 span {
-    color: var(--details);
+  h1 {
+    text-align: center;
+    span {
+      color: var(--details);
+    }
   }
   article.text {
     margin-top: 1.5rem;
