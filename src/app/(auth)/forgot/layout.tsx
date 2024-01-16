@@ -28,7 +28,7 @@ const ForgotContainer = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default function RootLayout({
+export default function ForgotLayout({
   children,
 }: {
   children: React.ReactNode

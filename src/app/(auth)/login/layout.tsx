@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Ingresar | Golden Duck',
 }
 
-export default function RootLayout({
+export default function LoginLayout({
   children,
 }: {
   children: React.ReactNode
