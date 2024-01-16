@@ -5,6 +5,7 @@
 </div>
 
 # Golden Duck
+
 This project is intended for educational and illustrative purposes only and is non-commercial. Its use for profit is strictly prohibited due to copyright and unauthorized licensing issues.
 
 ## Requirements to Start GoldenDuck
@@ -15,27 +16,35 @@ This project is intended for educational and illustrative purposes only and is n
 ## How to Start GoldenDuck?
 
 1. Clone the repository
+
 ```bash
 git clone https://github.com/JorgePeniaranda/GoldenDuck/
 ```
+
 <br/>
 
 2. Navigate into the project directory
+
 ```bash
 cd ./GoldenDuck
 ```
+
 <br/>
 
 3. Install the required node_modules with Node.js
+
 ```bash
 npm install
 ```
+
 <br/>
 
 4. Start Golden-Duck
+
 ```bash
 npm run dev
 ```
+
 <br/>
 
 <div align="center">
