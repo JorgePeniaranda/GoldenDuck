@@ -10,6 +10,11 @@
       display: grid;
       gap: 3rem;
       min-width: 21rem;
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
       input:not([type='radio']) {
         width: 100%;
         padding: 0.6rem 1rem;
