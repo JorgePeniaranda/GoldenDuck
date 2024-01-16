@@ -1,10 +1,10 @@
-import ContainerCenteredItemsWithNavbar from '@/components/pages/container-centered-items-with-navbar'
+import ContainerWithNavbar from '@/components/pages/container-with-navbar'
 import Text from '@/components/atoms/text/Text'
 import style from './styles.module.scss'
 
 export default function TermsAndConditions() {
   return (
-    <ContainerCenteredItemsWithNavbar className={style.TermsAndConditions}>
+    <ContainerWithNavbar className={style.TermsAndConditions}>
       <Text tag="h1" size={'2rem'}>
         Términos y Condiciones de{' '}
         <Text tag="span" size={'inherit'} weight="700">
@@ -1835,6 +1835,6 @@ export default function TermsAndConditions() {
           Uso y la versión en idiomas distintos al inglés.
         </Text>
       </article>
-    </ContainerCenteredItemsWithNavbar>
+    </ContainerWithNavbar>
   )
 }
