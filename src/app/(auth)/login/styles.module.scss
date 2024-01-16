@@ -3,7 +3,6 @@
 .LoginSection {
   display: flex;
   flex-wrap: wrap-reverse;
-  padding-inline: $padding-section;
   min-height: calc(100vh - var(--base-nav-height));
   section {
     flex: 3;
@@ -73,6 +72,6 @@
     }
   }
   @media (width > 768px) {
-    padding-inline: var(--base-nav-x-padding);
+    padding-inline: var(--base-nav-x-padding) !important;
   }
 }
