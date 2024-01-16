@@ -31,11 +31,11 @@
       max-height: 30rem;
       position: absolute;
       top: 50%;
-      left: calc(50% + $padding-section);
-      transform: translate(calc(-50% + $padding-section), -50%);
-      @media (width < 768px) {
-        left: 50%;
-        transform: translate(-50%, -50%);
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @media (width > 768px) {
+        left: calc(50% + $padding-section);
+        transform: translate(calc(-50% + $padding-section), -50%);
       }
     }
     &::before {

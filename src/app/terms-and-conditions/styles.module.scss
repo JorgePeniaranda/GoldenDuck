@@ -7,8 +7,11 @@
   }
   article.text {
     margin-top: 1.5rem;
-    text-align: justify;
-    text-wrap: pretty;
-    word-break: break-all;
+    p {
+      text-align: justify;
+      text-wrap: pretty;
+      word-break: break-all;
+      overflow-wrap: break-word;
+    }
   }
 }

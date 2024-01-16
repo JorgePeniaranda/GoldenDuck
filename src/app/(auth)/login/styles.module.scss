@@ -3,7 +3,8 @@
 .LoginSection {
   display: flex;
   flex-wrap: wrap-reverse;
-  padding-inline: var(--base-nav-x-padding);
+  padding-inline: $padding-section;
+  min-height: calc(100vh - var(--base-nav-height));
   section {
     flex: 3;
     padding-bottom: var(--base-nav-height);
@@ -11,21 +12,22 @@
     flex-direction: column;
     &.TextSide {
       display: flex;
-      align-items: flex-start;
+      text-align: center;
+      align-items: center;
       justify-content: center;
       h1 {
         color: var(--primary);
       }
-      @media (width < 768px) {
-        text-align: center;
-        align-items: center;
+      @media (width > 768px) {
+        text-align: start;
+        align-items: flex-start;
       }
     }
     &.FormSide {
       flex: 1;
       min-width: max-content;
       justify-content: center;
-      align-items: flex-end;
+      align-items: center;
       form {
         height: clamp(25rem, 50%, 32rem);
         min-height: 25rem;
@@ -65,12 +67,12 @@
           margin-right: 5rem;
         }
       }
-      @media (width < 768px) {
-        align-items: center;
+      @media (width > 768px) {
+        align-items: flex-end;
       }
     }
   }
-  @media (width < 768px) {
-    padding-inline: $padding-section;
+  @media (width > 768px) {
+    padding-inline: var(--base-nav-x-padding);
   }
 }
