@@ -7,7 +7,9 @@ export default function TermsAndConditions() {
     <ContainerCenteredItemsWithNavbar className={style.TermsAndConditions}>
       <Text tag="h1" size={'2rem'}>
         Términos y Condiciones de{' '}
-        <Text tag='span' size={"inherit"} weight='700'>Golden Duck</Text>
+        <Text tag="span" size={'inherit'} weight="700">
+          Golden Duck
+        </Text>
       </Text>
       <article className={style.text}>
         <Text>
