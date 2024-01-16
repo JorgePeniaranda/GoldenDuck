@@ -4,7 +4,7 @@ import style from './styles.module.scss'
 export default function SedesSection() {
   return (
     <section id="Sedes" className={style.Sedes}>
-      <article>
+      <article className={style.text}>
         <Text tag="h1" size={'1.6rem'} weight="700">
           Nuestras Sedes
         </Text>
@@ -20,7 +20,7 @@ export default function SedesSection() {
           problema.
         </Text>
       </article>
-      <div className="map">
+      <div className={style.map}>
         <iframe
           title="SedeLycoKat"
           src="https://www.google.com/maps/d/u/0/embed?mid=1sni_xoB_1kANcbzPeHafmQjJZilwKFU&ehbc=2E312F"

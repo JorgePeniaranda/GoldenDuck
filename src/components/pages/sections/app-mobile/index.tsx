@@ -5,8 +5,8 @@ import style from './styles.module.scss'
 export default function AppMobileSection() {
   return (
     <article id="AppMobile" className={style.AppMobile}>
-      <figure>
-        <div className="phone">
+      <figure className={style.phoneContainer}>
+        <div className={style.phone}>
           <Image
             src="/assets/img/mockups/phone.webp"
             width={472}
@@ -22,13 +22,13 @@ export default function AppMobileSection() {
         </div>
         <Image
           src="/assets/img/patterns/blob-phone-wavesection.webp"
-          className="blob"
+          className={style.blob}
           width={500}
           height={900}
           alt="blob"
         />
       </figure>
-      <article>
+      <article className={style.text}>
         <Text tag="h1" size={'2.3rem'} weight="700">
           ¡Tenemos una app para Móvil!
         </Text>
