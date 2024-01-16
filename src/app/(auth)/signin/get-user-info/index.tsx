@@ -126,7 +126,7 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
       </section>
       <Text>
         Al continuar y enviar este formulario aceptá los{' '}
-        <InternalLinkText href="/TermsAndConditions">
+        <InternalLinkText href="/terms-and-conditions">
           Terminos y Condiciones
         </InternalLinkText>{' '}
         de Golden Duck
