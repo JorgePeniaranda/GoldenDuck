@@ -5,14 +5,14 @@ import { z } from 'zod'
 
 export const EmailSchema = z.object({
   email: z
-    .string()
+    .string({ required_error: 'El email es requerido' })
     .email({ message: 'El email debe ser valido' })
     .min(1, { message: 'El email es requerido' }),
 })
 
 export const PasswordSchema = z.object({
   password: z
-    .string()
+    .string({ required_error: 'La contraseña es requerida'})
     .min(8, { message: 'La contraseña debe tener al menos 8 caracteres' })
     .min(1, { message: 'La contraseña es requerida' }),
 })
