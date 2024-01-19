@@ -1,11 +1,11 @@
-import { CheckToken } from '@/utils/api-utils'
+import { CheckAuthorizedToken } from '@/utils/api-utils'
 import { PrismaClient } from '@prisma/client'
 import { NextResponse } from 'next/server'
 
 const prisma = new PrismaClient()
 
 export async function GET(req: Request) {
-  const checkedToken = await CheckToken(req)
+  const checkedToken = await CheckAuthorizedToken(req)
 
   if (checkedToken.error) {
     return NextResponse.json(
