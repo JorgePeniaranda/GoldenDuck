@@ -3,12 +3,11 @@ import { randomAlphanumeric } from '@/utils'
 export default class ConfirmationCode {
   private code: string = randomAlphanumeric(6)
 
-  private regenerateCode() {
-    this.code = randomAlphanumeric(6)
+  getCode() {
+    return this.code
   }
 
-  sendCode() {
-    this.regenerateCode()
+  sendCode(email: string) {
     return console.log('Código enviado: ' + this.code)
   }
 
