@@ -1,5 +1,5 @@
 import JWT from '@/services/jwtService'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { SignupForm } from '@/types'
 import { SignUpSchema } from '@/useCases/signupUseCase'
 import { PrismaClient } from '@prisma/client'
@@ -7,12 +7,13 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   // get token and form data
   const data = await req.json()
+  const token = req.cookies.get('token')?.value
 
   // check if token and email are sent
-  if (!data.token) {
+  if (!token) {
     return NextResponse.json(
       { error: 'No se ha enviado el token.' },
       { status: 400 },
@@ -27,14 +28,18 @@ export async function POST(req: Request) {
   }
 
   // verify token and get values
-  const jwtToken = await jwt.verifyToken(data.token)
+  const jwtToken = await jwt.verifyToken(token)
 
   // check if token is valid
   if (typeof jwtToken === 'string') {
     return NextResponse.json({ error: jwtToken }, { status: 401 })
   }
 
-  if (jwtToken.email !== data.email || jwtToken.type !== 'register') {
+  if (
+    jwtToken.email !== data.email ||
+    jwtToken.type !== 'register' ||
+    jwtToken.authorized == false
+  ) {
     return NextResponse.json({ error: 'El token es invalido' }, { status: 401 })
   }
 
@@ -73,8 +78,23 @@ export async function POST(req: Request) {
   const newUser = await prisma.users.create({
     data: checkUserData.data,
   })
-  return NextResponse.json(
-    { token: jwt.generateAuthorizedToken(newUser.id) },
+
+  // generate autorized token with id
+  const AuthoridedToken = jwt.generateAuthorizedToken(newUser.id)
+
+  // generate and send response
+  const response = NextResponse.json(
+    { message: 'Se ha creado el usuario' },
     { status: 201 },
   )
+
+  response.cookies.set('token', AuthoridedToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge: 1000 * 60 * 30,
+    path: '/',
+  })
+
+  return response
 }

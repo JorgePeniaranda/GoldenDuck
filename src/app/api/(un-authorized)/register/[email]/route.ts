@@ -1,13 +1,13 @@
 import ConfirmationCode from '@/services/confirmationCodeService'
 import JWT from '@/services/jwtService'
 import { EmailSchema } from '@/useCases/forgotUseCase'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 const code = new ConfirmationCode()
 const jwt = new JWT()
 
 export async function GET(
-  req: Request,
+  req: NextRequest,
   { params: { email } }: { params: { email: string } },
 ) {
   // validate email
@@ -28,12 +28,27 @@ export async function GET(
   // generate unAuthorized token with email and code and type register
   const token = jwt.generateUnAuthorizedToken('register', email, code.getCode())
 
-  return NextResponse.json({ token }, { status: 200 })
+  // generate and send response
+  const response = NextResponse.json(
+    { message: 'Se ha enviado el código de verificación' },
+    { status: 200 },
+  )
+
+  response.cookies.set('token', token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge: 1000 * 60 * 5,
+    path: '/',
+  })
+
+  return response
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   // get code and token
-  const { code, token } = await req.json()
+  const { code } = await req.json()
+  const token = req.cookies.get('token')?.value
 
   // verify token and code
   if (!code) {
@@ -74,5 +89,19 @@ export async function POST(req: Request) {
     decodeJWT.email,
   )
 
-  return NextResponse.json({ token: tokenVerified }, { status: 200 })
+  // generate and send response
+  const response = NextResponse.json(
+    { message: 'Validación de coreo exitosa' },
+    { status: 200 },
+  )
+
+  response.cookies.set('token', tokenVerified, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge: 1000 * 60 * 15,
+    path: '/',
+  })
+
+  return response
 }
