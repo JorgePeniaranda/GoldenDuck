@@ -52,7 +52,7 @@ export default function Signin() {
     case 1:
       return (
         <>
-          <ConfirmUserInfo FormActions={FormActions} />
+          <ConfirmUserInfo FormActions={FormActions} form={form} />
           <p onClick={FormActions.back} className={style.LinkStyle}>
             Volver
           </p>

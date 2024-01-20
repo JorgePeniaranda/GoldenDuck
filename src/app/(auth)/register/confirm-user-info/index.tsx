@@ -4,31 +4,30 @@ import Text from '@/components/atoms/text/Text'
 import style from './styles.module.scss'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
-import { formActions } from '@/types'
+import { SignupForm, formActions } from '@/types'
 import ReactCodeInput from 'react-code-input'
-import { FormEvent, useMemo, useState } from 'react'
-import { generateConfirmationCode } from '@/useCases/signupUseCase'
+import { FormEvent, useState } from 'react'
+import { checkConfirmationCode } from '@/useCases/signupUseCase'
 
 interface Props {
   FormActions: formActions
+  form: SignupForm
 }
 
-export default function ConfirmUserInfo({ FormActions }: Props) {
+export default function ConfirmUserInfo({ FormActions, form }: Props) {
   const [EmailCode, setEmailCode] = useState<string>('')
-
-  const code = useMemo(() => generateConfirmationCode(), [])
 
   const handleChange = (value: string) => {
     setEmailCode(value)
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (code.checkCode(EmailCode)) {
+    const response = await checkConfirmationCode(form.email, EmailCode)
+
+    if (response) {
       FormActions.submit()
-    } else {
-      code.sendCode()
     }
   }
 
@@ -38,7 +37,7 @@ export default function ConfirmUserInfo({ FormActions }: Props) {
         <Text size={'1.1rem'}>
           Revisa tu mail{' '}
           <Text tag="span" weight="700">
-            testmail@test.com
+            {form.email}
           </Text>{' '}
           e ingresa el código recibido, Si no lo encuentras prueba buscarlo en
           la categoria {'"Spam"'}

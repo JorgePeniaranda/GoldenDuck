@@ -4,7 +4,7 @@ import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import { SignupForm, formActions } from '@/types'
-import { CheckForm } from '@/useCases/signupUseCase'
+import { CheckForm, generateConfirmationCode } from '@/useCases/signupUseCase'
 import BaseInput from '@/components/molecules/inputs/base-input'
 
 interface Props {
@@ -19,11 +19,15 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
     setForm({ ...form, [name]: value })
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (CheckForm(form)) {
-      FormActions.next()
+      const response = await generateConfirmationCode(form.email)
+
+      if (response) {
+        FormActions.next()
+      }
     }
   }
 
