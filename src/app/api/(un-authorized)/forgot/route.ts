@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // Create new user
+  // update password
   const newUser = await prisma.users.update({
     where: { id: user.id },
     data: { password: checkPassword.data.password },
