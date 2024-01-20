@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
 
   // generate and send response
   const response = NextResponse.json(
-    { message: 'Se ha cambiado la contraseña' },
+    { message: 'Se ha actualizado la contraseña exitosamente' },
     { status: 201 },
   )
 

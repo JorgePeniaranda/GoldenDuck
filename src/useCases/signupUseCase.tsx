@@ -66,8 +66,8 @@ export const checkConfirmationCode = async (email: string, code: string) => {
 export const CreateUser = async (SignupForm: SignupForm) => {
   return await axios
     .post(`/api/register`, SignupForm)
-    .then(() => {
-      Alerts.success('Cuenta creada', () =>
+    .then((res) => {
+      Alerts.success(res.data.message, () =>
         window.location.replace('/dashboard'),
       )
     })

@@ -62,8 +62,8 @@ export const checkConfirmationCode = async (email: string, code: string) => {
 export const UpdatePassword = async (ForgotForm: ForgotForm) => {
   return await axios
     .post(`/api/forgot`, ForgotForm)
-    .then(() => {
-      Alerts.success('Contraseña actualizada', () =>
+    .then((res) => {
+      Alerts.success(res.data.message, () =>
         window.location.replace('/dashboard'),
       )
     })

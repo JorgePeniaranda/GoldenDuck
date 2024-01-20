@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
 
   // generate and send response
   const response = NextResponse.json(
-    { message: 'Se ha creado el usuario' },
+    { message: 'Se ha registrado exitosamente' },
     { status: 201 },
   )
 
