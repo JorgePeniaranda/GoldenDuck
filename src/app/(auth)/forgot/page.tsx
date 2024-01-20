@@ -47,7 +47,7 @@ export default function Forgot() {
     case 1:
       return (
         <>
-          <ConfirmUserMail FormActions={formActions} />
+          <ConfirmUserMail FormActions={formActions} form={form} />
           <p onClick={formActions.back} className={style.LinkStyle}>
             Volver
           </p>

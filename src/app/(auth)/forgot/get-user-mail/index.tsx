@@ -2,7 +2,7 @@ import BaseButton from '@/components/molecules/buttons/base-button'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import InputWithIcon from '@/components/molecules/inputs/input-with-icon'
 import { ForgotForm, formActions } from '@/types'
-import { CheckEmail } from '@/useCases/forgotUseCase'
+import { CheckEmail, generateConfirmationCode } from '@/useCases/forgotUseCase'
 import React from 'react'
 
 const EmailIcon = (
@@ -31,11 +31,15 @@ export default function GetUserMail({ FormActions, form, setForm }: Props) {
     setForm({ ...form, [name]: value })
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (CheckEmail(form.email)) {
-      FormActions.next()
+      const response = await generateConfirmationCode(form.email)
+
+      if (response) {
+        FormActions.next()
+      }
     }
   }
 

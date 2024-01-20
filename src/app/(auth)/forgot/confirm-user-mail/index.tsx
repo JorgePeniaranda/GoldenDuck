@@ -2,31 +2,30 @@ import style from './styles.module.scss'
 import Text from '@/components/atoms/text/Text'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
-import { formActions } from '@/types'
-import { generateConfirmationCode } from '@/useCases/forgotUseCase'
-import { FormEvent, useMemo, useState } from 'react'
+import { ForgotForm, formActions } from '@/types'
+import { checkConfirmationCode } from '@/useCases/forgotUseCase'
+import { FormEvent, useState } from 'react'
 import ReactCodeInput from 'react-code-input'
 
 interface Props {
   FormActions: formActions
+  form: ForgotForm
 }
 
-export default function ConfirmUserMail({ FormActions }: Props) {
+export default function ConfirmUserMail({ FormActions, form }: Props) {
   const [EmailCode, setEmailCode] = useState<string>('')
-
-  const code = useMemo(() => generateConfirmationCode(), [])
 
   const handleChange = (value: string) => {
     setEmailCode(value)
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (code.checkCode(EmailCode)) {
+    const response = await checkConfirmationCode(form.email, EmailCode)
+
+    if (response) {
       FormActions.next()
-    } else {
-      code.sendCode()
     }
   }
 
@@ -36,8 +35,8 @@ export default function ConfirmUserMail({ FormActions }: Props) {
       className={style.ConfirmUserEmail}
     >
       <Text>
-        Compruebe el correo <span>testCorreo@test.com</span> para encontrar el
-        codigo de verificación, recuerda que puede encontrarse en {'"spam"'}
+        Compruebe el correo <span>{form.email}</span> para encontrar el codigo
+        de verificación, recuerda que puede encontrarse en {'"spam"'}
       </Text>
       <ReactCodeInput
         type="text"
