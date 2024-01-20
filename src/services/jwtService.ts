@@ -36,7 +36,7 @@ export default class JWT {
     email: string,
   ): string => {
     const token = jwt.sign({ type, authorized: true, email }, this.secretKey, {
-      expiresIn: '15sm',
+      expiresIn: '15m',
     })
 
     return token
