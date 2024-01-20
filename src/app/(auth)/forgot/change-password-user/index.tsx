@@ -56,7 +56,6 @@ export default function ChangePasswordUser({
           icon={PasswordIcon}
         />
       </label>
-
       <label>
         Confirme su nueva contraseña:
         <InputWithIcon

@@ -1,18 +1,18 @@
 import Alerts from '@/services/alertService'
-import ConfirmationCode from '@/services/confirmationCodeService'
 import { ForgotForm } from '@/types'
+import axios from 'axios'
 import { z } from 'zod'
 
 export const EmailSchema = z.object({
   email: z
-    .string()
+    .string({ required_error: 'El email es requerido' })
     .email({ message: 'El email debe ser valido' })
     .min(1, { message: 'El email es requerido' }),
 })
 
 export const PasswordSchema = z.object({
   password: z
-    .string()
+    .string({ required_error: 'La contraseña es requerida' })
     .min(8, { message: 'La contraseña debe tener al menos 8 caracteres' })
     .min(1, { message: 'La contraseña es requerida' }),
 })
@@ -47,12 +47,27 @@ export const CheckPasswords = (
   return true
 }
 
-export const generateConfirmationCode = () => {
-  return new ConfirmationCode()
+export const generateConfirmationCode = async (email: string) => {
+  return await axios.get(`/api/forgot/${email}`).catch((err) => {
+    Alerts.error(err.response.data.error)
+  })
 }
 
-export const UpdatePassword = (ForgotForm: ForgotForm) => {
-  return Alerts.success('Contraseña actualizada con éxito', () =>
-    window.location.replace('/'),
-  )
+export const checkConfirmationCode = async (email: string, code: string) => {
+  return await axios.post(`/api/forgot/${email}`, { code }).catch((err) => {
+    Alerts.error(err.response.data.error)
+  })
+}
+
+export const UpdatePassword = async (ForgotForm: ForgotForm) => {
+  return await axios
+    .post(`/api/forgot`, ForgotForm)
+    .then(() => {
+      Alerts.success('Contraseña actualizada', () =>
+        window.location.replace('/dashboard'),
+      )
+    })
+    .catch((err) => {
+      Alerts.error(err.response.data.error)
+    })
 }
