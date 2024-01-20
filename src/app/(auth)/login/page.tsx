@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import style from './styles.module.scss'
 import Text from '@/components/atoms/text/Text'
@@ -22,7 +22,6 @@ export default function Login() {
     setForm({ ...form, [name]: value })
   }
 
-  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 

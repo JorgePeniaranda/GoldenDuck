@@ -56,9 +56,11 @@ export const generateConfirmationCode = async (email: string) => {
 }
 
 export const checkConfirmationCode = async (email: string, code: string) => {
-  return await axios.post(`/api/register/${email}`, {email, code}).catch((err) => {
-    Alerts.error(err.response.data.error)
-  })
+  return await axios
+    .post(`/api/register/${email}`, { email, code })
+    .catch((err) => {
+      Alerts.error(err.response.data.error)
+    })
 }
 
 export const CreateUser = async (SignupForm: SignupForm) => {
