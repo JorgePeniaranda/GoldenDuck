@@ -50,6 +50,11 @@ export type formActions = {
   submit: (event?: any) => void
 }
 
+export type LoginForm = {
+  email: string
+  password: string
+}
+
 export type SignupForm = {
   name: string
   lastName: string

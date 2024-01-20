@@ -1,4 +1,3 @@
-import Navbar from '@/components/organisms/navbar/base'
 import style from './styles.module.scss'
 import Text from '@/components/atoms/text/Text'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
