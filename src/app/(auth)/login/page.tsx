@@ -20,7 +20,7 @@ export default function Login() {
         </article>
         <BaseButton
           type="InternalLinkText"
-          href="/signin"
+          href="/register"
           className="mt-40"
           xPadding="1rem"
           yPadding=".8rem"
