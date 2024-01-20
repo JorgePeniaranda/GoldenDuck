@@ -1,6 +1,7 @@
 import Alerts from '@/services/alertService'
 import ConfirmationCode from '@/services/confirmationCodeService'
 import { SignupForm } from '@/types'
+import axios from 'axios'
 import { z } from 'zod'
 
 export const SignUpSchema = z.object({
@@ -48,12 +49,27 @@ export const CheckForm = (SignupForm: SignupForm): boolean => {
   return true
 }
 
-export const generateConfirmationCode = () => {
-  return new ConfirmationCode()
+export const generateConfirmationCode = async (email: string) => {
+  return await axios.get(`/api/register/${email}`).catch((err) => {
+    Alerts.error(err.response.data.error)
+  })
 }
 
-export const CreateUser = (SignupForm: SignupForm) => {
-  return Alerts.success('Usuario creado con éxito', () =>
-    window.location.replace('/'),
-  )
+export const checkConfirmationCode = async (email: string, code: string) => {
+  return await axios.post(`/api/register/${email}`, {email, code}).catch((err) => {
+    Alerts.error(err.response.data.error)
+  })
+}
+
+export const CreateUser = async (SignupForm: SignupForm) => {
+  return await axios
+    .post(`/api/register`, SignupForm)
+    .then(() => {
+      Alerts.success('Cuenta creada', () =>
+        window.location.replace('/dashboard'),
+      )
+    })
+    .catch((err) => {
+      Alerts.error(err.response.data.error)
+    })
 }
