@@ -7,9 +7,11 @@ export const SignUpSchema = z.object({
   name: z
     .string({ required_error: 'El nombre es requerido' })
     .min(1, { message: 'El nombre es requerido' }),
-  lastName: z.string({
-    required_error: 'El apellido es requerido',
-  }).min(1, { message: 'El apellido es requerido' }),
+  lastName: z
+    .string({
+      required_error: 'El apellido es requerido',
+    })
+    .min(1, { message: 'El apellido es requerido' }),
   dni: z.coerce
     .number({ required_error: 'El dni es requerido' })
     .min(1, { message: 'El dni es requerido' })
