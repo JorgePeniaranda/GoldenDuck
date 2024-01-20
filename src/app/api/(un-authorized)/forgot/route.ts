@@ -1,17 +1,18 @@
 import JWT from '@/services/jwtService'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import { EmailSchema, PasswordSchema } from '@/useCases/forgotUseCase'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   // get token and form data
   const data = await req.json()
+  const token = req.cookies.get('token')?.value
 
   // check if token, email and password are sent
-  if (!data.token) {
+  if (!token) {
     return NextResponse.json(
       { error: 'No se ha enviado el token.' },
       { status: 400 },
@@ -33,14 +34,18 @@ export async function POST(req: Request) {
   }
 
   // verify token and get values
-  const jwtToken = await jwt.verifyToken(data.token)
+  const jwtToken = await jwt.verifyToken(token)
 
   // check if token is valid
   if (typeof jwtToken === 'string') {
     return NextResponse.json({ error: jwtToken }, { status: 401 })
   }
 
-  if (jwtToken.email !== data.email || jwtToken.type !== 'forgot') {
+  if (
+    jwtToken.email !== data.email ||
+    jwtToken.type !== 'forgot' ||
+    jwtToken.authorized == false
+  ) {
     return NextResponse.json({ error: 'El token es invalido' }, { status: 401 })
   }
 
@@ -84,5 +89,23 @@ export async function POST(req: Request) {
     where: { id: user.id },
     data: { password: checkPassword.data.password },
   })
-  return NextResponse.json({ token: newUser }, { status: 201 })
+
+  // generate autorized token with id
+  const AuthoridedToken = jwt.generateAuthorizedToken(newUser.id)
+
+  // generate and send response
+  const response = NextResponse.json(
+    { message: 'Se ha cambiado la contraseña' },
+    { status: 201 },
+  )
+
+  response.cookies.set('token', AuthoridedToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge: 1000 * 60 * 5,
+    path: '/',
+  })
+
+  return response
 }
