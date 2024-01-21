@@ -16,17 +16,10 @@ export const metadata: Metadata = {
     url: 'https://lycokat.netlify.app/',
   },
   category: 'Virtual Wallet',
-  colorScheme: 'light dark',
   creator: 'Lycokat',
   generator: 'Next.js',
   manifest: '/manifest.json',
   publisher: 'Vercel',
-  robots: { index: true, follow: true },
-  themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#1f1f1f' },
-    { media: '(prefers-color-scheme: light)', color: '#f9f7f7' },
-  ],
-  viewport: { width: 'device-width', initialScale: 1 },
 }
 
 export default function RootLayout({
