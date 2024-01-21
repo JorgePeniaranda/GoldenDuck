@@ -2,6 +2,7 @@ import JWT from '@/services/jwtService'
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import { EmailSchema, PasswordSchema } from '@/useCases/forgotUseCase'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()
@@ -87,7 +88,7 @@ export async function POST(req: NextRequest) {
   // update password
   const newUser = await prisma.users.update({
     where: { id: user.id },
-    data: { password: checkPassword.data.password },
+    data: { password: bcrypt.hashSync(checkPassword.data.password) },
   })
 
   // generate autorized token with id

@@ -1,6 +1,7 @@
 import JWT from '@/services/jwtService'
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()
@@ -36,7 +37,7 @@ export async function POST(req: NextRequest) {
   }
 
   // check password
-  if (user.password !== data.password) {
+  if (!bcrypt.compareSync(data.password, user.password)) {
     return NextResponse.json(
       { error: 'La contraseña es incorrecta' },
       { status: 401 },
