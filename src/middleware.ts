@@ -8,8 +8,6 @@ const UnAuthorizedURLs = ['/login', '/register', '/forgot']
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get('token')
 
-  console.log(request.nextUrl.pathname)
-
   if (UnAuthorizedURLs.includes(request.nextUrl.pathname)) {
     if (token) {
       try {
