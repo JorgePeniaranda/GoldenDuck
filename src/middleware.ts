@@ -8,20 +8,18 @@ const UnAuthorizedURLs = ['/login', '/register', '/forgot']
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get('token')
 
-  if (UnAuthorizedURLs.includes(request.nextUrl.pathname)) {
-    if (token) {
-      try {
-        const { payload } = await jwtVerify(
-          token.value,
-          new TextEncoder().encode(process.env.JWT_SECRET),
-        )
+  if (UnAuthorizedURLs.includes(request.nextUrl.pathname) && token) {
+    try {
+      const { payload } = await jwtVerify(
+        token.value,
+        new TextEncoder().encode(process.env.JWT_SECRET),
+      )
 
-        if (payload.authorized) {
-          return NextResponse.redirect(new URL('/dashboard', request.nextUrl))
-        }
-      } catch (error) {
-        console.log(error)
+      if (payload.authorized) {
+        return NextResponse.redirect(new URL('/dashboard', request.nextUrl))
       }
+    } catch (error) {
+      console.log(error)
     }
   } else if (AuthorizedURLs.includes(request.nextUrl.pathname)) {
     if (token) {
