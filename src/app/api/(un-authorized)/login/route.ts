@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
   if (!data.password) {
     return NextResponse.json(
-      { error: 'No se ha enviado la nueva contraseña.' },
+      { error: 'No se ha enviado la contraseña.' },
       { status: 400 },
     )
   }

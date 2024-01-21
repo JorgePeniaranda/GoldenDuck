@@ -14,7 +14,11 @@ export const CheckAuthorizedToken = async (req: Request) => {
 
   const decodedToken = jwt.verifyToken(token)
 
-  if (!decodedToken || typeof decodedToken === 'string') {
+  if (
+    !decodedToken ||
+    typeof decodedToken === 'string' ||
+    decodedToken.authorized === false
+  ) {
     return {
       error: 'El token no es valido o ha expirado',
       status: 401,
