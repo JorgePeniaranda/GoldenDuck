@@ -23,7 +23,7 @@ $backgroundContainer-color: oklch(59.49% 0.173 272.59);
     background-color: var(--white);
     box-shadow: 0px 0px 15px -3px oklch(0% 0 0 / 10%);
     z-index: 10;
-    figure {
+    > figure {
       width: 100%;
       display: flex;
       justify-content: center;
@@ -37,16 +37,6 @@ $backgroundContainer-color: oklch(59.49% 0.173 272.59);
       display: grid;
       padding-top: 1rem;
       gap: 1rem;
-      details {
-        display: grid;
-        summary {
-          cursor: pointer;
-          padding: 0.75rem 0.5rem;
-        }
-        > * {
-          padding: 0.65rem 0.5rem;
-        }
-      }
     }
   }
   .DashboardAside {
