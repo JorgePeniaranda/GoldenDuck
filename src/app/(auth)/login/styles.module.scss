@@ -3,7 +3,7 @@
 .LoginSection {
   display: flex;
   flex-wrap: wrap-reverse;
-  min-height: calc(100vh - var(--base-nav-height));
+  min-height: calc(100dvh - var(--base-nav-height));
   section {
     flex: 3;
     padding-bottom: var(--base-nav-height);

@@ -3,7 +3,7 @@
 .Container {
   padding-top: 3rem;
   padding-inline: $padding-section;
-  min-height: calc(100vh - var(--base-nav-height));
+  min-height: calc(100dvh - var(--base-nav-height));
 }
 
 .CenterItems {
