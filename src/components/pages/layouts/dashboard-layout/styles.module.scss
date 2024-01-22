@@ -64,10 +64,45 @@ $backgroundContainer-color: oklch(59.49% 0.173 272.59);
       gap: 1rem;
       .MessagesButtonContainer {
         .MessagesButton {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.5rem 1rem;
+          gap: 0.5rem;
+          figure {
+            display: grid;
+            place-items: center;
+            width: 3rem;
+            height: 3rem;
+          }
+          article {
+            p {
+              width: 20ch;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+          > span {
+            color: oklch(60% 0 0);
+          }
         }
       }
       .NotificationsButtonContainer {
         .NotificationsButton {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.5rem 1rem;
+          p {
+            width: 20ch;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          span {
+            color: oklch(60% 0 0);
+          }
         }
       }
       .ProfileButtonContainer {

@@ -73,10 +73,40 @@ export default function DashboardLayout({ children }: Props) {
                 />
               </figure>
               <article>
-                <Text tag="span">Omar</Text>
-                <Text>Lorem ipsum dolor sit amet.</Text>
+                <Text tag="span" size=".8rem" weight='700'>Omar</Text>
+                <Text size=".8rem">Lorem ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.</Text>
               </article>
-              <Text tag="span">12:32</Text>
+              <Text tag="span" size=".8rem">12:32</Text>
+            </CardLinkPopover>
+            <CardLinkPopover href="/" className={style.MessagesButton}>
+              <figure>
+                <Image
+                  src="/assets/img/misc/default-pfp.webp"
+                  width={32}
+                  height={32}
+                  alt="Profile Picture"
+                />
+              </figure>
+              <article>
+                <Text tag="span" size=".8rem" weight='700'>Omar</Text>
+                <Text size=".8rem">Lorem ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.</Text>
+              </article>
+              <Text tag="span" size=".8rem">12:32</Text>
+            </CardLinkPopover>
+            <CardLinkPopover href="/" className={style.MessagesButton}>
+              <figure>
+                <Image
+                  src="/assets/img/misc/default-pfp.webp"
+                  width={32}
+                  height={32}
+                  alt="Profile Picture"
+                />
+              </figure>
+              <article>
+                <Text tag="span" size=".8rem" weight='700'>Omar</Text>
+                <Text size=".8rem">Lorem ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.</Text>
+              </article>
+              <Text tag="span" size=".8rem">12:32</Text>
             </CardLinkPopover>
           </ButtonWithPopover>
           <ButtonWithPopover
@@ -86,8 +116,16 @@ export default function DashboardLayout({ children }: Props) {
             emptyText="No hay notificaciones"
           >
             <CardLinkPopover href="/" className={style.NotificationsButton}>
-              <Text>Coso</Text>
-              <Text tag="span">12:32</Text>
+              <Text>CosoCosoCosoCosoCosoCosoCoso</Text>
+              <Text tag="span" size=".8rem">12:32</Text>
+            </CardLinkPopover>
+            <CardLinkPopover href="/" className={style.NotificationsButton}>
+              <Text>CosoCosoCosoCosoCosoCosoCoso</Text>
+              <Text tag="span" size=".8rem">12:32</Text>
+            </CardLinkPopover>
+            <CardLinkPopover href="/" className={style.NotificationsButton}>
+              <Text>CosoCosoCosoCosoCosoCosoCoso</Text>
+              <Text tag="span" size=".8rem">12:32</Text>
             </CardLinkPopover>
           </ButtonWithPopover>
           <ButtonWithPopover
