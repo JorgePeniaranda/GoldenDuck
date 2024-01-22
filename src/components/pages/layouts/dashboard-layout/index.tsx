@@ -29,9 +29,21 @@ export default function DashboardLayout({ children }: Props) {
         </figure>
         <hr />
         <div className={style.NavContainer}>
-          <NavDisclosure links={NavLinks.panel} category='Panel de control' icon={NavIcons.panel}/>
-          <NavDisclosure links={NavLinks.services} category='Servicios' icon={NavIcons.services}/>
-          <NavDisclosure links={NavLinks.support} category='Soporte' icon={NavIcons.support}/>
+          <NavDisclosure
+            links={NavLinks.panel}
+            category="Panel de control"
+            icon={NavIcons.panel}
+          />
+          <NavDisclosure
+            links={NavLinks.services}
+            category="Servicios"
+            icon={NavIcons.services}
+          />
+          <NavDisclosure
+            links={NavLinks.support}
+            category="Soporte"
+            icon={NavIcons.support}
+          />
         </div>
       </nav>
       <aside className={style.DashboardAside}>
@@ -42,7 +54,10 @@ export default function DashboardLayout({ children }: Props) {
           </Text>
         </article>
         <div className={style.ButtonsAside}>
-          <ButtonWithPopover PopoverIcon={AsideIcons.messages} arialLabel="Mensajes">
+          <ButtonWithPopover
+            PopoverIcon={AsideIcons.messages}
+            arialLabel="Mensajes"
+          >
             <h1>Mensajes</h1>
           </ButtonWithPopover>
           <ButtonWithPopover
