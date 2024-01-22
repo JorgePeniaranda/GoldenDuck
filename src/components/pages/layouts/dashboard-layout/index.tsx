@@ -12,7 +12,7 @@ interface Props {
   children: React.ReactNode
 }
 
-export default function DashboardContainer({ children }: Props) {
+export default function DashboardLayout({ children }: Props) {
   return (
     <main className={style.Dashboard}>
       <nav className={style.DashboardNav}>
