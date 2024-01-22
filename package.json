@@ -12,6 +12,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
     "@prisma/client": "5.8.0",
     "axios": "^1.6.5",
     "bcryptjs": "^2.4.3",

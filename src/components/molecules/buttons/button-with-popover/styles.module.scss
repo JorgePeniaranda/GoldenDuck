@@ -1,0 +1,21 @@
+.Popover {
+  position: relative;
+  .PopoverButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .PopoverPanel {
+    min-width: 15rem;
+    min-height: 16rem;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    position: absolute;
+    right: 0;
+    z-index: 20;
+    margin-top: 0.4rem;
+    color: var(--black);
+    background-color: var(--white);
+    box-shadow: 0px 10px 50px -23px rgba(0, 0, 0, 0.1);
+  }
+}

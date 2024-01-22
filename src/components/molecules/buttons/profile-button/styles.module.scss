@@ -1,0 +1,10 @@
+.Profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  img {
+    border-radius: 50%;
+    background-color: var(--white);
+  }
+}
