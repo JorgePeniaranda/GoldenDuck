@@ -1,6 +1,6 @@
 import style from './styles.module.scss'
 import Text from '@/components/atoms/text/Text'
-import Breadcrumb from '@/components/atoms/text/Breadcrumb'
+import Breadcrumb from '@/components/molecules/breadcrumb'
 import Image from 'next/image'
 import React from 'react'
 import ButtonWithPopover from '@/components/molecules/buttons/button-with-popover'
