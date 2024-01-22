@@ -66,7 +66,7 @@ export default function ChangePasswordUser({
           icon={PasswordIcon}
         />
       </label>
-      <BaseButton fontSize="1.2rem" fontColor="#fff">
+      <BaseButton fontSize="1.2rem" fontColor="var(--white)">
         Siguiente
       </BaseButton>
     </FormWithValidation>

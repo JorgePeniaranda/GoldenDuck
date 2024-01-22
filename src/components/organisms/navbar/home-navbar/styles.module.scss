@@ -15,7 +15,7 @@
       transition: all 0.3s ease;
       a {
         font-size: 1.2rem;
-        color: white;
+        color: var(--white);
       }
       &:hover {
         transform: translateY(-0.3rem);

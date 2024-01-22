@@ -49,7 +49,7 @@ export default function Login() {
           yPadding=".8rem"
           fontSize="1.1rem"
           fontWeight="500"
-          fontColor="#fff"
+          fontColor="var(--white)"
         >
           Registrarse
         </BaseButton>
@@ -78,7 +78,7 @@ export default function Login() {
           <InternalLinkText href="/forgot">
             Olvide mi contraseña
           </InternalLinkText>
-          <BaseButton yPadding="0.7rem" xPadding="1.6rem" fontColor="#fff">
+          <BaseButton yPadding="0.7rem" xPadding="1.6rem" fontColor="var(--white)">
             Ingresar
           </BaseButton>
         </FormWithValidation>

@@ -46,7 +46,7 @@ export default function ConfirmUserMail({ FormActions, form }: Props) {
         value={EmailCode}
         onChange={handleChange}
       />
-      <BaseButton fontSize="1.2rem" fontColor="#fff">
+      <BaseButton fontSize="1.2rem" fontColor="var(--white)">
         Siguiente
       </BaseButton>
     </FormWithValidation>

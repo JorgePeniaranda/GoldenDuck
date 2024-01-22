@@ -4,9 +4,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  color: var(--white);
   p {
-    color: #d0d3d4;
+    color: oklch(86.48% 0.004 219.54);
     text-align: center;
     letter-spacing: 0.15em;
   }
@@ -30,7 +30,7 @@
     width: 100%;
     text-align: center;
     letter-spacing: 0.15em;
-    color: #d0d3d4;
-    background-color: rgba(0, 0, 0, 0.3);
+    color: oklch(86.48% 0.004 219.54);
+    background-color: oklch(0% 0 0 / 30%);
   }
 }

@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --dominant: #f9f7f7;
-  --primary: #4f46e5;
-  --details: #ffc04f;
-  --LinkColor: #0d6efd;
+  --dominant: oklch(97.77% 0.002 17.2);
+  --primary: oklch(51.06% 0.23 276.97);
+  --details: oklch(84.56% 0.145 78.89);
+  --LinkColor: oklch(57.82% 0.228 260.03);
+
+  --white: oklch(100% 0 0);
+  --black: oklch(0 0 0);
 
   color-scheme: light;
 
@@ -16,7 +19,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --dominant: #1f1f1f;
+    --dominant: oklch(23.93% 0 0);
 
     color-scheme: dark;
   }

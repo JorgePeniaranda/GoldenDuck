@@ -42,7 +42,7 @@ export default function HomeNavbar({ position }: Props) {
         xPadding="1.3rem"
         fontSize="1.2rem"
         fontWeight="800"
-        fontColor="#fff"
+        fontColor="var(--white)"
       >
         Unete
       </BaseButton>

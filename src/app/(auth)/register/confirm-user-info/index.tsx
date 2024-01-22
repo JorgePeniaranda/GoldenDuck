@@ -52,7 +52,7 @@ export default function ConfirmUserInfo({ FormActions, form }: Props) {
           value={EmailCode}
           onChange={handleChange}
         />
-        <BaseButton fontSize="1.1rem" fontColor="#fff">
+        <BaseButton fontSize="1.1rem" fontColor="var(--white)">
           Confirmar
         </BaseButton>
       </FormWithValidation>
