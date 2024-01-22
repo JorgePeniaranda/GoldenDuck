@@ -30,13 +30,30 @@ $backgroundContainer-color: oklch(59.49% 0.173 272.59);
       align-items: center;
       gap: 0.5rem;
       padding-block: 1.5rem 1rem;
+      color: var(--black);
       user-select: none;
     }
     .NavContainer {
+      height: 75%;
       flex: 1;
-      display: grid;
+      display: flex;
+      flex-direction: column;
       padding-top: 1rem;
       gap: 1rem;
+      overflow: auto;
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: var(--white);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: oklch(88.53% 0 0);
+        border-radius: 10px;
+        border: none;
+      }
     }
   }
   .DashboardAside {

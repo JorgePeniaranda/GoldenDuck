@@ -7,6 +7,8 @@ import ButtonWithPopover from '@/components/molecules/buttons/button-with-popove
 import ProfileButton from '@/components/molecules/buttons/profile-button'
 import NavDisclosure from '@/components/molecules/disclosures/nav-disclosure'
 import { AsideIcons, NavIcons, NavLinks } from '@/const/DashboardConst'
+import { headers } from 'next/headers'
+import CurrentLocation from '@/components/atoms/text/CurrentLocation'
 
 interface Props {
   children: React.ReactNode
@@ -50,7 +52,7 @@ export default function DashboardLayout({ children }: Props) {
         <article>
           <Breadcrumb />
           <Text tag="h1" size={'1.2rem'} weight="700">
-            Dashboard
+            <CurrentLocation />
           </Text>
         </article>
         <div className={style.ButtonsAside}>
