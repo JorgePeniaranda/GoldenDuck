@@ -135,7 +135,7 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
         </InternalLinkText>{' '}
         de Golden Duck
       </Text>
-      <BaseButton fontSize="1.1rem" fontColor="#fff">
+      <BaseButton fontSize="1.1rem" fontColor="var(--white)">
         Siguiente
       </BaseButton>
     </FormWithValidation>

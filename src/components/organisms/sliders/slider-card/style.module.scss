@@ -1,7 +1,7 @@
 .sliderContainer {
   width: 100%;
   & [class*='slick-slider'] {
-    color: #797d7f;
+    color: oklch(58.7% 0.006 228.88);
     max-width: 70rem;
     margin: 0 auto;
     [class*='card'] {
@@ -33,17 +33,17 @@
     // lateral button slider
     & [class*='slick-next']:before,
     & [class*='slick-prev']:before {
-      color: black;
+      color: var(--black);
     }
 
     @media (prefers-color-scheme: dark) {
-      color: #d0d3d4;
+      color: oklch(86.48% 0.004 219.54);
       & [class*='slick-dots'] li button:before {
-        color: white;
+        color: var(--white);
       }
       & [class*='slick-next']:before,
       & [class*='slick-prev']:before {
-        color: white;
+        color: var(--white);
       }
     }
   }

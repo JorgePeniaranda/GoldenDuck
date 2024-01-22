@@ -27,8 +27,8 @@ export const CheckForm = (LoginForm: LoginForm): boolean => {
 export const login = async (LoginForm: LoginForm) => {
   return await axios
     .post(`/api/login`, LoginForm)
-    .then(() => {
-      Alerts.success('Ha ingresado exitosamente', () =>
+    .then((res) => {
+      Alerts.success(res.data.message, () =>
         window.location.replace('/dashboard'),
       )
     })

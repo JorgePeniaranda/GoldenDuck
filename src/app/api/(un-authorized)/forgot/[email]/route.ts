@@ -3,6 +3,7 @@ import JWT from '@/services/jwtService'
 import { EmailSchema } from '@/useCases/forgotUseCase'
 import { PrismaClient } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 const code = new ConfirmationCode()
@@ -39,8 +40,11 @@ export async function GET(
   // send code to email
   code.sendCode(checkEmail.data.email)
 
+  // encrypt code
+  const hashedCode = bcrypt.hashSync(code.getCode(), 10)
+
   // generate unAuthorized token with email and code and type forgot
-  const token = jwt.generateUnAuthorizedToken('forgot', email, code.getCode())
+  const token = jwt.generateUnAuthorizedToken('forgot', email, hashedCode)
 
   // generate and send response
   const response = NextResponse.json(
@@ -93,7 +97,7 @@ export async function POST(req: NextRequest) {
   }
 
   // check if token is authorized
-  if (decodeJWT.code !== code) {
+  if (!bcrypt.compareSync(code, decodeJWT.code)) {
     return NextResponse.json({ error: 'Código incorrecto' }, { status: 401 })
   }
 

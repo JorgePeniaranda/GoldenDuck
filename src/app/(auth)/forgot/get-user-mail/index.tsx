@@ -55,7 +55,7 @@ export default function GetUserMail({ FormActions, form, setForm }: Props) {
           icon={EmailIcon}
         />
       </label>
-      <BaseButton fontSize="1.2rem" fontColor="#fff">
+      <BaseButton fontSize="1.2rem" fontColor="var(--white)">
         Siguiente
       </BaseButton>
     </FormWithValidation>

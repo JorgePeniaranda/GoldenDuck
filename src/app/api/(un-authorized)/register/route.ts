@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { SignupForm } from '@/types'
 import { SignUpSchema } from '@/useCases/signupUseCase'
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()
@@ -47,7 +48,7 @@ export async function POST(req: NextRequest) {
   const checkUserData = await SignUpSchema.safeParseAsync(data as SignupForm)
   if (!checkUserData.success) {
     return NextResponse.json(
-      { response: checkUserData.error.errors[0].message },
+      { error: checkUserData.error.errors[0].message },
       {
         status: 400,
       },
@@ -67,16 +68,17 @@ export async function POST(req: NextRequest) {
   })
   if (checkSameUser) {
     return NextResponse.json(
-      { response: 'Ya existe un usuario con esos datos' },
-      {
-        status: 409,
-      },
+      { error: 'Ya existe un usuario con esos datos' },
+      { status: 409 },
     )
   }
 
   // Create new user
   const newUser = await prisma.users.create({
-    data: checkUserData.data,
+    data: {
+      ...checkUserData.data,
+      password: bcrypt.hashSync(checkUserData.data.password, 10),
+    },
   })
 
   // generate autorized token with id
@@ -84,7 +86,7 @@ export async function POST(req: NextRequest) {
 
   // generate and send response
   const response = NextResponse.json(
-    { message: 'Se ha creado el usuario' },
+    { message: 'Se ha registrado exitosamente' },
     { status: 201 },
   )
 

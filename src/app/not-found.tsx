@@ -10,7 +10,7 @@ export default function NotFound() {
       <Navbar />
       <main>
         <section>
-          <article className="w-full h-[calc(100vh-var(--base-nav-height))] grid place-items-center gap-10 select-none">
+          <article className="w-full h-[calc(100dvh-var(--base-nav-height))] grid place-items-center gap-10 select-none">
             <figure className="transition hover:scale-110">
               <InternalLinkText href="/" arialLabel="Go Home">
                 <Image
