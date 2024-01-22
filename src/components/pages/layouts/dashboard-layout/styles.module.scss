@@ -1,3 +1,5 @@
+@import '@/const/Scrollbar.scss';
+
 $spacing: 1rem;
 $backgroundContainer-color: oklch(59.49% 0.173 272.59);
 
@@ -34,26 +36,14 @@ $backgroundContainer-color: oklch(59.49% 0.173 272.59);
       user-select: none;
     }
     .NavContainer {
-      height: 75%;
+      height: 85%;
       flex: 1;
       display: flex;
       flex-direction: column;
       padding-top: 1rem;
       gap: 1rem;
-      overflow: auto;
-      &::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: var(--white);
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: oklch(88.53% 0 0);
-        border-radius: 10px;
-        border: none;
-      }
+      overflow-y: auto;
+      @include SweetScroll(var(--white));
     }
   }
   .DashboardAside {
@@ -72,6 +62,22 @@ $backgroundContainer-color: oklch(59.49% 0.173 272.59);
     .ButtonsAside {
       display: flex;
       gap: 1rem;
+      .MessagesButtonContainer {
+        .MessagesButton {
+        }
+      }
+      .NotificationsButtonContainer {
+        .NotificationsButton {
+        }
+      }
+      .ProfileButtonContainer {
+        min-width: 14rem;
+        .ProfileButton {
+          display: grid;
+          place-items: center;
+          text-align: center;
+        }
+      }
     }
   }
   .Content {

@@ -3,11 +3,12 @@ import Text from '@/components/atoms/text/Text'
 import Breadcrumb from '@/components/molecules/breadcrumb'
 import Image from 'next/image'
 import React from 'react'
-import ButtonWithPopover from '@/components/molecules/buttons/button-with-popover'
+import ButtonWithPopover, {
+  CardLinkPopover,
+} from '@/components/molecules/buttons/button-with-popover'
 import ProfileButton from '@/components/molecules/buttons/profile-button'
 import NavDisclosure from '@/components/molecules/disclosures/nav-disclosure'
 import { AsideIcons, NavIcons, NavLinks } from '@/const/DashboardConst'
-import { headers } from 'next/headers'
 import CurrentLocation from '@/components/atoms/text/CurrentLocation'
 
 interface Props {
@@ -58,21 +59,54 @@ export default function DashboardLayout({ children }: Props) {
         <div className={style.ButtonsAside}>
           <ButtonWithPopover
             PopoverIcon={AsideIcons.messages}
+            className={style.MessagesButtonContainer}
             arialLabel="Mensajes"
+            emptyText="No hay nuevos mensajes"
           >
-            <h1>Mensajes</h1>
+            <CardLinkPopover href="/" className={style.MessagesButton}>
+              <figure>
+                <Image
+                  src="/assets/img/misc/default-pfp.webp"
+                  width={32}
+                  height={32}
+                  alt="Profile Picture"
+                />
+              </figure>
+              <article>
+                <Text tag="span">Omar</Text>
+                <Text>Lorem ipsum dolor sit amet.</Text>
+              </article>
+              <Text tag="span">12:32</Text>
+            </CardLinkPopover>
           </ButtonWithPopover>
           <ButtonWithPopover
             PopoverIcon={AsideIcons.notifications}
+            className={style.NotificationsButtonContainer}
             arialLabel="Notificaciones"
+            emptyText="No hay notificaciones"
           >
-            <h1>Notificaciones</h1>
+            <CardLinkPopover href="/" className={style.NotificationsButton}>
+              <Text>Coso</Text>
+              <Text tag="span">12:32</Text>
+            </CardLinkPopover>
           </ButtonWithPopover>
           <ButtonWithPopover
             PopoverIcon={<ProfileButton name="Omar" />}
+            className={style.ProfileButtonContainer}
             arialLabel="Perfil"
           >
-            <h1>Profile</h1>
+            <CardLinkPopover
+              href="/dashboard/profile"
+              className={style.ProfileButton}
+            >
+              Perfil
+            </CardLinkPopover>
+            <CardLinkPopover href="/dashboard/" className={style.ProfileButton}>
+              Configuración
+            </CardLinkPopover>
+            <CardLinkPopover href="/" className={style.ProfileButton}>
+              Cerrar Sesión
+            </CardLinkPopover>
           </ButtonWithPopover>
         </div>
       </aside>

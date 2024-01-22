@@ -1,3 +1,10 @@
+@import '@/const/Scrollbar.scss';
+
+$min-width: 15rem;
+$min-height: 16rem;
+$max-height: 20rem;
+$border-radius: 1rem;
+
 .Popover {
   position: relative;
   .PopoverButton {
@@ -6,10 +13,12 @@
     align-items: center;
   }
   .PopoverPanel {
-    min-width: 15rem;
-    min-height: 16rem;
-    border-radius: 1rem;
-    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    min-width: $min-width;
+    min-height: max-content;
+    max-height: $max-height;
+    border-radius: $border-radius;
     position: absolute;
     right: 0;
     z-index: 20;
@@ -17,5 +26,33 @@
     color: var(--black);
     background-color: var(--white);
     box-shadow: 0px 10px 50px -23px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    @include SweetScroll(var(--white));
+    &:empty::after {
+      content: attr(aria-placeholder);
+      width: 100%;
+      height: $min-height;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: oklch(60% 0 0);
+      text-align: center;
+    }
+    .CardLinkPopover:first-child {
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
+    .CardLinkPopover:last-child {
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+  }
+}
+
+.CardLinkPopover {
+  width: 100%;
+  min-height: 3rem;
+  &:hover {
+    background-color: oklch(95% 0 0 / 50%);
   }
 }
