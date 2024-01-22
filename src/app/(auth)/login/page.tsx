@@ -78,7 +78,11 @@ export default function Login() {
           <InternalLinkText href="/forgot">
             Olvide mi contraseña
           </InternalLinkText>
-          <BaseButton yPadding="0.7rem" xPadding="1.6rem" fontColor="var(--white)">
+          <BaseButton
+            yPadding="0.7rem"
+            xPadding="1.6rem"
+            fontColor="var(--white)"
+          >
             Ingresar
           </BaseButton>
         </FormWithValidation>
