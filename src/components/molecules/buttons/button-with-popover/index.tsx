@@ -2,18 +2,23 @@
 
 import { Popover, Transition } from '@headlessui/react'
 import style from './styles.module.scss'
+import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 
-interface Props {
+interface ButtonWithPopover {
   PopoverIcon: React.ReactNode
-  children: React.ReactNode
+  children?: React.ReactNode
   arialLabel?: string
+  emptyText?: string
+  className?: string
 }
 
-export default function ButtonWithPopover({
+export const ButtonWithPopover = ({
   PopoverIcon,
   children,
   arialLabel,
-}: Props) {
+  emptyText,
+  className,
+}: ButtonWithPopover) => {
   return (
     <Popover className={style.Popover} aria-label={arialLabel}>
       <Popover.Button className={style.PopoverButton}>
@@ -28,10 +33,37 @@ export default function ButtonWithPopover({
         leaveTo="transform scale-95 opacity-0"
       >
         <h1 className="duration-150"></h1>
-        <Popover.Panel className={style.PopoverPanel} static>
+        <Popover.Panel
+          className={`${style.PopoverPanel} ${className}`}
+          aria-placeholder={emptyText}
+          static
+        >
           {children}
         </Popover.Panel>
       </Transition>
     </Popover>
   )
 }
+
+interface CardLinkPopoverProps {
+  href: string
+  children: React.ReactNode
+  className?: string
+}
+
+export const CardLinkPopover = ({
+  href,
+  children,
+  className,
+}: CardLinkPopoverProps) => {
+  return (
+    <InternalLinkText
+      href={href}
+      className={`${style.CardLinkPopover} ${className}`}
+    >
+      {children}
+    </InternalLinkText>
+  )
+}
+
+export default ButtonWithPopover

@@ -1,0 +1,13 @@
+@mixin SweetScroll($bgColor, $scrollColor: oklch(88.53% 0 0)) {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $bgColor;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $scrollColor;
+    border-radius: 10px;
+    border: none;
+  }
+}
