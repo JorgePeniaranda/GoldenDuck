@@ -1,25 +1,21 @@
 import jwt from 'jsonwebtoken'
+import { AuthorizationError, ConfigError } from '../errorService'
 
 export default class JWT {
   private secretKey: string
 
   constructor() {
     let JWT_SECRET = process.env.JWT_SECRET
-
-    if (!JWT_SECRET) {
-      console.error(
-        'ERROR: La variable de entorno JWT_SECRET no está configurada.',
+    if (!JWT_SECRET)
+      throw new ConfigError(
+        'La variable de entorno JWT_SECRET no está configurada',
       )
-
-      process.exit(1) // Termina la aplicación con un código de salida no exitoso
-    }
-
     this.secretKey = JWT_SECRET
   }
 
   public verifyToken = (token: string) => {
     const decoded = jwt.verify(token, this.secretKey)
-
+    if (typeof decoded === 'string') throw new AuthorizationError(decoded)
     return decoded
   }
 

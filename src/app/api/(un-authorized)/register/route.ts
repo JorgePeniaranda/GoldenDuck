@@ -28,7 +28,6 @@ export async function POST(req: NextRequest) {
     const jwtToken = await jwt.verifyToken(token)
 
     // check if token is valid
-    if (typeof jwtToken === 'string') throw new AuthorizationError(jwtToken)
     if (
       jwtToken.email !== data.email ||
       jwtToken.type !== 'register' ||

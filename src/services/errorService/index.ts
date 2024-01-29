@@ -7,6 +7,7 @@ export const createErrorFactory = function (name: string) {
   }
 }
 
+export const ConfigError = createErrorFactory('ConfigError')
 export const ValidationError = createErrorFactory('ValidationError')
 export const NotFoundError = createErrorFactory('NotFoundError')
 export const AuthorizationError = createErrorFactory('AuthorizationError')
@@ -19,6 +20,8 @@ export const ErrorsHandler = (error: any) => {
         error: 'No se ha podido conectar a la base de datos',
         status: 500,
       }
+    case 'ConfigError':
+      return { error: error.message, status: 500 }
     case 'ValidationError':
       return { error: error.message, status: 400 }
     case 'NotFoundError':

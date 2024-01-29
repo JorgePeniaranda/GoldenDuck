@@ -1,6 +1,5 @@
 import ConfirmationCode from '@/services/codeService'
 import JWT from '@/services/jwtService'
-import { EmailSchema } from '@/useCases/forgotUseCase'
 import { PrismaClient } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server'
 import {
@@ -9,6 +8,7 @@ import {
   NotFoundError,
   ValidationError,
 } from '@/services/errorService'
+import validations from '@/services/validationService'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()
@@ -29,13 +29,12 @@ export async function GET(
       throw new NotFoundError('No existe cuenta creada con ese correo')
 
     // validate email
-    const checkEmail = EmailSchema.safeParse({ email })
-
+    const checkEmail = validations.email.safeParse({ email })
     if (!checkEmail.success)
       throw new ValidationError(checkEmail.error.errors[0].message)
 
     // send code to email
-    CodeService.sendCode(checkEmail.data.email)
+    CodeService.sendCode(checkEmail.data)
 
     // generate unAuthorized token with email and code and type forgot
     const token = jwt.generateUnAuthorizedToken(
@@ -75,20 +74,14 @@ export async function POST(req: NextRequest) {
 
     // verify token and code
     if (!code) throw new ValidationError('No se ha enviado el código')
-
     if (!token) throw new ValidationError('No se ha enviado el token')
 
     // verify token and get values
     const decodeJWT = await jwt.verifyToken(token)
 
     // check if token is valid
-    if (typeof decodeJWT === 'string') throw new AuthorizationError(decodeJWT)
-
-    // check if token is forgot type
     if (decodeJWT.type !== 'forgot')
       throw new AuthorizationError('Token invalido')
-
-    // check if token is authorized
     if (CodeService.checkCode(decodeJWT.code))
       throw new AuthorizationError('El código es invalido')
 

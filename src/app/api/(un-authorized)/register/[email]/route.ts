@@ -80,7 +80,6 @@ export async function POST(req: NextRequest) {
     const decodeJWT = await jwt.verifyToken(token)
 
     // check if token is valid
-    if (typeof decodeJWT === 'string') throw new AuthorizationError(decodeJWT)
     if (decodeJWT.type !== 'register')
       throw new AuthorizationError('Token invalido')
     if (CodeService.checkCode(decodeJWT.code))
