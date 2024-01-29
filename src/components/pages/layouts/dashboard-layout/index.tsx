@@ -73,10 +73,17 @@ export default function DashboardLayout({ children }: Props) {
                 />
               </figure>
               <article>
-                <Text tag="span" size=".8rem" weight='700'>Omar</Text>
-                <Text size=".8rem">Lorem ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.</Text>
+                <Text tag="span" size=".8rem" weight="700">
+                  Omar
+                </Text>
+                <Text size=".8rem">
+                  Lorem ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor
+                  sit amet.ipsum dolor sit amet.
+                </Text>
               </article>
-              <Text tag="span" size=".8rem">12:32</Text>
+              <Text tag="span" size=".8rem">
+                12:32
+              </Text>
             </CardLinkPopover>
             <CardLinkPopover href="/" className={style.MessagesButton}>
               <figure>
@@ -88,10 +95,17 @@ export default function DashboardLayout({ children }: Props) {
                 />
               </figure>
               <article>
-                <Text tag="span" size=".8rem" weight='700'>Omar</Text>
-                <Text size=".8rem">Lorem ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.</Text>
+                <Text tag="span" size=".8rem" weight="700">
+                  Omar
+                </Text>
+                <Text size=".8rem">
+                  Lorem ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor
+                  sit amet.ipsum dolor sit amet.
+                </Text>
               </article>
-              <Text tag="span" size=".8rem">12:32</Text>
+              <Text tag="span" size=".8rem">
+                12:32
+              </Text>
             </CardLinkPopover>
             <CardLinkPopover href="/" className={style.MessagesButton}>
               <figure>
@@ -103,10 +117,17 @@ export default function DashboardLayout({ children }: Props) {
                 />
               </figure>
               <article>
-                <Text tag="span" size=".8rem" weight='700'>Omar</Text>
-                <Text size=".8rem">Lorem ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor sit amet.</Text>
+                <Text tag="span" size=".8rem" weight="700">
+                  Omar
+                </Text>
+                <Text size=".8rem">
+                  Lorem ipsum dolor sit amet.ipsum dolor sit amet.ipsum dolor
+                  sit amet.ipsum dolor sit amet.
+                </Text>
               </article>
-              <Text tag="span" size=".8rem">12:32</Text>
+              <Text tag="span" size=".8rem">
+                12:32
+              </Text>
             </CardLinkPopover>
           </ButtonWithPopover>
           <ButtonWithPopover
@@ -117,15 +138,21 @@ export default function DashboardLayout({ children }: Props) {
           >
             <CardLinkPopover href="/" className={style.NotificationsButton}>
               <Text>CosoCosoCosoCosoCosoCosoCoso</Text>
-              <Text tag="span" size=".8rem">12:32</Text>
+              <Text tag="span" size=".8rem">
+                12:32
+              </Text>
             </CardLinkPopover>
             <CardLinkPopover href="/" className={style.NotificationsButton}>
               <Text>CosoCosoCosoCosoCosoCosoCoso</Text>
-              <Text tag="span" size=".8rem">12:32</Text>
+              <Text tag="span" size=".8rem">
+                12:32
+              </Text>
             </CardLinkPopover>
             <CardLinkPopover href="/" className={style.NotificationsButton}>
               <Text>CosoCosoCosoCosoCosoCosoCoso</Text>
-              <Text tag="span" size=".8rem">12:32</Text>
+              <Text tag="span" size=".8rem">
+                12:32
+              </Text>
             </CardLinkPopover>
           </ButtonWithPopover>
           <ButtonWithPopover
