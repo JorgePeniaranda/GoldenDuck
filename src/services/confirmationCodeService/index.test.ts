@@ -1,4 +1,4 @@
-import ConfirmationCode from './confirmationCodeService'
+import ConfirmationCode from '.'
 
 const length = 6
 const code = new ConfirmationCode(length)

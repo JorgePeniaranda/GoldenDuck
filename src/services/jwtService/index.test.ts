@@ -1,4 +1,4 @@
-import JWT from './jwtService'
+import JWT from '.'
 import jwt from 'jsonwebtoken'
 
 const jwtService = new JWT()

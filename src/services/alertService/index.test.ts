@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2'
-import Alerts from './alertService'
+import Alerts from '.'
 import { screen, fireEvent } from '@testing-library/react'
 
 window.scrollTo = jest.fn()
