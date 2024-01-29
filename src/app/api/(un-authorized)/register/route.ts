@@ -30,10 +30,12 @@ export async function POST(req: NextRequest) {
     // check if token is valid
     if (
       jwtToken.email !== data.email ||
-      jwtToken.type !== 'register' ||
+      jwtToken.iss !== 'register' ||
+      jwtToken.aud !== 'register' ||
       jwtToken.authorized == false
     )
-      throw new AuthorizationError('Token invalido')
+      throw new AuthorizationError(`${jwtToken.iss}  +
+      ${jwtToken.aud}`)
 
     // Check format of form body
     const checkUserData = await SignUpSchema.safeParseAsync(data as SignupForm)
@@ -66,7 +68,11 @@ export async function POST(req: NextRequest) {
     const tokenData = {
       id: newUser.id,
     }
-    const AuthoridedToken = jwt.generateAuthorizedToken(tokenData)
+    const AuthoridedToken = jwt.generateAuthorizedToken(
+      'register',
+      'dashboard',
+      tokenData,
+    )
 
     // generate and send response
     const response = NextResponse.json(

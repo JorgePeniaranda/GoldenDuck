@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
         new TextEncoder().encode(process.env.JWT_SECRET),
       )
 
-      if (payload.authorized) {
+      if (payload.authorized && payload.aud === 'dashboard') {
         return NextResponse.redirect(new URL('/dashboard', request.nextUrl))
       }
     } catch (error) {
@@ -29,7 +29,7 @@ export async function middleware(request: NextRequest) {
           new TextEncoder().encode(process.env.JWT_SECRET),
         )
 
-        if (!payload.authorized) {
+        if (!payload.authorized || payload.aud !== 'dashboard') {
           return NextResponse.redirect(new URL('/login', request.nextUrl))
         }
       } catch (error) {

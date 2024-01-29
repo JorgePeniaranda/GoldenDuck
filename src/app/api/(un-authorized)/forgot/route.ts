@@ -30,7 +30,8 @@ export async function POST(req: NextRequest) {
     // check if token is valid
     if (
       jwtToken.email !== email ||
-      jwtToken.type !== 'forgot' ||
+      jwtToken.iss !== 'forgot' ||
+      jwtToken.aud !== 'forgot' ||
       jwtToken.authorized == false
     )
       throw new AuthorizationError('Token invalido')
@@ -61,7 +62,11 @@ export async function POST(req: NextRequest) {
     const tokenData = {
       id: newUser.id,
     }
-    const AuthoridedToken = jwt.generateAuthorizedToken(tokenData)
+    const AuthoridedToken = jwt.generateAuthorizedToken(
+      'forgot',
+      'dashboard',
+      tokenData,
+    )
 
     // generate and send response
     const response = NextResponse.json(

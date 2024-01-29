@@ -38,10 +38,10 @@ export async function GET(
 
     // generate unAuthorized token with email and code and type forgot
     const tokenData = {
-      email,
       code: CodeService.getCode(),
+      email,
     }
-    const token = jwt.generateUnAuthorizedToken('forgot', tokenData)
+    const token = jwt.generateUnAuthorizedToken('forgot', 'forgot', tokenData)
 
     // generate and send response
     const response = NextResponse.json(
@@ -80,17 +80,20 @@ export async function POST(req: NextRequest) {
     const decodeJWT = await jwt.verifyToken(token)
 
     // check if token is valid
-    if (decodeJWT.type !== 'forgot')
+    if (decodeJWT.iss !== 'forgot' && decodeJWT.aud !== 'forgot')
       throw new AuthorizationError('Token invalido')
     if (!CodeService.checkCode(code, decodeJWT.code))
       throw new AuthorizationError('El código es invalido')
 
     // generate authorized token with email and type forgot
     const tokenData = {
-      type: 'forgot',
       email: decodeJWT.email,
     }
-    const tokenVerified = jwt.generateAuthorizedToken(tokenData)
+    const tokenVerified = jwt.generateAuthorizedToken(
+      'forgot',
+      'forgot',
+      tokenData,
+    )
 
     // generate and send response
     const response = NextResponse.json(

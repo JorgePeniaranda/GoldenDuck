@@ -38,7 +38,11 @@ export async function POST(req: NextRequest) {
     const tokenData = {
       id: user.id,
     }
-    const AuthoridedToken = jwt.generateAuthorizedToken(tokenData)
+    const AuthoridedToken = jwt.generateAuthorizedToken(
+      'login',
+      'dashboard',
+      tokenData,
+    )
 
     // generate and send response
     const response = NextResponse.json(
