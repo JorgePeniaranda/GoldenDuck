@@ -20,9 +20,8 @@ export async function POST(req: NextRequest) {
     const data = await req.json()
     const token = req.cookies.get('token')?.value
 
-    // check if token and email are sent
+    // check request
     if (!token) throw new ValidationError('No se ha enviado el token')
-
     if (!data.email) throw new ValidationError('No se ha enviado el email')
 
     // verify token and get values
@@ -30,7 +29,6 @@ export async function POST(req: NextRequest) {
 
     // check if token is valid
     if (typeof jwtToken === 'string') throw new AuthorizationError(jwtToken)
-
     if (
       jwtToken.email !== data.email ||
       jwtToken.type !== 'register' ||
@@ -73,7 +71,6 @@ export async function POST(req: NextRequest) {
       { message: 'Se ha registrado exitosamente' },
       { status: 201 },
     )
-
     response.cookies.set('token', AuthoridedToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
@@ -81,7 +78,6 @@ export async function POST(req: NextRequest) {
       maxAge: 1000 * 60 * 30,
       path: '/',
     })
-
     return response
   } catch (e) {
     const { error, status } = ErrorsHandler(e)

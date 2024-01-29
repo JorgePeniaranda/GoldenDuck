@@ -1,9 +1,8 @@
-import ConfirmationCode from '@/services/confirmationCodeService'
+import ConfirmationCode from '@/services/codeService'
 import JWT from '@/services/jwtService'
 import { EmailSchema } from '@/useCases/forgotUseCase'
 import { PrismaClient } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server'
-import bcrypt from 'bcryptjs'
 import {
   AuthorizationError,
   ErrorsHandler,
@@ -12,7 +11,6 @@ import {
 } from '@/services/errorService'
 
 const prisma = new PrismaClient()
-const code = new ConfirmationCode()
 const jwt = new JWT()
 
 export async function GET(
@@ -20,6 +18,8 @@ export async function GET(
   { params: { email } }: { params: { email: string } },
 ) {
   try {
+    const CodeService = new ConfirmationCode()
+
     // check if any account exist with that email
     const checkExist = await prisma.users.findFirst({
       where: { email, deleted: false },
@@ -35,13 +35,14 @@ export async function GET(
       throw new ValidationError(checkEmail.error.errors[0].message)
 
     // send code to email
-    code.sendCode(checkEmail.data.email)
-
-    // encrypt code
-    const hashedCode = bcrypt.hashSync(code.getCode(), 10)
+    CodeService.sendCode(checkEmail.data.email)
 
     // generate unAuthorized token with email and code and type forgot
-    const token = jwt.generateUnAuthorizedToken('forgot', email, hashedCode)
+    const token = jwt.generateUnAuthorizedToken(
+      'forgot',
+      email,
+      CodeService.getCode(),
+    )
 
     // generate and send response
     const response = NextResponse.json(
@@ -66,6 +67,8 @@ export async function GET(
 
 export async function POST(req: NextRequest) {
   try {
+    const CodeService = new ConfirmationCode()
+
     // get code and token
     const { code } = await req.json()
     const token = req.cookies.get('token')?.value
@@ -86,7 +89,7 @@ export async function POST(req: NextRequest) {
       throw new AuthorizationError('Token invalido')
 
     // check if token is authorized
-    if (!bcrypt.compareSync(code, decodeJWT.code))
+    if (CodeService.checkCode(decodeJWT.code))
       throw new AuthorizationError('El código es invalido')
 
     // generate authorized token with email and type forgot

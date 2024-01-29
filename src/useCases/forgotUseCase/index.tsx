@@ -1,50 +1,35 @@
 import Alerts from '@/services/alertService'
+import { ValidationError } from '@/services/errorService'
+import validations from '@/services/validationService'
 import { ForgotForm } from '@/types'
 import axios from 'axios'
-import { z } from 'zod'
-
-export const EmailSchema = z.object({
-  email: z
-    .string({ required_error: 'El email es requerido' })
-    .email({ message: 'El email debe ser valido' })
-    .min(1, { message: 'El email es requerido' }),
-})
-
-export const PasswordSchema = z.object({
-  password: z
-    .string({ required_error: 'La contraseña es requerida' })
-    .min(8, { message: 'La contraseña debe tener al menos 8 caracteres' })
-    .min(1, { message: 'La contraseña es requerida' }),
-})
 
 export const CheckEmail = (email: string): boolean => {
-  const result = EmailSchema.safeParse({ email })
-
-  if (!result.success) {
-    Alerts.error(result.error.errors[0].message)
+  try {
+    const emailSchema = validations.email.safeParse({ email })
+    if (!emailSchema.success) throw new ValidationError('El email no es valido')
+    return true
+  } catch (error) {
+    if (error instanceof Error) Alerts.error(error.message)
     return false
   }
-
-  return true
 }
 
 export const CheckPasswords = (
   password: string,
   confirmPassword: string,
 ): boolean => {
-  const result = PasswordSchema.safeParse({ password })
-
-  if (password !== confirmPassword) {
-    Alerts.warning('Las contraseñas no coinciden')
+  try {
+    const passwordSchema = validations.password.safeParse({ password })
+    if (password !== confirmPassword)
+      throw new ValidationError('Las contraseñas no coinciden')
+    if (!passwordSchema.success)
+      throw new ValidationError('La contraseña no es valida')
+    return true
+  } catch (error) {
+    if (error instanceof Error) Alerts.warning(error.message)
     return false
   }
-
-  if (!result.success) {
-    Alerts.error(result.error.errors[0].message)
-    return false
-  }
-
-  return true
 }
 
 export const generateConfirmationCode = async (email: string) => {
@@ -67,7 +52,5 @@ export const UpdatePassword = async (ForgotForm: ForgotForm) => {
         window.location.replace('/dashboard'),
       )
     })
-    .catch((err) => {
-      Alerts.error(err.response.data.error)
-    })
+    .catch((err) => Alerts.error(err.response.data.error))
 }
