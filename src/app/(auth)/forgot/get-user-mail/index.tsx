@@ -37,7 +37,7 @@ export default function GetUserMail({ FormActions, form, setForm }: Props) {
     if (CheckEmail(form.email)) {
       const response = await generateConfirmationCode(form.email)
 
-      if (response) {
+      if (response === 200) {
         FormActions.next()
       }
     }

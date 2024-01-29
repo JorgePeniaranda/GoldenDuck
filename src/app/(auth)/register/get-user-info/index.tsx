@@ -23,9 +23,13 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
     e.preventDefault()
 
     if (CheckForm(form)) {
-      const response = await generateConfirmationCode(form.email, form.dni, form.phoneNumber)
+      const response = await generateConfirmationCode(
+        form.email,
+        form.dni,
+        form.phoneNumber,
+      )
 
-      if (response) {
+      if (response === 200) {
         FormActions.next()
       }
     }

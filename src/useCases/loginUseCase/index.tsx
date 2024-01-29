@@ -22,14 +22,18 @@ export const CheckForm = (LoginForm: LoginForm): boolean => {
 }
 
 export const login = async (LoginForm: LoginForm) => {
-  return await axios
+  const res = await axios
     .post(`/api/login`, LoginForm)
     .then((res) => {
       Alerts.success(res.data.message, () =>
         window.location.replace('/dashboard'),
       )
+      return res.status
     })
     .catch((err) => {
       Alerts.error(err.response.data.error)
+      return err.response.status
     })
+
+  return res
 }

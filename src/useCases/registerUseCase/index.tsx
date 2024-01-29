@@ -28,29 +28,51 @@ export const CheckForm = (SignupForm: SignupForm): boolean => {
   }
 }
 
-export const generateConfirmationCode = async (email: string, dni: string, phoneNumber: string) => {
-  return await axios.get(`/api/register/${email}`, {params: {dni, phoneNumber}}).catch((err) => {
-    Alerts.error(err.response.data.error)
-  })
+export const generateConfirmationCode = async (
+  email: string,
+  dni: string,
+  phoneNumber: string,
+) => {
+  const res = await axios
+    .get(`/api/register/${email}`, { params: { dni, phoneNumber } })
+    .then((res) => {
+      return res.status
+    })
+    .catch((err) => {
+      Alerts.error(err.response.data.error)
+      return err.response.status
+    })
+
+  return res
 }
 
 export const checkConfirmationCode = async (email: string, code: string) => {
-  return await axios
+  const res = await axios
     .post(`/api/register/${email}`, { email, code })
+    .then((res) => {
+      return res.status
+    })
     .catch((err) => {
       Alerts.error(err.response.data.error)
+      return err.response.status
     })
+
+  return res
 }
 
 export const CreateUser = async (SignupForm: SignupForm) => {
-  return await axios
+  const res = await axios
     .post(`/api/register`, SignupForm)
     .then((res) => {
       Alerts.success(res.data.message, () =>
         window.location.replace('/dashboard'),
       )
+      return res.status
     })
     .catch((err) => {
       Alerts.error(err.response.data.error)
+      return err.response.status
     })
+
+  return res
 }

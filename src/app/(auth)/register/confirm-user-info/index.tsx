@@ -26,7 +26,7 @@ export default function ConfirmUserInfo({ FormActions, form }: Props) {
 
     const response = await checkConfirmationCode(form.email, EmailCode)
 
-    if (response) {
+    if (response === 200) {
       FormActions.submit()
     }
   }
