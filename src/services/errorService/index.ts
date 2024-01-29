@@ -14,10 +14,26 @@ export const NotFoundError = createErrorFactory('NotFoundError')
 export const AuthorizationError = createErrorFactory('AuthorizationError')
 export const ConflictError = createErrorFactory('ConflictError')
 
-export const ErrorsHandler = {
-  ValidationError: (message: string) => ({ error: message, status: 400 }),
-  RequestError: (message: string) => ({ error: message, status: 400 }),
-  ConnectionError: (message: string) => ({ error: message, status: 500 }),
-  NotFoundError: (message: string) => ({ error: message, status: 404 }),
-  AuthorizationError: (message: string) => ({ error: message, status: 401 }),
+export const ErrorsHandler = (error: any) => {
+  switch (error.name) {
+    case 'PrismaClientInitializationError':
+      return {
+        error: 'No se ha podido conectar a la base de datos',
+        status: 500,
+      }
+    case 'ValidationError':
+      return { error: error.message, status: 400 }
+    case 'RequestError':
+      return { error: error.message, status: 400 }
+    case 'ConnectionError':
+      return { error: error.message, status: 400 }
+    case 'NotFoundError':
+      return { error: error.message, status: 404 }
+    case 'AuthorizationError':
+      return { error: error.message, status: 401 }
+    case 'ConflictError':
+      return { error: error.message, status: 409 }
+    default:
+      return { error: 'Ha ocurrido un error', status: 500 }
+  }
 }
