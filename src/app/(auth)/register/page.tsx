@@ -7,7 +7,7 @@ import style from './styles.module.scss'
 import ConfirmUserInfo from './confirm-user-info'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import { SignupForm } from '@/types'
-import { CreateUser } from '@/useCases/signupUseCase'
+import { CreateUser } from '@/useCases/registerUseCase'
 
 export default function Signin() {
   const [step, setStep] = useState<number>(0)
