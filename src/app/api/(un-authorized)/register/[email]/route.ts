@@ -3,14 +3,15 @@ import JWT from '@/services/jwtService'
 import { EmailSchema } from '@/useCases/forgotUseCase'
 import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
-import { PrismaClientInitializationError } from '@prisma/client/runtime/library'
 import {
   AuthorizationError,
   ConflictError,
-  NotFoundError,
+  ErrorsHandler,
   ValidationError,
 } from '@/services/errorService'
+import { PrismaClient } from '@prisma/client'
 
+const prisma = new PrismaClient()
 const code = new ConfirmationCode()
 const jwt = new JWT()
 
@@ -19,6 +20,14 @@ export async function GET(
   { params: { email } }: { params: { email: string } },
 ) {
   try {
+    // check if any account exist with that email
+    const checkExist = await prisma.users.findFirst({
+      where: { email, deleted: false },
+    })
+
+    if (checkExist)
+      throw new ConflictError('Ya existe cuenta creada con esos datos')
+
     // validate email
     const checkEmail = EmailSchema.safeParse({ email })
 
@@ -50,25 +59,8 @@ export async function GET(
 
     return response
   } catch (e) {
-    if (e instanceof PrismaClientInitializationError) {
-      return NextResponse.json(
-        { error: 'No se ha podido conectar a la base de datos' },
-        { status: 500 },
-      )
-    }
-    if (e instanceof ValidationError) {
-      return NextResponse.json({ error: e.message }, { status: 400 })
-    }
-    if (e instanceof ConflictError) {
-      return NextResponse.json({ error: e.message }, { status: 409 })
-    }
-    if (e instanceof AuthorizationError) {
-      return NextResponse.json({ error: e.message }, { status: 401 })
-    }
-    if (e instanceof NotFoundError) {
-      return NextResponse.json({ error: e.message }, { status: 404 })
-    }
-    return NextResponse.json({ error: 'Ha ocurrido un error' }, { status: 500 })
+    const { error, status } = ErrorsHandler(e)
+    return NextResponse.json({ error }, { status })
   }
 }
 
@@ -119,24 +111,7 @@ export async function POST(req: NextRequest) {
 
     return response
   } catch (e) {
-    if (e instanceof PrismaClientInitializationError) {
-      return NextResponse.json(
-        { error: 'No se ha podido conectar a la base de datos' },
-        { status: 500 },
-      )
-    }
-    if (e instanceof ValidationError) {
-      return NextResponse.json({ error: e.message }, { status: 400 })
-    }
-    if (e instanceof ConflictError) {
-      return NextResponse.json({ error: e.message }, { status: 409 })
-    }
-    if (e instanceof AuthorizationError) {
-      return NextResponse.json({ error: e.message }, { status: 401 })
-    }
-    if (e instanceof NotFoundError) {
-      return NextResponse.json({ error: e.message }, { status: 404 })
-    }
-    return NextResponse.json({ error: 'Ha ocurrido un error' }, { status: 500 })
+    const { error, status } = ErrorsHandler(e)
+    return NextResponse.json({ error }, { status })
   }
 }
