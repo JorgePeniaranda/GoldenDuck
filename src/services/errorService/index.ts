@@ -8,8 +8,6 @@ export const createErrorFactory = function (name: string) {
 }
 
 export const ValidationError = createErrorFactory('ValidationError')
-export const RequestError = createErrorFactory('RequestError')
-export const ConnectionError = createErrorFactory('ConnectionError')
 export const NotFoundError = createErrorFactory('NotFoundError')
 export const AuthorizationError = createErrorFactory('AuthorizationError')
 export const ConflictError = createErrorFactory('ConflictError')
@@ -22,10 +20,6 @@ export const ErrorsHandler = (error: any) => {
         status: 500,
       }
     case 'ValidationError':
-      return { error: error.message, status: 400 }
-    case 'RequestError':
-      return { error: error.message, status: 400 }
-    case 'ConnectionError':
       return { error: error.message, status: 400 }
     case 'NotFoundError':
       return { error: error.message, status: 404 }
