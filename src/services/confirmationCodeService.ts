@@ -1,7 +1,11 @@
 import { randomAlphanumeric } from '@/utils'
 
 export default class ConfirmationCode {
-  private code: string = randomAlphanumeric(6)
+  private code: string
+
+  constructor(private length: number = 6) {
+    this.code = randomAlphanumeric(length)
+  }
 
   getCode() {
     return this.code
