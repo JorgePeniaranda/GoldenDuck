@@ -1,4 +1,4 @@
-import { CheckAuthorizedToken } from '@/utils/api-utils'
+import { CheckAuthorizedToken } from '@/utils/api'
 import { PrismaClient } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server'
 

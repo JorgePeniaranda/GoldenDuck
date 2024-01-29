@@ -7,7 +7,7 @@ import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import { SignupForm, formActions } from '@/types'
 import ReactCodeInput from 'react-code-input'
 import { FormEvent, useState } from 'react'
-import { checkConfirmationCode } from '@/useCases/signupUseCase'
+import { checkConfirmationCode } from '@/useCases/registerUseCase'
 
 interface Props {
   FormActions: formActions

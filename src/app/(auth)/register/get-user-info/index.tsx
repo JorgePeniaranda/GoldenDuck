@@ -4,7 +4,7 @@ import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import { SignupForm, formActions } from '@/types'
-import { CheckForm, generateConfirmationCode } from '@/useCases/signupUseCase'
+import { CheckForm, generateConfirmationCode } from '@/useCases/registerUseCase'
 import BaseInput from '@/components/molecules/inputs/base-input'
 
 interface Props {

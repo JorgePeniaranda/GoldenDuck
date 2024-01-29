@@ -1,7 +1,7 @@
 import JWT from '@/services/jwtService'
 import { NextRequest, NextResponse } from 'next/server'
 import { SignupForm } from '@/types'
-import { SignUpSchema } from '@/useCases/signupUseCase'
+import { SignUpSchema } from '@/useCases/registerUseCase'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 
