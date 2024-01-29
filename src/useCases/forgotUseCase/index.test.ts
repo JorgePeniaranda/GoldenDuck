@@ -1,6 +1,6 @@
 import { CheckEmail, CheckPasswords } from '.'
 
-describe('Forgot Schemes', () => {
+describe('Validate Forgot Form', () => {
   it('must return true if the email is valid', async () => {
     expect(CheckEmail('test@gmail.com')).toBeTruthy()
   })
