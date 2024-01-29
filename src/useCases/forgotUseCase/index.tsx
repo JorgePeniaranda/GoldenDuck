@@ -6,8 +6,8 @@ import axios from 'axios'
 
 export const CheckEmail = (email: string): boolean => {
   try {
-    const emailSchema = validations.email.safeParse({ email })
-    if (!emailSchema.success) throw new ValidationError('El email no es valido')
+    const checkEmail = validations.email.safeParse(email)
+    if (!checkEmail.success) throw new ValidationError(checkEmail.error.errors[0].message)
     return true
   } catch (error) {
     if (error instanceof Error) Alerts.error(error.message)
@@ -20,11 +20,11 @@ export const CheckPasswords = (
   confirmPassword: string,
 ): boolean => {
   try {
-    const passwordSchema = validations.password.safeParse({ password })
+    const checkPassword = validations.password.safeParse(password)
     if (password !== confirmPassword)
       throw new ValidationError('Las contraseñas no coinciden')
-    if (!passwordSchema.success)
-      throw new ValidationError('La contraseña no es valida')
+    if (!checkPassword.success)
+      throw new ValidationError(checkPassword.error.errors[0].message)
     return true
   } catch (error) {
     if (error instanceof Error) Alerts.warning(error.message)

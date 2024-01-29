@@ -36,10 +36,12 @@ export async function POST(req: NextRequest) {
       throw new AuthorizationError('Token invalido')
 
     // validate email and password
-    const checkEmail = validations.email.safeParse({ email })
-    if (!checkEmail.success) throw new ValidationError('Email invalido')
-    const checkPassword = validations.password.safeParse({ password })
-    if (!checkPassword.success) throw new ValidationError('Contraseña invalida')
+    const checkEmail = validations.email.safeParse(email)
+    if (!checkEmail.success)
+      throw new ValidationError(checkEmail.error.errors[0].message)
+    const checkPassword = validations.password.safeParse(password)
+    if (!checkPassword.success)
+      throw new ValidationError(checkPassword.error.errors[0].message)
 
     // get user
     const user = await prisma.users.findFirst({

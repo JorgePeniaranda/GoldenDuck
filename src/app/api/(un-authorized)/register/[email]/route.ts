@@ -29,7 +29,7 @@ export async function GET(
       throw new ConflictError('Ya existe cuenta creada con esos datos')
 
     // validate email
-    const checkEmail = validations.email.safeParse({ email })
+    const checkEmail = validations.email.safeParse(email)
     if (!checkEmail.success)
       throw new ValidationError(checkEmail.error.errors[0].message)
 
