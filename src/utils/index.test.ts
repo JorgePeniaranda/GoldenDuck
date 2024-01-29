@@ -1,4 +1,4 @@
-import { randomAlphanumeric } from '.'
+import { checkAlphanumeric, checkOnlyLetters, randomAlphanumeric } from '.'
 
 const random = randomAlphanumeric(10)
 
@@ -18,5 +18,33 @@ describe('Random Alphanumeric', () => {
   it('random should return an alphanumeric string', () => {
     const alphanumeric = /^[0-9a-zA-Z]+$/
     expect(alphanumeric.test(random)).toEqual(true)
+  })
+})
+
+describe('Check Alphanumeric', () => {
+  it('checkAlphanumeric should be a function', () => {
+    expect(typeof checkAlphanumeric).toEqual('function')
+  })
+
+  it('checkAlphanumeric should return true if the value is alphanumeric', () => {
+    expect(checkAlphanumeric('test')).toEqual(true)
+  })
+
+  it('checkAlphanumeric should return false if the value is not alphanumeric', () => {
+    expect(checkAlphanumeric('test_')).toEqual(false)
+  })
+})
+
+describe('Check Only Letters', () => {
+  it('checkOnlyLetters should be a function', () => {
+    expect(typeof checkOnlyLetters).toEqual('function')
+  })
+
+  it('checkOnlyLetters should return true if the value is only letters', () => {
+    expect(checkOnlyLetters('test')).toEqual(true)
+  })
+
+  it('checkOnlyLetters should return false if the value is not only letters', () => {
+    expect(checkOnlyLetters('test1')).toEqual(false)
   })
 })
