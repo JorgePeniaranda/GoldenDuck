@@ -56,7 +56,10 @@ export async function POST(req: NextRequest) {
     })
 
     // generate autorized token with id
-    const AuthoridedToken = jwt.generateAuthorizedToken(newUser.id)
+    const tokenData = {
+      id: newUser.id,
+    }
+    const AuthoridedToken = jwt.generateAuthorizedToken(tokenData)
 
     // generate and send response
     const response = NextResponse.json(

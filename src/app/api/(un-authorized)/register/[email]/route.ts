@@ -37,11 +37,11 @@ export async function GET(
     CodeService.sendCode(email)
 
     // generate unAuthorized token with email and code and type register
-    const token = jwt.generateUnAuthorizedToken(
-      'register',
+    const tokenData = {
       email,
-      CodeService.getCode(),
-    )
+      code: CodeService.getCode(),
+    }
+    const token = jwt.generateUnAuthorizedToken('register', tokenData)
 
     // generate and send response
     const response = NextResponse.json(
@@ -86,10 +86,11 @@ export async function POST(req: NextRequest) {
       throw new AuthorizationError('Código invalido')
 
     // generate authorized token with email and type register
-    const tokenVerified = jwt.generateAuthorizedWithEmailToken(
-      'register',
-      decodeJWT.email,
-    )
+    const tokenData = {
+      type: 'register',
+      email: decodeJWT.email,
+    }
+    const tokenVerified = jwt.generateAuthorizedToken(tokenData)
 
     // generate and send response
     const response = NextResponse.json(

@@ -35,7 +35,10 @@ export async function POST(req: NextRequest) {
       throw new AuthorizationError('La contraseña es incorrecta')
 
     // generate autorized token with id
-    const AuthoridedToken = jwt.generateAuthorizedToken(user.id)
+    const tokenData = {
+      id: user.id,
+    }
+    const AuthoridedToken = jwt.generateAuthorizedToken(tokenData)
 
     // generate and send response
     const response = NextResponse.json(
