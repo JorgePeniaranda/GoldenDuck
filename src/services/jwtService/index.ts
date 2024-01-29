@@ -19,32 +19,17 @@ export default class JWT {
     return decoded
   }
 
-  public generateAuthorizedToken = (userID: number): string => {
-    const token = jwt.sign({ authorized: true, userID }, this.secretKey, {
+  public generateAuthorizedToken = ({ ...data }): string => {
+    const token = jwt.sign({ authorized: true, ...data }, this.secretKey, {
       expiresIn: '30m',
     })
 
     return token
   }
 
-  public generateAuthorizedWithEmailToken = (
-    type: string,
-    email: string,
-  ): string => {
-    const token = jwt.sign({ type, authorized: true, email }, this.secretKey, {
-      expiresIn: '15m',
-    })
-
-    return token
-  }
-
-  public generateUnAuthorizedToken = (
-    type: string,
-    email: string,
-    code: string,
-  ): string => {
+  public generateUnAuthorizedToken = (type: string, { ...data }): string => {
     const token = jwt.sign(
-      { type, authorized: false, code, email },
+      { type, authorized: false, ...data },
       this.secretKey,
       {
         expiresIn: '5m',
