@@ -31,6 +31,7 @@ export const ErrorsHandler = (error: any) => {
     case 'ConflictError':
       return { error: error.message, status: 409 }
     default:
+      console.log(error)
       return { error: 'Ha ocurrido un error', status: 500 }
   }
 }

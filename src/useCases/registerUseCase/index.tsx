@@ -28,8 +28,8 @@ export const CheckForm = (SignupForm: SignupForm): boolean => {
   }
 }
 
-export const generateConfirmationCode = async (email: string) => {
-  return await axios.get(`/api/register/${email}`).catch((err) => {
+export const generateConfirmationCode = async (email: string, dni: string, phoneNumber: string) => {
+  return await axios.get(`/api/register/${email}`, {params: {dni, phoneNumber}}).catch((err) => {
     Alerts.error(err.response.data.error)
   })
 }

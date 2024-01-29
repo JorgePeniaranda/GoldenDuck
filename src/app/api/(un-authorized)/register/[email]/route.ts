@@ -20,9 +20,32 @@ export async function GET(
   try {
     const CodeService = new ConfirmationCode()
 
+    // get data from request
+    const dni = req.nextUrl.searchParams.get('dni')
+    const phoneNumber = req.nextUrl.searchParams.get('phoneNumber')
+
+    // check request
+    if (!dni) throw new ValidationError('No se ha enviado el dni')
+    if (!phoneNumber) throw new ValidationError('No se ha enviado el teléfono')
+
+    // validate request
+    const checkDni = validations.dni.safeParse(dni)
+    if (!checkDni.success)
+      throw new ValidationError(checkDni.error.errors[0].message)
+    const checkPhoneNumber = validations.phoneNumber.safeParse(phoneNumber)
+    if (!checkPhoneNumber.success)
+      throw new ValidationError(checkPhoneNumber.error.errors[0].message)
+
     // check if any account exist with that email
     const checkExist = await prisma.users.findFirst({
-      where: { email, deleted: false },
+      where: {
+        OR: [
+          { dni: Number(dni) },
+          { email },
+          { phoneNumber: Number(phoneNumber) },
+        ],
+        deleted: false,
+      },
     })
 
     if (checkExist)
@@ -40,6 +63,8 @@ export async function GET(
     const tokenData = {
       code: CodeService.getCode(),
       email,
+      dni,
+      phoneNumber,
     }
     const token = jwt.generateUnAuthorizedToken(
       'register',
@@ -92,6 +117,8 @@ export async function POST(req: NextRequest) {
     // generate authorized token with email and type register
     const tokenData = {
       email: decodeJWT.email,
+      dni: decodeJWT.dni,
+      phoneNumber: decodeJWT.phoneNumber,
     }
     const tokenVerified = jwt.generateAuthorizedToken(
       'register',

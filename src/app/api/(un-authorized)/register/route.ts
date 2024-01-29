@@ -28,8 +28,11 @@ export async function POST(req: NextRequest) {
     const jwtToken = await jwt.verifyToken(token)
 
     // check if token is valid
+    console.log(jwtToken.phoneNumber !== data.phoneNumber)
     if (
       jwtToken.email !== data.email ||
+      jwtToken.dni !== data.dni ||
+      jwtToken.phoneNumber !== data.phoneNumber ||
       jwtToken.iss !== 'register' ||
       jwtToken.aud !== 'register' ||
       jwtToken.authorized == false
