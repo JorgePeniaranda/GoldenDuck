@@ -24,7 +24,7 @@ export default class ConfirmationCode {
     }
   }
 
-  checkCode(code: string) {
-    return bcrypt.compareSync(this.code, code)
+  checkCode(code: string, hash: string) {
+    return bcrypt.compareSync(code, hash)
   }
 }

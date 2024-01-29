@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
     // check if token is valid
     if (decodeJWT.type !== 'register')
       throw new AuthorizationError('Token invalido')
-    if (CodeService.checkCode(decodeJWT.code))
+    if (!CodeService.checkCode(code, decodeJWT.code))
       throw new AuthorizationError('Código invalido')
 
     // generate authorized token with email and type register
