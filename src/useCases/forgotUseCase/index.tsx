@@ -34,22 +34,28 @@ export const CheckPasswords = (
 }
 
 export const generateConfirmationCode = async (email: string) => {
-  const res = await axios.get(`/api/forgot/${email}`).then((res) => {
-    return res.status
-  }).catch((err) => {
-    Alerts.error(err.response.data.error)
-    return err.response.status
-  })
+  const res = await axios
+    .get(`/api/forgot/${email}`)
+    .then((res) => {
+      return res.status
+    })
+    .catch((err) => {
+      Alerts.error(err.response.data.error)
+      return err.response.status
+    })
 
   return res
 }
 
 export const checkConfirmationCode = async (email: string, code: string) => {
-  const res = await axios.post(`/api/forgot/${email}`, { code }).then((res)=>{
-    return res.status
-  }).catch((err) => {
-    Alerts.error(err.response.data.error)
-  })
+  const res = await axios
+    .post(`/api/forgot/${email}`, { code })
+    .then((res) => {
+      return res.status
+    })
+    .catch((err) => {
+      Alerts.error(err.response.data.error)
+    })
 
   return res
 }
@@ -63,7 +69,10 @@ export const UpdatePassword = async (ForgotForm: ForgotForm) => {
       )
       return res.status
     })
-    .catch((err) => {Alerts.error(err.response.data.error); return err.response.status})
+    .catch((err) => {
+      Alerts.error(err.response.data.error)
+      return err.response.status
+    })
 
   return res
 }
