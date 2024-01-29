@@ -34,8 +34,7 @@ export async function POST(req: NextRequest) {
       jwtToken.aud !== 'register' ||
       jwtToken.authorized == false
     )
-      throw new AuthorizationError(`${jwtToken.iss}  +
-      ${jwtToken.aud}`)
+      throw new AuthorizationError('Token invalido')
 
     // Check format of form body
     const checkUserData = await SignUpSchema.safeParseAsync(data as SignupForm)
