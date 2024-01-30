@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import style from './styles.module.scss'
 import ExternalLinkText from '@/components/atoms/text/ExternalLinkText'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import classNames from 'classnames'
 
 interface Props {
   children: ReactNode
@@ -38,7 +39,7 @@ export default function BaseButton({
   href,
 }: Props) {
   const props = {
-    className: `${style.BaseButton} ${className}`,
+    className: classNames(style.BaseButton, className),
     style: {
       padding: `${yPadding} ${xPadding}`,
       backgroundColor: backgroundColor,

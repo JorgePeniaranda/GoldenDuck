@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import Link from 'next/link'
 
 interface Props {
@@ -13,13 +14,15 @@ export default function ExternalLinkText({
   arialLabel,
   className,
 }: Props) {
+  const classes = classNames(className)
+
   return (
     <Link
       href={href}
       target="_blank"
       rel="noreferrer"
       aria-label={arialLabel}
-      className={className}
+      className={classes}
     >
       {children}
     </Link>
