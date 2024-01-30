@@ -1,6 +1,8 @@
 export const randomAlphanumeric = (length: number) => {
-  return Array.from(Array(length), () =>
-    Math.floor(Math.random() * 36).toString(36),
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  return Array.from({ length }, () =>
+    characters.charAt(Math.floor(Math.random() * characters.length)),
   ).join('')
 }
 
