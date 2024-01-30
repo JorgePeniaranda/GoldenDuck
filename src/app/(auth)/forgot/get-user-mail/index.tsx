@@ -53,6 +53,7 @@ export default function GetUserMail({ FormActions, form, setForm }: Props) {
           value={form.email}
           onChange={handleChange}
           icon={EmailIcon}
+          autoFocus
         />
       </label>
       <BaseButton fontSize="1.2rem" fontColor="var(--white)">

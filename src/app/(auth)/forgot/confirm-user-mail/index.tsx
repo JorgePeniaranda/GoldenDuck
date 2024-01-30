@@ -45,6 +45,7 @@ export default function ConfirmUserMail({ FormActions, form }: Props) {
         fields={6}
         value={EmailCode}
         onChange={handleChange}
+        autoFocus
       />
       <BaseButton fontSize="1.2rem" fontColor="var(--white)">
         Siguiente

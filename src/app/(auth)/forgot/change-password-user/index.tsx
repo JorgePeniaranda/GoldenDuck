@@ -54,6 +54,7 @@ export default function ChangePasswordUser({
           value={form.password}
           onChange={handleChange}
           icon={PasswordIcon}
+          autoFocus
         />
       </label>
       <label>

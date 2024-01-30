@@ -51,6 +51,7 @@ export default function ConfirmUserInfo({ FormActions, form }: Props) {
           fields={6}
           value={EmailCode}
           onChange={handleChange}
+          autoFocus
         />
         <BaseButton fontSize="1.1rem" fontColor="var(--white)">
           Confirmar
