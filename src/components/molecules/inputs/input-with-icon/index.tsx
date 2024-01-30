@@ -2,6 +2,7 @@ import styles from './styles.module.scss'
 import BaseInput from '../base-input'
 import { ReactNode } from 'react'
 import { InputProps } from '@/types'
+import classNames from 'classnames'
 
 interface Props extends InputProps {
   icon: ReactNode
@@ -32,6 +33,8 @@ export default function InputWithIcon({
   min,
   list,
 }: Props) {
+  const classes = classNames(className)
+
   return (
     <div className={styles.InputWithIcon} id={position}>
       {position === 'left' && icon}
@@ -41,7 +44,7 @@ export default function InputWithIcon({
         id={id}
         onChange={onChange}
         onBlur={onBlur}
-        className={className}
+        className={classes}
         style={style}
         required={required}
         placeholder={placeholder}

@@ -1,5 +1,6 @@
 import { InputProps } from '@/types'
 import styles from './styles.module.scss'
+import classNames from 'classnames'
 
 interface Props extends InputProps {
   BaseStyle?: boolean
@@ -29,6 +30,8 @@ export default function BaseInput({
   list,
   checked,
 }: Props) {
+  const classes = classNames({[styles.BaseInput]: BaseStyle}, className)
+
   return (
     <input
       type={type}
@@ -36,7 +39,7 @@ export default function BaseInput({
       id={id}
       onChange={onChange}
       onBlur={onBlur}
-      className={`${BaseStyle && styles.BaseInput} ${className || ""}`}
+      className={classes}
       style={style}
       required={required}
       placeholder={placeholder}
