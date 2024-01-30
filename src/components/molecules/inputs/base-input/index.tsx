@@ -36,7 +36,7 @@ export default function BaseInput({
       id={id}
       onChange={onChange}
       onBlur={onBlur}
-      className={`${BaseStyle && styles.BaseInput} ${className}}`}
+      className={`${BaseStyle && styles.BaseInput} ${className || ""}`}
       style={style}
       required={required}
       placeholder={placeholder}
