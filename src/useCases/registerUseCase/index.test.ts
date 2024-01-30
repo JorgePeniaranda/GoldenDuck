@@ -1,5 +1,11 @@
 import { SignupForm } from '@/types'
-import { CheckForm } from '.'
+import {
+  CheckForm,
+  CreateUser,
+  checkConfirmationCode,
+  generateConfirmationCode,
+} from '.'
+import axios from 'axios'
 
 const validForm: SignupForm = {
   name: 'test',
@@ -46,5 +52,50 @@ describe('Validate Register Form', () => {
   })
   it('must return false if the password has invalid long', () => {
     expect(CheckForm({ ...validForm, password: 'test' })).toBeFalsy()
+  })
+})
+
+describe('generateConfirmationCode', () => {
+  it('must be a function', () => {
+    expect(typeof generateConfirmationCode).toBe('function')
+  })
+  it('should return a status code', async () => {
+    const mockResponse = {
+      status: 200,
+    }
+    axios.get = jest.fn().mockResolvedValue(mockResponse)
+    const response = await generateConfirmationCode('test', 'test', 'test')
+    expect(response).toEqual(mockResponse.status)
+  })
+})
+
+describe('checkConfirmationCode', () => {
+  it('must be a function', () => {
+    expect(typeof checkConfirmationCode).toBe('function')
+  })
+  it('checkConfirmationCode should return a status code', async () => {
+    const mockResponse = {
+      status: 200,
+    }
+    axios.post = jest.fn().mockResolvedValue(mockResponse)
+    const response = await checkConfirmationCode('2', '2')
+    expect(response).toEqual(mockResponse.status)
+  })
+})
+
+describe('CreateUser', () => {
+  it('must be a function', () => {
+    expect(typeof CreateUser).toBe('function')
+  })
+  it('UpdatePassword should return a status code', async () => {
+    const mockResponse = {
+      status: 200,
+      data: {
+        message: 'test',
+      },
+    }
+    axios.post = jest.fn().mockResolvedValue(mockResponse)
+    const response = await CreateUser(validForm)
+    expect(response).toEqual(mockResponse.status)
   })
 })
