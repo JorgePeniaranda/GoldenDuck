@@ -67,13 +67,26 @@ describe('generateConfirmationCode', () => {
     const response = await generateConfirmationCode('test', 'test', 'test')
     expect(response).toEqual(mockResponse.status)
   })
+  it('catch should return a status code', async () => {
+    const mockErrorResponse = {
+      response: {
+        status: 400,
+        data: {
+          error: 'test',
+        },
+      },
+    }
+    axios.get = jest.fn().mockRejectedValue(mockErrorResponse)
+    const response = await generateConfirmationCode('test', 'test', 'test')
+    expect(response).toEqual(mockErrorResponse.response.status)
+  })
 })
 
 describe('checkConfirmationCode', () => {
   it('must be a function', () => {
     expect(typeof checkConfirmationCode).toBe('function')
   })
-  it('checkConfirmationCode should return a status code', async () => {
+  it('should return a status code', async () => {
     const mockResponse = {
       status: 200,
     }
@@ -81,13 +94,26 @@ describe('checkConfirmationCode', () => {
     const response = await checkConfirmationCode('2', '2')
     expect(response).toEqual(mockResponse.status)
   })
+  it('catch should return a status code', async () => {
+    const mockErrorResponse = {
+      response: {
+        status: 400,
+        data: {
+          error: 'test',
+        },
+      },
+    }
+    axios.post = jest.fn().mockRejectedValue(mockErrorResponse)
+    const response = await checkConfirmationCode('2', '2')
+    expect(response).toEqual(mockErrorResponse.response.status)
+  })
 })
 
 describe('CreateUser', () => {
   it('must be a function', () => {
     expect(typeof CreateUser).toBe('function')
   })
-  it('UpdatePassword should return a status code', async () => {
+  it('should return a status code', async () => {
     const mockResponse = {
       status: 200,
       data: {
@@ -97,5 +123,18 @@ describe('CreateUser', () => {
     axios.post = jest.fn().mockResolvedValue(mockResponse)
     const response = await CreateUser(validForm)
     expect(response).toEqual(mockResponse.status)
+  })
+  it('catch should return a status code', async () => {
+    const mockErrorResponse = {
+      response: {
+        status: 400,
+        data: {
+          error: 'test',
+        },
+      },
+    }
+    axios.post = jest.fn().mockRejectedValue(mockErrorResponse)
+    const response = await CreateUser(validForm)
+    expect(response).toEqual(mockErrorResponse.response.status)
   })
 })

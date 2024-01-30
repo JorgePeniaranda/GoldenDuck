@@ -22,6 +22,8 @@ export default class ConfirmationCode {
     if (process.env.NODE_ENV === 'development') {
       return console.log('Código enviado: ' + this.code)
     }
+
+    return true
   }
 
   checkCode(code: string, hash: string) {

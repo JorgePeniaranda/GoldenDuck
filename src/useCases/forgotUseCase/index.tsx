@@ -55,6 +55,7 @@ export const checkConfirmationCode = async (email: string, code: string) => {
     })
     .catch((err) => {
       Alerts.error(err.response.data.error)
+      return err.response.status
     })
 
   return res

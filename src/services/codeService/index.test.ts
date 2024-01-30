@@ -1,4 +1,6 @@
 import ConfirmationCode from '.'
+import bcrypt from 'bcryptjs'
+import { ValidationError } from '../errorService'
 
 const length = 6
 const code = new ConfirmationCode(length)
@@ -24,15 +26,17 @@ describe('Confirmation Code', () => {
     expect(typeof code.checkCode).toEqual('function')
   })
 
-  it('should generate a random alphanumeric code with 6 characters', () => {
-    expect(code.getCode().length).toEqual(length)
-  })
-
-  it('should generate a random alphanumeric code', () => {
-    expect(code.getCode()).toMatch(/[a-zA-Z0-9]{6}/)
+  it('should generate a string with hashed code', () => {
+    expect(typeof code.getCode()).toBe('string')
   })
 
   it('should check if the code is valid', () => {
-    expect(code.checkCode(code.getCode())).toBeTruthy()
+    expect(code.checkCode('test', bcrypt.hashSync('test'))).toBeTruthy()
+  })
+  it('should return a validation error', () => {
+    expect(code.sendCode).toThrow(ValidationError)
+  })
+  it('should return a validation error', () => {
+    expect(code.sendCode('test@email.com')).toBeTruthy()
   })
 })

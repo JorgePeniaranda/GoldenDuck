@@ -28,4 +28,17 @@ describe('login', () => {
     const response = await login(validForm)
     expect(response).toEqual(mockResponse.status)
   })
+  it('catch should return a status code', async () => {
+    const mockErrorResponse = {
+      response: {
+        status: 400,
+        data: {
+          error: 'test',
+        },
+      },
+    }
+    axios.post = jest.fn().mockRejectedValue(mockErrorResponse)
+    const response = await login(validForm)
+    expect(response).toEqual(mockErrorResponse.response.status)
+  })
 })
