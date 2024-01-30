@@ -14,15 +14,18 @@ describe('JWT Service', () => {
   it('should be a function', () => {
     expect(typeof JWT).toBe('function')
   })
+
   it('return error if JWT_SECRET is not defined', () => {
     if (process.env.JWT_SECRET) delete process.env.JWT_SECRET
     expect(() => {
       new JWT()
     }).toThrow(ConfigError)
   })
+
   it('generateAuthorizedToken must be a function', () => {
     expect(typeof jwtService.generateAuthorizedToken).toBe('function')
   })
+
   it('generateUnAuthorizedToken must be a function', () => {
     expect(typeof jwtService.generateUnAuthorizedToken).toBe('function')
   })
@@ -63,6 +66,7 @@ describe('verify token', () => {
     expect(decoded).toHaveProperty('authorized', true)
     expect(decoded).toHaveProperty('userID', 1)
   })
+
   it('should throw an error if token is invalid', () => {
     expect(() => {
       jwtService.verifyToken('token')

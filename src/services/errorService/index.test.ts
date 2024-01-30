@@ -13,14 +13,17 @@ describe('Create Error Factory', () => {
   it('should be a function', () => {
     expect(typeof createErrorFactory).toBe('function')
   })
+
   it('should return a class', () => {
     const CustomizedError = createErrorFactory('CustomizedError')
     expect(typeof CustomizedError).toBe('function')
   })
+
   it('should return a class with the name passed', () => {
     const CustomizedError = createErrorFactory('CustomizedError')
     expect(CustomizedError.name).toBe('CustomizedError')
   })
+
   it('should return a class with the message passed', () => {
     const CustomizedError = createErrorFactory('CustomizedError')
     const error = new CustomizedError('message')
@@ -32,10 +35,12 @@ describe('Errors Handler', () => {
   it('should be a function', () => {
     expect(typeof ErrorsHandler).toBe('function')
   })
+
   it('should return an object', () => {
     const error = ErrorsHandler(new Error('error'))
     expect(typeof error).toBe('object')
   })
+
   it('should handle PrismaClientInitializationError', () => {
     const error = new PrismaClientInitializationError('Prisma error', 'test')
     const result = ErrorsHandler(error)
@@ -44,6 +49,7 @@ describe('Errors Handler', () => {
       status: 500,
     })
   })
+
   it('should handle AuthorizationError', () => {
     const error = new AuthorizationError('Authorization error')
     const result = ErrorsHandler(error)
@@ -52,6 +58,7 @@ describe('Errors Handler', () => {
       status: 401,
     })
   })
+
   it('should handle ConfigError', () => {
     const error = new ConfigError('Config error')
     const result = ErrorsHandler(error)

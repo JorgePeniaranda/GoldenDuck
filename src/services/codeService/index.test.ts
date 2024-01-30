@@ -33,11 +33,13 @@ describe('Confirmation Code', () => {
   it('should check if the code is valid', () => {
     expect(code.checkCode('test', bcrypt.hashSync('test'))).toBeTruthy()
   })
+
   it('should return a validation error if email is invalid', () => {
     expect(() => {
       code.sendCode('test')
     }).toThrow(ValidationError)
   })
+
   it('should return a validation error', () => {
     expect(code.sendCode('test@email.com')).toBeTruthy()
   })

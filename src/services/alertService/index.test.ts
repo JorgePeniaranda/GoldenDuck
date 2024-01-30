@@ -8,18 +8,23 @@ describe('AlertService', () => {
   it('should be a object', () => {
     expect(typeof Alerts).toEqual('object')
   })
+
   it('should have a success method', () => {
     expect(typeof Alerts.success).toEqual('function')
   })
+
   it('should have a error method', () => {
     expect(typeof Alerts.error).toEqual('function')
   })
+
   it('should have a warning method', () => {
     expect(typeof Alerts.warning).toEqual('function')
   })
+
   it('should have a info method', () => {
     expect(typeof Alerts.info).toEqual('function')
   })
+
   it('should have a question method', () => {
     expect(typeof Alerts.question).toEqual('function')
   })
@@ -31,6 +36,7 @@ describe('Alerts.success', () => {
     Alerts.success('message')
     expect(spy).toHaveBeenCalled()
   })
+
   it('should call Swal.fire with success icon', () => {
     const spy = jest.spyOn(Swal, 'fire')
     Alerts.success('message')
@@ -40,6 +46,7 @@ describe('Alerts.success', () => {
       text: 'message',
     })
   })
+
   it('should be call then function', async () => {
     const then = jest.fn()
     Alerts.success('message', then)
@@ -54,6 +61,7 @@ describe('Alerts.error', () => {
     Alerts.error('message')
     expect(spy).toHaveBeenCalled()
   })
+
   it('should call Swal.fire with error icon', () => {
     const spy = jest.spyOn(Swal, 'fire')
     Alerts.error('message')
@@ -63,6 +71,7 @@ describe('Alerts.error', () => {
       text: 'message',
     })
   })
+
   it('should be call then function', async () => {
     const then = jest.fn()
     Alerts.error('message', then)
@@ -77,6 +86,7 @@ describe('Alerts.warning', () => {
     Alerts.warning('message')
     expect(spy).toHaveBeenCalled()
   })
+
   it('should call Swal.fire with warning icon', () => {
     const spy = jest.spyOn(Swal, 'fire')
     Alerts.warning('message')
@@ -86,6 +96,7 @@ describe('Alerts.warning', () => {
       text: 'message',
     })
   })
+
   it('should be call then function', async () => {
     const then = jest.fn()
     Alerts.warning('message', then)
@@ -100,6 +111,7 @@ describe('Alerts.info', () => {
     Alerts.info('message')
     expect(spy).toHaveBeenCalled()
   })
+
   it('should call Swal.fire with info icon', () => {
     const spy = jest.spyOn(Swal, 'fire')
     Alerts.info('message')
@@ -109,6 +121,7 @@ describe('Alerts.info', () => {
       text: 'message',
     })
   })
+
   it('should be call then function', async () => {
     const then = jest.fn()
     Alerts.info('message', then)
@@ -123,6 +136,7 @@ describe('Alerts.question', () => {
     Alerts.question('message')
     expect(spy).toHaveBeenCalled()
   })
+
   it('should call Swal.fire with question icon', () => {
     const spy = jest.spyOn(Swal, 'fire')
     Alerts.question('message')
@@ -132,6 +146,7 @@ describe('Alerts.question', () => {
       text: 'message',
     })
   })
+
   it('should call then function', async () => {
     const then = jest.fn()
     Alerts.question('message', then)

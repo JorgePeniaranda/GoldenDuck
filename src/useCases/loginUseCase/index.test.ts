@@ -8,6 +8,7 @@ describe('Validate Login Form', () => {
   it('must return true if the email is valid', () => {
     expect(CheckForm(validForm)).toBeTruthy()
   })
+
   it('must return false if the email is invalid', () => {
     expect(CheckForm({ ...validForm, email: 'test' })).toBeFalsy()
   })
@@ -17,6 +18,7 @@ describe('login', () => {
   it('must be a function', () => {
     expect(typeof login).toBe('function')
   })
+
   it('UpdatePassword should return a status code', async () => {
     const mockResponse = {
       status: 200,
@@ -28,6 +30,7 @@ describe('login', () => {
     const response = await login(validForm)
     expect(response).toEqual(mockResponse.status)
   })
+
   it('catch should return a status code', async () => {
     const mockErrorResponse = {
       response: {
