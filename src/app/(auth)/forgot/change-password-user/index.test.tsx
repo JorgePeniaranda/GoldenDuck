@@ -24,17 +24,17 @@ describe('ChangePasswordUser valid form', () => {
 
   it('must have a valid inputs', () => {
     const component = render(<ChangePasswordUser form={form} setForm={setForm} FormActions={formActions}/>);
-    const passwordInput = component.getAllByLabelText("Nueva contraseña:");
-    expect(passwordInput[0].tagName).toBe("INPUT");
-    expect(passwordInput[0].getAttribute("name")).toBe("password");
-    const confirmPasswordInput = component.getAllByLabelText("Confirme su nueva contraseña:");
-    expect(confirmPasswordInput[0].tagName).toBe("INPUT");
-    expect(confirmPasswordInput[0].getAttribute("name")).toBe("confirmPassword");
+    const passwordInput = component.getByLabelText("Nueva contraseña:");
+    expect(passwordInput.tagName).toBe("INPUT");
+    expect(passwordInput.getAttribute("name")).toBe("password");
+    const confirmPasswordInput = component.getByLabelText("Confirme su nueva contraseña:");
+    expect(confirmPasswordInput.tagName).toBe("INPUT");
+    expect(confirmPasswordInput.getAttribute("name")).toBe("confirmPassword");
   })
   
   it('must have a send button', () => {
     const component = render(<ChangePasswordUser form={form} setForm={setForm} FormActions={formActions}/>);
-    const button = component.getAllByText("Siguiente");
-    expect(button[0]).toBeTruthy()
+    const button = component.getByText("Siguiente");
+    expect(button).toBeTruthy()
   })
 });

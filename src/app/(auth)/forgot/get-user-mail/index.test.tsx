@@ -24,14 +24,14 @@ describe('GetUserMail valid form', () => {
 
   it('must have a valid inputs', () => {
     const component = render(<GetUserMail form={form} setForm={setForm} FormActions={formActions}/>);
-    const emailInput = component.getAllByLabelText("Email:");
-    expect(emailInput[0].tagName).toBe("INPUT");
-    expect(emailInput[0].getAttribute("name")).toBe("email");
+    const emailInput = component.getByLabelText("Email:");
+    expect(emailInput.tagName).toBe("INPUT");
+    expect(emailInput.getAttribute("name")).toBe("email");
   })
   
   it('must have a send button', () => {
     const component = render(<GetUserMail form={form} setForm={setForm} FormActions={formActions}/>);
-    const button = component.getAllByText("Siguiente");
-    expect(button[0]).toBeTruthy()
+    const button = component.getByText("Siguiente");
+    expect(button.tagName).toBe("BUTTON")
   })
 });

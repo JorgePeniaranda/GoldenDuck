@@ -10,19 +10,17 @@ describe('Login valid form', () => {
 
   it('must have a valid inputs', () => {
     const component = render(<Login/>);
-    const emailInput = component.getAllByPlaceholderText("Email");
-    const passwordInput = component.getAllByPlaceholderText("Contraseña");
-
-    expect(emailInput[0].tagName).toBe("INPUT");
-    expect(emailInput[0].getAttribute("name")).toBe("email");
-    expect(passwordInput[0].tagName).toBe("INPUT");
-    expect(passwordInput[0].getAttribute("name")).toBe("password");
+    const emailInput = component.getByPlaceholderText("Email");
+    const passwordInput = component.getByPlaceholderText("Contraseña");
+    expect(emailInput.tagName).toBe("INPUT");
+    expect(emailInput.getAttribute("name")).toBe("email");
+    expect(passwordInput.tagName).toBe("INPUT");
+    expect(passwordInput.getAttribute("name")).toBe("password");
   })
   
   it('must have a send button', () => {
     const component = render(<Login/>);
-    const button = component.getAllByText("Ingresar");
-
-    expect(button[0]).toBeTruthy()
+    const button = component.getByText("Ingresar");
+    expect(button.tagName).toBe("BUTTON")
   })
 });

@@ -23,7 +23,6 @@ describe('ConfirmUserMail valid form', () => {
   it('must have a valid inputs', () => {
     const component = render(<ConfirmUserMail form={form} FormActions={formActions}/>);
     const emailInput = component.getAllByDisplayValue("");
-
     expect(emailInput.length).toBe(6);
     expect(emailInput.some(e => {
       return e.tagName === "INPUT"
@@ -32,7 +31,7 @@ describe('ConfirmUserMail valid form', () => {
   
   it('must have a send button', () => {
     const component = render(<ConfirmUserMail form={form} FormActions={formActions}/>);
-    const button = component.getAllByText("Siguiente");
-    expect(button[0]).toBeTruthy()
+    const button = component.getByText("Siguiente");
+    expect(button.tagName).toBe("BUTTON")
   })
 });
