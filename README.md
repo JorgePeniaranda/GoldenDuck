@@ -28,6 +28,10 @@ This project is intended for educational and illustrative purposes only and is n
   <img src="https://tailwindcss.com/favicons/favicon-32x32.png?v=3" height="40" alt="tailwindcss logo"  />
   <img width="12" />
   <img src="https://sass-lang.com/favicon.ico" height="40" alt="sass logo"  />
+  <img width="12" />
+  <img src="https://jestjs.io/img/jest.png" height="40" alt="jest logo"  />
+  <img width="12" />
+  <img src="https://testing-library.com/img/octopus-64x64.png" height="40" alt="testing-library logo"  />
 </div>
 
 ## Requirements to Start GoldenDuck
