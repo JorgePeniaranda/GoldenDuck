@@ -12,7 +12,7 @@ const validForm: SignupForm = {
   lastName: 'test',
   phoneNumber: '1234567890',
   dni: '12345678',
-  birthDate: '01/01/2000',
+  birthDate: '2000/01/01',
   address: 'test',
   email: 'test@email.com',
   password: 'testtest',
