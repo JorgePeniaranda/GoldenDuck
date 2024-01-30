@@ -22,7 +22,7 @@ export const CheckForm = (SignupForm: SignupForm): boolean => {
     return true
   } catch (error) {
     if (error instanceof Error) {
-      Alerts.error(error.message)
+      Alerts.warning(error.message)
     }
     return false
   }

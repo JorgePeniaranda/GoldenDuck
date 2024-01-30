@@ -11,7 +11,7 @@ export const CheckEmail = (email: string): boolean => {
       throw new ValidationError(checkEmail.error.errors[0].message)
     return true
   } catch (error) {
-    if (error instanceof Error) Alerts.error(error.message)
+    if (error instanceof Error) Alerts.warning(error.message)
     return false
   }
 }

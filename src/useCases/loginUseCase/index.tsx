@@ -15,7 +15,7 @@ export const CheckForm = (LoginForm: LoginForm): boolean => {
     return true
   } catch (error) {
     if (error instanceof Error) {
-      Alerts.error(error.message)
+      Alerts.warning(error.message)
     }
     return false
   }
