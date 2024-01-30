@@ -114,7 +114,6 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
                 type="radio"
                 name="sex"
                 value="male"
-                checked={form.sex === 'male'}
                 onChange={handleChange}
               />
               Masculino
@@ -124,7 +123,6 @@ export default function GetUserInfo({ FormActions, form, setForm }: Props) {
                 type="radio"
                 name="sex"
                 value="female"
-                checked={form.sex === 'female'}
                 onChange={handleChange}
               />
               Femenino
