@@ -5,30 +5,28 @@ import Text from '@/components/atoms/text/Text'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import BaseButton from '@/components/molecules/buttons/base-button'
-import BaseInput from '@/components/molecules/inputs/base-input'
 import ContainerWithNavbar from '@/components/pages/container-with-navbar'
-import { useState } from 'react'
 import { LoginForm } from '@/types'
-import { CheckForm, login } from '@/useCases/loginUseCase'
+import { LoginSchema, login } from '@/useCases/loginUseCase'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import ErrorSpan from '@/components/atoms/text/ErrorSpan'
+import Alerts from '@/services/alertService'
 
 export default function Login() {
-  const [form, setForm] = useState<LoginForm>({
-    email: '',
-    password: '',
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginForm>({
+    resolver: zodResolver(LoginSchema),
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setForm({ ...form, [name]: value })
-  }
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    if (CheckForm(form)) {
-      await login(form)
-    }
-  }
+  const onSubmit = handleSubmit(async(form) => {
+    await login(form).then((res) => {
+      Alerts.success(res.data.message, () =>
+        window.location.replace('/dashboard'),
+      )
+    }).catch((err) => {
+      Alerts.error(err.response.data.error)
+    })
+  })
 
   return (
     <ContainerWithNavbar className={style.LoginSection} itemsCentered={false}>
@@ -55,26 +53,26 @@ export default function Login() {
         </BaseButton>
       </section>
       <section className={style.FormSide}>
-        <FormWithValidation onSubmit={handleSubmit}>
+        <FormWithValidation onSubmit={onSubmit}>
           <Text tag="h1" size={'1.9rem'} weight="700">
             Iniciar Sesión
           </Text>
-          <BaseInput
-            type="text"
-            placeholder="Email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            BaseStyle={false}
-          />
-          <BaseInput
-            type="password"
-            placeholder="Contraseña"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            BaseStyle={false}
-          />
+          <label>
+            <input
+              type="text"
+              placeholder="Email"
+              {...register("email")}
+            />
+            <ErrorSpan show={!!errors.email}>{errors.email?.message}</ErrorSpan>
+          </label>
+          <label>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              {...register("password")}
+            />
+            <ErrorSpan show={!!errors.password}>{errors.password?.message}</ErrorSpan>
+          </label>
           <InternalLinkText href="/forgot">
             Olvide mi contraseña
           </InternalLinkText>
