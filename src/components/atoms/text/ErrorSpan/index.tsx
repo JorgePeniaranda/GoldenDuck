@@ -16,7 +16,7 @@ export default function ErrorSpan({ children, show, align, className}: Props) {
         "text-end": align === "right",
     });
 
-    if(!show) return null;
+    if(!show) return
     
   return (
     <span className={classes}>
