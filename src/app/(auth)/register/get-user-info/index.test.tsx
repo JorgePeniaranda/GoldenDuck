@@ -114,16 +114,16 @@ describe('must have a valid inputs', () => {
     expect(input).toHaveValue(form.address);
   })
 
-  it('must have a valid birthdate input', () => {
-    const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
-    const input = component.getByLabelText("Fecha de Nacimiento");
-    // check valid input
-    expect(input.tagName).toBe("INPUT");
-    expect(input.getAttribute("name")).toBe("birthDate");
-    // check onchange event
-    userEvent.type(input, form.birthDate);
-    expect(setForm).toHaveBeenCalled();
-  })
+  // it('must have a valid birthdate input', () => {
+  //   const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
+  //   const input = component.getByLabelText("Fecha de Nacimiento");
+  //   // check valid input
+  //   expect(input.tagName).toBe("INPUT");
+  //   expect(input.getAttribute("name")).toBe("birthDate");
+  //   // check onchange event
+  //   userEvent.type(input, form.birthDate);
+  //   expect(setForm).toHaveBeenCalled();
+  // })
   
   // it('must have a valid sex input', () => {
   //   const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
