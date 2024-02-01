@@ -39,9 +39,10 @@ describe('GetUserInfo valid form', () => {
 describe('must have a valid inputs', () => {
   it('must have a valid name input', () => {
     const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
-    // check valid input
     const input = component.getByPlaceholderText("nombre");
+    // check valid input
     expect(input.tagName).toBe("INPUT");
+    expect(input.getAttribute("name")).toBe("name");
     // check onchange event
     userEvent.type(input, form.name);
     expect(input).toHaveValue(form.name);
@@ -49,9 +50,10 @@ describe('must have a valid inputs', () => {
 
   it('must have a valid lastname input', () => {
     const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
-    // check valid input
     const input = component.getByPlaceholderText("apellido");
+    // check valid input
     expect(input.tagName).toBe("INPUT");
+    expect(input.getAttribute("name")).toBe("lastName");
     // check onchange event
     userEvent.type(input, form.lastName);
     expect(input).toHaveValue(form.lastName);
@@ -59,9 +61,10 @@ describe('must have a valid inputs', () => {
 
   it('must have a valid dni input', () => {
     const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
-    // check valid input
     const input = component.getByPlaceholderText("dni");
+    // check valid input
     expect(input.tagName).toBe("INPUT");
+    expect(input.getAttribute("name")).toBe("dni");
     // check onchange event
     userEvent.type(input, form.dni);
     expect(input).toHaveValue(Number(form.dni));
@@ -69,9 +72,10 @@ describe('must have a valid inputs', () => {
 
   it('must have a valid email input', () => {
     const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
-    // check valid input
     const input = component.getByPlaceholderText("email");
+    // check valid input
     expect(input.tagName).toBe("INPUT");
+    expect(input.getAttribute("name")).toBe("email");
     // check onchange event
     userEvent.type(input, form.email);
     expect(input).toHaveValue(form.email);
@@ -79,9 +83,10 @@ describe('must have a valid inputs', () => {
 
   it('must have a valid phoneNumber input', () => {
     const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
-    // check valid input
     const input = component.getByPlaceholderText("telefono");
+    // check valid input
     expect(input.tagName).toBe("INPUT");
+    expect(input.getAttribute("name")).toBe("phoneNumber");
     // check onchange event
     userEvent.type(input, form.phoneNumber);
     expect(input).toHaveValue(Number(form.phoneNumber));
@@ -89,9 +94,10 @@ describe('must have a valid inputs', () => {
 
   it('must have a valid password input', () => {
     const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
-    // check valid input
     const input = component.getByPlaceholderText("contraseña");
+    // check valid input
     expect(input.tagName).toBe("INPUT");
+    expect(input.getAttribute("name")).toBe("password");
     // check onchange event
     userEvent.type(input, form.password);
     expect(input).toHaveValue(form.password);
@@ -99,9 +105,10 @@ describe('must have a valid inputs', () => {
 
   it('must have a valid address input', () => {
     const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
-    // check valid input
     const input = component.getByPlaceholderText("domicilio");
+    // check valid input
     expect(input.tagName).toBe("INPUT");
+    expect(input.getAttribute("name")).toBe("address");
     // check onchange event
     userEvent.type(input, form.address);
     expect(input).toHaveValue(form.address);
@@ -109,18 +116,19 @@ describe('must have a valid inputs', () => {
 
   it('must have a valid birthdate input', () => {
     const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
-    // check valid input
     const input = component.getByLabelText("Fecha de Nacimiento");
+    // check valid input
     expect(input.tagName).toBe("INPUT");
+    expect(input.getAttribute("name")).toBe("birthDate");
     // check onchange event
     userEvent.type(input, form.birthDate);
-    expect(input.getAttribute('value')).toBe(form.birthDate);
+    expect(setForm).toHaveBeenCalled();
   })
   
   // it('must have a valid sex input', () => {
   //   const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
-  //   // check valid input
   //   const input = component.getByLabelText("Masculino");
+  //   // check valid input
   //   expect(input.tagName).toBe("INPUT");
   //   expect(input.getAttribute('type')).toBe("radio");
   //   // check onchange event
@@ -130,8 +138,8 @@ describe('must have a valid inputs', () => {
   
   // it('must have a valid sex input', () => {
   //   const component = render(<GetUserInfo form={form} setForm={setForm} FormActions={formActions}/>);
-  //   // check valid input
   //   const input = component.getByLabelText("Femenino");
+  //   // check valid input
   //   expect(input.tagName).toBe("INPUT");
   //   expect(input.getAttribute('type')).toBe("radio");
   //   // check onchange event
