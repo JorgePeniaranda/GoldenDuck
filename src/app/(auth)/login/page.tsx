@@ -14,18 +14,24 @@ import ErrorSpan from '@/components/atoms/text/ErrorSpan'
 import Alerts from '@/services/alertService'
 
 export default function Login() {
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginForm>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginForm>({
     resolver: zodResolver(LoginSchema),
   })
 
-  const onSubmit = handleSubmit(async(form) => {
-    await login(form).then((res) => {
-      Alerts.success(res.data.message, () =>
-        window.location.replace('/dashboard'),
-      )
-    }).catch((err) => {
-      Alerts.error(err.response.data.error)
-    })
+  const onSubmit = handleSubmit(async (form) => {
+    await login(form)
+      .then((res) => {
+        Alerts.success(res.data.message, () =>
+          window.location.replace('/dashboard'),
+        )
+      })
+      .catch((err) => {
+        Alerts.error(err.response.data.error)
+      })
   })
 
   return (
@@ -58,20 +64,18 @@ export default function Login() {
             Iniciar Sesión
           </Text>
           <label>
-            <input
-              type="text"
-              placeholder="Email"
-              {...register("email")}
-            />
+            <input type="text" placeholder="Email" {...register('email')} />
             <ErrorSpan show={!!errors.email}>{errors.email?.message}</ErrorSpan>
           </label>
           <label>
             <input
               type="password"
               placeholder="Contraseña"
-              {...register("password")}
+              {...register('password')}
             />
-            <ErrorSpan show={!!errors.password}>{errors.password?.message}</ErrorSpan>
+            <ErrorSpan show={!!errors.password}>
+              {errors.password?.message}
+            </ErrorSpan>
           </label>
           <InternalLinkText href="/forgot">
             Olvide mi contraseña

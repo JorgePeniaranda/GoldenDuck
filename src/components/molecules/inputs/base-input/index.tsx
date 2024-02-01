@@ -30,7 +30,7 @@ export default function BaseInput({
   list,
   checked,
 }: Props) {
-  const classes = classNames({[styles.BaseInput]: BaseStyle}, className)
+  const classes = classNames({ [styles.BaseInput]: BaseStyle }, className)
 
   return (
     <input

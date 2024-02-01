@@ -19,7 +19,7 @@ export const ButtonWithPopover = ({
   arialLabel,
   emptyText,
   className,
-}: ButtonWithPopover) => {  
+}: ButtonWithPopover) => {
   return (
     <Popover className={style.Popover} aria-label={arialLabel}>
       <Popover.Button className={style.PopoverButton}>

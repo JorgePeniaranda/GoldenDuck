@@ -13,16 +13,14 @@ export default function ContainerWithNavbar({
   className,
   itemsCentered = true,
 }: Props) {
-  const classes = classNames(style.Container, className, {[style.CenterItems]: itemsCentered})
+  const classes = classNames(style.Container, className, {
+    [style.CenterItems]: itemsCentered,
+  })
 
   return (
     <>
       <Navbar />
-      <main
-        className={classes}
-      >
-        {children}
-      </main>
+      <main className={classes}>{children}</main>
     </>
   )
 }

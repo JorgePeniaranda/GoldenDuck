@@ -9,8 +9,7 @@ export const LoginSchema = z.object({
 })
 
 export const login = async (LoginForm: LoginForm) => {
-  const response = await axios
-    .post(`/api/login`, LoginForm)
+  const response = await axios.post(`/api/login`, LoginForm)
 
   return response
 }
