@@ -17,7 +17,7 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<LoginForm>({
     resolver: zodResolver(LoginSchema),
   })
@@ -84,6 +84,7 @@ export default function Login() {
             yPadding="0.7rem"
             xPadding="1.6rem"
             fontColor="var(--white)"
+            loading={isSubmitting}
           >
             Ingresar
           </BaseButton>
