@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import ErrorSpan from '@/components/atoms/text/ErrorSpan'
 import Alerts from '@/services/alertService'
+import { ErrorsHandler, ValidationError } from '@/services/errorService'
 
 export default function Login() {
   const {
@@ -23,15 +24,19 @@ export default function Login() {
   })
 
   const onSubmit = handleSubmit(async (form) => {
-    await login(form)
-      .then((res) => {
-        Alerts.success(res.data.message, () =>
-          window.location.replace('/dashboard'),
-        )
-      })
+    try {await login(form)
       .catch((err) => {
-        Alerts.error(err.response.data.error)
+        throw new ValidationError(err.response.data.error)
       })
+
+
+    Alerts.success("Ha ingresado exitosamente", () =>
+      location.replace('/dashboard'),
+    )
+    } catch (e) {
+      const { error } = ErrorsHandler(e)
+      return Alerts.error(error)
+    }
   })
 
   return (
