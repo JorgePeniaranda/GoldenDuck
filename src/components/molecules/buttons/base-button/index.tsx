@@ -39,10 +39,12 @@ export default function BaseButton({
   fontSize,
   fontColor,
   href,
-  loading
+  loading,
 }: Props) {
   const props = {
-    className: classNames(style.BaseButton, className, { [style.loading]: loading }),
+    className: classNames(style.BaseButton, className, {
+      [style.loading]: loading,
+    }),
     style: {
       padding: `${yPadding} ${xPadding}`,
       backgroundColor: backgroundColor,
@@ -54,10 +56,12 @@ export default function BaseButton({
 
   switch (type) {
     case 'button':
-      return <button {...props} disabled={loading}>
-        {children}
-        {loading && <Spinner />}
-      </button>
+      return (
+        <button {...props} disabled={loading}>
+          {children}
+          {loading && <Spinner />}
+        </button>
+      )
     case 'InternalLinkText':
       return (
         <InternalLinkText href={href || '#'} {...props}>
