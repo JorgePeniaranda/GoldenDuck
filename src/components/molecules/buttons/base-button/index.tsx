@@ -3,6 +3,7 @@ import style from './styles.module.scss'
 import ExternalLinkText from '@/components/atoms/text/ExternalLinkText'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import classNames from 'classnames'
+import Spinner from '@/components/atoms/spinner'
 
 interface Props {
   children: ReactNode
@@ -24,6 +25,7 @@ interface Props {
   fontSize?: string
   fontColor?: string
   href?: string
+  loading?: boolean
 }
 
 export default function BaseButton({
@@ -37,9 +39,12 @@ export default function BaseButton({
   fontSize,
   fontColor,
   href,
+  loading,
 }: Props) {
   const props = {
-    className: classNames(style.BaseButton, className),
+    className: classNames(style.BaseButton, className, {
+      [style.loading]: loading,
+    }),
     style: {
       padding: `${yPadding} ${xPadding}`,
       backgroundColor: backgroundColor,
@@ -48,9 +53,15 @@ export default function BaseButton({
       color: fontColor,
     },
   }
+
   switch (type) {
     case 'button':
-      return <button {...props}>{children}</button>
+      return (
+        <button {...props} disabled={loading}>
+          {children}
+          {loading && <Spinner />}
+        </button>
+      )
     case 'InternalLinkText':
       return (
         <InternalLinkText href={href || '#'} {...props}>

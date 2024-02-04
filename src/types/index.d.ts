@@ -64,11 +64,16 @@ export type SignupForm = {
   address: string
   email: string
   password: string
-  sex: 'male' | 'female' | ''
+  sex: 'male' | 'female'
 }
 
 export type ForgotForm = {
   email: string
   password: string
   confirmPassword: string
+}
+
+export type ErrorResponse = {
+  error: string
+  status: number
 }

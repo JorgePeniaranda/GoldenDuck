@@ -1,9 +1,22 @@
 .BaseButton {
+  position: relative;
   border-radius: 0.75ch;
   font-size: 1rem;
   transition: transform 300ms ease;
-  &:active {
+  &.loading {
+    color: transparent !important;
+    & [id='Spinner'] {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &:active:not(:disabled) {
     transform: scale(0.9);
     cursor: grabbing;
+  }
+  &:disabled {
+    cursor: not-allowed;
   }
 }

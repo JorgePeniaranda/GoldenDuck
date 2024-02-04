@@ -20,12 +20,7 @@ export default function InternalLinkText({
   const classes = classNames(className)
 
   return (
-    <Link
-      href={href}
-      aria-label={arialLabel}
-      className={classes}
-      style={style}
-    >
+    <Link href={href} aria-label={arialLabel} className={classes} style={style}>
       {children}
     </Link>
   )
