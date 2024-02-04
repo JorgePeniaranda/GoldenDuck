@@ -1,3 +1,5 @@
+import { ErrorResponse } from '@/types'
+
 export const createErrorFactory = function (name: string) {
   return class CustomizedError extends Error {
     constructor(message: string) {
@@ -13,7 +15,7 @@ export const NotFoundError = createErrorFactory('NotFoundError')
 export const AuthorizationError = createErrorFactory('AuthorizationError')
 export const ConflictError = createErrorFactory('ConflictError')
 
-export const ErrorsHandler = (error: any) => {
+export const ErrorsHandler = (error: any): ErrorResponse => {
   switch (error.name) {
     case 'PrismaClientInitializationError':
       return {
