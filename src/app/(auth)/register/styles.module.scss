@@ -10,4 +10,74 @@
     text-decoration: underline;
     cursor: pointer;
   }
+  input {
+    @media (prefers-color-scheme: light) {
+      border: 1px solid oklch(88.84% 0 0);
+    }
+  }
+}
+
+.GetInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 2rem;
+  gap: 2rem;
+  section {
+    flex: 1;
+    article {
+      display: grid;
+      gap: 3rem;
+      min-width: 21rem;
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input:not([type='radio']) {
+        width: 100%;
+        padding: 0.6rem 1rem;
+      }
+      div[id='sex'] {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        * {
+          cursor: pointer;
+        }
+        input:is([type='radio']) {
+          margin-right: 1ch;
+        }
+      }
+    }
+  }
+  > p {
+    width: 100%;
+    text-align: center;
+    a {
+      color: var(--LinkColor);
+    }
+  }
+  @media (width > 1024px) {
+    width: 60%;
+  }
+}
+
+.ConfirmUserInfo {
+  article {
+    p {
+      text-align: center;
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1.75rem;
+    button {
+      margin-top: 5rem;
+    }
+  }
 }
