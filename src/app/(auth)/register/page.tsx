@@ -19,10 +19,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import ReactCodeInput from 'react-code-input'
 import Alerts from '@/services/alertService'
 import { ErrorsHandler, ValidationError } from '@/services/errorService'
+import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
 
 export default function Signin() {
   const [step, setStep] = useState<number>(0)
   const [code, setCode] = useState<string>('')
+  const [showPassword, setShowPassword] = useState<boolean>(false)
   const {
     register,
     handleSubmit,
@@ -127,11 +129,16 @@ export default function Signin() {
                 </ErrorSpan>
               </label>
               <label>
-                <input
-                  type="password"
-                  placeholder="contraseña"
-                  {...register('password')}
-                />
+                <ConvertToSecretInput
+                  show={showPassword}
+                  setShow={setShowPassword}
+                >
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="contraseña"
+                    {...register('password')}
+                  />
+                </ConvertToSecretInput>
                 <ErrorSpan show={!!errors.password} align="center">
                   {errors.password?.message}
                 </ErrorSpan>
