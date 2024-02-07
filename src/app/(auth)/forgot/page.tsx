@@ -21,10 +21,12 @@ import Text from '@/components/atoms/text/Text'
 import ReactCodeInput from 'react-code-input'
 import { ErrorsHandler, ValidationError } from '@/services/errorService'
 import Alerts from '@/services/alertService'
+import InsertIconToSecretInput from '@/components/molecules/inputs/insert-icon-to-secret-input'
 
 export default function Forgot() {
   const [step, setStep] = useState<number>(0)
   const [code, setcode] = useState<string>('')
+  const [showPasswords, setShowPasswords] = useState<boolean>(false)
   const EmailForm = useForm<ForgotForm>({
     resolver: zodResolver(ForgotEmailSchema),
   })
@@ -140,13 +142,17 @@ export default function Forgot() {
         <form onSubmit={onSubmitPasswordForm}>
           <label>
             Nueva contraseña:
-            <InsertIconToInput icon={PasswordIcon}>
+            <InsertIconToSecretInput
+              icon={PasswordIcon}
+              show={showPasswords}
+              setShow={setShowPasswords}
+            >
               <input
-                type="password"
+                type={showPasswords ? 'text' : 'password'}
                 autoFocus
                 {...PasswordForm.register('password')}
               />
-            </InsertIconToInput>
+            </InsertIconToSecretInput>
           </label>
           <ErrorSpan
             show={!!PasswordForm.formState.errors.password}
@@ -156,13 +162,17 @@ export default function Forgot() {
           </ErrorSpan>
           <label>
             Confirme su nueva contraseña:
-            <InsertIconToInput icon={PasswordIcon}>
+            <InsertIconToSecretInput
+              icon={PasswordIcon}
+              show={showPasswords}
+              setShow={setShowPasswords}
+            >
               <input
-                type="password"
+                type={showPasswords ? 'text' : 'password'}
                 autoFocus
                 {...PasswordForm.register('confirmPassword')}
               />
-            </InsertIconToInput>
+            </InsertIconToSecretInput>
           </label>
           <ErrorSpan
             show={!!PasswordForm.formState.errors.confirmPassword}
