@@ -3,7 +3,6 @@
 import style from './styles.module.scss'
 import Text from '@/components/atoms/text/Text'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
-import FormWithValidation from '@/components/molecules/forms/FormWithValidation'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import ContainerWithNavbar from '@/components/pages/container-with-navbar'
 import { LoginForm } from '@/types'
@@ -12,6 +11,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import ErrorSpan from '@/components/atoms/text/ErrorSpan'
 import Alerts from '@/services/alertService'
+import { ErrorsHandler, ValidationError } from '@/services/errorService'
 
 export default function Login() {
   const {
@@ -23,15 +23,18 @@ export default function Login() {
   })
 
   const onSubmit = handleSubmit(async (form) => {
-    await login(form)
-      .then((res) => {
-        Alerts.success(res.data.message, () =>
-          window.location.replace('/dashboard'),
-        )
+    try {
+      await login(form).catch((err) => {
+        throw new ValidationError(err.response.data.error)
       })
-      .catch((err) => {
-        Alerts.error(err.response.data.error)
-      })
+
+      Alerts.success('Ha ingresado exitosamente', () =>
+        location.replace('/dashboard'),
+      )
+    } catch (e) {
+      const { error } = ErrorsHandler(e)
+      return Alerts.error(error)
+    }
   })
 
   return (
@@ -59,7 +62,7 @@ export default function Login() {
         </BaseButton>
       </section>
       <section className={style.FormSide}>
-        <FormWithValidation onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}>
           <Text tag="h1" size={'1.9rem'} weight="700">
             Iniciar Sesión
           </Text>
@@ -88,7 +91,7 @@ export default function Login() {
           >
             Ingresar
           </BaseButton>
-        </FormWithValidation>
+        </form>
       </section>
     </ContainerWithNavbar>
   )
