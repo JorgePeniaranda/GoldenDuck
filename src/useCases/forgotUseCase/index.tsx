@@ -12,14 +12,11 @@ export const ForgotPasswordSchema = z.object({
   confirmPassword: validations.password,
 })
 
-export const generateConfirmationCode = async (email: string) => (
+export const generateConfirmationCode = async (email: string) =>
   await axios.get(`/api/forgot/${email}`)
-)
 
-export const checkConfirmationCode = async (email: string, code: string) => (
+export const checkConfirmationCode = async (email: string, code: string) =>
   await axios.post(`/api/forgot/${email}`, { code })
-)
 
-export const UpdatePassword = async (ForgotForm: ForgotForm) => (await axios
-    .post(`/api/forgot`, ForgotForm)
-)
+export const UpdatePassword = async (ForgotForm: ForgotForm) =>
+  await axios.post(`/api/forgot`, ForgotForm)

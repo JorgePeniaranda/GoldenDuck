@@ -23,15 +23,14 @@ export default function Login() {
   })
 
   const onSubmit = handleSubmit(async (form) => {
-    try {await login(form)
-      .catch((err) => {
+    try {
+      await login(form).catch((err) => {
         throw new ValidationError(err.response.data.error)
       })
 
-
-    Alerts.success("Ha ingresado exitosamente", () =>
-      location.replace('/dashboard'),
-    )
+      Alerts.success('Ha ingresado exitosamente', () =>
+        location.replace('/dashboard'),
+      )
     } catch (e) {
       const { error } = ErrorsHandler(e)
       return Alerts.error(error)

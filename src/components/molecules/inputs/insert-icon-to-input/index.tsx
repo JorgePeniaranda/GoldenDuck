@@ -13,7 +13,7 @@ export default function InsertIconToInput({
   icon,
   position = 'left',
   className,
-  children
+  children,
 }: Props) {
   const classes = classNames(styles.InputWithIcon, className)
 
