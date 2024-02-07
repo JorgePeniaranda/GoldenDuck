@@ -44,7 +44,7 @@ export default function Signin() {
         throw new ValidationError(err.response.data.error)
       })
 
-      setStep(step + 1)
+      return setStep(step + 1)
     } catch (e) {
       const { error } = ErrorsHandler(e)
       return Alerts.error(error)
@@ -61,7 +61,7 @@ export default function Signin() {
         throw new ValidationError(err.response.data.error)
       })
 
-      Alerts.success('Usuario creado con exito', () => {
+      return Alerts.success('Usuario creado con exito', () => {
         location.href = '/dashboard'
       })
     } catch (e) {
