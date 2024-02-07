@@ -1,0 +1,30 @@
+.InputWithIcon {
+  display: flex;
+  position: relative;
+  img,
+  svg {
+    position: absolute;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  input {
+    padding: 1ch;
+    padding-right: calc(2ch + 1.5rem);
+  }
+  &[id='left'] {
+    img,
+    svg {
+      left: 1ch;
+    }
+    input {
+      padding-left: calc(2ch + 1.5rem);
+    }
+  }
+  svg:last-child {
+    cursor: pointer;
+    left: unset;
+    right: 1ch;
+  }
+}
