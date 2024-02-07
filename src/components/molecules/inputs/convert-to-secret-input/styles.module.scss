@@ -9,9 +9,9 @@
     top: 50%;
     right: 1ch;
     transform: translateY(-50%);
+    cursor: pointer;
   }
   input {
-    cursor: pointer;
     padding: 1ch;
     padding-right: calc(2ch + 1.5rem);
   }
