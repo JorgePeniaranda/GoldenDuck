@@ -26,7 +26,7 @@ export async function GET(
     })
 
     if (!checkExist)
-      throw new NotFoundError('No existe cuenta creada con ese correo')
+      throw new NotFoundError('No existe una cuenta creada con ese correo')
 
     // validate email
     const checkEmail = validations.email.safeParse(email)
