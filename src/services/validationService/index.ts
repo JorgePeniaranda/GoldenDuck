@@ -1,10 +1,10 @@
-import { checkAlphanumeric, checkOnlyLetters } from '@/utils'
+import {
+  checkAlphanumeric,
+  checkOnlyLetters,
+  checkPasswordStrong,
+} from '@/utils'
 import { z } from 'zod'
 import { ValidationError } from '../errorService'
-
-const passwordStrongRegex = new RegExp(
-  /^(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^0-9A-Za-z]).{8,72}$/,
-) // pasar a una función de utils
 
 export const validations = {
   name: z
@@ -44,7 +44,7 @@ export const validations = {
     .min(1, { message: 'La contraseña es requerida' })
     .min(8, { message: 'La contraseña debe tener al menos 8 caracteres' })
     .max(72, { message: 'La contraseña debe tener menos de 72 caracteres' })
-    .refine((password) => passwordStrongRegex.test(password), {
+    .refine(checkPasswordStrong, {
       message:
         'La contraseña debe tener una mayúscula, una minúscula, un número y un caracter especial.',
     }),
