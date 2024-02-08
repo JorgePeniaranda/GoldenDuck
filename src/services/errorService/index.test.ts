@@ -7,6 +7,7 @@ import {
   ConflictError,
   NotFoundError,
   ValidationError,
+  EmailError,
 } from '.'
 
 describe('Create Error Factory', () => {
@@ -39,6 +40,13 @@ describe('Errors Handler', () => {
   it('should return an object', () => {
     const error = ErrorsHandler(new Error('error'))
     expect(typeof error).toBe('object')
+  })
+
+  it('should return a object with message and status code', () => {
+    const error = createErrorFactory('test')
+    const handler = ErrorsHandler(new error('test'))
+    expect(handler).toHaveProperty('error')
+    expect(handler).toHaveProperty('status')
   })
 
   it('should handle PrismaClientInitializationError', () => {
@@ -95,11 +103,13 @@ describe('Errors Handler', () => {
     })
   })
 
-  it('should return a object with message and status code', () => {
-    const error = createErrorFactory('test')
-    const handler = ErrorsHandler(new error('test'))
-    expect(handler).toHaveProperty('error')
-    expect(handler).toHaveProperty('status')
+  it('should handle EmailError', () => {
+    const error = new EmailError('Email Error')
+    const result = ErrorsHandler(error)
+    expect(result).toEqual({
+      error: 'Email Error',
+      status: 500,
+    })
   })
 
   it('should return a object with default message and status code if error is unknown', () => {
