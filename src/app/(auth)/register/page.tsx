@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { redirect } from 'next/navigation'
 import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import { SignupForm } from '@/types'
