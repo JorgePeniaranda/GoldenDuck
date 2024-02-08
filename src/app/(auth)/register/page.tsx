@@ -97,7 +97,7 @@ export default function Signin() {
                 </ErrorSpan>
               </label>
               <label>
-                <input type="text" placeholder="dni" {...register('dni')} />
+                <input type="number" placeholder="dni" {...register('dni')} />
                 <ErrorSpan show={!!errors.dni} align="center">
                   {errors.dni?.message}
                 </ErrorSpan>

@@ -33,10 +33,12 @@ describe('JWT Service', () => {
 
 describe('generateAuthorizedToken', () => {
   it('should generate a valid token', () => {
-    const token = jwtService.generateAuthorizedToken('test', 'test', {
+    const token = jwtService.generateAuthorizedToken('test1', 'test2', {
       userID: 1,
     })
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string)
+    expect(decoded).toHaveProperty('iss', 'test1')
+    expect(decoded).toHaveProperty('aud', 'test2')
     expect(decoded).toHaveProperty('authorized', true)
     expect(decoded).toHaveProperty('userID', 1)
   })

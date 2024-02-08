@@ -1,51 +1,38 @@
-import { LoginForm } from '@/types'
+// import { LoginForm } from '@/types'
 import Login from './page'
 import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 
-const form: LoginForm = {
-  email: 'test@email.com',
-  password: 'testtest',
-}
+// const form: LoginForm = {
+//   email: 'test@email.com',
+//   password: 'test@TEST.1234',
+// }
+
+const inputs = [
+  {type: "text", name: "email", placeholder: "Email"},
+  {type: "password", name: "password", placeholder: "Contraseña"}
+]
 
 describe('Login valid form', () => {
-  it('', () => {
-    expect(1).toBe(1)
+  it('content must be rendered', () => {
+    const component = render(<Login/>);
+    expect(component).toBeTruthy();
   })
-  //   it('content must be rendered', () => {
-  //     const component = render(<Login/>);
-  //     expect(component).toBeTruthy();
-  //   })
+  
+  it('must have a valid inputs', () => {
+    const component = render(<Login/>);
+    inputs.forEach(input => {
+      const inputElement = component.getByPlaceholderText(input.placeholder);
+      expect(inputElement.tagName).toBe("INPUT");
+      expect(inputElement.getAttribute("type")).toBe(input.type);
+      expect(inputElement.getAttribute("name")).toBe(input.name);
+      expect(inputElement.getAttribute("placeholder")).toBe(input.placeholder);
+    })
+  })
 
-  //   it('must have a send button', () => {
-  //     const component = render(<Login/>);
-  //     const button = component.getByText("Ingresar");
-  //     expect(button.tagName).toBe("BUTTON")
-  //   })
-  // });
-
-  //   describe('must have a valid inputs', () => {
-
-  //   it('must have a valid email input', () => {
-  //     const component = render(<Login/>);
-  //     const input = component.getByPlaceholderText("Email");
-  //     // check valid input
-  //     expect(input.tagName).toBe("INPUT");
-  //     expect(input.getAttribute("name")).toBe("email");
-  //     // check onchange event
-  //     userEvent.type(input, form.email);
-  //     expect(input.getAttribute('value')).toBe(form.email);
-  //   })
-
-  //   it('must have a valid password input', () => {
-  //     const component = render(<Login/>);
-  //     const input = component.getByPlaceholderText("Contraseña");
-  //     // check valid input
-  //     expect(input.tagName).toBe("INPUT");
-  //     expect(input.getAttribute("name")).toBe("password");
-  //     // check onchange event
-  //     userEvent.type(input, form.password);
-  //     expect(input.getAttribute('value')).toBe(form.password);
-  //   })
-})
+  it('must have a send button', () => {
+    const component = render(<Login/>);
+    const button = component.getByText("Ingresar");
+    expect(button.tagName).toBe("BUTTON")
+  })
+});

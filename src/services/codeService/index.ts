@@ -1,20 +1,10 @@
 import bcrypt from 'bcryptjs'
 import { randomAlphanumeric } from '@/utils'
 import { validations } from '../validationService'
-import {
-  ConfigError,
-  EmailError,
-  ErrorsHandler,
-  ValidationError,
-} from '../errorService'
-import { Resend } from 'resend'
-import TemplateCodeEmail from '@/components/templates/email/TemplateCodeEmail'
+import { ErrorsHandler, ValidationError } from '../errorService'
+import Email from '../emailService'
 
-if (!process.env.RESEND_API_KEY)
-  throw new ConfigError(
-    'La variable de entorno RESEND_API_KEY no está configurada',
-  )
-const resend = new Resend(process.env.RESEND_API_KEY)
+const EmailService = new Email()
 
 export default class ConfirmationCode {
   private code: string
@@ -28,35 +18,22 @@ export default class ConfirmationCode {
   }
 
   sendCode(email: string) {
-    let code = this.code
+    try {
+      let code = this.code
 
-    const checkEmail = validations.email.safeParse(email)
-    if (!checkEmail.success)
-      throw new ValidationError(checkEmail.error.errors[0].message)
+      const checkEmail = validations.email.safeParse(email)
+      if (!checkEmail.success)
+        throw new ValidationError(checkEmail.error.errors[0].message)
 
-    if (process.env.NODE_ENV === 'development') {
-      return console.log('Código enviado: ' + this.code)
-    }
-
-    return (async function () {
-      try {
-        await resend.emails
-          .send({
-            from: 'Acme <onboarding@resend.dev>',
-            to: [email],
-            subject: 'Código de verificación | Golden Duck',
-            react: TemplateCodeEmail({
-              code,
-            }),
-          })
-          .catch(() => {
-            throw new EmailError('No se ha podido enviar el mail')
-          })
-      } catch (e) {
-        const { error } = ErrorsHandler(e)
-        return console.error(error)
+      if (process.env.NODE_ENV === 'development') {
+        return console.log('Código enviado: ' + this.code)
       }
-    })()
+
+      return true
+    } catch (e) {
+      const { error } = ErrorsHandler(e)
+      return console.error(error)
+    }
   }
 
   checkCode(code: string, hash: string) {
