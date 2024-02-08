@@ -43,16 +43,19 @@
         h1 {
           color: var(--primary);
         }
-        input {
-          width: 50%;
-          background: transparent;
-          color: var(--black);
-          text-align: center;
-          padding: 0.5ch;
-          border-bottom: 2px solid oklch(71.37% 0.019 261.32);
-          outline: none;
-          &:focus {
-            border-bottom: 2px solid var(--primary);
+        label {
+          max-width: 10rem;
+          input {
+            width: 100%;
+            background: transparent;
+            color: var(--black);
+            text-align: center;
+            padding: 0.5ch;
+            border-bottom: 2px solid oklch(71.37% 0.019 261.32);
+            outline: none;
+            &:focus {
+              border-bottom: 2px solid var(--primary);
+            }
           }
         }
         a {

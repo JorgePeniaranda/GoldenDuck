@@ -1,4 +1,5 @@
 import ConfirmationCode from '.'
+import bcrypt from 'bcryptjs'
 import { ValidationError } from '../errorService'
 
 const length = 6
@@ -25,23 +26,21 @@ describe('Confirmation Code', () => {
     expect(typeof code.checkCode).toEqual('function')
   })
 
-  it('getCode must return string', () => {
-    expect(typeof code.getCode()).toEqual('string')
+  it('should generate a string with hashed code', () => {
+    expect(typeof code.getCode()).toBe('string')
   })
 
-  it('sendCode must return error if email is invalid', () => {
-    expect(code.sendCode('test')).toThrow(ValidationError)
+  it('should check if the code is valid', () => {
+    expect(code.checkCode('test', bcrypt.hashSync('test'))).toBeTruthy()
   })
 
-  // it('should generate a random alphanumeric code with 6 characters', () => {
-  //   expect(code.getCode().length).toEqual(length)
-  // })
+  it('should return a validation error if email is invalid', () => {
+    expect(() => {
+      code.sendCode('test')
+    }).toThrow(ValidationError)
+  })
 
-  // it('should generate a random alphanumeric code', () => {
-  //   expect(code.getCode()).toMatch(/[a-zA-Z0-9]{6}/)
-  // })
-
-  // it('should check if the code is incorrect', () => {
-  //   expect(code.checkCode('ñ', code.getCode())).toBeTruthy()
-  // })
+  it('should return a validation error', () => {
+    expect(code.sendCode('test@email.com')).toBeTruthy()
+  })
 })

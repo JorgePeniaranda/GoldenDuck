@@ -11,6 +11,7 @@
   }
   input {
     padding: 1ch;
+    padding-right: calc(2ch + 1.5rem);
   }
   &[id='left'] {
     img,
@@ -21,14 +22,9 @@
       padding-left: calc(2ch + 1.5rem);
     }
   }
-  &[id='right'] {
-    background-color: red;
-    img,
-    svg {
-      right: 1ch;
-    }
-    input {
-      padding-right: calc(2ch + 1.5rem);
-    }
+  svg:last-child {
+    cursor: pointer;
+    left: unset;
+    right: 1ch;
   }
 }

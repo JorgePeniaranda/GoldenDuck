@@ -3,6 +3,7 @@
 import { Popover, Transition } from '@headlessui/react'
 import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import classNames from 'classnames'
 
 interface ButtonWithPopover {
   PopoverIcon: React.ReactNode
@@ -34,7 +35,7 @@ export const ButtonWithPopover = ({
       >
         <h1 className="duration-150"></h1>
         <Popover.Panel
-          className={`${style.PopoverPanel} ${className}`}
+          className={classNames(style.PopoverPanel, className)}
           aria-placeholder={emptyText}
           static
         >

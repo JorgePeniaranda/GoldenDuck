@@ -1,4 +1,9 @@
-import { checkAlphanumeric, checkOnlyLetters, randomAlphanumeric } from '.'
+import {
+  checkAlphanumeric,
+  checkOnlyLetters,
+  checkPasswordStrong,
+  randomAlphanumeric,
+} from '.'
 
 const random = randomAlphanumeric(10)
 
@@ -46,5 +51,19 @@ describe('Check Only Letters', () => {
 
   it('checkOnlyLetters should return false if the value is not only letters', () => {
     expect(checkOnlyLetters('test1')).toEqual(false)
+  })
+})
+
+describe('Check Password Strong', () => {
+  it('checkPasswordStrong should be a function', () => {
+    expect(typeof checkPasswordStrong).toEqual('function')
+  })
+
+  it('checkPasswordStrong should return true if the value is a strong password', () => {
+    expect(checkPasswordStrong('Test@Test123')).toEqual(true)
+  })
+
+  it('checkPasswordStrong should return false if the value is not a strong password', () => {
+    expect(checkPasswordStrong('test')).toEqual(false)
   })
 })

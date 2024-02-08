@@ -1,0 +1,18 @@
+.InputWithIcon {
+  display: flex;
+  position: relative;
+  img,
+  svg {
+    position: absolute;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    top: 50%;
+    right: 1ch;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  input {
+    padding: 1ch;
+    padding-right: calc(2ch + 1.5rem);
+  }
+}

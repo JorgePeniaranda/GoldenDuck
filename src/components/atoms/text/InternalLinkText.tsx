@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import Link from 'next/link'
 import { CSSProperties, ReactNode } from 'react'
 
@@ -16,13 +17,10 @@ export default function InternalLinkText({
   className,
   style,
 }: Props) {
+  const classes = classNames(className)
+
   return (
-    <Link
-      href={href}
-      aria-label={arialLabel}
-      className={className}
-      style={style}
-    >
+    <Link href={href} aria-label={arialLabel} className={classes} style={style}>
       {children}
     </Link>
   )

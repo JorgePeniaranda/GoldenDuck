@@ -1,5 +1,6 @@
 import Navbar from '@/components/organisms/navbar/base'
 import style from './styles.module.scss'
+import classNames from 'classnames'
 
 interface Props {
   children: React.ReactNode
@@ -12,14 +13,14 @@ export default function ContainerWithNavbar({
   className,
   itemsCentered = true,
 }: Props) {
+  const classes = classNames(style.Container, className, {
+    [style.CenterItems]: itemsCentered,
+  })
+
   return (
     <>
       <Navbar />
-      <main
-        className={`${style.Container} ${className} ${itemsCentered && style.CenterItems}`}
-      >
-        {children}
-      </main>
+      <main className={classes}>{children}</main>
     </>
   )
 }

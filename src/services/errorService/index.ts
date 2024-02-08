@@ -1,3 +1,5 @@
+import { ErrorResponse } from '@/types'
+
 export const createErrorFactory = function (name: string) {
   return class CustomizedError extends Error {
     constructor(message: string) {
@@ -12,8 +14,9 @@ export const ValidationError = createErrorFactory('ValidationError')
 export const NotFoundError = createErrorFactory('NotFoundError')
 export const AuthorizationError = createErrorFactory('AuthorizationError')
 export const ConflictError = createErrorFactory('ConflictError')
+export const EmailError = createErrorFactory('EmailError')
 
-export const ErrorsHandler = (error: any) => {
+export const ErrorsHandler = (error: any): ErrorResponse => {
   switch (error.name) {
     case 'PrismaClientInitializationError':
       return {
@@ -30,8 +33,9 @@ export const ErrorsHandler = (error: any) => {
       return { error: error.message, status: 401 }
     case 'ConflictError':
       return { error: error.message, status: 409 }
+    case 'EmailError':
+      return { error: error.message, status: 500 }
     default:
-      console.log(error)
       return { error: 'Ha ocurrido un error', status: 500 }
   }
 }
