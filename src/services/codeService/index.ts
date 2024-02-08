@@ -25,16 +25,16 @@ export default class ConfirmationCode {
     if (!checkEmail.success)
       throw new ValidationError(checkEmail.error.errors[0].message)
 
-    // if (process.env.NODE_ENV === 'development') {
-    //   return console.log('Código enviado: ' + this.code)
-    // }
+    if (process.env.NODE_ENV === 'development') {
+      return console.log('Código enviado: ' + this.code)
+    }
 
     return (async function () {
       try {
         await resend.emails
           .send({
             from: 'Acme <onboarding@resend.dev>',
-            to: ['peniarandajorge@gmail.com'],
+            to: [email],
             subject: 'Código de verificación | Golden Duck',
             react: TemplateCodeEmail({
               code,
