@@ -14,6 +14,7 @@ export const ValidationError = createErrorFactory('ValidationError')
 export const NotFoundError = createErrorFactory('NotFoundError')
 export const AuthorizationError = createErrorFactory('AuthorizationError')
 export const ConflictError = createErrorFactory('ConflictError')
+export const EmailError = createErrorFactory('EmailError')
 
 export const ErrorsHandler = (error: any): ErrorResponse => {
   switch (error.name) {
@@ -32,6 +33,8 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
       return { error: error.message, status: 401 }
     case 'ConflictError':
       return { error: error.message, status: 409 }
+    case 'EmailError':
+      return { error: error.message, status: 500 }
     default:
       return { error: 'Ha ocurrido un error', status: 500 }
   }
