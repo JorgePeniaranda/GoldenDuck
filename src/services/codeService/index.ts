@@ -1,10 +1,19 @@
 import bcrypt from 'bcryptjs'
 import { randomAlphanumeric } from '@/utils'
 import { validations } from '../validationService'
-import { EmailError, ErrorsHandler, ValidationError } from '../errorService'
+import {
+  ConfigError,
+  EmailError,
+  ErrorsHandler,
+  ValidationError,
+} from '../errorService'
 import { Resend } from 'resend'
 import TemplateCodeEmail from '@/components/templates/email/TemplateCodeEmail'
 
+if (!process.env.RESEND_API_KEY)
+  throw new ConfigError(
+    'La variable de entorno RESEND_API_KEY no está configurada',
+  )
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export default class ConfirmationCode {
