@@ -25,6 +25,7 @@ describe('JWT Service', () => {
   it('generateAuthorizedToken must be a function', () => {
     expect(typeof jwtService.generateAuthorizedToken).toBe('function')
   })
+
   it('generateUnAuthorizedToken must be a function', () => {
     expect(typeof jwtService.generateUnAuthorizedToken).toBe('function')
   })
@@ -32,10 +33,12 @@ describe('JWT Service', () => {
 
 describe('generateAuthorizedToken', () => {
   it('should generate a valid token', () => {
-    const token = jwtService.generateAuthorizedToken('test', 'test', {
+    const token = jwtService.generateAuthorizedToken('test1', 'test2', {
       userID: 1,
     })
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string)
+    expect(decoded).toHaveProperty('iss', 'test1')
+    expect(decoded).toHaveProperty('aud', 'test2')
     expect(decoded).toHaveProperty('authorized', true)
     expect(decoded).toHaveProperty('userID', 1)
   })
@@ -43,7 +46,7 @@ describe('generateAuthorizedToken', () => {
 
 describe('generateUnAuthorizedToken', () => {
   it('should generate a valid token', () => {
-    const token = jwtService.generateUnAuthorizedToken('test', 'test', {
+    const token = jwtService.generateUnAuthorizedToken('test1', 'test2', {
       email: 'test@email.com',
       code: 'code',
     })
