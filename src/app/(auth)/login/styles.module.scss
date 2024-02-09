@@ -4,6 +4,7 @@
   display: flex;
   flex-wrap: wrap-reverse;
   min-height: calc(100dvh - var(--base-nav-height));
+  flex-direction: column-reverse;
   section {
     flex: 3;
     padding-bottom: var(--base-nav-height);
@@ -24,13 +25,14 @@
     }
     &.FormSide {
       flex: 1;
-      min-width: max-content;
+      width: max-content;
       justify-content: center;
       align-items: center;
       form {
+        min-width: 20rem;
+        max-width: 27rem;
         height: clamp(25rem, 50%, 32rem);
         min-height: 25rem;
-        width: clamp(20rem, 65%, 27rem);
         background-color: oklch(96.99% 0.001 106.42);
         box-shadow: 0 8px 28px 5px oklch(42.78% 0 0 / 20%);
         display: flex;
@@ -73,8 +75,12 @@
         align-items: flex-end;
       }
     }
+    @media (width < 768px) {
+      margin: 0 auto;
+    }
   }
   @media (width > 768px) {
     padding-inline: var(--base-nav-x-padding) !important;
+    flex-direction: row;
   }
 }
