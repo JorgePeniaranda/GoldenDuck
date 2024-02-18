@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import React, { type ReactNode } from 'react'
 import style from './styles.module.scss'
 import ExternalLinkText from '@/components/atoms/text/ExternalLinkText'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'

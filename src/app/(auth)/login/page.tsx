@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import style from './styles.module.scss'
 import Text from '@/components/atoms/text/Text'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'

@@ -1,3 +1,4 @@
+import React from 'react'
 import style from './styles.module.scss'
 import Text from '@/components/atoms/text/Text'
 import type { Metadata } from 'next'

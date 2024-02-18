@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 
 interface Props {

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import { type SignupForm } from '@/types'

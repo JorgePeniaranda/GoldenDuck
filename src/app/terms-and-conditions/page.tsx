@@ -1,3 +1,4 @@
+import React from 'react'
 import ContainerWithNavbar from '@/components/pages/container-with-navbar'
 import Text from '@/components/atoms/text/Text'
 import style from './styles.module.scss'

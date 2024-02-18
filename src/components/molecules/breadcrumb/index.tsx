@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { usePathname } from 'next/navigation'
 import Text from '../../atoms/text/Text'
 import style from './styles.module.scss'

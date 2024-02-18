@@ -1,3 +1,4 @@
+import React from 'react'
 import Image from 'next/image'
 import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'

@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'

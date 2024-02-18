@@ -1,3 +1,4 @@
+import React from 'react'
 import Text from '@/components/atoms/text/Text'
 
 export default function Transfers (): JSX.Element {

@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default function Spinner (): JSX.Element {
   return (
     <figure role="status" id="Spinner">

@@ -1,3 +1,4 @@
+import React from 'react'
 import classNames from 'classnames'
 import Link from 'next/link'
 import { type CSSProperties, type ReactNode } from 'react'

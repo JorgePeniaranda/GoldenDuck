@@ -1,3 +1,4 @@
+import React from 'react'
 import Navbar from '@/components/organisms/navbar/home-navbar'
 import HomeHeader from '@/components/pages/headers/header-home'
 import Footer from '@/components/organisms/footer'

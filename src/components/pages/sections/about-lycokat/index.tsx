@@ -1,3 +1,4 @@
+import React from 'react'
 import ExternalLinkText from '@/components/atoms/text/ExternalLinkText'
 import Text from '@/components/atoms/text/Text'
 import Image from 'next/image'

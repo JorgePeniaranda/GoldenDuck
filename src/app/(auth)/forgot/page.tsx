@@ -1,7 +1,7 @@
 'use client'
 
+import React, { useState } from 'react'
 import style from './styles.module.scss'
-import { useState } from 'react'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import InsertIconToInput from '@/components/molecules/inputs/insert-icon-to-input'
 import { EmailIcon, PasswordIcon } from '@/const/ForgotConst'

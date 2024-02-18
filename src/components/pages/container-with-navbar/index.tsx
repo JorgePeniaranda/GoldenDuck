@@ -1,3 +1,4 @@
+import React from 'react'
 import Navbar from '@/components/organisms/navbar/base'
 import style from './styles.module.scss'
 import classNames from 'classnames'

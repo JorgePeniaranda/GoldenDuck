@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import SliderSlick from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'

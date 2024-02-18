@@ -1,3 +1,4 @@
+import React from 'react'
 import Navbar from '@/components/organisms/navbar/base'
 import Text from '@/components/atoms/text/Text'
 import Image from 'next/image'
