@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Poppins as PoppinsFont } from 'next/font/google'
 import './globals.css'
 
@@ -6,6 +6,21 @@ const Poppins = PoppinsFont({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   subsets: ['latin']
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  height: 'device-height',
+  viewportFit: 'cover',
+  initialScale: 1,
+  minimumScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f9f7f7' },
+    { media: '(prefers-color-scheme: dark)', color: '#1f1f1f' },
+  ],
+}
 
 export const metadata: Metadata = {
   title: 'Golden Duck',
