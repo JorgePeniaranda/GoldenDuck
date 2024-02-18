@@ -6,7 +6,7 @@ export default class JWT {
 
   constructor () {
     const JWT_SECRET = process.env.JWT_SECRET
-    if (!JWT_SECRET) {
+    if (JWT_SECRET === undefined) {
       throw new ConfigError(
         'La variable de entorno JWT_SECRET no está configurada'
       )

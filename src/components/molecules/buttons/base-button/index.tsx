@@ -59,18 +59,18 @@ export default function BaseButton ({
       return (
         <button {...props} disabled={loading}>
           {children}
-          {loading && <Spinner />}
+          {loading !== null && loading !== undefined && <Spinner />}
         </button>
       )
     case 'InternalLinkText':
       return (
-        <InternalLinkText href={href || '#'} {...props}>
+        <InternalLinkText href={href ?? '#'} {...props}>
           {children}
         </InternalLinkText>
       )
     case 'ExternalLinkText':
       return (
-        <ExternalLinkText href={href || '#'} {...props}>
+        <ExternalLinkText href={href ?? '#'} {...props}>
           {children}
         </ExternalLinkText>
       )

@@ -40,7 +40,7 @@ export default function Signin (): JSX.Element {
         watch('dni'),
         watch('phoneNumber')
       ).catch((err) => {
-        throw new ValidationError(err.response.data.error)
+        throw new ValidationError(err.response.data.error as string)
       })
 
       setStep(step + 1)
@@ -53,11 +53,11 @@ export default function Signin (): JSX.Element {
   const onSubmitCode = handleSubmit(async (form) => {
     try {
       await checkConfirmationCode(watch('email'), code).catch((err) => {
-        throw new ValidationError(err.response.data.error)
+        throw new ValidationError(err.response.data.error as string)
       })
 
       await CreateUser(form).catch((err) => {
-        throw new ValidationError(err.response.data.error)
+        throw new ValidationError(err.response.data.error as string)
       })
 
       Alerts.success('Usuario creado con exito', () => {
@@ -82,7 +82,7 @@ export default function Signin (): JSX.Element {
             <article>
               <label>
                 <input type="text" placeholder="nombre" {...register('name')} />
-                <ErrorSpan show={!!errors.name} align="center">
+                <ErrorSpan show={errors.name === undefined} align="center">
                   {errors.name?.message}
                 </ErrorSpan>
               </label>
@@ -92,13 +92,13 @@ export default function Signin (): JSX.Element {
                   placeholder="apellido"
                   {...register('lastName')}
                 />
-                <ErrorSpan show={!!errors.lastName} align="center">
+                <ErrorSpan show={errors.lastName === undefined} align="center">
                   {errors.lastName?.message}
                 </ErrorSpan>
               </label>
               <label>
                 <input type="number" placeholder="dni" {...register('dni')} />
-                <ErrorSpan show={!!errors.dni} align="center">
+                <ErrorSpan show={errors.dni === undefined} align="center">
                   {errors.dni?.message}
                 </ErrorSpan>
               </label>
@@ -113,7 +113,7 @@ export default function Signin (): JSX.Element {
                   placeholder="email"
                   {...register('email')}
                 />
-                <ErrorSpan show={!!errors.email} align="center">
+                <ErrorSpan show={errors.email === undefined} align="center">
                   {errors.email?.message}
                 </ErrorSpan>
               </label>
@@ -123,7 +123,7 @@ export default function Signin (): JSX.Element {
                   placeholder="telefono"
                   {...register('phoneNumber')}
                 />
-                <ErrorSpan show={!!errors.phoneNumber} align="center">
+                <ErrorSpan show={errors.phoneNumber === undefined} align="center">
                   {errors.phoneNumber?.message}
                 </ErrorSpan>
               </label>
@@ -138,7 +138,7 @@ export default function Signin (): JSX.Element {
                     {...register('password')}
                   />
                 </ConvertToSecretInput>
-                <ErrorSpan show={!!errors.password} align="center">
+                <ErrorSpan show={errors.password === undefined} align="center">
                   {errors.password?.message}
                 </ErrorSpan>
               </label>
@@ -153,14 +153,14 @@ export default function Signin (): JSX.Element {
                   placeholder="domicilio"
                   {...register('address')}
                 />
-                <ErrorSpan show={!!errors.address} align="center">
+                <ErrorSpan show={errors.address === undefined} align="center">
                   {errors.address?.message}
                 </ErrorSpan>
               </label>
               <label>
                 <input type="date" {...register('birthDate')} />
                 Fecha de Nacimiento
-                <ErrorSpan show={!!errors.birthDate} align="center">
+                <ErrorSpan show={errors.birthDate === undefined} align="center">
                   {errors.birthDate?.message}
                 </ErrorSpan>
               </label>
@@ -168,14 +168,14 @@ export default function Signin (): JSX.Element {
                 <label>
                   <input type="radio" value="male" {...register('sex')} />
                   Masculino
-                  <ErrorSpan show={!!errors.sex} align="center">
+                  <ErrorSpan show={errors.sex === undefined} align="center">
                     {errors.sex?.message}
                   </ErrorSpan>
                 </label>
                 <label>
                   <input type="radio" value="female" {...register('sex')} />
                   Femenino
-                  <ErrorSpan show={!!errors.sex} align="center">
+                  <ErrorSpan show={errors.sex === undefined} align="center">
                     {errors.sex?.message}
                   </ErrorSpan>
                 </label>

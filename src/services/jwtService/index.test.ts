@@ -16,10 +16,8 @@ describe('JWT Service', () => {
   })
 
   it('return error if JWT_SECRET is not defined', () => {
-    if (process.env.JWT_SECRET) delete process.env.JWT_SECRET
-    expect(() => {
-      new JWT()
-    }).toThrow(ConfigError)
+    if (process.env.JWT_SECRET !== undefined) delete process.env.JWT_SECRET
+    expect(new JWT()).toThrow(ConfigError)
   })
 
   it('generateAuthorizedToken must be a function', () => {
@@ -36,7 +34,7 @@ describe('generateAuthorizedToken', () => {
     const token = jwtService.generateAuthorizedToken('test1', 'test2', {
       userID: 1
     })
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!)
+    const decoded = jwt.verify(token, process.env.JWT_SECRET ?? '')
     expect(decoded).toHaveProperty('iss', 'test1')
     expect(decoded).toHaveProperty('aud', 'test2')
     expect(decoded).toHaveProperty('authorized', true)
@@ -50,7 +48,7 @@ describe('generateUnAuthorizedToken', () => {
       email: 'test@email.com',
       code: 'code'
     })
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!)
+    const decoded = jwt.verify(token, process.env.JWT_SECRET ?? '')
     expect(decoded).toHaveProperty('iss', 'test1')
     expect(decoded).toHaveProperty('aud', 'test2')
     expect(decoded).toHaveProperty('authorized', false)

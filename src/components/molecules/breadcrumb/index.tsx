@@ -20,7 +20,7 @@ export default function Breadcrumb () {
           )
         } else {
           return (
-            <InternalLinkText href={`/${urls.slice(0, index + 1).join('/')}`}>
+            <InternalLinkText key={index} href={`/${urls.slice(0, index + 1).join('/')}`}>
               {url} /{' '}
             </InternalLinkText>
           )

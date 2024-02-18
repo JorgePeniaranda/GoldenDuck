@@ -8,28 +8,28 @@ const UnAuthorizedURLs = ['/login', '/register', '/forgot']
 export async function middleware (request: NextRequest) {
   const token = request.cookies.get('token')
 
-  if (UnAuthorizedURLs.includes(request.nextUrl.pathname) && token) {
+  if (UnAuthorizedURLs.includes(request.nextUrl.pathname) && (token !== undefined && token !== null)) {
     try {
       const { payload } = await jwtVerify(
         token.value,
         new TextEncoder().encode(process.env.JWT_SECRET)
       )
 
-      if (payload.authorized && payload.aud === 'dashboard') {
+      if ((payload.authorized !== undefined && payload.authorized !== null) && payload.aud === 'dashboard') {
         return NextResponse.redirect(new URL('/dashboard', request.nextUrl))
       }
     } catch (error) {
       console.log(error)
     }
   } else if (AuthorizedURLs.includes(request.nextUrl.pathname)) {
-    if (token) {
+    if (token !== undefined && token !== null) {
       try {
         const { payload } = await jwtVerify(
           token.value,
           new TextEncoder().encode(process.env.JWT_SECRET)
         )
 
-        if (!payload.authorized || payload.aud !== 'dashboard') {
+        if ((payload.authorized !== undefined && payload.authorized !== null) || payload.aud !== 'dashboard') {
           return NextResponse.redirect(new URL('/login', request.nextUrl))
         }
       } catch (error) {

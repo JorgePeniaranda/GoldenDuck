@@ -25,7 +25,7 @@ export default function Login (): JSX.Element {
   const onSubmit = handleSubmit(async (form) => {
     try {
       await login(form).catch((err) => {
-        throw new ValidationError(err.response.data.error)
+        throw new ValidationError(err.response.data.error as string)
       })
 
       Alerts.success('Ha ingresado exitosamente', () => { location.replace('/dashboard') }
@@ -67,7 +67,7 @@ export default function Login (): JSX.Element {
           </Text>
           <label>
             <input type="text" placeholder="Email" {...register('email')} />
-            <ErrorSpan show={!!errors.email}>{errors.email?.message}</ErrorSpan>
+            <ErrorSpan show={errors.email !== undefined}>{errors.email?.message}</ErrorSpan>
           </label>
           <label>
             <input
@@ -75,7 +75,7 @@ export default function Login (): JSX.Element {
               placeholder="Contraseña"
               {...register('password')}
             />
-            <ErrorSpan show={!!errors.password}>
+            <ErrorSpan show={errors.password !== undefined}>
               {errors.password?.message}
             </ErrorSpan>
           </label>

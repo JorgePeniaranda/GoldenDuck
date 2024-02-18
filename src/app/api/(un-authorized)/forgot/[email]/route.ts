@@ -25,7 +25,7 @@ export async function GET (
       where: { email, deleted: false }
     })
 
-    if (!checkExist) { throw new NotFoundError('No existe una cuenta creada con ese correo') }
+    if (checkExist === undefined || checkExist === null) { throw new NotFoundError('No existe una cuenta creada con ese correo') }
 
     // validate email
     const checkEmail = validations.email.safeParse(email)
@@ -71,15 +71,15 @@ export async function POST (req: NextRequest) {
     const token = req.cookies.get('token')?.value
 
     // verify token and code
-    if (!code) throw new ValidationError('No se ha enviado el código')
-    if (!token) throw new ValidationError('No se ha enviado el token')
+    if (code === undefined || code === null) throw new ValidationError('No se ha enviado el código')
+    if (token === undefined || token === null) throw new ValidationError('No se ha enviado el token')
 
     // verify token and get values
-    const decodeJWT = await jwt.verifyToken(token)
+    const decodeJWT = jwt.verifyToken(token)
 
     // check if token is valid
     if (decodeJWT.iss !== 'forgot' && decodeJWT.aud !== 'forgot') { throw new AuthorizationError('Token invalido') }
-    if (!CodeService.checkCode(code, decodeJWT.code)) { throw new AuthorizationError('El código es invalido') }
+    if (!CodeService.checkCode(code as string, decodeJWT.code as string)) { throw new AuthorizationError('El código es invalido') }
 
     // generate authorized token with email and type forgot
     const tokenData = {

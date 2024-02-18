@@ -7,7 +7,7 @@ export default class Email {
 
   constructor () {
     const RESEND_API_KEY = process.env.RESEND_API_KEY
-    if (!RESEND_API_KEY) {
+    if (RESEND_API_KEY === undefined) {
       throw new ConfigError(
         'La variable de entorno RESEND_API_KEY no está configurada'
       )

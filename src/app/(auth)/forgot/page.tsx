@@ -37,7 +37,7 @@ export default function Forgot (): JSX.Element {
   const onSubmitEmailForm = EmailForm.handleSubmit(async () => {
     try {
       await generateConfirmationCode(EmailForm.watch('email')).catch((err) => {
-        throw new ValidationError(err.response.data.error)
+        throw new ValidationError(err.response.data.error as string)
       })
 
       setStep(step + 1)
@@ -51,7 +51,7 @@ export default function Forgot (): JSX.Element {
     try {
       await checkConfirmationCode(EmailForm.watch('email'), code).catch(
         (err) => {
-          throw new ValidationError(err.response.data.error)
+          throw new ValidationError(err.response.data.error as string)
         }
       )
 
@@ -70,7 +70,7 @@ export default function Forgot (): JSX.Element {
 
       await UpdatePassword({ ...form, email: EmailForm.watch('email') }).catch(
         (err) => {
-          throw new ValidationError(err.response.data.error)
+          throw new ValidationError(err.response.data.error as string)
         }
       )
 
@@ -99,7 +99,7 @@ export default function Forgot (): JSX.Element {
             <InsertIconToInput icon={EmailIcon}>
               <input type="text" autoFocus {...EmailForm.register('email')} />
             </InsertIconToInput>
-            <ErrorSpan show={!!EmailForm.formState.errors.email} align="center">
+            <ErrorSpan show={EmailForm.formState.errors.email !== undefined} align="center">
               {EmailForm.formState.errors.email?.message}
             </ErrorSpan>
           </label>
@@ -154,7 +154,7 @@ export default function Forgot (): JSX.Element {
             </InsertIconToSecretInput>
           </label>
           <ErrorSpan
-            show={!!PasswordForm.formState.errors.password}
+            show={PasswordForm.formState.errors.password !== undefined}
             align="center"
           >
             {PasswordForm.formState.errors.password?.message}
@@ -174,7 +174,7 @@ export default function Forgot (): JSX.Element {
             </InsertIconToSecretInput>
           </label>
           <ErrorSpan
-            show={!!PasswordForm.formState.errors.confirmPassword}
+            show={PasswordForm.formState.errors.confirmPassword !== undefined}
             align="center"
           >
             {PasswordForm.formState.errors.confirmPassword?.message}

@@ -1,52 +1,51 @@
 import JWT from '@/services/jwtService'
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import {
   AuthorizationError,
   ErrorsHandler,
   NotFoundError,
-  ValidationError,
+  ValidationError
 } from '@/services/errorService'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function POST(req: NextRequest) {
+export async function POST (req: NextRequest) {
   try {
     // form data
     const { email, password } = await req.json()
 
     // check request
-    if (!email) throw new ValidationError('No se ha enviado el email')
-    if (!password) throw new ValidationError('No se ha enviado la contraseña')
+    if (email === undefined || email === null) throw new ValidationError('No se ha enviado el email')
+    if (password === undefined || password === null) throw new ValidationError('No se ha enviado la contraseña')
 
     // find user
     const user = await prisma.users.findFirst({
-      where: { email: email, deleted: false },
+      where: { email, deleted: false }
     })
 
     // check if user exists
-    if (!user) throw new NotFoundError('No existe cuenta creada con ese correo')
+    if (user === undefined || user === null) throw new NotFoundError('No existe cuenta creada con ese correo')
 
     // check password match
-    if (!bcrypt.compareSync(password, user.password))
-      throw new AuthorizationError('La contraseña es incorrecta')
+    if (!bcrypt.compareSync(password as string, user.password)) { throw new AuthorizationError('La contraseña es incorrecta') }
 
     // generate autorized token with id
     const tokenData = {
-      id: user.id,
+      id: user.id
     }
     const AuthoridedToken = jwt.generateAuthorizedToken(
       'login',
       'dashboard',
-      tokenData,
+      tokenData
     )
 
     // generate and send response
     const response = NextResponse.json(
       { message: 'Ha ingresado exitosamente' },
-      { status: 200 },
+      { status: 200 }
     )
 
     response.cookies.set('token', AuthoridedToken, {
@@ -54,7 +53,7 @@ export async function POST(req: NextRequest) {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       maxAge: 1000 * 60 * 30,
-      path: '/',
+      path: '/'
     })
 
     return response

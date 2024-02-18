@@ -21,11 +21,11 @@ export async function POST (req: NextRequest) {
     const token = req.cookies.get('token')?.value
 
     // check request
-    if (!token) throw new ValidationError('No se ha enviado el token')
-    if (!data.email) throw new ValidationError('No se ha enviado el email')
+    if (token === undefined || token === null) throw new ValidationError('No se ha enviado el token')
+    if (data.email === undefined || data.email === null) throw new ValidationError('No se ha enviado el email')
 
     // verify token and get values
-    const jwtToken = await jwt.verifyToken(token)
+    const jwtToken = jwt.verifyToken(token)
 
     // check if token is valid
     if (
@@ -34,7 +34,7 @@ export async function POST (req: NextRequest) {
       Number(jwtToken.phoneNumber) !== data.phoneNumber ||
       jwtToken.iss !== 'register' ||
       jwtToken.aud !== 'register' ||
-      jwtToken.authorized == false
+      jwtToken.authorized === false
     ) { throw new AuthorizationError('Token invalido') }
 
     // Check format of form body
@@ -52,7 +52,7 @@ export async function POST (req: NextRequest) {
         deleted: false
       }
     })
-    if (checkSameUser) { throw new ConflictError('Ya existe una cuenta con esos datos') }
+    if (checkSameUser !== undefined || checkSameUser !== null) { throw new ConflictError('Ya existe una cuenta con esos datos') }
 
     // Create new user
     const newUser = await prisma.users.create({

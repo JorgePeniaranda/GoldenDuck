@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import { ErrorsHandler } from '../errorService'
 
 const Alerts = {
   success: (message: string, then?: () => void) => {
@@ -7,7 +8,10 @@ const Alerts = {
       title: '¡Hecho!',
       text: message
     }).then(() => {
-      if (then) then()
+      if (then !== undefined) then()
+    }).catch(e => {
+      const { error } = ErrorsHandler(e)
+      console.error(error)
     })
   },
   error: (message: string, then?: () => void) => {
@@ -16,7 +20,10 @@ const Alerts = {
       title: 'Oops...',
       text: message
     }).then(() => {
-      if (then) then()
+      if (then !== undefined) then()
+    }).catch(e => {
+      const { error } = ErrorsHandler(e)
+      console.error(error)
     })
   },
   warning: (message: string, then?: () => void) => {
@@ -25,7 +32,10 @@ const Alerts = {
       title: 'Oops...',
       text: message
     }).then(() => {
-      if (then) then()
+      if (then !== undefined) then()
+    }).catch(e => {
+      const { error } = ErrorsHandler(e)
+      console.error(error)
     })
   },
   info: (message: string, then?: () => void) => {
@@ -34,7 +44,10 @@ const Alerts = {
       title: 'Oops...',
       text: message
     }).then(() => {
-      if (then) then()
+      if (then !== undefined) then()
+    }).catch(e => {
+      const { error } = ErrorsHandler(e)
+      console.error(error)
     })
   },
   question: (message: string, then?: () => void) => {
@@ -43,7 +56,10 @@ const Alerts = {
       title: 'Oops...',
       text: message
     }).then(() => {
-      if (then) then()
+      if (then !== undefined) then()
+    }).catch(e => {
+      const { error } = ErrorsHandler(e)
+      console.error(error)
     })
   }
 }

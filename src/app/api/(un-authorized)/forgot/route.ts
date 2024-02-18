@@ -20,19 +20,19 @@ export async function POST (req: NextRequest) {
     const token = req.cookies.get('token')?.value
 
     // check request
-    if (!token) throw new ValidationError('No se ha enviado el token')
-    if (!email) throw new ValidationError('No se ha enviado el email')
-    if (!password) throw new ValidationError('No se ha enviado la contraseña')
+    if (token === undefined || token === null) throw new ValidationError('No se ha enviado el token')
+    if (email === undefined || email === null) throw new ValidationError('No se ha enviado el email')
+    if (password === undefined || password === null) throw new ValidationError('No se ha enviado la contraseña')
 
     // verify token and get values
-    const jwtToken = await jwt.verifyToken(token)
+    const jwtToken = jwt.verifyToken(token)
 
     // check if token is valid
     if (
       jwtToken.email !== email ||
       jwtToken.iss !== 'forgot' ||
       jwtToken.aud !== 'forgot' ||
-      jwtToken.authorized == false
+      jwtToken.authorized === false
     ) { throw new AuthorizationError('Token invalido') }
 
     // validate email and password
@@ -47,7 +47,7 @@ export async function POST (req: NextRequest) {
     })
 
     // check if user exists
-    if (!user) throw new NotFoundError('No existe cuenta creada con ese correo')
+    if (user === undefined || user === null) throw new NotFoundError('No existe cuenta creada con ese correo')
 
     // update password
     const newUser = await prisma.users.update({

@@ -11,7 +11,7 @@ export default function NavDisclosure ({ category, links, icon }: Props) {
   return (
     <details className={style.CategoryLinks}>
       <summary>
-        {icon && <figure>{icon}</figure>}
+        {icon !== undefined && icon !== null && <figure>{icon}</figure>}
         {category}
         <svg
           className={style.Arrow}
