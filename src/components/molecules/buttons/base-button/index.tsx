@@ -59,7 +59,7 @@ export default function BaseButton ({
       return (
         <button {...props} disabled={loading}>
           {children}
-          {loading !== null && loading !== undefined && <Spinner />}
+          {loading === true && <Spinner />}
         </button>
       )
     case 'InternalLinkText':
