@@ -1,6 +1,6 @@
 import { type ErrorResponse } from '@/types'
 
-export const createErrorFactory = function (name: string) {
+export const createErrorFactory = function (name: string): any {
   return class CustomizedError extends Error {
     constructor (message: string) {
       super(message)

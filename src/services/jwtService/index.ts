@@ -14,7 +14,7 @@ export default class JWT {
     this.secretKey = JWT_SECRET
   }
 
-  public verifyToken = (token: string) => {
+  public verifyToken = (token: string): jwt.JwtPayload => {
     const decoded = jwt.verify(token, this.secretKey)
     if (typeof decoded === 'string') throw new AuthorizationError(decoded)
     return decoded

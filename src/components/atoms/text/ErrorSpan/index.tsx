@@ -8,7 +8,7 @@ interface Props {
   className?: string
 }
 
-export default function ErrorSpan ({ children, show, align, className }: Props) {
+export default function ErrorSpan ({ children, show, align, className }: Props): JSX.Element | undefined {
   const classes = classNames(style.error, className, {
     'text-center': align === 'center',
     'text-start': align === 'left',

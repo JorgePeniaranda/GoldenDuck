@@ -18,7 +18,7 @@ export default function InsertIconToSecretInput ({
   position = 'left',
   className,
   children
-}: Props) {
+}: Props): JSX.Element {
   const classes = classNames(styles.InputWithIcon, className)
 
   return (

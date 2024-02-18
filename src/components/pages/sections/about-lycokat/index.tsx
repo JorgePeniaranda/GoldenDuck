@@ -3,7 +3,7 @@ import Text from '@/components/atoms/text/Text'
 import Image from 'next/image'
 import style from './styles.module.scss'
 
-export default function LycokatSection () {
+export default function LycokatSection (): JSX.Element {
   return (
     <section id="Lycokat" className={style.Lycokat}>
       <Image

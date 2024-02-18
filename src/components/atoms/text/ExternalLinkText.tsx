@@ -13,7 +13,7 @@ export default function ExternalLinkText ({
   children,
   arialLabel,
   className
-}: Props) {
+}: Props): JSX.Element {
   const classes = classNames(className)
 
   return (

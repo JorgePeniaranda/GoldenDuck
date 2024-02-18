@@ -14,7 +14,7 @@ export default function Text ({
   size = '1rem',
   children,
   className
-}: Props) {
+}: Props): JSX.Element {
   const Tag = tag as keyof JSX.IntrinsicElements
   const classes = classNames(className)
 

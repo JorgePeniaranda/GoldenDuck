@@ -3,7 +3,7 @@ import {
   checkOnlyLetters,
   checkPasswordStrong
 } from '@/utils'
-import { z } from 'zod'
+import { type SafeParseSuccess, z } from 'zod'
 import { ValidationError } from '../errorService'
 
 export const validations = {
@@ -64,7 +64,7 @@ export const validations = {
   })
 }
 
-export const validateSchema = (schema: z.AnyZodObject, values: object) => {
+export const validateSchema = (schema: z.AnyZodObject, values: object): SafeParseSuccess<Record<string, any>> => {
   const result = schema.safeParse(values)
 
   if (!result.success) throw new ValidationError(result.error.errors[0].message)

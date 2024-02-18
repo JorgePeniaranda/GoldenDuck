@@ -16,7 +16,7 @@ const jwt = new JWT()
 export async function GET (
   req: NextRequest,
   { params: { email } }: { params: { email: string } }
-) {
+): Promise<NextResponse> {
   try {
     const CodeService = new ConfirmationCode()
 
@@ -89,7 +89,7 @@ export async function GET (
   }
 }
 
-export async function POST (req: NextRequest) {
+export async function POST (req: NextRequest): Promise<NextResponse> {
   try {
     const CodeService = new ConfirmationCode()
 

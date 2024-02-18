@@ -5,7 +5,7 @@ import { jwtVerify } from 'jose'
 const AuthorizedURLs = ['/dashboard', '/dashboard/:path*']
 const UnAuthorizedURLs = ['/login', '/register', '/forgot']
 
-export async function middleware (request: NextRequest) {
+export async function middleware (request: NextRequest): Promise<NextResponse> {
   const token = request.cookies.get('token')
 
   if (UnAuthorizedURLs.includes(request.nextUrl.pathname) && (token !== undefined && token !== null)) {

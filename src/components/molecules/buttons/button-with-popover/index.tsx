@@ -19,7 +19,7 @@ export const ButtonWithPopover = ({
   arialLabel,
   emptyText,
   className
-}: ButtonWithPopoverProps) => {
+}: ButtonWithPopoverProps): JSX.Element => {
   return (
     <Popover className={style.Popover} aria-label={arialLabel}>
       <Popover.Button className={style.PopoverButton}>
@@ -56,7 +56,7 @@ export const CardLinkPopover = ({
   href,
   children,
   className
-}: CardLinkPopoverProps) => {
+}: CardLinkPopoverProps): JSX.Element => {
   return (
     <InternalLinkText
       href={href}

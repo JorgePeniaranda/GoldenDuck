@@ -13,11 +13,11 @@ export default class ConfirmationCode {
     this.code = randomAlphanumeric(length)
   }
 
-  getCode () {
+  getCode (): string {
     return bcrypt.hashSync(this.code, 10)
   }
 
-  sendCode (email: string) {
+  sendCode (email: string): void {
     try {
       // const code = this.code
 
@@ -25,17 +25,15 @@ export default class ConfirmationCode {
       if (!checkEmail.success) { throw new ValidationError(checkEmail.error.errors[0].message) }
 
       if (process.env.NODE_ENV === 'development') {
-        console.log('Código enviado: ' + this.code); return
+        console.log('Código enviado: ' + this.code)
       }
-
-      return true
     } catch (e) {
       const { error } = ErrorsHandler(e)
       console.error(error)
     }
   }
 
-  checkCode (code: string, hash: string) {
+  checkCode (code: string, hash: string): boolean {
     return bcrypt.compareSync(code, hash)
   }
 }

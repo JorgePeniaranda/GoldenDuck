@@ -86,7 +86,7 @@ export default function Forgot (): JSX.Element {
     }
   })
 
-  const handleBack = () => {
+  const handleBack = (): void => {
     setStep(step - 1)
   }
 

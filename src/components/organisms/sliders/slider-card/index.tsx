@@ -56,7 +56,7 @@ interface CardContent {
   text: string
 }
 
-export default function Slider ({ CardsInfo }: Props) {
+export default function Slider ({ CardsInfo }: Props): JSX.Element {
   return (
     <section className={style.sliderContainer}>
       <SliderSlick {...settingsSlider}>

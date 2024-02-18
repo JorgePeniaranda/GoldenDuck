@@ -3,7 +3,7 @@ import Text from '@/components/atoms/text/Text'
 import Image from 'next/image'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 
-export default function NotFound () {
+export default function NotFound (): JSX.Element {
   return (
     <>
       <Navbar />

@@ -13,7 +13,7 @@ import validations from '@/services/validationService'
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function POST (req: NextRequest) {
+export async function POST (req: NextRequest): Promise<NextResponse> {
   try {
     // get token and form data
     const { email, password } = await req.json()

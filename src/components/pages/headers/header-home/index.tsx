@@ -20,7 +20,7 @@ const TypewriterWords = [
   ' Productividad'
 ]
 
-export default function HomeHeader () {
+export default function HomeHeader (): JSX.Element {
   return (
     <header className={style.header}>
       <article className={style.text}>

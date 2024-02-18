@@ -1,7 +1,7 @@
 import Text from '@/components/atoms/text/Text'
 import style from './styles.module.scss'
 
-export default function SedesSection () {
+export default function SedesSection (): JSX.Element {
   return (
     <section id="Sedes" className={style.Sedes}>
       <article className={style.text}>

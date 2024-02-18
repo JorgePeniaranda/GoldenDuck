@@ -40,7 +40,7 @@ export default function BaseButton ({
   fontColor,
   href,
   loading
-}: Props) {
+}: Props): JSX.Element {
   const props = {
     className: classNames(style.BaseButton, className, {
       [style.loading]: loading

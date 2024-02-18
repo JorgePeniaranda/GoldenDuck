@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 
 // const prisma = new PrismaClient()
 
-export async function GET (req: NextRequest) {
+export async function GET (req: NextRequest): Promise<NextResponse> {
   // const checkedToken = await CheckAuthorizedToken(req)
 
   // if (checkedToken.error) {

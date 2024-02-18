@@ -1,4 +1,4 @@
-export default function Spinner () {
+export default function Spinner (): JSX.Element {
   return (
     <figure role="status" id="Spinner">
       <svg

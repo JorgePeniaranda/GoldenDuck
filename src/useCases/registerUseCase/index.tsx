@@ -1,5 +1,5 @@
 import { type SignupForm } from '@/types'
-import axios from 'axios'
+import axios, { type AxiosResponse } from 'axios'
 import { validations } from '@/services/validationService'
 import { z } from 'zod'
 
@@ -19,10 +19,10 @@ export const generateConfirmationCode = async (
   email: string,
   dni: string,
   phoneNumber: string
-) => await axios.get(`/api/register/${email}`, { params: { dni, phoneNumber } })
+): Promise<AxiosResponse> => await axios.get(`/api/register/${email}`, { params: { dni, phoneNumber } })
 
-export const checkConfirmationCode = async (email: string, code: string) =>
+export const checkConfirmationCode = async (email: string, code: string): Promise<AxiosResponse> =>
   await axios.post(`/api/register/${email}`, { email, code })
 
-export const CreateUser = async (SignupForm: SignupForm) =>
+export const CreateUser = async (SignupForm: SignupForm): Promise<AxiosResponse> =>
   await axios.post('/api/register', SignupForm)

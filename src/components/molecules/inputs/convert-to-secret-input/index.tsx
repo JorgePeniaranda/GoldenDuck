@@ -14,7 +14,7 @@ export default function ConvertToSecretInput ({
   setShow,
   className,
   children
-}: Props) {
+}: Props): JSX.Element {
   const classes = classNames(styles.InputWithIcon, className)
 
   return (

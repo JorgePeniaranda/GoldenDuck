@@ -7,7 +7,7 @@ interface Props {
   icon?: React.ReactNode
 }
 
-export default function NavDisclosure ({ category, links, icon }: Props) {
+export default function NavDisclosure ({ category, links, icon }: Props): JSX.Element {
   return (
     <details className={style.CategoryLinks}>
       <summary>

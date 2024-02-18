@@ -14,7 +14,7 @@ import {
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function POST (req: NextRequest) {
+export async function POST (req: NextRequest): Promise<NextResponse> {
   try {
     // get token and form data
     const data = await req.json()

@@ -16,7 +16,7 @@ export default function InternalLinkText ({
   arialLabel,
   className,
   style
-}: Props) {
+}: Props): JSX.Element {
   const classes = classNames(className)
 
   return (

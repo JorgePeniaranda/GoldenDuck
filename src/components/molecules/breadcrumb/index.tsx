@@ -5,7 +5,7 @@ import Text from '../../atoms/text/Text'
 import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 
-export default function Breadcrumb () {
+export default function Breadcrumb (): JSX.Element {
   const path = usePathname()
   const urls = path.split('/').slice(1)
 

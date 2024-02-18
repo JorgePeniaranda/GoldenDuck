@@ -101,7 +101,7 @@ const CardsInfo = [
   }
 ]
 
-export default function PossibilitiesSection () {
+export default function PossibilitiesSection (): JSX.Element {
   return (
     <section id="Possibilities" className={style.Possibilities}>
       <Text tag="h1" size={'2.3rem'} weight="700">

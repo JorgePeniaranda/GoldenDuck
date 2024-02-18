@@ -8,6 +8,6 @@ export default function TermsAndConditionsLayout ({
   children
 }: {
   children: React.ReactNode
-}) {
+}): JSX.Element {
   return <>{children}</>
 }

@@ -15,8 +15,8 @@ export default class Email {
     this.resend = new Resend(RESEND_API_KEY)
   }
 
-  async sendCode (email: string, code: string) {
-    return await this.resend.emails
+  async sendCode (email: string, code: string): Promise<void> {
+    await this.resend.emails
       .send({
         from: 'Acme <onboarding@resend.dev>',
         to: [email],
