@@ -8,7 +8,7 @@ const Alerts = {
       title: '¡Hecho!',
       text: message
     }).then(() => {
-      if (then !== undefined) then()
+      if (typeof then === 'function') then()
     }).catch(e => {
       const { error } = ErrorsHandler(e)
       console.error(error)
@@ -20,7 +20,7 @@ const Alerts = {
       title: 'Oops...',
       text: message
     }).then(() => {
-      if (then !== undefined) then()
+      if (typeof then === 'function') then()
     }).catch(e => {
       const { error } = ErrorsHandler(e)
       console.error(error)
@@ -32,7 +32,7 @@ const Alerts = {
       title: 'Oops...',
       text: message
     }).then(() => {
-      if (then !== undefined) then()
+      if (typeof then === 'function') then()
     }).catch(e => {
       const { error } = ErrorsHandler(e)
       console.error(error)
@@ -44,7 +44,7 @@ const Alerts = {
       title: 'Oops...',
       text: message
     }).then(() => {
-      if (then !== undefined) then()
+      if (typeof then === 'function') then()
     }).catch(e => {
       const { error } = ErrorsHandler(e)
       console.error(error)
@@ -56,7 +56,7 @@ const Alerts = {
       title: 'Oops...',
       text: message
     }).then(() => {
-      if (then !== undefined) then()
+      if (typeof then === 'function') then()
     }).catch(e => {
       const { error } = ErrorsHandler(e)
       console.error(error)
