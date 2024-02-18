@@ -17,7 +17,7 @@ describe('JWT Service', () => {
 
   it('return error if JWT_SECRET is not defined', () => {
     if (process.env.JWT_SECRET !== undefined) delete process.env.JWT_SECRET
-    expect(new JWT()).toThrow(ConfigError)
+    expect(new JWT()).toThrow(ConfigError as Error)
   })
 
   it('generateAuthorizedToken must be a function', () => {

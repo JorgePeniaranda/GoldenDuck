@@ -21,6 +21,6 @@ describe('Validation Service', () => {
     const schema = z.object({ email: validations.email })
     expect(() => {
       validateSchema(schema, { email: 'test' })
-    }).toThrow(ValidationError)
+    }).toThrow(ValidationError as Error)
   })
 })

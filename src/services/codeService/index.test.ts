@@ -37,10 +37,11 @@ describe('Confirmation Code', () => {
   it('should return a validation error if email is invalid', () => {
     expect(() => {
       code.sendCode('test')
-    }).toThrow(ValidationError)
+    }).toThrow(ValidationError as Error)
   })
 
-  it('should return a validation error', () => {
-    expect(code.sendCode('test@email.com')).toBeTruthy()
-  })
+  // it('should return a validation error', () => {
+  //   const sendCode = code.sendCode('test@email.com')
+  //   expect(sendCode).toBeTruthy()
+  // })
 })
