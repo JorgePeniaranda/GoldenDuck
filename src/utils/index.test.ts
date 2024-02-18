@@ -2,7 +2,7 @@ import {
   checkAlphanumeric,
   checkOnlyLetters,
   checkPasswordStrong,
-  randomAlphanumeric,
+  randomAlphanumeric
 } from '.'
 
 const random = randomAlphanumeric(10)

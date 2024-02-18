@@ -1,6 +1,6 @@
 import JWT from '@/services/jwtService'
-import { NextRequest, NextResponse } from 'next/server'
-import { SignupForm } from '@/types'
+import { type NextRequest, NextResponse } from 'next/server'
+import { type SignupForm } from '@/types'
 import { SignUpSchema } from '@/useCases/registerUseCase'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
@@ -8,13 +8,13 @@ import {
   AuthorizationError,
   ConflictError,
   ErrorsHandler,
-  ValidationError,
+  ValidationError
 } from '@/services/errorService'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function POST(req: NextRequest) {
+export async function POST (req: NextRequest) {
   try {
     // get token and form data
     const data = await req.json()
@@ -35,13 +35,11 @@ export async function POST(req: NextRequest) {
       jwtToken.iss !== 'register' ||
       jwtToken.aud !== 'register' ||
       jwtToken.authorized == false
-    )
-      throw new AuthorizationError('Token invalido')
+    ) { throw new AuthorizationError('Token invalido') }
 
     // Check format of form body
     const checkUserData = await SignUpSchema.safeParseAsync(data as SignupForm)
-    if (!checkUserData.success)
-      throw new ValidationError(checkUserData.error.errors[0].message)
+    if (!checkUserData.success) { throw new ValidationError(checkUserData.error.errors[0].message) }
 
     // Check if user already exists
     const checkSameUser = await prisma.users.findFirst({
@@ -49,43 +47,42 @@ export async function POST(req: NextRequest) {
         OR: [
           { dni: checkUserData.data.dni },
           { email: checkUserData.data.email },
-          { phoneNumber: checkUserData.data.phoneNumber },
+          { phoneNumber: checkUserData.data.phoneNumber }
         ],
-        deleted: false,
-      },
+        deleted: false
+      }
     })
-    if (checkSameUser)
-      throw new ConflictError('Ya existe una cuenta con esos datos')
+    if (checkSameUser) { throw new ConflictError('Ya existe una cuenta con esos datos') }
 
     // Create new user
     const newUser = await prisma.users.create({
       data: {
         ...checkUserData.data,
-        password: bcrypt.hashSync(checkUserData.data.password, 10),
-      },
+        password: bcrypt.hashSync(checkUserData.data.password, 10)
+      }
     })
 
     // generate autorized token with id
     const tokenData = {
-      id: newUser.id,
+      id: newUser.id
     }
     const AuthoridedToken = jwt.generateAuthorizedToken(
       'register',
       'dashboard',
-      tokenData,
+      tokenData
     )
 
     // generate and send response
     const response = NextResponse.json(
       { message: 'Se ha registrado exitosamente' },
-      { status: 201 },
+      { status: 201 }
     )
     response.cookies.set('token', AuthoridedToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       maxAge: 1000 * 60 * 30,
-      path: '/',
+      path: '/'
     })
     return response
   } catch (e) {

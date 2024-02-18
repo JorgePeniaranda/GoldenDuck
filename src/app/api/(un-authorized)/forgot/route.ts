@@ -1,19 +1,19 @@
 import JWT from '@/services/jwtService'
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import {
   AuthorizationError,
   ErrorsHandler,
   NotFoundError,
-  ValidationError,
+  ValidationError
 } from '@/services/errorService'
 import validations from '@/services/validationService'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function POST(req: NextRequest) {
+export async function POST (req: NextRequest) {
   try {
     // get token and form data
     const { email, password } = await req.json()
@@ -33,20 +33,17 @@ export async function POST(req: NextRequest) {
       jwtToken.iss !== 'forgot' ||
       jwtToken.aud !== 'forgot' ||
       jwtToken.authorized == false
-    )
-      throw new AuthorizationError('Token invalido')
+    ) { throw new AuthorizationError('Token invalido') }
 
     // validate email and password
     const checkEmail = validations.email.safeParse(email)
-    if (!checkEmail.success)
-      throw new ValidationError(checkEmail.error.errors[0].message)
+    if (!checkEmail.success) { throw new ValidationError(checkEmail.error.errors[0].message) }
     const checkPassword = validations.password.safeParse(password)
-    if (!checkPassword.success)
-      throw new ValidationError(checkPassword.error.errors[0].message)
+    if (!checkPassword.success) { throw new ValidationError(checkPassword.error.errors[0].message) }
 
     // get user
     const user = await prisma.users.findFirst({
-      where: { email: checkEmail.data, deleted: false },
+      where: { email: checkEmail.data, deleted: false }
     })
 
     // check if user exists
@@ -55,30 +52,30 @@ export async function POST(req: NextRequest) {
     // update password
     const newUser = await prisma.users.update({
       where: { id: user.id },
-      data: { password: bcrypt.hashSync(checkPassword.data) },
+      data: { password: bcrypt.hashSync(checkPassword.data) }
     })
 
     // generate autorized token with id
     const tokenData = {
-      id: newUser.id,
+      id: newUser.id
     }
     const AuthoridedToken = jwt.generateAuthorizedToken(
       'forgot',
       'dashboard',
-      tokenData,
+      tokenData
     )
 
     // generate and send response
     const response = NextResponse.json(
       { message: 'Se ha actualizado la contraseña exitosamente' },
-      { status: 201 },
+      { status: 201 }
     )
     response.cookies.set('token', AuthoridedToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       maxAge: 1000 * 60 * 30,
-      path: '/',
+      path: '/'
     })
     return response
   } catch (e) {

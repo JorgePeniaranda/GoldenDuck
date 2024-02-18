@@ -1,9 +1,9 @@
-import { PrismaClient } from '@prisma/client'
-import { NextRequest, NextResponse } from 'next/server'
+// import { PrismaClient } from '@prisma/client'
+import { type NextRequest, NextResponse } from 'next/server'
 
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
 
-export async function GET(req: NextRequest) {
+export async function GET (req: NextRequest) {
   // const checkedToken = await CheckAuthorizedToken(req)
 
   // if (checkedToken.error) {
@@ -41,6 +41,6 @@ export async function GET(req: NextRequest) {
   // )
 
   return NextResponse.json({
-    message: 'Esta ruta no está implementada',
+    message: 'Esta ruta no está implementada'
   })
 }

@@ -1,10 +1,9 @@
 import Navbar from '@/components/organisms/navbar/base'
-import Footer from '@/components/organisms/footer'
 import Text from '@/components/atoms/text/Text'
 import Image from 'next/image'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 
-export default function NotFound() {
+export default function NotFound () {
   return (
     <>
       <Navbar />

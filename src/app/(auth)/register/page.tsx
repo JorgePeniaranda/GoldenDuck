@@ -3,12 +3,12 @@
 import { useState } from 'react'
 import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
-import { SignupForm } from '@/types'
+import { type SignupForm } from '@/types'
 import {
   CreateUser,
   SignUpSchema,
   checkConfirmationCode,
-  generateConfirmationCode,
+  generateConfirmationCode
 } from '@/useCases/registerUseCase'
 import Text from '@/components/atoms/text/Text'
 import BaseButton from '@/components/molecules/buttons/base-button'
@@ -20,7 +20,7 @@ import Alerts from '@/services/alertService'
 import { ErrorsHandler, ValidationError } from '@/services/errorService'
 import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
 
-export default function Signin() {
+export default function Signin (): JSX.Element {
   const [step, setStep] = useState<number>(0)
   const [code, setCode] = useState<string>('')
   const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -28,9 +28,9 @@ export default function Signin() {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting }
   } = useForm<SignupForm>({
-    resolver: zodResolver(SignUpSchema),
+    resolver: zodResolver(SignUpSchema)
   })
 
   const onSubmitData = handleSubmit(async () => {
@@ -38,15 +38,15 @@ export default function Signin() {
       await generateConfirmationCode(
         watch('email'),
         watch('dni'),
-        watch('phoneNumber'),
+        watch('phoneNumber')
       ).catch((err) => {
         throw new ValidationError(err.response.data.error)
       })
 
-      return setStep(step + 1)
+      setStep(step + 1)
     } catch (e) {
       const { error } = ErrorsHandler(e)
-      return Alerts.error(error)
+      Alerts.error(error)
     }
   })
 
@@ -60,16 +60,16 @@ export default function Signin() {
         throw new ValidationError(err.response.data.error)
       })
 
-      return Alerts.success('Usuario creado con exito', () => {
+      Alerts.success('Usuario creado con exito', () => {
         location.href = '/dashboard'
       })
     } catch (e) {
       const { error } = ErrorsHandler(e)
-      return Alerts.error(error)
+      Alerts.error(error)
     }
   })
 
-  const handleBack = () => {
+  const handleBack = (): void => {
     setStep(step - 1)
   }
 
@@ -218,7 +218,7 @@ export default function Signin() {
               inputMode="email"
               value={code}
               name="EmailCode"
-              onChange={(e) => setCode(e)}
+              onChange={(e) => { setCode(e) }}
             />
             <BaseButton
               fontSize="1.1rem"
@@ -233,15 +233,17 @@ export default function Signin() {
           </p>
         </section>
       )}
-      {step === 0 ? (
+      {step === 0
+        ? (
         <InternalLinkText href="/login" className={style.LinkStyle}>
           Ya tengo una cuenta
         </InternalLinkText>
-      ) : (
+          )
+        : (
         <p onClick={handleBack} className={style.LinkStyle}>
           Volver
         </p>
-      )}
+          )}
     </>
   )
 }

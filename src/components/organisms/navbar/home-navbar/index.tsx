@@ -7,7 +7,7 @@ interface Props {
   position?: 'fixed' | 'absolute' | 'relative' | 'static' | 'sticky'
 }
 
-export default function HomeNavbar({ position }: Props) {
+export default function HomeNavbar ({ position }: Props) {
   return (
     <nav className={style.navbar} style={{ position }}>
       <Image

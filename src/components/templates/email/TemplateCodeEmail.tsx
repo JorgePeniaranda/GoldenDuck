@@ -5,7 +5,7 @@ interface Props {
   code: string
 }
 
-export default function TemplateCodeEmail({ code }: Props) {
+export default function TemplateCodeEmail ({ code }: Props) {
   return (
     <Tailwind>
       <center className="w-full py-1 bg-[#1c1d25]">

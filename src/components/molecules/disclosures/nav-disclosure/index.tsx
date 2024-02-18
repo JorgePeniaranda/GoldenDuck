@@ -3,11 +3,11 @@ import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 
 interface Props {
   category: string
-  links: { href: string; text: string }[]
+  links: Array<{ href: string, text: string }>
   icon?: React.ReactNode
 }
 
-export default function NavDisclosure({ category, links, icon }: Props) {
+export default function NavDisclosure ({ category, links, icon }: Props) {
   return (
     <details className={style.CategoryLinks}>
       <summary>

@@ -5,7 +5,7 @@ import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import classNames from 'classnames'
 
-interface ButtonWithPopover {
+interface ButtonWithPopoverProps {
   PopoverIcon: React.ReactNode
   children?: React.ReactNode
   arialLabel?: string
@@ -18,8 +18,8 @@ export const ButtonWithPopover = ({
   children,
   arialLabel,
   emptyText,
-  className,
-}: ButtonWithPopover) => {
+  className
+}: ButtonWithPopoverProps) => {
   return (
     <Popover className={style.Popover} aria-label={arialLabel}>
       <Popover.Button className={style.PopoverButton}>
@@ -55,7 +55,7 @@ interface CardLinkPopoverProps {
 export const CardLinkPopover = ({
   href,
   children,
-  className,
+  className
 }: CardLinkPopoverProps) => {
   return (
     <InternalLinkText

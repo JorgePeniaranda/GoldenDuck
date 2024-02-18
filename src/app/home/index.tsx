@@ -8,7 +8,7 @@ import style from './styles.module.scss'
 import AppMobileSection from '@/components/pages/sections/app-mobile'
 import AboutUsSection from '@/components/pages/sections/about-us'
 
-export default function Home() {
+export default function Home (): JSX.Element {
   return (
     <>
       <Navbar position="absolute" />

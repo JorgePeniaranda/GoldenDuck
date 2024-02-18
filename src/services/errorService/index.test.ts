@@ -7,7 +7,7 @@ import {
   ConflictError,
   NotFoundError,
   ValidationError,
-  EmailError,
+  EmailError
 } from '.'
 
 describe('Create Error Factory', () => {
@@ -43,8 +43,8 @@ describe('Errors Handler', () => {
   })
 
   it('should return a object with message and status code', () => {
-    const error = createErrorFactory('test')
-    const handler = ErrorsHandler(new error('test'))
+    const Error = createErrorFactory('test')
+    const handler = ErrorsHandler(new Error('test'))
     expect(handler).toHaveProperty('error')
     expect(handler).toHaveProperty('status')
   })
@@ -54,7 +54,7 @@ describe('Errors Handler', () => {
     const result = ErrorsHandler(error)
     expect(result).toEqual({
       error: 'No se ha podido conectar a la base de datos',
-      status: 500,
+      status: 500
     })
   })
 
@@ -63,7 +63,7 @@ describe('Errors Handler', () => {
     const result = ErrorsHandler(error)
     expect(result).toEqual({
       error: 'Authorization error',
-      status: 401,
+      status: 401
     })
   })
 
@@ -72,7 +72,7 @@ describe('Errors Handler', () => {
     const result = ErrorsHandler(error)
     expect(result).toEqual({
       error: 'Config error',
-      status: 500,
+      status: 500
     })
   })
 
@@ -81,7 +81,7 @@ describe('Errors Handler', () => {
     const result = ErrorsHandler(error)
     expect(result).toEqual({
       error: 'Conflict error',
-      status: 409,
+      status: 409
     })
   })
 
@@ -90,7 +90,7 @@ describe('Errors Handler', () => {
     const result = ErrorsHandler(error)
     expect(result).toEqual({
       error: 'Not found error',
-      status: 404,
+      status: 404
     })
   })
 
@@ -99,7 +99,7 @@ describe('Errors Handler', () => {
     const result = ErrorsHandler(error)
     expect(result).toEqual({
       error: 'Validation error',
-      status: 400,
+      status: 400
     })
   })
 
@@ -108,13 +108,13 @@ describe('Errors Handler', () => {
     const result = ErrorsHandler(error)
     expect(result).toEqual({
       error: 'Email Error',
-      status: 500,
+      status: 500
     })
   })
 
   it('should return a object with default message and status code if error is unknown', () => {
-    const error = createErrorFactory('test')
-    const handler = ErrorsHandler(new error('test'))
+    const Error = createErrorFactory('test')
+    const handler = ErrorsHandler(new Error('test'))
     expect(handler).toHaveProperty('error', 'Ha ocurrido un error')
     expect(handler).toHaveProperty('status', 500)
   })

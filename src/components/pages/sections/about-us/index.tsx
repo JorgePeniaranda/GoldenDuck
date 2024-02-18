@@ -1,7 +1,7 @@
 import Text from '@/components/atoms/text/Text'
 import style from './styles.module.scss'
 
-export default function AboutUsSection() {
+export default function AboutUsSection () {
   return (
     <article id="AboutUs" className={style.AboutUs}>
       <Text tag="h1" size={'2.8rem'} weight="700">

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import style from './styles.module.scss'
 import ExternalLinkText from '@/components/atoms/text/ExternalLinkText'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
@@ -13,22 +13,22 @@ interface Props {
   xPadding?: string
   backgroundColor?: string
   fontWeight?:
-    | '100'
-    | '200'
-    | '300'
-    | '400'
-    | '500'
-    | '600'
-    | '700'
-    | '800'
-    | '900'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900'
   fontSize?: string
   fontColor?: string
   href?: string
   loading?: boolean
 }
 
-export default function BaseButton({
+export default function BaseButton ({
   children,
   className,
   type = 'button',
@@ -39,19 +39,19 @@ export default function BaseButton({
   fontSize,
   fontColor,
   href,
-  loading,
+  loading
 }: Props) {
   const props = {
     className: classNames(style.BaseButton, className, {
-      [style.loading]: loading,
+      [style.loading]: loading
     }),
     style: {
       padding: `${yPadding} ${xPadding}`,
-      backgroundColor: backgroundColor,
-      fontWeight: fontWeight,
-      fontSize: fontSize,
-      color: fontColor,
-    },
+      backgroundColor,
+      fontWeight,
+      fontSize,
+      color: fontColor
+    }
   }
 
   switch (type) {

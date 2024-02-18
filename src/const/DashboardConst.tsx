@@ -24,26 +24,26 @@ export const AsideIcons = {
         d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2m6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-1.29 1.29c-.63.63-.19 1.71.7 1.71h13.17c.89 0 1.34-1.08.71-1.71z"
       />
     </svg>
-  ),
+  )
 }
 
 export const NavLinks = {
   panel: [
     { href: '/dashboard', text: 'Tu dinero' },
     { href: '/dashboard/expenses', text: 'Gastos' },
-    { href: '/dashboard/cards', text: 'Tus tarjetas' },
+    { href: '/dashboard/cards', text: 'Tus tarjetas' }
   ],
   services: [
     { href: '/dashboard/payment', text: 'Pagar' },
     { href: '/dashboard/investments', text: 'Inverciones' },
     { href: '/dashboard/transfers', text: 'Transferencias' },
     { href: '/dashboard/loans', text: 'Prestamos' },
-    { href: '/dashboard/fixed-terms', text: 'Plazos fijos' },
+    { href: '/dashboard/fixed-terms', text: 'Plazos fijos' }
   ],
   support: [
     { href: '/dashboard/support-chat', text: 'Chat con soporte' },
-    { href: '/dashboard/faq', text: 'Preguntas frecuentes' },
-  ],
+    { href: '/dashboard/faq', text: 'Preguntas frecuentes' }
+  ]
 }
 
 export const NavIcons = {
@@ -85,5 +85,5 @@ export const NavIcons = {
         d="m12 22l-.25-3h-.25q-3.55 0-6.025-2.475T3 10.5q0-3.55 2.475-6.025T11.5 2q1.775 0 3.313.662t2.7 1.825q1.162 1.163 1.824 2.7T20 10.5q0 1.875-.612 3.6t-1.676 3.2q-1.062 1.475-2.525 2.675T12 22m-.525-6.025q.425 0 .725-.3t.3-.725q0-.425-.3-.725t-.725-.3q-.425 0-.725.3t-.3.725q0 .425.3.725t.725.3M10.75 12.8h1.5q0-.75.15-1.05t.95-1.1q.45-.45.75-.975t.3-1.125q0-1.275-.862-1.913T11.5 6q-1.1 0-1.85.613T8.6 8.1l1.4.55q.125-.425.475-.837T11.5 7.4q.675 0 1.013.375t.337.825q0 .425-.25.763t-.6.687q-.875.75-1.062 1.188T10.75 12.8"
       />
     </svg>
-  ),
+  )
 }

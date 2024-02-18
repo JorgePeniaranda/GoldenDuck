@@ -4,7 +4,7 @@ import './globals.css'
 
 const Poppins = PoppinsFont({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-  subsets: ['latin'],
+  subsets: ['latin']
 })
 
 export const metadata: Metadata = {
@@ -13,17 +13,17 @@ export const metadata: Metadata = {
     'Una banca online donde podrá, no solo gestionar su dinero, sino que incluso invertirlo. Siempre llevando un registro de cuanto dinero es ingresado y cuanto dinero es gastado, contando con categorías para saber en qué lo gasta. También podrá pagar servicios, tales como servicios de Telefonía Móvil o servicios esenciales.',
   authors: {
     name: 'Lycokat',
-    url: 'https://lycokat.netlify.app/',
+    url: 'https://lycokat.netlify.app/'
   },
   category: 'Virtual Wallet',
   creator: 'Lycokat',
   generator: 'Next.js',
   manifest: '/manifest.json',
-  publisher: 'Vercel',
+  publisher: 'Vercel'
 }
 
-export default function RootLayout({
-  children,
+export default function RootLayout ({
+  children
 }: {
   children: React.ReactNode
 }) {

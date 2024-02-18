@@ -1,4 +1,4 @@
-import { SignupForm } from '@/types'
+import { type SignupForm } from '@/types'
 import { CreateUser, checkConfirmationCode, generateConfirmationCode } from '.'
 import axios from 'axios'
 
@@ -11,7 +11,7 @@ const validForm: SignupForm = {
   address: 'test',
   email: 'test@email.com',
   password: 'testtest',
-  sex: 'male',
+  sex: 'male'
 }
 
 describe('generateConfirmationCode', () => {
@@ -24,9 +24,9 @@ describe('generateConfirmationCode', () => {
       response: {
         status: 200,
         data: {
-          error: 'test',
-        },
-      },
+          error: 'test'
+        }
+      }
     }
     axios.get = jest.fn().mockResolvedValue(mockResponse)
     const response = await generateConfirmationCode('test', 'test', 'test')
@@ -44,9 +44,9 @@ describe('checkConfirmationCode', () => {
       response: {
         status: 200,
         data: {
-          error: 'test',
-        },
-      },
+          error: 'test'
+        }
+      }
     }
     axios.post = jest.fn().mockResolvedValue(mockResponse)
     const response = await checkConfirmationCode('2', '2')
@@ -64,9 +64,9 @@ describe('CreateUser', () => {
       response: {
         status: 200,
         data: {
-          error: 'test',
-        },
-      },
+          error: 'test'
+        }
+      }
     }
     axios.post = jest.fn().mockResolvedValue(mockResponse)
     const response = await CreateUser(validForm)

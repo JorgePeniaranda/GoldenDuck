@@ -17,10 +17,10 @@ const TypewriterWords = [
   ' Agilidad',
   ' Rapidez',
   ' Emprendedores',
-  ' Productividad',
+  ' Productividad'
 ]
 
-export default function HomeHeader() {
+export default function HomeHeader () {
   return (
     <header className={style.header}>
       <article className={style.text}>

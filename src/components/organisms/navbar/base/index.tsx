@@ -2,7 +2,7 @@ import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import Image from 'next/image'
 import style from './styles.module.scss'
 
-export default function Navbar() {
+export default function Navbar () {
   return (
     <nav className={style.nav}>
       <Image

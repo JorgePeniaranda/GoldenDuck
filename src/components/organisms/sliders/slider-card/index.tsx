@@ -26,25 +26,25 @@ const settingsSlider = {
         slidesToShow: 3,
         slidesToScroll: 2,
         infinite: true,
-        dots: true,
-      },
+        dots: true
+      }
     },
     {
       breakpoint: 600,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 2,
-        initialSlide: 2,
-      },
+        initialSlide: 2
+      }
     },
     {
       breakpoint: 480,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
+        slidesToScroll: 1
+      }
+    }
+  ]
 }
 
 interface Props {
@@ -56,7 +56,7 @@ interface CardContent {
   text: string
 }
 
-export default function Slider({ CardsInfo }: Props) {
+export default function Slider ({ CardsInfo }: Props) {
   return (
     <section className={style.sliderContainer}>
       <SliderSlick {...settingsSlider}>

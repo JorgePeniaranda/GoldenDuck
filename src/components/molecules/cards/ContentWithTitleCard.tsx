@@ -6,7 +6,7 @@ interface Props {
   Logo: React.ReactNode
 }
 
-export default function ContentWithTitleCard({ text, Logo }: Props) {
+export default function ContentWithTitleCard ({ text, Logo }: Props) {
   return (
     <article className="card">
       {Logo}

@@ -43,14 +43,14 @@ describe('Alerts.success', () => {
     expect(spy).toHaveBeenCalledWith({
       icon: 'success',
       title: '¡Hecho!',
-      text: 'message',
+      text: 'message'
     })
   })
 
   it('should be call then function', async () => {
     const then = jest.fn()
     Alerts.success('message', then)
-    await fireEvent.click(screen.getByText('OK'))
+    fireEvent.click(screen.getByText('OK'))
     expect(then).toHaveBeenCalled()
   })
 })
@@ -68,14 +68,14 @@ describe('Alerts.error', () => {
     expect(spy).toHaveBeenCalledWith({
       icon: 'error',
       title: 'Oops...',
-      text: 'message',
+      text: 'message'
     })
   })
 
   it('should be call then function', async () => {
     const then = jest.fn()
     Alerts.error('message', then)
-    await fireEvent.click(screen.getByText('OK'))
+    fireEvent.click(screen.getByText('OK'))
     expect(then).toHaveBeenCalled()
   })
 })
@@ -93,14 +93,14 @@ describe('Alerts.warning', () => {
     expect(spy).toHaveBeenCalledWith({
       icon: 'warning',
       title: 'Oops...',
-      text: 'message',
+      text: 'message'
     })
   })
 
   it('should be call then function', async () => {
     const then = jest.fn()
     Alerts.warning('message', then)
-    await fireEvent.click(screen.getByText('OK'))
+    fireEvent.click(screen.getByText('OK'))
     expect(then).toHaveBeenCalled()
   })
 })
@@ -118,14 +118,14 @@ describe('Alerts.info', () => {
     expect(spy).toHaveBeenCalledWith({
       icon: 'info',
       title: 'Oops...',
-      text: 'message',
+      text: 'message'
     })
   })
 
   it('should be call then function', async () => {
     const then = jest.fn()
     Alerts.info('message', then)
-    await fireEvent.click(screen.getByText('OK'))
+    fireEvent.click(screen.getByText('OK'))
     expect(then).toHaveBeenCalled()
   })
 })
@@ -143,14 +143,14 @@ describe('Alerts.question', () => {
     expect(spy).toHaveBeenCalledWith({
       icon: 'question',
       title: 'Oops...',
-      text: 'message',
+      text: 'message'
     })
   })
 
   it('should call then function', async () => {
     const then = jest.fn()
     Alerts.question('message', then)
-    await fireEvent.click(screen.getByText('OK'))
+    fireEvent.click(screen.getByText('OK'))
     expect(then).toHaveBeenCalled()
   })
 })

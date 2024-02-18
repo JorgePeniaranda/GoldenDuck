@@ -2,16 +2,16 @@ import axios from 'axios'
 import {
   UpdatePassword,
   checkConfirmationCode,
-  generateConfirmationCode,
+  generateConfirmationCode
 } from '.'
-import { ForgotForm } from '@/types'
+import { type ForgotForm } from '@/types'
 
 jest.mock('axios')
 
 const validForm: ForgotForm = {
   email: 'test',
   password: 'testtest',
-  confirmPassword: 'testtest',
+  confirmPassword: 'testtest'
 }
 
 describe('generateConfirmationCode', () => {
@@ -24,9 +24,9 @@ describe('generateConfirmationCode', () => {
       response: {
         status: 200,
         data: {
-          error: 'test',
-        },
-      },
+          error: 'test'
+        }
+      }
     }
     axios.get = jest.fn().mockResolvedValue(mockResponse)
     const response = await generateConfirmationCode('')
@@ -44,9 +44,9 @@ describe('checkConfirmationCode', () => {
       response: {
         status: 200,
         data: {
-          error: 'test',
-        },
-      },
+          error: 'test'
+        }
+      }
     }
     axios.post = jest.fn().mockResolvedValue(mockResponse)
     const response = await checkConfirmationCode('2', '2')
@@ -64,9 +64,9 @@ describe('UpdatePassword', () => {
       response: {
         status: 200,
         data: {
-          error: 'test',
-        },
-      },
+          error: 'test'
+        }
+      }
     }
     axios.post = jest.fn().mockResolvedValue(mockResponse)
     const response = await UpdatePassword(validForm)

@@ -5,14 +5,14 @@ import { jwtVerify } from 'jose'
 const AuthorizedURLs = ['/dashboard', '/dashboard/:path*']
 const UnAuthorizedURLs = ['/login', '/register', '/forgot']
 
-export async function middleware(request: NextRequest) {
+export async function middleware (request: NextRequest) {
   const token = request.cookies.get('token')
 
   if (UnAuthorizedURLs.includes(request.nextUrl.pathname) && token) {
     try {
       const { payload } = await jwtVerify(
         token.value,
-        new TextEncoder().encode(process.env.JWT_SECRET),
+        new TextEncoder().encode(process.env.JWT_SECRET)
       )
 
       if (payload.authorized && payload.aud === 'dashboard') {
@@ -26,7 +26,7 @@ export async function middleware(request: NextRequest) {
       try {
         const { payload } = await jwtVerify(
           token.value,
-          new TextEncoder().encode(process.env.JWT_SECRET),
+          new TextEncoder().encode(process.env.JWT_SECRET)
         )
 
         if (!payload.authorized || payload.aud !== 'dashboard') {
@@ -49,6 +49,6 @@ export const config = {
     '/dashboard/:path*',
     '/login',
     '/register',
-    '/forgot',
-  ],
+    '/forgot'
+  ]
 }

@@ -1,27 +1,27 @@
-export type InputProps = {
+export interface InputProps {
   type:
-    | 'button'
-    | 'checkbox'
-    | 'color'
-    | 'date'
-    | 'datetime-local'
-    | 'email'
-    | 'file'
-    | 'hidden'
-    | 'image'
-    | 'month'
-    | 'number'
-    | 'password'
-    | 'radio'
-    | 'range'
-    | 'reset'
-    | 'search'
-    | 'submit'
-    | 'tel'
-    | 'text'
-    | 'time'
-    | 'url'
-    | 'week'
+  | 'button'
+  | 'checkbox'
+  | 'color'
+  | 'date'
+  | 'datetime-local'
+  | 'email'
+  | 'file'
+  | 'hidden'
+  | 'image'
+  | 'month'
+  | 'number'
+  | 'password'
+  | 'radio'
+  | 'range'
+  | 'reset'
+  | 'search'
+  | 'submit'
+  | 'tel'
+  | 'text'
+  | 'time'
+  | 'url'
+  | 'week'
   name: string
   id?: string
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
@@ -44,18 +44,18 @@ export type InputProps = {
   checked?: boolean
 }
 
-export type formActions = {
+export interface formActions {
   next: (event?: any) => void
   back: (event?: any) => void
   submit: (event?: any) => void
 }
 
-export type LoginForm = {
+export interface LoginForm {
   email: string
   password: string
 }
 
-export type SignupForm = {
+export interface SignupForm {
   name: string
   lastName: string
   phoneNumber: string
@@ -67,13 +67,13 @@ export type SignupForm = {
   sex: 'male' | 'female'
 }
 
-export type ForgotForm = {
+export interface ForgotForm {
   email: string
   password: string
   confirmPassword: string
 }
 
-export type ErrorResponse = {
+export interface ErrorResponse {
   error: string
   status: number
 }

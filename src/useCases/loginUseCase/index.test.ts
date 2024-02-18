@@ -1,4 +1,4 @@
-import { LoginForm } from '@/types'
+import { type LoginForm } from '@/types'
 import { login } from '.'
 import axios from 'axios'
 
@@ -14,9 +14,9 @@ describe('login', () => {
       response: {
         status: 200,
         data: {
-          error: 'test',
-        },
-      },
+          error: 'test'
+        }
+      }
     }
     axios.post = jest.fn().mockResolvedValue(mockResponse)
     const response = await login(validForm)

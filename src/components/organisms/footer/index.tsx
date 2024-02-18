@@ -4,7 +4,7 @@ import ExternalLinkText from '@/components/atoms/text/ExternalLinkText'
 import TypewriterText from '@/components/atoms/text/TypewriterText'
 import Text from '@/components/atoms/text/Text'
 
-export default function Footer() {
+export default function Footer () {
   return (
     <footer className={styles.footer}>
       <Image

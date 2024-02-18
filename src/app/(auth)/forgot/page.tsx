@@ -14,24 +14,24 @@ import {
   ForgotPasswordSchema,
   UpdatePassword,
   checkConfirmationCode,
-  generateConfirmationCode,
+  generateConfirmationCode
 } from '@/useCases/forgotUseCase'
-import { ForgotForm } from '@/types'
+import { type ForgotForm } from '@/types'
 import Text from '@/components/atoms/text/Text'
 import ReactCodeInput from 'react-code-input'
 import { ErrorsHandler, ValidationError } from '@/services/errorService'
 import Alerts from '@/services/alertService'
 import InsertIconToSecretInput from '@/components/molecules/inputs/insert-icon-to-secret-input'
 
-export default function Forgot() {
+export default function Forgot (): JSX.Element {
   const [step, setStep] = useState<number>(0)
   const [code, setcode] = useState<string>('')
   const [showPasswords, setShowPasswords] = useState<boolean>(false)
   const EmailForm = useForm<ForgotForm>({
-    resolver: zodResolver(ForgotEmailSchema),
+    resolver: zodResolver(ForgotEmailSchema)
   })
   const PasswordForm = useForm<ForgotForm>({
-    resolver: zodResolver(ForgotPasswordSchema),
+    resolver: zodResolver(ForgotPasswordSchema)
   })
 
   const onSubmitEmailForm = EmailForm.handleSubmit(async () => {
@@ -40,10 +40,10 @@ export default function Forgot() {
         throw new ValidationError(err.response.data.error)
       })
 
-      return setStep(step + 1)
+      setStep(step + 1)
     } catch (e) {
       const { error } = ErrorsHandler(e)
-      return Alerts.error(error)
+      Alerts.error(error)
     }
   })
 
@@ -52,13 +52,13 @@ export default function Forgot() {
       await checkConfirmationCode(EmailForm.watch('email'), code).catch(
         (err) => {
           throw new ValidationError(err.response.data.error)
-        },
+        }
       )
 
-      return setStep(step + 1)
+      setStep(step + 1)
     } catch (e) {
       const { error } = ErrorsHandler(e)
-      return Alerts.error(error)
+      Alerts.error(error)
     }
   })
 
@@ -66,24 +66,23 @@ export default function Forgot() {
     try {
       if (
         PasswordForm.watch('password') !== PasswordForm.watch('confirmPassword')
-      )
-        return Alerts.warning('Las contraseñas no coinciden')
+      ) { Alerts.warning('Las contraseñas no coinciden'); return }
 
       await UpdatePassword({ ...form, email: EmailForm.watch('email') }).catch(
         (err) => {
           throw new ValidationError(err.response.data.error)
-        },
+        }
       )
 
-      return Alerts.success(
+      Alerts.success(
         'Se ha actualizado la contraseña exitosamente',
         () => {
           location.href = '/dashboard'
-        },
+        }
       )
     } catch (e) {
       const { error } = ErrorsHandler(e)
-      return Alerts.error(error)
+      Alerts.error(error)
     }
   })
 
@@ -126,7 +125,7 @@ export default function Forgot() {
             inputMode="email"
             fields={6}
             value={code}
-            onChange={(e) => setcode(e)}
+            onChange={(e) => { setcode(e) }}
             autoFocus
           />
           <BaseButton
@@ -189,15 +188,17 @@ export default function Forgot() {
           </BaseButton>
         </form>
       )}
-      {step === 0 ? (
+      {step === 0
+        ? (
         <InternalLinkText href="/login" className={style.LinkStyle}>
           Ya tengo una cuenta
         </InternalLinkText>
-      ) : (
+          )
+        : (
         <p onClick={handleBack} className={style.LinkStyle}>
           Volver
         </p>
-      )}
+          )}
     </>
   )
 }

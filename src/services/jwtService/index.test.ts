@@ -34,9 +34,9 @@ describe('JWT Service', () => {
 describe('generateAuthorizedToken', () => {
   it('should generate a valid token', () => {
     const token = jwtService.generateAuthorizedToken('test1', 'test2', {
-      userID: 1,
+      userID: 1
     })
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string)
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!)
     expect(decoded).toHaveProperty('iss', 'test1')
     expect(decoded).toHaveProperty('aud', 'test2')
     expect(decoded).toHaveProperty('authorized', true)
@@ -48,9 +48,9 @@ describe('generateUnAuthorizedToken', () => {
   it('should generate a valid token', () => {
     const token = jwtService.generateUnAuthorizedToken('test1', 'test2', {
       email: 'test@email.com',
-      code: 'code',
+      code: 'code'
     })
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string)
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!)
     expect(decoded).toHaveProperty('iss', 'test1')
     expect(decoded).toHaveProperty('aud', 'test2')
     expect(decoded).toHaveProperty('authorized', false)
@@ -62,7 +62,7 @@ describe('generateUnAuthorizedToken', () => {
 describe('verify token', () => {
   it('should verify a valid token', () => {
     const token = jwtService.generateAuthorizedToken('test', 'test', {
-      userID: 1,
+      userID: 1
     })
     const decoded = jwtService.verifyToken(token)
     expect(decoded).toHaveProperty('authorized', true)

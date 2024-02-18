@@ -1,5 +1,5 @@
 import styles from './styles.module.scss'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import classNames from 'classnames'
 
 interface Props {
@@ -9,11 +9,11 @@ interface Props {
   children: ReactNode
 }
 
-export default function InsertIconToInput({
+export default function InsertIconToInput ({
   icon,
   position = 'left',
   className,
-  children,
+  children
 }: Props) {
   const classes = classNames(styles.InputWithIcon, className)
 

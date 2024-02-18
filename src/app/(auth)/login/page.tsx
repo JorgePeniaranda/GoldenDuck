@@ -5,7 +5,7 @@ import Text from '@/components/atoms/text/Text'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import ContainerWithNavbar from '@/components/pages/container-with-navbar'
-import { LoginForm } from '@/types'
+import { type LoginForm } from '@/types'
 import { LoginSchema, login } from '@/useCases/loginUseCase'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -13,13 +13,13 @@ import ErrorSpan from '@/components/atoms/text/ErrorSpan'
 import Alerts from '@/services/alertService'
 import { ErrorsHandler, ValidationError } from '@/services/errorService'
 
-export default function Login() {
+export default function Login (): JSX.Element {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting }
   } = useForm<LoginForm>({
-    resolver: zodResolver(LoginSchema),
+    resolver: zodResolver(LoginSchema)
   })
 
   const onSubmit = handleSubmit(async (form) => {
@@ -28,12 +28,11 @@ export default function Login() {
         throw new ValidationError(err.response.data.error)
       })
 
-      Alerts.success('Ha ingresado exitosamente', () =>
-        location.replace('/dashboard'),
+      Alerts.success('Ha ingresado exitosamente', () => { location.replace('/dashboard') }
       )
     } catch (e) {
       const { error } = ErrorsHandler(e)
-      return Alerts.error(error)
+      Alerts.error(error)
     }
   })
 

@@ -7,9 +7,9 @@ interface Props {
   name: string
 }
 
-export default function ProfileButton({
+export default function ProfileButton ({
   src = '/assets/img/misc/default-pfp.webp',
-  name,
+  name
 }: Props) {
   return (
     <div className={style.Profile}>

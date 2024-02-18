@@ -4,7 +4,7 @@ import Breadcrumb from '@/components/molecules/breadcrumb'
 import Image from 'next/image'
 import React from 'react'
 import ButtonWithPopover, {
-  CardLinkPopover,
+  CardLinkPopover
 } from '@/components/molecules/buttons/button-with-popover'
 import ProfileButton from '@/components/molecules/buttons/profile-button'
 import NavDisclosure from '@/components/molecules/disclosures/nav-disclosure'
@@ -15,7 +15,7 @@ interface Props {
   children: React.ReactNode
 }
 
-export default function DashboardLayout({ children }: Props) {
+export default function DashboardLayout ({ children }: Props) {
   return (
     <main className={style.Dashboard}>
       <nav className={style.DashboardNav}>

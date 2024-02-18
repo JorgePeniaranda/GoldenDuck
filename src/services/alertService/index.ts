@@ -5,7 +5,7 @@ const Alerts = {
     Swal.fire({
       icon: 'success',
       title: '¡Hecho!',
-      text: message,
+      text: message
     }).then(() => {
       if (then) then()
     })
@@ -14,7 +14,7 @@ const Alerts = {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: message,
+      text: message
     }).then(() => {
       if (then) then()
     })
@@ -23,7 +23,7 @@ const Alerts = {
     Swal.fire({
       icon: 'warning',
       title: 'Oops...',
-      text: message,
+      text: message
     }).then(() => {
       if (then) then()
     })
@@ -32,7 +32,7 @@ const Alerts = {
     Swal.fire({
       icon: 'info',
       title: 'Oops...',
-      text: message,
+      text: message
     }).then(() => {
       if (then) then()
     })
@@ -41,11 +41,11 @@ const Alerts = {
     Swal.fire({
       icon: 'question',
       title: 'Oops...',
-      text: message,
+      text: message
     }).then(() => {
       if (then) then()
     })
-  },
+  }
 }
 
 export default Alerts

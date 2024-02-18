@@ -8,12 +8,12 @@ interface Props {
   className?: string
 }
 
-export default function Text({
+export default function Text ({
   tag = 'p',
   weight = '400',
   size = '1rem',
   children,
-  className,
+  className
 }: Props) {
   const Tag = tag as keyof JSX.IntrinsicElements
   const classes = classNames(className)
@@ -23,7 +23,7 @@ export default function Text({
       className={classes}
       style={{
         fontSize: size,
-        fontWeight: weight,
+        fontWeight: weight
       }}
     >
       {children}

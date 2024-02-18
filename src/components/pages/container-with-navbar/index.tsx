@@ -8,13 +8,13 @@ interface Props {
   itemsCentered?: boolean
 }
 
-export default function ContainerWithNavbar({
+export default function ContainerWithNavbar ({
   children,
   className,
-  itemsCentered = true,
+  itemsCentered = true
 }: Props) {
   const classes = classNames(style.Container, className, {
-    [style.CenterItems]: itemsCentered,
+    [style.CenterItems]: itemsCentered
   })
 
   return (
