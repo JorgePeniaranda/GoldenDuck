@@ -36,7 +36,6 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
     case 'EmailError':
       return { error: error.message, status: 500 }
     default:
-      console.log(error)
       return { error: 'Ha ocurrido un error', status: 500 }
   }
 }
