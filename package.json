@@ -25,6 +25,7 @@
     "jsonwebtoken": "9.0.2",
     "next": "14.1.0",
     "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-code-input": "3.10.1",
     "react-credit-cards-2": "^1.0.2",
     "react-dom": "18.2.0",

@@ -1,0 +1,61 @@
+.TablePayments{
+    padding: 1rem 1.25rem;
+    background-color: oklch(100% 0 0);
+    box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
+    border-radius: 1rem;
+    h2{
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 1.1rem;
+        padding: .2rem 0;
+    }
+    table{
+        width: 100%;
+        height: max-content;
+        margin: .3rem auto 0;
+        tr{
+            height: 3rem;
+            td{
+                padding: 0 1rem;
+                &:first-child{
+                    h3{
+                        text-transform: capitalize;
+                        font-weight: 600;
+                        color: oklch(33.28% 0 260.51);
+                    }
+                    p{
+                        font-size: .8rem;
+                    }
+                }
+                &:last-child{
+                    text-align: end;
+                }
+            }
+            &.positive td:last-child{
+                font-size: .9rem;
+                font-weight: 500;
+                color: oklch(63.06% 0.187 142.31);
+                &::before{
+                    content: '+';
+                    margin-right: .2rem;
+                }
+            }
+            &.negative td:last-child{
+                font-size: .9rem;
+                font-weight: 500;
+                color: oklch(63.06% 0.226 21.66);
+                &::before{
+                    content: '-';
+                    margin-right: .2rem;
+                }
+            }
+            &:not(:last-child){
+                border-bottom: 2px solid #e9ecef;
+            }
+            &:hover{
+                background-color: rgba(146, 146, 146, 0.101);
+                cursor: pointer;
+            }
+        }
+    }
+}

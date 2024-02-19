@@ -25,3 +25,10 @@ export interface ErrorResponse {
   error: string
   status: number
 }
+
+export interface Movement {
+  to: string
+  value: number
+  date: Date
+  balance: boolean
+}
