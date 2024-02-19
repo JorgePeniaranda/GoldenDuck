@@ -12,7 +12,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import {
   ForgotEmailSchema,
   ForgotPasswordSchema,
-  handleBack,
   onSubmitCodeForm,
   onSubmitEmailForm,
   onSubmitPasswordForm,
@@ -21,9 +20,10 @@ import { type ForgotForm } from '@/types'
 import Text from '@/components/atoms/text/Text'
 import ReactCodeInput from 'react-code-input'
 import InsertIconToSecretInput from '@/components/molecules/inputs/insert-icon-to-secret-input'
+import useStep from '@/hooks/useStep'
 
 export default function Forgot (): JSX.Element {
-  const [step, setStep] = useState<number>(0)
+  const {step, handleNext, handleBack} = useStep()
   const [code, setcode] = useState<string>('')
   const [showPasswords, setShowPasswords] = useState<boolean>(false)
   const EmailForm = useForm<ForgotForm>({
@@ -36,7 +36,7 @@ export default function Forgot (): JSX.Element {
   return (
     <>
       {step === 0 && (
-        <form onSubmit={EmailForm.handleSubmit((form) => onSubmitEmailForm(form, step, setStep))}>
+        <form onSubmit={EmailForm.handleSubmit((form) => onSubmitEmailForm(form, handleNext))}>
           <label>
             Email:
             <InsertIconToInput icon={EmailIcon}>
@@ -56,7 +56,7 @@ export default function Forgot (): JSX.Element {
         </form>
       )}
       {step === 1 && (
-        <form onSubmit={EmailForm.handleSubmit((form) => onSubmitCodeForm(form, code, step, setStep,))} className={style.ConfirmUserEmail}>
+        <form onSubmit={EmailForm.handleSubmit((form) => onSubmitCodeForm(form, code, handleNext))} className={style.ConfirmUserEmail}>
           <Text>
             Compruebe el correo <span>{EmailForm.watch('email')}</span> para
             encontrar el codigo de verificación, recuerda que puede encontrarse
@@ -138,7 +138,7 @@ export default function Forgot (): JSX.Element {
         </InternalLinkText>
           )
         : (
-        <p onClick={() => handleBack(step, setStep)} className={style.LinkStyle}>
+        <p onClick={handleBack} className={style.LinkStyle}>
           Volver
         </p>
           )}

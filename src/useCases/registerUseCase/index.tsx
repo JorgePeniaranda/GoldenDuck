@@ -38,7 +38,7 @@ export const handleBack = (step: number, setStep: (number: number) => void): voi
   setStep(step - 1)
 }
 
-export const onSubmitData = async ({email, dni, phoneNumber}: SignupForm, step: number, setStep: (number: number) => void) => {
+export const onSubmitData = async ({email, dni, phoneNumber}: SignupForm, callback?: Function) => {
   try {
     await generateConfirmationCode(
       email,
@@ -48,7 +48,7 @@ export const onSubmitData = async ({email, dni, phoneNumber}: SignupForm, step: 
       throw new ValidationError(err.response.data.error as string)
     })
 
-    handleNext(step, setStep)
+    if(typeof callback === 'function') callback()
   } catch (e) {
     const { error } = ErrorsHandler(e)
     Alerts.error(error)

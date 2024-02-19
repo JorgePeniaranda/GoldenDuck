@@ -23,29 +23,20 @@ export const checkConfirmationCode = async (email: string, code: string): Promis
 export const UpdatePassword = async (ForgotForm: ForgotForm): Promise<AxiosResponse> =>
   await axios.post('/api/forgot', ForgotForm)
 
-
-export const handleNext = (step: number, setStep: (number: number) => void): void => {
-  setStep(step + 1)
-}
-
-export const handleBack = (step: number, setStep: (number: number) => void): void => {
-  setStep(step - 1)
-}
-
-export const onSubmitEmailForm = async (form: { email: string }, step: number, setStep: (number: number) => void) => {
+export const onSubmitEmailForm = async (form: { email: string }, callback?: Function) => {
   try {
     await generateConfirmationCode(form.email).catch((err) => {
       throw new ValidationError(err.response.data.error as string)
     })
 
-    handleNext(step, setStep)
+    if(typeof callback === 'function') callback()
   } catch (e) {
     const { error } = ErrorsHandler(e)
     Alerts.error(error)
   }
 }
 
-export const onSubmitCodeForm = async (form: { email: string }, code: string, step: number, setStep: (number: number) => void) => {
+export const onSubmitCodeForm = async (form: { email: string }, code: string, callback?: Function) => {
   try {
     await checkConfirmationCode(form.email, code).catch(
       (err) => {
@@ -53,7 +44,7 @@ export const onSubmitCodeForm = async (form: { email: string }, code: string, st
       }
     )
 
-    handleNext(step, setStep)
+    if(typeof callback === 'function') callback()
   } catch (e) {
     const { error } = ErrorsHandler(e)
     Alerts.error(error)

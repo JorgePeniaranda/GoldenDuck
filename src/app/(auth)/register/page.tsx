@@ -17,9 +17,10 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import ReactCodeInput from 'react-code-input'
 import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
+import useStep from '@/hooks/useStep'
 
 export default function Signin (): JSX.Element {
-  const [step, setStep] = useState<number>(0)
+  const {step, handleNext, handleBack} = useStep()
   const [code, setCode] = useState<string>('')
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const {
@@ -34,7 +35,7 @@ export default function Signin (): JSX.Element {
   return (
     <>
       {step === 0 && (
-        <form onSubmit={handleSubmit((form) => onSubmitData(form, step, setStep))} className={style.GetInfo}>
+        <form onSubmit={handleSubmit((form) => onSubmitData(form, handleNext))} className={style.GetInfo}>
           <section>
             <Text tag="h2">Datos</Text>
             <article>
@@ -195,7 +196,7 @@ export default function Signin (): JSX.Element {
         </InternalLinkText>
           )
         : (
-            <p onClick={() => handleBack(step, setStep)} className={style.LinkStyle}>
+            <p onClick={handleBack} className={style.LinkStyle}>
               Volver
             </p>
           )}
