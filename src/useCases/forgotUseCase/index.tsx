@@ -1,3 +1,5 @@
+import Alerts from '@/services/alertService'
+import { ErrorsHandler, ValidationError } from '@/services/errorService'
 import validations from '@/services/validationService'
 import { type ForgotForm } from '@/types'
 import axios, { type AxiosResponse } from 'axios'
@@ -20,3 +22,55 @@ export const checkConfirmationCode = async (email: string, code: string): Promis
 
 export const UpdatePassword = async (ForgotForm: ForgotForm): Promise<AxiosResponse> =>
   await axios.post('/api/forgot', ForgotForm)
+
+export const onSubmitEmailForm = async (form: { email: string }, callback?: () => void): Promise<void> => {
+  try {
+    await generateConfirmationCode(form.email).catch((err) => {
+      throw new ValidationError(err.response.data.error as string)
+    })
+
+    if (typeof callback === 'function') callback()
+  } catch (e) {
+    const { error } = ErrorsHandler(e)
+    Alerts.error(error)
+  }
+}
+
+export const onSubmitCodeForm = async (form: { email: string }, code: string, callback?: () => void): Promise<void> => {
+  try {
+    await checkConfirmationCode(form.email, code).catch(
+      (err) => {
+        throw new ValidationError(err.response.data.error as string)
+      }
+    )
+
+    if (typeof callback === 'function') callback()
+  } catch (e) {
+    const { error } = ErrorsHandler(e)
+    Alerts.error(error)
+  }
+}
+
+export const onSubmitPasswordForm = async (form: ForgotForm, email: string): Promise<void> => {
+  try {
+    if (
+      form.password !== form.confirmPassword
+    ) { Alerts.warning('Las contraseñas no coinciden'); return }
+
+    await UpdatePassword({ ...form, email }).catch(
+      (err) => {
+        throw new ValidationError(err.response.data.error as string)
+      }
+    )
+
+    Alerts.success(
+      'Se ha actualizado la contraseña exitosamente',
+      () => {
+        location.href = '/dashboard'
+      }
+    )
+  } catch (e) {
+    const { error } = ErrorsHandler(e)
+    Alerts.error(error)
+  }
+}

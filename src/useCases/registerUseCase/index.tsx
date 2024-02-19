@@ -2,6 +2,8 @@ import { type SignupForm } from '@/types'
 import axios, { type AxiosResponse } from 'axios'
 import { validations } from '@/services/validationService'
 import { z } from 'zod'
+import Alerts from '@/services/alertService'
+import { ErrorsHandler, ValidationError } from '@/services/errorService'
 
 export const SignUpSchema = z.object({
   name: validations.name,
@@ -26,3 +28,39 @@ export const checkConfirmationCode = async (email: string, code: string): Promis
 
 export const CreateUser = async (SignupForm: SignupForm): Promise<AxiosResponse> =>
   await axios.post('/api/register', SignupForm)
+
+export const onSubmitData = async ({ email, dni, phoneNumber }: SignupForm, callback?: () => void): Promise<void> => {
+  try {
+    await generateConfirmationCode(
+      email,
+      String(dni),
+      String(phoneNumber)
+    ).catch((err) => {
+      throw new ValidationError(err.response.data.error as string)
+    })
+
+    if (typeof callback === 'function') callback()
+  } catch (e) {
+    const { error } = ErrorsHandler(e)
+    Alerts.error(error)
+  }
+}
+
+export const onSubmitCode = async (form: SignupForm, code: string): Promise<void> => {
+  try {
+    await checkConfirmationCode(form.email, code).catch((err) => {
+      throw new ValidationError(err.response.data.error as string)
+    })
+
+    await CreateUser(form).catch((err) => {
+      throw new ValidationError(err.response.data.error as string)
+    })
+
+    Alerts.success('Usuario creado con exito', () => {
+      location.href = '/dashboard'
+    })
+  } catch (e) {
+    const { error } = ErrorsHandler(e)
+    Alerts.error(error)
+  }
+}

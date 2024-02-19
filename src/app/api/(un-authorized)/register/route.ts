@@ -21,8 +21,8 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     const token = req.cookies.get('token')?.value
 
     // check request
-    if (token === undefined || token === null) throw new ValidationError('No se ha enviado el token')
-    if (data.email === undefined || data.email === null) throw new ValidationError('No se ha enviado el email')
+    if (token === undefined || token === null) { throw new ValidationError('No se ha enviado el token') }
+    if (data.email === undefined || data.email === null) { throw new ValidationError('No se ha enviado el email') }
 
     // verify token and get values
     const jwtToken = jwt.verifyToken(token)
@@ -35,11 +35,15 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
       jwtToken.iss !== 'register' ||
       jwtToken.aud !== 'register' ||
       jwtToken.authorized === false
-    ) { throw new AuthorizationError('Token invalido') }
+    ) {
+      throw new AuthorizationError('Token invalido')
+    }
 
     // Check format of form body
     const checkUserData = await SignUpSchema.safeParseAsync(data as SignupForm)
-    if (!checkUserData.success) { throw new ValidationError(checkUserData.error.errors[0].message) }
+    if (!checkUserData.success) {
+      throw new ValidationError(checkUserData.error.errors[0].message)
+    }
 
     // Check if user already exists
     const checkSameUser = await prisma.users.findFirst({
@@ -52,7 +56,9 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
         deleted: false
       }
     })
-    if (checkSameUser !== undefined || checkSameUser !== null) { throw new ConflictError('Ya existe una cuenta con esos datos') }
+    if (checkSameUser !== undefined && checkSameUser !== null) {
+      throw new ConflictError('Ya existe una cuenta con esos datos')
+    }
 
     // Create new user
     const newUser = await prisma.users.create({

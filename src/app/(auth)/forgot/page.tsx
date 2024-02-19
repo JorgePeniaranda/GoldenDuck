@@ -12,19 +12,18 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import {
   ForgotEmailSchema,
   ForgotPasswordSchema,
-  UpdatePassword,
-  checkConfirmationCode,
-  generateConfirmationCode
+  onSubmitCodeForm,
+  onSubmitEmailForm,
+  onSubmitPasswordForm
 } from '@/useCases/forgotUseCase'
 import { type ForgotForm } from '@/types'
 import Text from '@/components/atoms/text/Text'
 import ReactCodeInput from 'react-code-input'
-import { ErrorsHandler, ValidationError } from '@/services/errorService'
-import Alerts from '@/services/alertService'
 import InsertIconToSecretInput from '@/components/molecules/inputs/insert-icon-to-secret-input'
+import useStep from '@/hooks/useStep'
 
 export default function Forgot (): JSX.Element {
-  const [step, setStep] = useState<number>(0)
+  const { step, handleNext, handleBack } = useStep()
   const [code, setcode] = useState<string>('')
   const [showPasswords, setShowPasswords] = useState<boolean>(false)
   const EmailForm = useForm<ForgotForm>({
@@ -34,66 +33,10 @@ export default function Forgot (): JSX.Element {
     resolver: zodResolver(ForgotPasswordSchema)
   })
 
-  const onSubmitEmailForm = EmailForm.handleSubmit(async () => {
-    try {
-      await generateConfirmationCode(EmailForm.watch('email')).catch((err) => {
-        throw new ValidationError(err.response.data.error as string)
-      })
-
-      setStep(step + 1)
-    } catch (e) {
-      const { error } = ErrorsHandler(e)
-      Alerts.error(error)
-    }
-  })
-
-  const onSubmitCodeForm = EmailForm.handleSubmit(async () => {
-    try {
-      await checkConfirmationCode(EmailForm.watch('email'), code).catch(
-        (err) => {
-          throw new ValidationError(err.response.data.error as string)
-        }
-      )
-
-      setStep(step + 1)
-    } catch (e) {
-      const { error } = ErrorsHandler(e)
-      Alerts.error(error)
-    }
-  })
-
-  const onSubmitPasswordForm = PasswordForm.handleSubmit(async (form) => {
-    try {
-      if (
-        PasswordForm.watch('password') !== PasswordForm.watch('confirmPassword')
-      ) { Alerts.warning('Las contraseñas no coinciden'); return }
-
-      await UpdatePassword({ ...form, email: EmailForm.watch('email') }).catch(
-        (err) => {
-          throw new ValidationError(err.response.data.error as string)
-        }
-      )
-
-      Alerts.success(
-        'Se ha actualizado la contraseña exitosamente',
-        () => {
-          location.href = '/dashboard'
-        }
-      )
-    } catch (e) {
-      const { error } = ErrorsHandler(e)
-      Alerts.error(error)
-    }
-  })
-
-  const handleBack = (): void => {
-    setStep(step - 1)
-  }
-
   return (
     <>
       {step === 0 && (
-        <form onSubmit={onSubmitEmailForm}>
+        <form onSubmit={EmailForm.handleSubmit(async (form) => { await onSubmitEmailForm(form, handleNext) })}>
           <label>
             Email:
             <InsertIconToInput icon={EmailIcon}>
@@ -113,7 +56,7 @@ export default function Forgot (): JSX.Element {
         </form>
       )}
       {step === 1 && (
-        <form onSubmit={onSubmitCodeForm} className={style.ConfirmUserEmail}>
+        <form onSubmit={EmailForm.handleSubmit(async (form) => { await onSubmitCodeForm(form, code, handleNext) })} className={style.ConfirmUserEmail}>
           <Text>
             Compruebe el correo <span>{EmailForm.watch('email')}</span> para
             encontrar el codigo de verificación, recuerda que puede encontrarse
@@ -138,7 +81,7 @@ export default function Forgot (): JSX.Element {
         </form>
       )}
       {step === 2 && (
-        <form onSubmit={onSubmitPasswordForm}>
+        <form onSubmit={PasswordForm.handleSubmit(async (form) => { await onSubmitPasswordForm(form, EmailForm.watch('email')) })}>
           <label>
             Nueva contraseña:
             <InsertIconToSecretInput

@@ -5,10 +5,9 @@ import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import { type SignupForm } from '@/types'
 import {
-  CreateUser,
   SignUpSchema,
-  checkConfirmationCode,
-  generateConfirmationCode
+  onSubmitCode,
+  onSubmitData
 } from '@/useCases/registerUseCase'
 import Text from '@/components/atoms/text/Text'
 import BaseButton from '@/components/molecules/buttons/base-button'
@@ -16,12 +15,11 @@ import ErrorSpan from '@/components/atoms/text/ErrorSpan'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import ReactCodeInput from 'react-code-input'
-import Alerts from '@/services/alertService'
-import { ErrorsHandler, ValidationError } from '@/services/errorService'
 import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
+import useStep from '@/hooks/useStep'
 
 export default function Signin (): JSX.Element {
-  const [step, setStep] = useState<number>(0)
+  const { step, handleNext, handleBack } = useStep()
   const [code, setCode] = useState<string>('')
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const {
@@ -33,56 +31,16 @@ export default function Signin (): JSX.Element {
     resolver: zodResolver(SignUpSchema)
   })
 
-  const onSubmitData = handleSubmit(async () => {
-    try {
-      await generateConfirmationCode(
-        watch('email'),
-        watch('dni'),
-        watch('phoneNumber')
-      ).catch((err) => {
-        throw new ValidationError(err.response.data.error as string)
-      })
-
-      setStep(step + 1)
-    } catch (e) {
-      const { error } = ErrorsHandler(e)
-      Alerts.error(error)
-    }
-  })
-
-  const onSubmitCode = handleSubmit(async (form) => {
-    try {
-      await checkConfirmationCode(watch('email'), code).catch((err) => {
-        throw new ValidationError(err.response.data.error as string)
-      })
-
-      await CreateUser(form).catch((err) => {
-        throw new ValidationError(err.response.data.error as string)
-      })
-
-      Alerts.success('Usuario creado con exito', () => {
-        location.href = '/dashboard'
-      })
-    } catch (e) {
-      const { error } = ErrorsHandler(e)
-      Alerts.error(error)
-    }
-  })
-
-  const handleBack = (): void => {
-    setStep(step - 1)
-  }
-
   return (
     <>
       {step === 0 && (
-        <form onSubmit={onSubmitData} className={style.GetInfo}>
+        <form onSubmit={handleSubmit(async (form) => { await onSubmitData(form, handleNext) })} className={style.GetInfo}>
           <section>
             <Text tag="h2">Datos</Text>
             <article>
               <label>
                 <input type="text" placeholder="nombre" {...register('name')} />
-                <ErrorSpan show={errors.name === undefined} align="center">
+                <ErrorSpan show={errors.name !== undefined} align="center">
                   {errors.name?.message}
                 </ErrorSpan>
               </label>
@@ -92,13 +50,13 @@ export default function Signin (): JSX.Element {
                   placeholder="apellido"
                   {...register('lastName')}
                 />
-                <ErrorSpan show={errors.lastName === undefined} align="center">
+                <ErrorSpan show={errors.lastName !== undefined} align="center">
                   {errors.lastName?.message}
                 </ErrorSpan>
               </label>
               <label>
                 <input type="number" placeholder="dni" {...register('dni')} />
-                <ErrorSpan show={errors.dni === undefined} align="center">
+                <ErrorSpan show={errors.dni !== undefined} align="center">
                   {errors.dni?.message}
                 </ErrorSpan>
               </label>
@@ -113,7 +71,7 @@ export default function Signin (): JSX.Element {
                   placeholder="email"
                   {...register('email')}
                 />
-                <ErrorSpan show={errors.email === undefined} align="center">
+                <ErrorSpan show={errors.email !== undefined} align="center">
                   {errors.email?.message}
                 </ErrorSpan>
               </label>
@@ -123,7 +81,7 @@ export default function Signin (): JSX.Element {
                   placeholder="telefono"
                   {...register('phoneNumber')}
                 />
-                <ErrorSpan show={errors.phoneNumber === undefined} align="center">
+                <ErrorSpan show={errors.phoneNumber !== undefined} align="center">
                   {errors.phoneNumber?.message}
                 </ErrorSpan>
               </label>
@@ -138,7 +96,7 @@ export default function Signin (): JSX.Element {
                     {...register('password')}
                   />
                 </ConvertToSecretInput>
-                <ErrorSpan show={errors.password === undefined} align="center">
+                <ErrorSpan show={errors.password !== undefined} align="center">
                   {errors.password?.message}
                 </ErrorSpan>
               </label>
@@ -153,14 +111,14 @@ export default function Signin (): JSX.Element {
                   placeholder="domicilio"
                   {...register('address')}
                 />
-                <ErrorSpan show={errors.address === undefined} align="center">
+                <ErrorSpan show={errors.address !== undefined} align="center">
                   {errors.address?.message}
                 </ErrorSpan>
               </label>
               <label>
                 <input type="date" {...register('birthDate')} />
                 Fecha de Nacimiento
-                <ErrorSpan show={errors.birthDate === undefined} align="center">
+                <ErrorSpan show={errors.birthDate !== undefined} align="center">
                   {errors.birthDate?.message}
                 </ErrorSpan>
               </label>
@@ -168,14 +126,14 @@ export default function Signin (): JSX.Element {
                 <label>
                   <input type="radio" value="male" {...register('sex')} />
                   Masculino
-                  <ErrorSpan show={errors.sex === undefined} align="center">
+                  <ErrorSpan show={errors.sex !== undefined} align="center">
                     {errors.sex?.message}
                   </ErrorSpan>
                 </label>
                 <label>
                   <input type="radio" value="female" {...register('sex')} />
                   Femenino
-                  <ErrorSpan show={errors.sex === undefined} align="center">
+                  <ErrorSpan show={errors.sex !== undefined} align="center">
                     {errors.sex?.message}
                   </ErrorSpan>
                 </label>
@@ -211,7 +169,7 @@ export default function Signin (): JSX.Element {
               en la categoria {'"Spam"'}
             </Text>
           </article>
-          <form onSubmit={onSubmitCode}>
+          <form onSubmit={handleSubmit(async (form) => { await onSubmitCode(form, code) })}>
             <ReactCodeInput
               type="text"
               fields={6}
@@ -228,9 +186,6 @@ export default function Signin (): JSX.Element {
               Confirmar
             </BaseButton>
           </form>
-          <p onClick={handleBack} className={style.LinkStyle}>
-            Volver
-          </p>
         </section>
       )}
       {step === 0
@@ -240,9 +195,9 @@ export default function Signin (): JSX.Element {
         </InternalLinkText>
           )
         : (
-        <p onClick={handleBack} className={style.LinkStyle}>
-          Volver
-        </p>
+            <p onClick={handleBack} className={style.LinkStyle}>
+              Volver
+            </p>
           )}
     </>
   )
