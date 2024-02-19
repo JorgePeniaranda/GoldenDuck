@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export default function useStep (): {
   step: number
-  setStep: (number: number) => void
+  setStep: React.Dispatch<React.SetStateAction<number>>
   handleNext: () => void
   handleBack: () => void
 } {
