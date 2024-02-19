@@ -228,9 +228,6 @@ export default function Signin (): JSX.Element {
               Confirmar
             </BaseButton>
           </form>
-          <p onClick={handleBack} className={style.LinkStyle}>
-            Volver
-          </p>
         </section>
       )}
       {step === 0
@@ -240,9 +237,9 @@ export default function Signin (): JSX.Element {
         </InternalLinkText>
           )
         : (
-        <p onClick={handleBack} className={style.LinkStyle}>
-          Volver
-        </p>
+            <p onClick={handleBack} className={style.LinkStyle}>
+              Volver
+            </p>
           )}
     </>
   )
