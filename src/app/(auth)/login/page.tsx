@@ -7,12 +7,10 @@ import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import ContainerWithNavbar from '@/components/pages/container-with-navbar'
 import { type LoginForm } from '@/types'
-import { LoginSchema, login } from '@/useCases/loginUseCase'
+import { LoginSchema, onSubmit } from '@/useCases/loginUseCase'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import ErrorSpan from '@/components/atoms/text/ErrorSpan'
-import Alerts from '@/services/alertService'
-import { ErrorsHandler, ValidationError } from '@/services/errorService'
 
 export default function Login (): JSX.Element {
   const {
@@ -21,20 +19,6 @@ export default function Login (): JSX.Element {
     formState: { errors, isSubmitting }
   } = useForm<LoginForm>({
     resolver: zodResolver(LoginSchema)
-  })
-
-  const onSubmit = handleSubmit(async (form) => {
-    try {
-      await login(form).catch((err) => {
-        throw new ValidationError(err.response.data.error as string)
-      })
-
-      Alerts.success('Ha ingresado exitosamente', () => { location.replace('/dashboard') }
-      )
-    } catch (e) {
-      const { error } = ErrorsHandler(e)
-      Alerts.error(error)
-    }
   })
 
   return (
@@ -62,7 +46,7 @@ export default function Login (): JSX.Element {
         </BaseButton>
       </section>
       <section className={style.FormSide}>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Text tag="h1" size={'1.9rem'} weight="700">
             Iniciar Sesión
           </Text>
