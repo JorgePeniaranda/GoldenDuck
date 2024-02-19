@@ -5,10 +5,10 @@ import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import { type SignupForm } from '@/types'
 import {
-  CreateUser,
   SignUpSchema,
-  checkConfirmationCode,
-  generateConfirmationCode
+  handleBack,
+  onSubmitCode,
+  onSubmitData
 } from '@/useCases/registerUseCase'
 import Text from '@/components/atoms/text/Text'
 import BaseButton from '@/components/molecules/buttons/base-button'
@@ -16,8 +16,6 @@ import ErrorSpan from '@/components/atoms/text/ErrorSpan'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import ReactCodeInput from 'react-code-input'
-import Alerts from '@/services/alertService'
-import { ErrorsHandler, ValidationError } from '@/services/errorService'
 import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
 
 export default function Signin (): JSX.Element {
@@ -33,50 +31,10 @@ export default function Signin (): JSX.Element {
     resolver: zodResolver(SignUpSchema)
   })
 
-  const onSubmitData = handleSubmit(async () => {
-    try {
-      await generateConfirmationCode(
-        watch('email'),
-        watch('dni'),
-        watch('phoneNumber')
-      ).catch((err) => {
-        throw new ValidationError(err.response.data.error as string)
-      })
-
-      setStep(step + 1)
-    } catch (e) {
-      const { error } = ErrorsHandler(e)
-      Alerts.error(error)
-    }
-  })
-
-  const onSubmitCode = handleSubmit(async (form) => {
-    try {
-      await checkConfirmationCode(watch('email'), code).catch((err) => {
-        throw new ValidationError(err.response.data.error as string)
-      })
-
-      await CreateUser(form).catch((err) => {
-        throw new ValidationError(err.response.data.error as string)
-      })
-
-      Alerts.success('Usuario creado con exito', () => {
-        location.href = '/dashboard'
-      })
-    } catch (e) {
-      const { error } = ErrorsHandler(e)
-      Alerts.error(error)
-    }
-  })
-
-  const handleBack = (): void => {
-    setStep(step - 1)
-  }
-
   return (
     <>
       {step === 0 && (
-        <form onSubmit={onSubmitData} className={style.GetInfo}>
+        <form onSubmit={handleSubmit((form) => onSubmitData(form, step, setStep))} className={style.GetInfo}>
           <section>
             <Text tag="h2">Datos</Text>
             <article>
@@ -211,7 +169,7 @@ export default function Signin (): JSX.Element {
               en la categoria {'"Spam"'}
             </Text>
           </article>
-          <form onSubmit={onSubmitCode}>
+          <form onSubmit={handleSubmit((form) => onSubmitCode(form, code))}>
             <ReactCodeInput
               type="text"
               fields={6}
@@ -237,7 +195,7 @@ export default function Signin (): JSX.Element {
         </InternalLinkText>
           )
         : (
-            <p onClick={handleBack} className={style.LinkStyle}>
+            <p onClick={() => handleBack(step, setStep)} className={style.LinkStyle}>
               Volver
             </p>
           )}

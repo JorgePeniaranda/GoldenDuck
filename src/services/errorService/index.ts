@@ -2,7 +2,7 @@ import { type ErrorResponse } from '@/types'
 
 export const createErrorFactory = function (name: string): any {
   return class CustomizedError extends Error {
-    constructor (message: string) {
+    constructor(message: string) {
       super(message)
       this.name = name
     }
@@ -21,7 +21,7 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
     case 'PrismaClientInitializationError':
       return {
         error: 'No se ha podido conectar a la base de datos',
-        status: 500
+        status: 500,
       }
     case 'ConfigError':
       return { error: error.message, status: 500 }
