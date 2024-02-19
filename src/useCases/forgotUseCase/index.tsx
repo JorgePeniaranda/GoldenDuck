@@ -23,20 +23,20 @@ export const checkConfirmationCode = async (email: string, code: string): Promis
 export const UpdatePassword = async (ForgotForm: ForgotForm): Promise<AxiosResponse> =>
   await axios.post('/api/forgot', ForgotForm)
 
-export const onSubmitEmailForm = async (form: { email: string }, callback?: Function) => {
+export const onSubmitEmailForm = async (form: { email: string }, callback?: () => void): Promise<void> => {
   try {
     await generateConfirmationCode(form.email).catch((err) => {
       throw new ValidationError(err.response.data.error as string)
     })
 
-    if(typeof callback === 'function') callback()
+    if (typeof callback === 'function') callback()
   } catch (e) {
     const { error } = ErrorsHandler(e)
     Alerts.error(error)
   }
 }
 
-export const onSubmitCodeForm = async (form: { email: string }, code: string, callback?: Function) => {
+export const onSubmitCodeForm = async (form: { email: string }, code: string, callback?: () => void): Promise<void> => {
   try {
     await checkConfirmationCode(form.email, code).catch(
       (err) => {
@@ -44,20 +44,20 @@ export const onSubmitCodeForm = async (form: { email: string }, code: string, ca
       }
     )
 
-    if(typeof callback === 'function') callback()
+    if (typeof callback === 'function') callback()
   } catch (e) {
     const { error } = ErrorsHandler(e)
     Alerts.error(error)
   }
 }
 
-export const onSubmitPasswordForm = async (form: ForgotForm, email: string) => {
+export const onSubmitPasswordForm = async (form: ForgotForm, email: string): Promise<void> => {
   try {
     if (
       form.password !== form.confirmPassword
     ) { Alerts.warning('Las contraseñas no coinciden'); return }
 
-    await UpdatePassword({ ...form, email: email }).catch(
+    await UpdatePassword({ ...form, email }).catch(
       (err) => {
         throw new ValidationError(err.response.data.error as string)
       }

@@ -6,7 +6,6 @@ import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import { type SignupForm } from '@/types'
 import {
   SignUpSchema,
-  handleBack,
   onSubmitCode,
   onSubmitData
 } from '@/useCases/registerUseCase'
@@ -20,7 +19,7 @@ import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secre
 import useStep from '@/hooks/useStep'
 
 export default function Signin (): JSX.Element {
-  const {step, handleNext, handleBack} = useStep()
+  const { step, handleNext, handleBack } = useStep()
   const [code, setCode] = useState<string>('')
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const {
@@ -35,7 +34,7 @@ export default function Signin (): JSX.Element {
   return (
     <>
       {step === 0 && (
-        <form onSubmit={handleSubmit((form) => onSubmitData(form, handleNext))} className={style.GetInfo}>
+        <form onSubmit={handleSubmit(async (form) => { await onSubmitData(form, handleNext) })} className={style.GetInfo}>
           <section>
             <Text tag="h2">Datos</Text>
             <article>
@@ -170,7 +169,7 @@ export default function Signin (): JSX.Element {
               en la categoria {'"Spam"'}
             </Text>
           </article>
-          <form onSubmit={handleSubmit((form) => onSubmitCode(form, code))}>
+          <form onSubmit={handleSubmit(async (form) => { await onSubmitCode(form, code) })}>
             <ReactCodeInput
               type="text"
               fields={6}

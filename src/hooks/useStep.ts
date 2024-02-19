@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-export default function useStep() {
+export default function useStep (): {
+  step: number
+  setStep: (number: number) => void
+  handleNext: () => void
+  handleBack: () => void
+} {
   const [step, setStep] = useState<number>(0)
 
-  const handleNext = () => {
+  const handleNext = (): void => {
     setStep(step + 1)
   }
 
-  const handleBack = () => {
+  const handleBack = (): void => {
     setStep(step - 1)
   }
 
@@ -15,6 +20,6 @@ export default function useStep() {
     step,
     setStep,
     handleNext,
-    handleBack,
+    handleBack
   }
 }

@@ -16,7 +16,7 @@ export const login = async (LoginForm: LoginForm): Promise<AxiosResponse> => {
   return response
 }
 
-export const onSubmit = async (form: LoginForm) => {
+export const onSubmit = async (form: LoginForm): Promise<void> => {
   try {
     await login(form).catch((err) => {
       throw new ValidationError(err.response.data.error as string)

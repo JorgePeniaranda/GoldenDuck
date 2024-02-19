@@ -29,16 +29,7 @@ export const checkConfirmationCode = async (email: string, code: string): Promis
 export const CreateUser = async (SignupForm: SignupForm): Promise<AxiosResponse> =>
   await axios.post('/api/register', SignupForm)
 
-
-export const handleNext = (step: number, setStep: (number: number) => void): void => {
-  setStep(step + 1)
-}
-
-export const handleBack = (step: number, setStep: (number: number) => void): void => {
-  setStep(step - 1)
-}
-
-export const onSubmitData = async ({email, dni, phoneNumber}: SignupForm, callback?: Function) => {
+export const onSubmitData = async ({ email, dni, phoneNumber }: SignupForm, callback?: () => void): Promise<void> => {
   try {
     await generateConfirmationCode(
       email,
@@ -48,14 +39,14 @@ export const onSubmitData = async ({email, dni, phoneNumber}: SignupForm, callba
       throw new ValidationError(err.response.data.error as string)
     })
 
-    if(typeof callback === 'function') callback()
+    if (typeof callback === 'function') callback()
   } catch (e) {
     const { error } = ErrorsHandler(e)
     Alerts.error(error)
   }
 }
 
-export const onSubmitCode = async (form: SignupForm, code: string) => {
+export const onSubmitCode = async (form: SignupForm, code: string): Promise<void> => {
   try {
     await checkConfirmationCode(form.email, code).catch((err) => {
       throw new ValidationError(err.response.data.error as string)

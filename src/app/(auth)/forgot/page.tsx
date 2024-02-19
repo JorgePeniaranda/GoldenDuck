@@ -14,7 +14,7 @@ import {
   ForgotPasswordSchema,
   onSubmitCodeForm,
   onSubmitEmailForm,
-  onSubmitPasswordForm,
+  onSubmitPasswordForm
 } from '@/useCases/forgotUseCase'
 import { type ForgotForm } from '@/types'
 import Text from '@/components/atoms/text/Text'
@@ -23,7 +23,7 @@ import InsertIconToSecretInput from '@/components/molecules/inputs/insert-icon-t
 import useStep from '@/hooks/useStep'
 
 export default function Forgot (): JSX.Element {
-  const {step, handleNext, handleBack} = useStep()
+  const { step, handleNext, handleBack } = useStep()
   const [code, setcode] = useState<string>('')
   const [showPasswords, setShowPasswords] = useState<boolean>(false)
   const EmailForm = useForm<ForgotForm>({
@@ -36,7 +36,7 @@ export default function Forgot (): JSX.Element {
   return (
     <>
       {step === 0 && (
-        <form onSubmit={EmailForm.handleSubmit((form) => onSubmitEmailForm(form, handleNext))}>
+        <form onSubmit={EmailForm.handleSubmit(async (form) => { await onSubmitEmailForm(form, handleNext) })}>
           <label>
             Email:
             <InsertIconToInput icon={EmailIcon}>
@@ -56,7 +56,7 @@ export default function Forgot (): JSX.Element {
         </form>
       )}
       {step === 1 && (
-        <form onSubmit={EmailForm.handleSubmit((form) => onSubmitCodeForm(form, code, handleNext))} className={style.ConfirmUserEmail}>
+        <form onSubmit={EmailForm.handleSubmit(async (form) => { await onSubmitCodeForm(form, code, handleNext) })} className={style.ConfirmUserEmail}>
           <Text>
             Compruebe el correo <span>{EmailForm.watch('email')}</span> para
             encontrar el codigo de verificación, recuerda que puede encontrarse
@@ -81,7 +81,7 @@ export default function Forgot (): JSX.Element {
         </form>
       )}
       {step === 2 && (
-        <form onSubmit={PasswordForm.handleSubmit((form) => onSubmitPasswordForm(form, EmailForm.watch('email')))}>
+        <form onSubmit={PasswordForm.handleSubmit(async (form) => { await onSubmitPasswordForm(form, EmailForm.watch('email')) })}>
           <label>
             Nueva contraseña:
             <InsertIconToSecretInput
