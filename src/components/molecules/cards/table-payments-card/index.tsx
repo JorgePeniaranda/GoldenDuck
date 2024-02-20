@@ -2,6 +2,7 @@ import React from 'react'
 import style from './styles.module.scss'
 import classNames from 'classnames'
 import { type Movement } from '@/types'
+import { Currency } from '@/const/DashboardConst'
 
 interface Props {
   title: string
@@ -24,7 +25,7 @@ export default function TablePaymentsCard ({ title, classname, history }: Props)
                   <h3>{m.to}</h3>
                   <p>{m.date.toLocaleDateString('es', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })}</p>
                 </td>
-                <td>ARS${m.value}</td>
+                <td>{Currency}${m.value}</td>
               </tr>
             )
           })}

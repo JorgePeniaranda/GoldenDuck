@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Line } from 'react-chartjs-2'
 import {
@@ -42,11 +44,16 @@ export const data = {
   ]
 }
 
-export default function ExpenseChart (): JSX.Element {
+interface Props {
+  className?: string
+}
+
+export default function ExpenseChart ({ className }: Props): JSX.Element {
   return (
     <Line
         data={data}
         options={{
+          responsive: true,
           plugins: {
             title: {
               display: false
@@ -68,6 +75,7 @@ export default function ExpenseChart (): JSX.Element {
             }
           }
         }}
+        className={className}
     />
   )
 }
