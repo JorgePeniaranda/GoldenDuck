@@ -35,6 +35,9 @@
                 }
                 &.negative{
                     color: oklch(63.06% 0.226 21.66);
+                    &::before{
+                        content: '-';
+                    }
                 }
                 &::after{
                     content: '%';

@@ -20,7 +20,7 @@ export default function InfoCard ({ title, value, progress, classname, icon, ico
         <article>
             <h2>{title}</h2>
             <b>{value}</b>
-            <p className={style.indicator}><span className={spanClasses}>{progress}</span> desde ayer</p>
+            <p className={style.indicator}><span className={spanClasses}>{Math.abs(progress)}</span> desde ayer</p>
         </article>
         {
             icon !== undefined && (
