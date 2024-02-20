@@ -1,28 +1,12 @@
-import MoneyTemplate from '@/components/templates/dashboard/money'
-import React from 'react'
+'use client'
 
-const user = {
-  currentMoney: 2138,
-  earnedMoney: 3210,
-  spentMoney: 2422,
-  history: [
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: false, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() },
-    { to: 'Golden Duck', value: 2000, balance: true, date: new Date() }
-  ]
-}
+import React, { useContext } from 'react'
+import MoneyTemplate from '@/components/templates/dashboard/money'
+import { userContext } from '@/context/userContext'
 
 export default function Money (): JSX.Element {
+  const user = useContext(userContext)
+
   return (
     <MoneyTemplate currentMoney={user.currentMoney} earnedMoney={user.earnedMoney} spentMoney={user.spentMoney} history={user.history}/>
   )
