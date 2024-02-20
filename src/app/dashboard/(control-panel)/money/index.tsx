@@ -1,10 +1,13 @@
-import React from 'react'
-import Text from '@/components/atoms/text/Text'
+'use client'
+
+import React, { useContext } from 'react'
+import MoneyTemplate from '@/components/templates/dashboard/money'
+import { userContext } from '@/context/userContext'
 
 export default function Money (): JSX.Element {
+  const user = useContext(userContext)
+
   return (
-    <Text tag="h1" size="2rem" weight="700">
-      Home
-    </Text>
+    <MoneyTemplate currentMoney={user.currentMoney} earnedMoney={user.earnedMoney} spentMoney={user.spentMoney} history={user.history}/>
   )
 }

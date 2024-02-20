@@ -19,7 +19,11 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
         return NextResponse.redirect(new URL('/dashboard', request.nextUrl))
       }
     } catch (error) {
-      console.log(error)
+      if (error instanceof Error && error.name === 'JWTExpired') {
+        const response = NextResponse.redirect(new URL('/login', request.nextUrl))
+        response.cookies.delete('token')
+        return response
+      } else console.log(error)
     }
   } else if (AuthorizedURLs.includes(request.nextUrl.pathname)) {
     if (typeof token?.value === 'string') {
@@ -33,7 +37,11 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
           return NextResponse.redirect(new URL('/login', request.nextUrl))
         }
       } catch (error) {
-        console.log(error)
+        if (error instanceof Error && error.name === 'JWTExpired') {
+          const response = NextResponse.redirect(new URL('/login', request.nextUrl))
+          response.cookies.delete('token')
+          return response
+        } else console.log(error)
       }
     } else {
       return NextResponse.redirect(new URL('/login', request.nextUrl))
