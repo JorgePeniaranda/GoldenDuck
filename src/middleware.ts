@@ -10,6 +10,7 @@ import { pathToRegexp } from 'path-to-regexp'
 const AuthorizedURLs = pathToRegexp(['/dashboard', '/dashboard/:path*'])
 const UnAuthorizedURLs = pathToRegexp(['/login', '/register', '/forgot'])
 const PublicApi = pathToRegexp([
+  '/api',
   '/api/login',
   '/api/user',
   '/api/code',
