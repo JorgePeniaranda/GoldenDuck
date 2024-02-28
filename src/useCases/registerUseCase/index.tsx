@@ -31,7 +31,9 @@ export const onSubmitData = async (
         throw new ValidationError('El usuario ya existe')
       })
       .catch((e) => {
-        if (e.response.status !== 404) { throw new RequestError(e.response.data.message) }
+        if (e.response.status !== 404) {
+          throw new RequestError(e.response.data.message)
+        }
       })
 
     await generateCode(email).catch((err) => {

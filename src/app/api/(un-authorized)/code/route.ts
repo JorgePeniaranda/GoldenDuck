@@ -13,7 +13,9 @@ const jwt = new JWT()
 export async function POST (req: NextRequest): Promise<NextResponse> {
   try {
     const { code: userCode } = await req.json()
-    const userToken = String(req.headers.get('token') ?? req.cookies.get('token')?.value)
+    const userToken = String(
+      req.headers.get('token') ?? req.cookies.get('token')?.value
+    )
 
     // validate request
     if (userCode === undefined) {
