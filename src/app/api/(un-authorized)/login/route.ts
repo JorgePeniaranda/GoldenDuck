@@ -48,7 +48,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
 
     // generate and send response
     const response = NextResponse.json(
-      { message: 'Ha ingresado exitosamente' },
+      { token, message: 'Ha ingresado exitosamente' },
       { status: 200 }
     )
 

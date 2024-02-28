@@ -54,7 +54,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
 
     // generate and send response
     const response = NextResponse.json(
-      { message: 'Se ha registrado exitosamente' },
+      { token, message: 'Se ha registrado exitosamente' },
       { status: 201 }
     )
     response.cookies.set('token', token, {

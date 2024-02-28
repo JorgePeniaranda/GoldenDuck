@@ -50,7 +50,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
 
     // generate and send response
     const response = NextResponse.json(
-      { message: 'Se ha actualizado la contraseña exitosamente' },
+      { token, message: 'Se ha actualizado la contraseña exitosamente' },
       { status: 201 }
     )
     response.cookies.set('token', token, {
