@@ -1,7 +1,8 @@
 import ConfirmationCode from '@/services/codeService'
 import {
   AuthorizationError,
-  GenerateErrorResponse
+  GenerateErrorResponse,
+  RequestError
 } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { type NextRequest, NextResponse } from 'next/server'
@@ -12,14 +13,11 @@ const jwt = new JWT()
 export async function POST (req: NextRequest): Promise<NextResponse> {
   try {
     const { code: userCode } = await req.json()
-    const userToken = req.cookies.get('token')?.value
+    const userToken = String(req.headers.get('token') ?? req.cookies.get('token')?.value)
 
     // validate request
     if (userCode === undefined) {
-      throw new AuthorizationError('No se ha enviado el código')
-    }
-    if (userToken === undefined) {
-      throw new AuthorizationError('No se ha enviado el token')
+      throw new RequestError('No se ha enviado el código')
     }
 
     // verify token and code

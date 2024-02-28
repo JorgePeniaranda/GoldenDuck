@@ -10,7 +10,6 @@ import { pathToRegexp } from 'path-to-regexp'
 const AuthorizedURLs = pathToRegexp(['/dashboard', '/dashboard/:path*'])
 const UnAuthorizedURLs = pathToRegexp(['/login', '/register', '/forgot'])
 const PublicApi = pathToRegexp([
-  '/api',
   '/api/login',
   '/api/user',
   '/api/code',
@@ -18,7 +17,7 @@ const PublicApi = pathToRegexp([
 ])
 
 export async function middleware (request: NextRequest): Promise<NextResponse> {
-  const token = String(request.cookies.get('token')?.value)
+  const token = String(request.headers.get('token') ?? request.cookies.get('token')?.value)
 
   const { authorized } = await jwtVerify(
     token,
