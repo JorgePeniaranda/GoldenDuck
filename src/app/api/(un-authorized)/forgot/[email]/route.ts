@@ -57,8 +57,7 @@ export async function GET (
 
     return response
   } catch (e) {
-    const { error, status } = ErrorsHandler(e)
-    return NextResponse.json({ error }, { status })
+    return NextResponse.json(ErrorsHandler(e))
   }
 }
 
@@ -107,7 +106,6 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
 
     return response
   } catch (e) {
-    const { error, status } = ErrorsHandler(e)
-    return NextResponse.json({ error }, { status })
+    return NextResponse.json(ErrorsHandler(e))
   }
 }

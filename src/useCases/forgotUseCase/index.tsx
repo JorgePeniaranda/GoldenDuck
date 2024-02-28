@@ -31,8 +31,8 @@ export const onSubmitEmailForm = async (form: { email: string }, callback?: () =
 
     if (typeof callback === 'function') callback()
   } catch (e) {
-    const { error } = ErrorsHandler(e)
-    Alerts.error(error)
+    const { message } = ErrorsHandler(e)
+    Alerts.error(message)
   }
 }
 
@@ -46,8 +46,8 @@ export const onSubmitCodeForm = async (form: { email: string }, code: string, ca
 
     if (typeof callback === 'function') callback()
   } catch (e) {
-    const { error } = ErrorsHandler(e)
-    Alerts.error(error)
+    const { message } = ErrorsHandler(e)
+    Alerts.error(message)
   }
 }
 
@@ -70,7 +70,7 @@ export const onSubmitPasswordForm = async (form: ForgotForm, email: string): Pro
       }
     )
   } catch (e) {
-    const { error } = ErrorsHandler(e)
-    Alerts.error(error)
+    const { message } = ErrorsHandler(e)
+    Alerts.error(message)
   }
 }

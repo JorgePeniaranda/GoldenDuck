@@ -41,8 +41,8 @@ export const onSubmitData = async ({ email, dni, phoneNumber }: SignupForm, call
 
     if (typeof callback === 'function') callback()
   } catch (e) {
-    const { error } = ErrorsHandler(e)
-    Alerts.error(error)
+    const { message } = ErrorsHandler(e)
+    Alerts.error(message)
   }
 }
 
@@ -60,7 +60,7 @@ export const onSubmitCode = async (form: SignupForm, code: string): Promise<void
       location.href = '/dashboard'
     })
   } catch (e) {
-    const { error } = ErrorsHandler(e)
-    Alerts.error(error)
+    const { message } = ErrorsHandler(e)
+    Alerts.error(message)
   }
 }

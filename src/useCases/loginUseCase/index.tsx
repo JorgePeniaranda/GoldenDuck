@@ -25,7 +25,7 @@ export const onSubmit = async (form: LoginForm): Promise<void> => {
     Alerts.success('Ha ingresado exitosamente', () => { location.replace('/dashboard') }
     )
   } catch (e) {
-    const { error } = ErrorsHandler(e)
-    Alerts.error(error)
+    const { message } = ErrorsHandler(e)
+    Alerts.error(message)
   }
 }

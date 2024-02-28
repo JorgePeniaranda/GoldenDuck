@@ -22,8 +22,10 @@ export interface ForgotForm {
 }
 
 export interface ErrorResponse {
-  error: string
   status: number
+  type: string
+  code: string
+  message: string
 }
 
 export interface Movement {
