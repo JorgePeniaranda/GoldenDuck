@@ -40,7 +40,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     // update password
     const newUser = await prisma.users.update({
       where: { id: user.id },
-      data: { password: bcrypt.hashSync(password) }
+      data: { password: bcrypt.hashSync(password), updateAt: new Date() }
     })
 
     // generate autorized token with id
