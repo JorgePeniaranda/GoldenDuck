@@ -10,17 +10,113 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum role {
+  ADMIN
+  SUPPORT
+  USER
+}
+
+enum sex {
+  MALE
+  FEMALE
+}
+
 model Users {
-  id          Int         @id @default(autoincrement())
-  name        String
-  lastName    String
-  dni         Int
-  email       String
-  phoneNumber Int
-  password    String
-  address     String
-  birthDate   DateTime
-  sex         String
-  updateDate  DateTime    @default(now())
-  deleted     Boolean     @default(false)
+  id            Int         @id @default(autoincrement())
+  name          String
+  lastName      String
+  dni           BigInt
+  email         String
+  phoneNumber   BigInt
+  password      String
+  address       String
+  birthDate     DateTime
+  sex           sex
+  updateAt      DateTime    @default(now())
+  createAt      DateTime    @default(now())
+  deleted       Boolean     @default(false)
+  role          role        @default(USER)
+  accounts      Accounts[]
+}
+
+model Accounts {
+  id            Int         @id @default(autoincrement())
+  idUser        Int       
+  balance       BigInt
+  imgUrl        String?
+  updateAt      DateTime    @default(now())
+  createAt      DateTime    @default(now())
+  deleted       Boolean     @default(false)
+  user          Users       @relation(fields: [idUser], references: [id])
+  notifications Notifications[]
+  messages      Messages[]
+  cards         Cards[]
+  transactions  Transactions[]
+  loans         Loans[]
+  investments   Investments[]
+}
+
+model Messages {
+  id            Int         @id @default(autoincrement())
+  idAccount     Int
+  from          Int
+  to            Int
+  message       String
+  read          Boolean     @default(false)
+  date          DateTime    @default(now())
+  account       Accounts    @relation(fields: [idAccount], references: [id])
+}
+
+model Notifications{
+  id            Int         @id @default(autoincrement())
+  idAccount     Int
+  message       String
+  read          Boolean     @default(false)
+  date          DateTime    @default(now())
+  account       Accounts    @relation(fields: [idAccount], references: [id])
+}
+
+model Categories {
+  id            Int         @id @default(autoincrement())
+  name          String      @unique
+}
+
+model Cards {
+  id            Int         @id @default(autoincrement())
+  idAccount     Int
+  number        BigInt
+  cvv           Int
+  expiration    DateTime
+  updateDate    DateTime    @default(now())
+  deleted       Boolean     @default(false)
+  account       Accounts    @relation(fields: [idAccount], references: [id])
+}
+
+model Transactions {
+  id            Int         @id @default(autoincrement())
+  idAccount     Int
+  amount        BigInt
+  category      String?
+  date          DateTime    @default(now())
+  account       Accounts    @relation(fields: [idAccount], references: [id])
+}
+
+model Loans {
+  id            Int         @id @default(autoincrement())
+  idAccount     Int
+  amount        BigInt
+  interest      Float
+  date          DateTime    @default(now())
+  date_end      DateTime
+  account       Accounts    @relation(fields: [idAccount], references: [id])
+}
+
+model Investments {
+  id            Int         @id @default(autoincrement())
+  idAccount     Int
+  amount        BigInt
+  interest      Float
+  date          DateTime    @default(now())
+  date_end      DateTime
+  account       Accounts    @relation(fields: [idAccount], references: [id])
 }
