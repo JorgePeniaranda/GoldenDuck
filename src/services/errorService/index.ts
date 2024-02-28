@@ -23,14 +23,14 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
   switch (error.name) {
     case 'PrismaClientInitializationError':
       return {
-        type: 'PrismaClientInitializationError',
+        type: 'ORMError',
         code: ReasonPhrases.SERVICE_UNAVAILABLE,
         message: 'No se ha podido conectar a la base de datos',
         status: StatusCodes.SERVICE_UNAVAILABLE
       }
     case 'JsonWebTokenError':
       return {
-        type: 'JsonWebTokenError',
+        type: 'TokenError',
         code: ReasonPhrases.UNAUTHORIZED,
         message: 'El token es invalido',
         status: StatusCodes.UNAUTHORIZED
