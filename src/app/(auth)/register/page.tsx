@@ -34,7 +34,12 @@ export default function Signin (): JSX.Element {
   return (
     <>
       {step === 0 && (
-        <form onSubmit={handleSubmit(async (form) => { await onSubmitData(form, handleNext) })} className={style.GetInfo}>
+        <form
+          onSubmit={handleSubmit(async (form) => {
+            await onSubmitData(form, handleNext)
+          })}
+          className={style.GetInfo}
+        >
           <section>
             <Text tag="h2">Datos</Text>
             <article>
@@ -81,7 +86,10 @@ export default function Signin (): JSX.Element {
                   placeholder="telefono"
                   {...register('phoneNumber')}
                 />
-                <ErrorSpan show={errors.phoneNumber !== undefined} align="center">
+                <ErrorSpan
+                  show={errors.phoneNumber !== undefined}
+                  align="center"
+                >
                   {errors.phoneNumber?.message}
                 </ErrorSpan>
               </label>
@@ -169,14 +177,20 @@ export default function Signin (): JSX.Element {
               en la categoria {'"Spam"'}
             </Text>
           </article>
-          <form onSubmit={handleSubmit(async (form) => { await onSubmitCode(form, code) })}>
+          <form
+            onSubmit={handleSubmit(async (form) => {
+              await onSubmitCode(form, code)
+            })}
+          >
             <ReactCodeInput
               type="text"
               fields={6}
               inputMode="email"
               value={code}
               name="EmailCode"
-              onChange={(e) => { setCode(e) }}
+              onChange={(e) => {
+                setCode(e)
+              }}
             />
             <BaseButton
               fontSize="1.1rem"
@@ -195,9 +209,9 @@ export default function Signin (): JSX.Element {
         </InternalLinkText>
           )
         : (
-            <p onClick={handleBack} className={style.LinkStyle}>
-              Volver
-            </p>
+        <p onClick={handleBack} className={style.LinkStyle}>
+          Volver
+        </p>
           )}
     </>
   )

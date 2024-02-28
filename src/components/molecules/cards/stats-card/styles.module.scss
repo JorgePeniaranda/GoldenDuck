@@ -1,60 +1,60 @@
-.InfoCard{
-    display: flex;
-    max-height: 10rem;
-    padding: 1rem 1.3rem;
-    background-color: oklch(100% 0 0);
-    box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
-    border-radius: 1rem;
-    gap: 2rem;
-    article{
-        flex: 2;
-        h2{
-            text-transform: capitalize;
-            font-weight: 500;
-            font-size: .9rem;
-            color: oklch(55.17% 0.014 285.94);
-        }
-        b{
-            font-size: 1.5rem;
-            line-height: 1.2;
-            color: oklch(23.5% 0 0);
-        }
-        p.indicator{
-            margin-top: .2rem;
-            span{
-                width: max-content;
-                margin-top: .7rem;
-                font-size: 0.9rem;
-                font-weight: 600;
-                color: oklch(47.47% 0 0);
-                &.positive{
-                    color: oklch(63.06% 0.187 142.31);
-                    &::before{
-                        content: '+';
-                    }
-                }
-                &.negative{
-                    color: oklch(63.06% 0.226 21.66);
-                    &::before{
-                        content: '-';
-                    }
-                }
-                &::after{
-                    content: '%';
-                }
-            }
-        }
+.InfoCard {
+  display: flex;
+  max-height: 10rem;
+  padding: 1rem 1.3rem;
+  background-color: oklch(100% 0 0);
+  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+  border-radius: 1rem;
+  gap: 2rem;
+  article {
+    flex: 2;
+    h2 {
+      text-transform: capitalize;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: oklch(55.17% 0.014 285.94);
     }
-    figure{
+    b {
+      font-size: 1.5rem;
+      line-height: 1.2;
+      color: oklch(23.5% 0 0);
+    }
+    p.indicator {
+      margin-top: 0.2rem;
+      span {
         width: max-content;
-        height: max-content;
-        padding: .5rem;
-        border-radius: 50%;
-        background-color: oklch(59.99% 0 0);
-        color: oklch(100% 0 0);
-        svg{
-            width: 2.3rem;
-            height: 2.3rem;
+        margin-top: 0.7rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: oklch(47.47% 0 0);
+        &.positive {
+          color: oklch(63.06% 0.187 142.31);
+          &::before {
+            content: '+';
+          }
         }
+        &.negative {
+          color: oklch(63.06% 0.226 21.66);
+          &::before {
+            content: '-';
+          }
+        }
+        &::after {
+          content: '%';
+        }
+      }
     }
+  }
+  figure {
+    width: max-content;
+    height: max-content;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: oklch(59.99% 0 0);
+    color: oklch(100% 0 0);
+    svg {
+      width: 2.3rem;
+      height: 2.3rem;
+    }
+  }
 }

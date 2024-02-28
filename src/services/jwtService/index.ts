@@ -25,9 +25,7 @@ export default class JWT {
     return decoded
   }
 
-  public generateToken = (
-    { ...data }
-  ): string => {
+  public generateToken = ({ ...data }): string => {
     const token = jwt.sign({ ...data }, this.secretKey, {
       expiresIn: '30m'
     })
@@ -41,9 +39,7 @@ export default class JWT {
     return decoded
   }
 
-  public generateTempToken = (
-    { ...data }
-  ): string => {
+  public generateTempToken = ({ ...data }): string => {
     const token = jwt.sign({ ...data }, this.tempSecretKey, {
       expiresIn: '5m'
     })

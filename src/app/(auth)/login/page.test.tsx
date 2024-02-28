@@ -16,13 +16,13 @@ const inputs = [
 
 describe('Login valid form', () => {
   it('content must be rendered', () => {
-    const component = render(<Login/>)
+    const component = render(<Login />)
     expect(component).toBeTruthy()
   })
 
   it('must have a valid inputs', () => {
-    const component = render(<Login/>)
-    inputs.forEach(input => {
+    const component = render(<Login />)
+    inputs.forEach((input) => {
       const inputElement = component.getByPlaceholderText(input.placeholder)
       expect(inputElement.tagName).toBe('INPUT')
       expect(inputElement.getAttribute('type')).toBe(input.type)
@@ -32,7 +32,7 @@ describe('Login valid form', () => {
   })
 
   it('must have a send button', () => {
-    const component = render(<Login/>)
+    const component = render(<Login />)
     const button = component.getByText('Ingresar')
     expect(button.tagName).toBe('BUTTON')
   })

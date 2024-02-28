@@ -33,19 +33,19 @@ const inputsByLabel = [
 
 describe('Login valid form', () => {
   it('content must be rendered', () => {
-    const component = render(<Register/>)
+    const component = render(<Register />)
     expect(component).toBeTruthy()
   })
 
   it('must have a valid inputs', () => {
-    const component = render(<Register/>)
-    inputs.forEach(input => {
+    const component = render(<Register />)
+    inputs.forEach((input) => {
       const inputElement = component.getByPlaceholderText(input.placeholder)
       expect(inputElement.tagName).toBe('INPUT')
       expect(inputElement.getAttribute('type')).toBe(input.type)
       expect(inputElement.getAttribute('name')).toBe(input.name)
     })
-    inputsByLabel.forEach(input => {
+    inputsByLabel.forEach((input) => {
       const inputElement = component.getByLabelText(input.label)
       expect(inputElement.tagName).toBe('INPUT')
       expect(inputElement.getAttribute('type')).toBe(input.type)

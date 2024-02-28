@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   title: 'Cambiar contraseña | Golden Duck'
 }
 
-const ForgotContainer = ({ children }: { children: React.ReactNode }): JSX.Element => {
+const ForgotContainer = ({
+  children
+}: {
+  children: React.ReactNode
+}): JSX.Element => {
   return (
     <main className={style.Forgot}>
       <section>

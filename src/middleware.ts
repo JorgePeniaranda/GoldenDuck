@@ -1,12 +1,21 @@
 import { jwtVerify } from 'jose'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
-import { AuthorizationError, GenerateErrorResponse } from './services/errorService'
+import {
+  AuthorizationError,
+  GenerateErrorResponse
+} from './services/errorService'
 import { pathToRegexp } from 'path-to-regexp'
 
 const AuthorizedURLs = pathToRegexp(['/dashboard', '/dashboard/:path*'])
 const UnAuthorizedURLs = pathToRegexp(['/login', '/register', '/forgot'])
-const PublicApi = pathToRegexp(['/api', '/api/login', '/api/user', '/api/code', '/api/code/:email*'])
+const PublicApi = pathToRegexp([
+  '/api',
+  '/api/login',
+  '/api/user',
+  '/api/code',
+  '/api/code/:email*'
+])
 
 export async function middleware (request: NextRequest): Promise<NextResponse> {
   const token = String(request.cookies.get('token')?.value)
@@ -14,19 +23,27 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
   const { authorized } = await jwtVerify(
     token,
     new TextEncoder().encode(process.env.JWT_SECRET)
-  ).then(() => {
-    return { authorized: true }
-  }).catch(() => {
-    return { authorized: false }
-  })
+  )
+    .then(() => {
+      return { authorized: true }
+    })
+    .catch(() => {
+      return { authorized: false }
+    })
 
   // If the user is authorized and the URL is not authorized, redirect to dashboard
-  if (UnAuthorizedURLs.test(request.nextUrl.pathname) as boolean && authorized) {
+  if (
+    (UnAuthorizedURLs.test(request.nextUrl.pathname) as boolean) &&
+    authorized
+  ) {
     return NextResponse.redirect(new URL('/dashboard', request.nextUrl))
   }
 
   // If the user is not authorized and the URL is authorized, redirect to login
-  if (AuthorizedURLs.test(request.nextUrl.pathname) as boolean && !authorized) {
+  if (
+    (AuthorizedURLs.test(request.nextUrl.pathname) as boolean) &&
+    !authorized
+  ) {
     const response = NextResponse.redirect(new URL('/login', request.nextUrl))
     response.cookies.delete('token')
     return response

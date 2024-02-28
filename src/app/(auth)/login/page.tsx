@@ -52,7 +52,9 @@ export default function Login (): JSX.Element {
           </Text>
           <label>
             <input type="text" placeholder="Email" {...register('email')} />
-            <ErrorSpan show={errors.email !== undefined}>{errors.email?.message}</ErrorSpan>
+            <ErrorSpan show={errors.email !== undefined}>
+              {errors.email?.message}
+            </ErrorSpan>
           </label>
           <label>
             <input

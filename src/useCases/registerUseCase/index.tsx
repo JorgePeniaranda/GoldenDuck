@@ -2,7 +2,11 @@ import { type RegisterForm } from '@/types'
 import { validations } from '@/services/validationService'
 import { z } from 'zod'
 import Alerts from '@/services/alertService'
-import { ErrorsHandler, RequestError, ValidationError } from '@/services/errorService'
+import {
+  ErrorsHandler,
+  RequestError,
+  ValidationError
+} from '@/services/errorService'
 import { checkCode, checkUser, generateCode, registerUser } from '@/api'
 
 export const SignUpSchema = z.object({
@@ -17,13 +21,18 @@ export const SignUpSchema = z.object({
   sex: validations.sex
 })
 
-export const onSubmitData = async ({ email, dni, phoneNumber }: RegisterForm, callback?: () => void): Promise<void> => {
+export const onSubmitData = async (
+  { email, dni, phoneNumber }: RegisterForm,
+  callback?: () => void
+): Promise<void> => {
   try {
-    await checkUser({ email, dni, phoneNumber }).then(() => {
-      throw new ValidationError('El usuario ya existe')
-    }).catch((e) => {
-      if (e.response.status !== 404) throw new RequestError(e.response.data.message)
-    })
+    await checkUser({ email, dni, phoneNumber })
+      .then(() => {
+        throw new ValidationError('El usuario ya existe')
+      })
+      .catch((e) => {
+        if (e.response.status !== 404) { throw new RequestError(e.response.data.message) }
+      })
 
     await generateCode(email).catch((err) => {
       throw new RequestError(err.response.data.message)
@@ -36,7 +45,10 @@ export const onSubmitData = async ({ email, dni, phoneNumber }: RegisterForm, ca
   }
 }
 
-export const onSubmitCode = async (form: RegisterForm, code: string): Promise<void> => {
+export const onSubmitCode = async (
+  form: RegisterForm,
+  code: string
+): Promise<void> => {
   try {
     await checkCode(code).catch((err) => {
       throw new RequestError(err.response.data.message)

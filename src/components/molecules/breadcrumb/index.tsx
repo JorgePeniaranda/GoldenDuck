@@ -21,7 +21,10 @@ export default function Breadcrumb (): JSX.Element {
           )
         } else {
           return (
-            <InternalLinkText key={index} href={`/${urls.slice(0, index + 1).join('/')}`}>
+            <InternalLinkText
+              key={index}
+              href={`/${urls.slice(0, index + 1).join('/')}`}
+            >
               {url} /{' '}
             </InternalLinkText>
           )

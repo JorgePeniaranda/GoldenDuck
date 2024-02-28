@@ -8,6 +8,11 @@ export default function Money (): JSX.Element {
   const user = useContext(userContext)
 
   return (
-    <MoneyTemplate currentMoney={user.currentMoney} earnedMoney={user.earnedMoney} spentMoney={user.spentMoney} history={user.history}/>
+    <MoneyTemplate
+      currentMoney={user.currentMoney}
+      earnedMoney={user.earnedMoney}
+      spentMoney={user.spentMoney}
+      history={user.history}
+    />
   )
 }

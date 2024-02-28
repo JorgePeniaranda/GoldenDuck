@@ -16,8 +16,9 @@ export const onSubmit = async (form: LoginForm): Promise<void> => {
       throw new ValidationError(err.response.data.message)
     })
 
-    Alerts.success('Ha ingresado exitosamente', () => { location.replace('/dashboard') }
-    )
+    Alerts.success('Ha ingresado exitosamente', () => {
+      location.replace('/dashboard')
+    })
   } catch (e) {
     const { message } = ErrorsHandler(e)
     Alerts.error(message)

@@ -32,10 +32,14 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     })
 
     // check if user exists
-    if (user === undefined || user === null) throw new NotFoundError('No existe cuenta creada con ese correo')
+    if (user === undefined || user === null) {
+      throw new NotFoundError('No existe cuenta creada con ese correo')
+    }
 
     // check password match
-    if (!bcrypt.compareSync(password as string, user.password)) { throw new AuthorizationError('La contraseña es incorrecta') }
+    if (!bcrypt.compareSync(password as string, user.password)) {
+      throw new AuthorizationError('La contraseña es incorrecta')
+    }
 
     // generate autorized token with id
     const token = jwt.generateToken({

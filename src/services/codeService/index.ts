@@ -22,7 +22,9 @@ export default class ConfirmationCode {
       // const code = this.code
 
       const checkEmail = validations.email.safeParse(email)
-      if (!checkEmail.success) { throw new ValidationError(checkEmail.error.errors[0].message) }
+      if (!checkEmail.success) {
+        throw new ValidationError(checkEmail.error.errors[0].message)
+      }
 
       if (process.env.NODE_ENV === 'development') {
         console.log('Código enviado: ' + this.code)

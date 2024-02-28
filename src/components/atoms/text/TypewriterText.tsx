@@ -8,7 +8,10 @@ interface Props {
   cursor?: boolean
 }
 
-export default function TypewriterText ({ words, cursor = true }: Props): JSX.Element {
+export default function TypewriterText ({
+  words,
+  cursor = true
+}: Props): JSX.Element {
   const [text] = useTypewriter({
     words,
     loop: 0,

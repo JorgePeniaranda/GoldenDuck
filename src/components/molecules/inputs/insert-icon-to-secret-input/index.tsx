@@ -33,7 +33,9 @@ export default function InsertIconToSecretInput ({
           width="32"
           height="32"
           viewBox="0 0 24 24"
-          onClick={() => { setShow(false) }}
+          onClick={() => {
+            setShow(false)
+          }}
         >
           <path
             fill="currentColor"
@@ -47,7 +49,9 @@ export default function InsertIconToSecretInput ({
           width="32"
           height="32"
           viewBox="0 0 24 24"
-          onClick={() => { setShow(true) }}
+          onClick={() => {
+            setShow(true)
+          }}
         >
           <path
             fill="currentColor"

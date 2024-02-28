@@ -36,13 +36,20 @@ export default function Forgot (): JSX.Element {
   return (
     <>
       {step === 0 && (
-        <form onSubmit={EmailForm.handleSubmit(async (form) => { await onSubmitEmailForm(form, handleNext) })}>
+        <form
+          onSubmit={EmailForm.handleSubmit(async (form) => {
+            await onSubmitEmailForm(form, handleNext)
+          })}
+        >
           <label>
             Email:
             <InsertIconToInput icon={EmailIcon}>
               <input type="text" autoFocus {...EmailForm.register('email')} />
             </InsertIconToInput>
-            <ErrorSpan show={EmailForm.formState.errors.email !== undefined} align="center">
+            <ErrorSpan
+              show={EmailForm.formState.errors.email !== undefined}
+              align="center"
+            >
               {EmailForm.formState.errors.email?.message}
             </ErrorSpan>
           </label>
@@ -56,7 +63,12 @@ export default function Forgot (): JSX.Element {
         </form>
       )}
       {step === 1 && (
-        <form onSubmit={EmailForm.handleSubmit(async (form) => { await onSubmitCodeForm(form, code, handleNext) })} className={style.ConfirmUserEmail}>
+        <form
+          onSubmit={EmailForm.handleSubmit(async (form) => {
+            await onSubmitCodeForm(form, code, handleNext)
+          })}
+          className={style.ConfirmUserEmail}
+        >
           <Text>
             Compruebe el correo <span>{EmailForm.watch('email')}</span> para
             encontrar el codigo de verificación, recuerda que puede encontrarse
@@ -68,7 +80,9 @@ export default function Forgot (): JSX.Element {
             inputMode="email"
             fields={6}
             value={code}
-            onChange={(e) => { setcode(e) }}
+            onChange={(e) => {
+              setcode(e)
+            }}
             autoFocus
           />
           <BaseButton
@@ -81,7 +95,11 @@ export default function Forgot (): JSX.Element {
         </form>
       )}
       {step === 2 && (
-        <form onSubmit={PasswordForm.handleSubmit(async (form) => { await onSubmitPasswordForm(form, EmailForm.watch('email')) })}>
+        <form
+          onSubmit={PasswordForm.handleSubmit(async (form) => {
+            await onSubmitPasswordForm(form, EmailForm.watch('email'))
+          })}
+        >
           <label>
             Nueva contraseña:
             <InsertIconToSecretInput

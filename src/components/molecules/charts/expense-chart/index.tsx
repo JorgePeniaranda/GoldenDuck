@@ -51,31 +51,31 @@ interface Props {
 export default function ExpenseChart ({ className }: Props): JSX.Element {
   return (
     <Line
-        data={data}
-        options={{
-          responsive: true,
-          plugins: {
-            title: {
-              display: false
-            },
-            legend: {
+      data={data}
+      options={{
+        responsive: true,
+        plugins: {
+          title: {
+            display: false
+          },
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            grid: {
               display: false
             }
           },
-          scales: {
-            x: {
-              grid: {
-                display: false
-              }
-            },
-            y: {
-              grid: {
-                drawTicks: false
-              }
+          y: {
+            grid: {
+              drawTicks: false
             }
           }
-        }}
-        className={className}
+        }
+      }}
+      className={className}
     />
   )
 }

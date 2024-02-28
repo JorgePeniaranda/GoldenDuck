@@ -18,9 +18,11 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     const userData = await req.json()
 
     // validate data
-    const data = await SignUpSchema.parseAsync(userData as RegisterForm).catch((error) => {
-      throw new ValidationError(error.errors[0].message)
-    })
+    const data = await SignUpSchema.parseAsync(userData as RegisterForm).catch(
+      (error) => {
+        throw new ValidationError(error.errors[0].message)
+      }
+    )
 
     // Check if user already exists
     const checkSameUser = await prisma.users.findFirst({

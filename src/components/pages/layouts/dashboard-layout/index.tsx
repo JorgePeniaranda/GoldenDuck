@@ -70,26 +70,31 @@ export default function DashboardLayout ({ children }: Props): JSX.Element {
           >
             {user.messages.map((m, i) => {
               return (
-                <CardLinkPopover key={i} href="/" className={style.MessagesButton}>
+                <CardLinkPopover
+                  key={i}
+                  href="/"
+                  className={style.MessagesButton}
+                >
                   <figure>
                     <img
                       src={m.profileURL ?? '/assets/img/misc/default-pfp.webp'}
                       width={32}
                       height={32}
                       alt="Profile Picture"
-                      className='rounded-full'
+                      className="rounded-full"
                     />
                   </figure>
                   <article>
                     <Text tag="span" size=".8rem" weight="700">
                       {m.from}
                     </Text>
-                    <Text size=".8rem">
-                      {m.message}
-                    </Text>
+                    <Text size=".8rem">{m.message}</Text>
                   </article>
                   <Text tag="span" size=".8rem">
-                    {m.date.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}
+                    {m.date.toLocaleTimeString('es-AR', {
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
                   </Text>
                 </CardLinkPopover>
               )
@@ -103,17 +108,26 @@ export default function DashboardLayout ({ children }: Props): JSX.Element {
           >
             {user.notifications.map((n, i) => {
               return (
-                <CardLinkPopover key={i} href="/" className={style.NotificationsButton}>
+                <CardLinkPopover
+                  key={i}
+                  href="/"
+                  className={style.NotificationsButton}
+                >
                   <Text>{n.message}</Text>
                   <Text tag="span" size=".8rem">
-                    {n.date.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}
+                    {n.date.toLocaleTimeString('es-AR', {
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
                   </Text>
                 </CardLinkPopover>
               )
             })}
           </ButtonWithPopover>
           <ButtonWithPopover
-            PopoverIcon={<ProfileButton name={user.name} src={user.profileURL} />}
+            PopoverIcon={
+              <ProfileButton name={user.name} src={user.profileURL} />
+            }
             className={style.ProfileButtonContainer}
             arialLabel="Perfil"
           >
