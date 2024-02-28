@@ -1,8 +1,8 @@
+import { changePassword, checkCode, generateCode } from '@/api'
 import Alerts from '@/services/alertService'
-import { ErrorsHandler, ValidationError } from '@/services/errorService'
+import { ErrorsHandler, RequestError, ValidationError } from '@/services/errorService'
 import validations from '@/services/validationService'
 import { type ForgotForm } from '@/types'
-import axios, { type AxiosResponse } from 'axios'
 import { z } from 'zod'
 
 export const ForgotEmailSchema = z.object({
@@ -14,19 +14,10 @@ export const ForgotPasswordSchema = z.object({
   confirmPassword: validations.password
 })
 
-export const generateConfirmationCode = async (email: string): Promise<AxiosResponse> =>
-  await axios.get(`/api/forgot/${email}`)
-
-export const checkConfirmationCode = async (email: string, code: string): Promise<AxiosResponse> =>
-  await axios.post(`/api/forgot/${email}`, { code })
-
-export const UpdatePassword = async (ForgotForm: ForgotForm): Promise<AxiosResponse> =>
-  await axios.post('/api/forgot', ForgotForm)
-
 export const onSubmitEmailForm = async (form: { email: string }, callback?: () => void): Promise<void> => {
   try {
-    await generateConfirmationCode(form.email).catch((err) => {
-      throw new ValidationError(err.response.data.error as string)
+    await generateCode(form.email).catch((err) => {
+      throw new RequestError(err.response.data.message)
     })
 
     if (typeof callback === 'function') callback()
@@ -38,11 +29,9 @@ export const onSubmitEmailForm = async (form: { email: string }, callback?: () =
 
 export const onSubmitCodeForm = async (form: { email: string }, code: string, callback?: () => void): Promise<void> => {
   try {
-    await checkConfirmationCode(form.email, code).catch(
-      (err) => {
-        throw new ValidationError(err.response.data.error as string)
-      }
-    )
+    await checkCode(code).catch((err) => {
+      throw new RequestError(err.response.data.message)
+    })
 
     if (typeof callback === 'function') callback()
   } catch (e) {
@@ -57,14 +46,11 @@ export const onSubmitPasswordForm = async (form: ForgotForm, email: string): Pro
       form.password !== form.confirmPassword
     ) { Alerts.warning('Las contraseñas no coinciden'); return }
 
-    await UpdatePassword({ ...form, email }).catch(
-      (err) => {
-        throw new ValidationError(err.response.data.error as string)
-      }
-    )
+    await changePassword(form).catch((err) => {
+      throw new ValidationError(err.response.data.error as string)
+    })
 
-    Alerts.success(
-      'Se ha actualizado la contraseña exitosamente',
+    Alerts.success('Se ha actualizado la contraseña exitosamente',
       () => {
         location.href = '/dashboard'
       }

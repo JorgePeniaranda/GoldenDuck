@@ -1,9 +1,9 @@
-import { type SignupForm } from '@/types'
-import axios, { type AxiosResponse } from 'axios'
+import { type RegisterForm } from '@/types'
 import { validations } from '@/services/validationService'
 import { z } from 'zod'
 import Alerts from '@/services/alertService'
-import { ErrorsHandler, ValidationError } from '@/services/errorService'
+import { ErrorsHandler, RequestError, ValidationError } from '@/services/errorService'
+import { checkCode, checkUser, generateCode, registerUser } from '@/api'
 
 export const SignUpSchema = z.object({
   name: validations.name,
@@ -17,26 +17,16 @@ export const SignUpSchema = z.object({
   sex: validations.sex
 })
 
-export const generateConfirmationCode = async (
-  email: string,
-  dni: string,
-  phoneNumber: string
-): Promise<AxiosResponse> => await axios.get(`/api/register/${email}`, { params: { dni, phoneNumber } })
-
-export const checkConfirmationCode = async (email: string, code: string): Promise<AxiosResponse> =>
-  await axios.post(`/api/register/${email}`, { email, code })
-
-export const CreateUser = async (SignupForm: SignupForm): Promise<AxiosResponse> =>
-  await axios.post('/api/register', SignupForm)
-
-export const onSubmitData = async ({ email, dni, phoneNumber }: SignupForm, callback?: () => void): Promise<void> => {
+export const onSubmitData = async ({ email, dni, phoneNumber }: RegisterForm, callback?: () => void): Promise<void> => {
   try {
-    await generateConfirmationCode(
-      email,
-      String(dni),
-      String(phoneNumber)
-    ).catch((err) => {
-      throw new ValidationError(err.response.data.error as string)
+    await checkUser({ email, dni, phoneNumber }).then(() => {
+      throw new ValidationError('El usuario ya existe')
+    }).catch((e) => {
+      if (e.response.status !== 404) throw new RequestError(e.response.data.message)
+    })
+
+    await generateCode(email).catch((err) => {
+      throw new RequestError(err.response.data.message)
     })
 
     if (typeof callback === 'function') callback()
@@ -46,14 +36,14 @@ export const onSubmitData = async ({ email, dni, phoneNumber }: SignupForm, call
   }
 }
 
-export const onSubmitCode = async (form: SignupForm, code: string): Promise<void> => {
+export const onSubmitCode = async (form: RegisterForm, code: string): Promise<void> => {
   try {
-    await checkConfirmationCode(form.email, code).catch((err) => {
-      throw new ValidationError(err.response.data.error as string)
+    await checkCode(code).catch((err) => {
+      throw new RequestError(err.response.data.message)
     })
 
-    await CreateUser(form).catch((err) => {
-      throw new ValidationError(err.response.data.error as string)
+    await registerUser(form).catch((err) => {
+      throw new RequestError(err.response.data.meesage)
     })
 
     Alerts.success('Usuario creado con exito', () => {
