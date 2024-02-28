@@ -43,7 +43,16 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     const newUser = await prisma.users.create({
       data: {
         ...data,
-        password: bcrypt.hashSync(data.password, 10)
+        password: bcrypt.hashSync(data.password, 10),
+        sex: 'MALE'
+      }
+    })
+
+    // Create account for new user
+    await prisma.accounts.create({
+      data: {
+        idUser: 2,
+        balance: 0
       }
     })
 
