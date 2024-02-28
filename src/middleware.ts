@@ -1,7 +1,7 @@
 import { jwtVerify } from 'jose'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
-import { AuthorizationError, ErrorsHandler } from './services/errorService'
+import { AuthorizationError, GenerateErrorResponse } from './services/errorService'
 import { pathToRegexp } from 'path-to-regexp'
 
 const AuthorizedURLs = pathToRegexp(['/dashboard', '/dashboard/:path*'])
@@ -9,10 +9,10 @@ const UnAuthorizedURLs = pathToRegexp(['/login', '/register', '/forgot'])
 const PublicApi = pathToRegexp(['/api', '/api/login', '/api/user', '/api/code', '/api/code/:email*'])
 
 export async function middleware (request: NextRequest): Promise<NextResponse> {
-  const token = request.cookies.get('token')
+  const token = String(request.cookies.get('token')?.value)
 
   const { authorized } = await jwtVerify(
-    String(token?.value),
+    token,
     new TextEncoder().encode(process.env.JWT_SECRET)
   ).then(() => {
     return { authorized: true }
@@ -42,11 +42,7 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
       throw new AuthorizationError('No autorizado')
     }
   } catch (error) {
-    const { code, message, status, type } = ErrorsHandler(error)
-    return NextResponse.json(
-      { type, code, message },
-      { status }
-    )
+    return GenerateErrorResponse(error)
   }
 
   return NextResponse.next()
