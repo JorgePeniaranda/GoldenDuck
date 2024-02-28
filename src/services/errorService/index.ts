@@ -35,6 +35,13 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
         message: 'El token es invalido',
         status: StatusCodes.UNAUTHORIZED
       }
+    case 'TokenExpiredError':
+      return {
+        type: 'TokenError',
+        code: ReasonPhrases.UNAUTHORIZED,
+        message: 'El token es invalido',
+        status: StatusCodes.UNAUTHORIZED
+      }
     case 'ConfigError':
       return {
         type: 'ConfigError',
