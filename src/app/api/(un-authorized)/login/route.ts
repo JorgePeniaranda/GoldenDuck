@@ -4,10 +4,11 @@ import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import {
   AuthorizationError,
-  ErrorsHandler,
+  GenerateErrorResponse,
   NotFoundError,
   ValidationError
 } from '@/services/errorService'
+import validations from '@/services/validationService'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()
@@ -18,8 +19,12 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     const { email, password } = await req.json()
 
     // check request
-    if (email === undefined || email === null) throw new ValidationError('No se ha enviado el email')
-    if (password === undefined || password === null) throw new ValidationError('No se ha enviado la contraseña')
+    await validations.email.parseAsync(email).catch((error) => {
+      throw new ValidationError(error.errors[0].message)
+    })
+    await validations.password.parseAsync(password).catch((error) => {
+      throw new ValidationError(error.errors[0].message)
+    })
 
     // find user
     const user = await prisma.users.findFirst({
@@ -33,14 +38,9 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     if (!bcrypt.compareSync(password as string, user.password)) { throw new AuthorizationError('La contraseña es incorrecta') }
 
     // generate autorized token with id
-    const tokenData = {
+    const token = jwt.generateToken({
       id: user.id
-    }
-    const AuthoridedToken = jwt.generateAuthorizedToken(
-      'login',
-      'dashboard',
-      tokenData
-    )
+    })
 
     // generate and send response
     const response = NextResponse.json(
@@ -48,7 +48,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
       { status: 200 }
     )
 
-    response.cookies.set('token', AuthoridedToken, {
+    response.cookies.set('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
@@ -58,7 +58,6 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
 
     return response
   } catch (e) {
-    const { error, status } = ErrorsHandler(e)
-    return NextResponse.json({ error }, { status })
+    return GenerateErrorResponse(e)
   }
 }
