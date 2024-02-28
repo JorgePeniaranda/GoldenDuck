@@ -68,9 +68,15 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
         email: userEmail,
         dni: userDni
       } = await request.json()
-      if (typeof id === 'string' && id !== userId) { throw new AuthorizationError('No autorizado') }
-      if (typeof email === 'string' && email !== userEmail) { throw new AuthorizationError('No autorizado') }
-      if (typeof dni === 'string' && dni !== userDni) { throw new AuthorizationError('No autorizado') }
+      if (typeof id === 'string' && id !== userId) {
+        throw new AuthorizationError('No autorizado')
+      }
+      if (typeof email === 'string' && email !== userEmail) {
+        throw new AuthorizationError('No autorizado')
+      }
+      if (typeof dni === 'string' && dni !== userDni) {
+        throw new AuthorizationError('No autorizado')
+      }
     } catch (error) {
       return GenerateErrorResponse(error)
     }
