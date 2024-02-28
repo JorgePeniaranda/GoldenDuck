@@ -17,6 +17,7 @@ export const NotFoundError = createErrorFactory('NotFoundError')
 export const AuthorizationError = createErrorFactory('AuthorizationError')
 export const ConflictError = createErrorFactory('ConflictError')
 export const EmailError = createErrorFactory('EmailError')
+export const RequestError = createErrorFactory('RequestError')
 
 export const ErrorsHandler = (error: any): ErrorResponse => {
   switch (error.name) {
@@ -76,8 +77,14 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
         message: error.message,
         status: StatusCodes.INTERNAL_SERVER_ERROR
       }
+    case 'RequestError':
+      return {
+        type: 'RequestError',
+        code: ReasonPhrases.INTERNAL_SERVER_ERROR,
+        message: error.message,
+        status: StatusCodes.INTERNAL_SERVER_ERROR
+      }
     default:
-      console.log(error)
       return {
         type: 'UnknownError',
         code: ReasonPhrases.INTERNAL_SERVER_ERROR,
