@@ -31,7 +31,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
 
     // generate and send response
     const response = NextResponse.json(
-      { message: 'Se ha enviado el código de verificación' },
+      { token, message: 'Se ha validado código exitosamente' },
       { status: 200 }
     )
 

@@ -31,7 +31,7 @@ export async function GET (
 
     // generate and send response
     const response = NextResponse.json(
-      { message: 'Se ha enviado el código de verificación' },
+      { token, message: 'Se ha enviado el código de verificación' },
       { status: 200 }
     )
 
