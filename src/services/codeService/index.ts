@@ -28,8 +28,8 @@ export default class ConfirmationCode {
         console.log('Código enviado: ' + this.code)
       }
     } catch (e) {
-      const { error } = ErrorsHandler(e)
-      console.error(error)
+      const { message } = ErrorsHandler(e)
+      console.error('CodeService Error: ' + message)
     }
   }
 

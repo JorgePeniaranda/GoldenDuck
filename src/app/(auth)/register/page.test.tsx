@@ -3,7 +3,7 @@ import Register from './page'
 import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
 
-// const form: SignupForm = {
+// const form: RegisterForm = {
 //   name: 'test',
 //   lastName: 'test',
 //   phoneNumber: '1234567890',

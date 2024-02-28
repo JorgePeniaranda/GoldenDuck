@@ -3,7 +3,6 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import {
-  AuthorizationError,
   GenerateErrorResponse,
   NotFoundError,
   ValidationError
@@ -15,39 +14,39 @@ const jwt = new JWT()
 
 export async function POST (req: NextRequest): Promise<NextResponse> {
   try {
-    // form data
-    const { email, password } = await req.json()
+    // get token and form data
+    const { email: userEmail, password: userPassword } = await req.json()
 
-    // check request
-    await validations.email.parseAsync(email).catch((error) => {
+    // validate email and password
+    const email = await validations.email.parseAsync(userEmail).catch((error) => {
       throw new ValidationError(error.errors[0].message)
     })
-    await validations.password.parseAsync(password).catch((error) => {
+    const password = await validations.password.parseAsync(userPassword).catch((error) => {
       throw new ValidationError(error.errors[0].message)
     })
 
-    // find user
+    // get user and check if user exists
     const user = await prisma.users.findFirst({
       where: { email, deleted: false }
     })
-
-    // check if user exists
     if (user === undefined || user === null) throw new NotFoundError('No existe cuenta creada con ese correo')
 
-    // check password match
-    if (!bcrypt.compareSync(password as string, user.password)) { throw new AuthorizationError('La contraseña es incorrecta') }
+    // update password
+    const newUser = await prisma.users.update({
+      where: { id: user.id },
+      data: { password: bcrypt.hashSync(password) }
+    })
 
     // generate autorized token with id
     const token = jwt.generateToken({
-      id: user.id
+      id: newUser.id
     })
 
     // generate and send response
     const response = NextResponse.json(
-      { message: 'Ha ingresado exitosamente' },
-      { status: 200 }
+      { message: 'Se ha actualizado la contraseña exitosamente' },
+      { status: 201 }
     )
-
     response.cookies.set('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
@@ -55,7 +54,6 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
       maxAge: 1000 * 60 * 30,
       path: '/'
     })
-
     return response
   } catch (e) {
     return GenerateErrorResponse(e)

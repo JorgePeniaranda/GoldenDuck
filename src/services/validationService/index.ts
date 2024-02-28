@@ -1,10 +1,5 @@
-import {
-  checkAlphanumeric,
-  checkOnlyLetters,
-  checkPasswordStrong
-} from '@/utils'
-import { type SafeParseSuccess, z } from 'zod'
-import { ValidationError } from '../errorService'
+import { checkAlphanumeric, checkOnlyLetters, checkPasswordStrong } from '../../utils'
+import { z } from 'zod'
 
 export const validations = {
   name: z
@@ -22,7 +17,7 @@ export const validations = {
       message: 'El apellido debe contener solo letras.'
     }),
   dni: z.coerce
-    .number({ required_error: 'El DNI es requerido' })
+    .number({ required_error: 'El DNI es requerido', invalid_type_error: 'El DNI debe ser un número' })
     .min(1, { message: 'El DNI es requerido' })
     .min(10000000, { message: 'El DNI debe contener 8 dígitos' })
     .max(99999999, { message: 'El DNI debe contener 8 dígitos' }),
@@ -31,7 +26,7 @@ export const validations = {
     .email({ message: 'El email debe ser valido' })
     .min(1, { message: 'El email es requerido' }),
   phoneNumber: z.coerce
-    .number({ required_error: 'El número telefónico es requerido' })
+    .number({ required_error: 'El número telefónico es requerido', invalid_type_error: 'El número telefónico debe ser un número' })
     .min(1, { message: 'El número telefónico es requerido' })
     .min(1000000000, {
       message: 'El número telefónico debe contener 10 dígitos'
@@ -62,14 +57,6 @@ export const validations = {
     invalid_type_error: 'Debe ingresar una opción válida',
     required_error: 'El sexo es requerido'
   })
-}
-
-export const validateSchema = (schema: z.AnyZodObject, values: object): SafeParseSuccess<Record<string, any>> => {
-  const result = schema.safeParse(values)
-
-  if (!result.success) throw new ValidationError(result.error.errors[0].message)
-
-  return result
 }
 
 export default validations

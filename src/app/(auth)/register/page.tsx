@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
-import { type SignupForm } from '@/types'
+import { type RegisterForm } from '@/types'
 import {
   SignUpSchema,
   onSubmitCode,
@@ -27,7 +27,7 @@ export default function Signin (): JSX.Element {
     handleSubmit,
     watch,
     formState: { errors, isSubmitting }
-  } = useForm<SignupForm>({
+  } = useForm<RegisterForm>({
     resolver: zodResolver(SignUpSchema)
   })
 
