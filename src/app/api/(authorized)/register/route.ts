@@ -1,6 +1,6 @@
 import JWT from '@/services/jwtService'
 import { type NextRequest, NextResponse } from 'next/server'
-import { type SignupForm } from '@/types'
+import { type RegisterForm } from '@/types'
 import { SignUpSchema } from '@/useCases/registerUseCase'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
@@ -18,7 +18,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     const userData = await req.json()
 
     // validate data
-    const data = await SignUpSchema.parseAsync(userData as SignupForm).catch((error) => {
+    const data = await SignUpSchema.parseAsync(userData as RegisterForm).catch((error) => {
       throw new ValidationError(error.errors[0].message)
     })
 

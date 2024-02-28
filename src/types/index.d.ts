@@ -1,9 +1,15 @@
+export interface CheckUserRequest {
+  email?: string
+  dni?: string
+  phoneNumber?: string
+}
+
 export interface LoginForm {
   email: string
   password: string
 }
 
-export interface SignupForm {
+export interface RegisterForm {
   name: string
   lastName: string
   phoneNumber: string
@@ -18,7 +24,7 @@ export interface SignupForm {
 export interface ForgotForm {
   email: string
   password: string
-  confirmPassword: string
+  confirmPassword?: string
 }
 
 export interface ErrorResponse {
