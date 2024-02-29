@@ -11,6 +11,7 @@ const AuthorizedURLs = pathToRegexp(['/dashboard', '/dashboard/:path*'])
 const UnAuthorizedURLs = pathToRegexp(['/login', '/register', '/forgot'])
 const PublicApi = pathToRegexp([
   '/api',
+  '/api/error',
   '/api/login',
   '/api/user',
   '/api/code',
@@ -22,15 +23,15 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
     request.headers.get('token') ?? request.cookies.get('token')?.value
   )
 
-  const { authorized, id, email, dni } = await jwtVerify(
+  const { authorized, email, dni } = await jwtVerify(
     token,
     new TextEncoder().encode(process.env.JWT_SECRET)
   )
-    .then(({ payload: { id, email, dni } }) => {
-      return { authorized: true, id, email, dni }
+    .then(({ payload: { email, dni } }) => {
+      return { authorized: true, email, dni }
     })
     .catch(() => {
-      return { authorized: false, id: null, email: null, dni: null }
+      return { authorized: false, email: null, dni: null }
     })
 
   // If the user is authorized and the URL is not authorized, redirect to dashboard
@@ -62,20 +63,15 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
         throw new AuthorizationError('No autorizado')
       }
 
-      // If user send token with id, mail or dni, validate if is same in the token
-      const {
-        id: userId,
-        email: userEmail,
-        dni: userDni
-      } = await request.json()
-      if (typeof id === 'string' && id !== userId) {
-        throw new AuthorizationError('No autorizado')
-      }
-      if (typeof email === 'string' && email !== userEmail) {
-        throw new AuthorizationError('No autorizado')
-      }
-      if (typeof dni === 'string' && dni !== userDni) {
-        throw new AuthorizationError('No autorizado')
+      // If user send token with mail or dni, validate if is same in the token
+      if (await request.clone().text() !== '') {
+        const userData = await request.json()
+        if ((typeof email === 'string' || typeof userData.email === 'string') && email !== userData.email) {
+          throw new AuthorizationError('No autorizado')
+        }
+        if ((typeof dni === 'string' || typeof userData.dni === 'string') && dni !== userData.dni) {
+          throw new AuthorizationError('No autorizado')
+        }
       }
     } catch (error) {
       return GenerateErrorResponse(error)
