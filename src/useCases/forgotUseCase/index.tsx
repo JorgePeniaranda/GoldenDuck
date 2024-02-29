@@ -12,7 +12,7 @@ import { z } from 'zod'
 export const ForgotSchema = z.object({
   email: validations.email,
   password: validations.password,
-  confirmPassword: validations.password
+  confirmPassword: validations.confirmPassword
 }).refine((data) => data.password === data.confirmPassword, {
   message: 'Las contraseñas no coinciden',
   path: ['confirmPassword']
@@ -24,7 +24,7 @@ export const ForgotEmailSchema = z.object({
 
 export const ForgotPasswordSchema = z.object({
   password: validations.password,
-  confirmPassword: validations.password
+  confirmPassword: validations.confirmPassword
 }).refine((data) => data.password === data.confirmPassword, {
   message: 'Las contraseñas no coinciden',
   path: ['confirmPassword']
