@@ -13,9 +13,9 @@ import {
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function POST (req: NextRequest): Promise<NextResponse> {
+export async function POST (request: NextRequest): Promise<NextResponse> {
   try {
-    const userData = await req.json()
+    const userData = await request.json()
 
     // validate data
     const data = await SignUpSchema.parseAsync(userData as RegisterForm).catch(

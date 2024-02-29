@@ -30,19 +30,19 @@ export const onSubmitData = async (
       .then(() => {
         throw new ValidationError('El usuario ya existe')
       })
-      .catch((e) => {
-        if (e.response.status !== 404) {
-          throw new RequestError(e.response.data.message)
+      .catch((error) => {
+        if (error.response.status !== 404) {
+          throw new RequestError(error.response.data.message)
         }
       })
 
-    await generateCode(email).catch((err) => {
-      throw new RequestError(err.response.data.message)
+    await generateCode(email).catch((error) => {
+      throw new RequestError(error.response.data.message)
     })
 
     if (typeof callback === 'function') callback()
-  } catch (e) {
-    const { message } = ErrorsHandler(e)
+  } catch (error) {
+    const { message } = ErrorsHandler(error)
     Alerts.error(message)
   }
 }
@@ -52,19 +52,19 @@ export const onSubmitCode = async (
   code: string
 ): Promise<void> => {
   try {
-    await checkCode(code).catch((err) => {
-      throw new RequestError(err.response.data.message)
+    await checkCode(code).catch((error) => {
+      throw new RequestError(error.response.data.message)
     })
 
-    await registerUser(form).catch((err) => {
-      throw new RequestError(err.response.data.meesage)
+    await registerUser(form).catch((error) => {
+      throw new RequestError(error.response.data.meesage)
     })
 
     Alerts.success('Usuario creado con exito', () => {
       location.href = '/dashboard'
     })
-  } catch (e) {
-    const { message } = ErrorsHandler(e)
+  } catch (error) {
+    const { message } = ErrorsHandler(error)
     Alerts.error(message)
   }
 }

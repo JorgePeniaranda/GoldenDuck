@@ -39,13 +39,13 @@ export const onSubmitEmailForm = async (
   callback?: () => void
 ): Promise<void> => {
   try {
-    await generateCode(form.email).catch((err) => {
-      throw new RequestError(err.response.data.message)
+    await generateCode(form.email).catch((error) => {
+      throw new RequestError(error.response.data.message)
     })
 
     if (typeof callback === 'function') callback()
-  } catch (e) {
-    const { message } = ErrorsHandler(e)
+  } catch (error) {
+    const { message } = ErrorsHandler(error)
     Alerts.error(message)
   }
 }
@@ -56,13 +56,13 @@ export const onSubmitCodeForm = async (
   callback?: () => void
 ): Promise<void> => {
   try {
-    await checkCode(code).catch((err) => {
-      throw new RequestError(err.response.data.message)
+    await checkCode(code).catch((error) => {
+      throw new RequestError(error.response.data.message)
     })
 
     if (typeof callback === 'function') callback()
-  } catch (e) {
-    const { message } = ErrorsHandler(e)
+  } catch (error) {
+    const { message } = ErrorsHandler(error)
     Alerts.error(message)
   }
 }
@@ -72,15 +72,15 @@ export const onSubmitPasswordForm = async (
   email: string
 ): Promise<void> => {
   try {
-    await changePassword({ ...form, email }).catch((err) => {
-      throw new ValidationError(err.response.data.error as string)
+    await changePassword({ ...form, email }).catch((error) => {
+      throw new ValidationError(error.response.data.message as string)
     })
 
     Alerts.success('Se ha actualizado la contraseña exitosamente', () => {
       location.href = '/dashboard'
     })
-  } catch (e) {
-    const { message } = ErrorsHandler(e)
+  } catch (error) {
+    const { message } = ErrorsHandler(error)
     Alerts.error(message)
   }
 }

@@ -13,10 +13,10 @@ import { LoginSchema } from '@/useCases/loginUseCase'
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function POST (req: NextRequest): Promise<NextResponse> {
+export async function POST (request: NextRequest): Promise<NextResponse> {
   try {
     // form data
-    const data = await req.json()
+    const data = await request.json()
 
     // check request
     const { email, password } = await LoginSchema.parseAsync(data).catch(

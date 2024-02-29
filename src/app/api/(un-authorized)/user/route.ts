@@ -17,8 +17,8 @@ const Schema = z.object({
 })
 
 // check if any account exist with that email
-export async function POST (req: NextRequest): Promise<NextResponse> {
-  const data = await req.json()
+export async function POST (request: NextRequest): Promise<NextResponse> {
+  const data = await request.json()
 
   try {
     // validate data
@@ -41,7 +41,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     }
 
     return NextResponse.json({}, { status: 200 })
-  } catch (e) {
-    return GenerateErrorResponse(e)
+  } catch (error) {
+    return GenerateErrorResponse(error)
   }
 }

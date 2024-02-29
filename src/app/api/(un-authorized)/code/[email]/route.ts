@@ -7,7 +7,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 const jwt = new JWT()
 
 export async function GET (
-  req: NextRequest,
+  request: NextRequest,
   { params: { email } }: { params: { email: string } }
 ): Promise<NextResponse> {
   const CodeService = new ConfirmationCode()

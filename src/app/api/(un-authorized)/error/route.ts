@@ -4,8 +4,8 @@ import { GenerateErrorResponse } from '@/services/errorService'
 
 const prisma = new PrismaClient()
 
-export async function POST (req: NextRequest): Promise<NextResponse> {
-  const { name, message } = await req.json()
+export async function POST (request: NextRequest): Promise<NextResponse> {
+  const { name, message } = await request.json()
 
   try {
     // Create account for new user

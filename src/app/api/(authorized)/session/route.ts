@@ -6,10 +6,10 @@ import { GenerateErrorResponse } from '@/services/errorService'
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function POST (req: NextRequest): Promise<NextResponse> {
-  const { ua } = userAgent(req)
+export async function POST (request: NextRequest): Promise<NextResponse> {
+  const { ua } = userAgent(request)
   const token = String(
-    req.headers.get('token') ?? req.cookies.get('token')?.value
+    request.headers.get('token') ?? request.cookies.get('token')?.value
   )
 
   try {

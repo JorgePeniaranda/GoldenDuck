@@ -10,11 +10,11 @@ import { type NextRequest, NextResponse } from 'next/server'
 const CodeService = new ConfirmationCode()
 const jwt = new JWT()
 
-export async function POST (req: NextRequest): Promise<NextResponse> {
+export async function POST (request: NextRequest): Promise<NextResponse> {
   try {
-    const { code: userCode } = await req.json()
+    const { code: userCode } = await request.json()
     const userToken = String(
-      req.headers.get('token') ?? req.cookies.get('token')?.value
+      request.headers.get('token') ?? request.cookies.get('token')?.value
     )
 
     // validate request

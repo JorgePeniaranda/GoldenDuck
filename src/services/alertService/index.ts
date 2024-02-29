@@ -11,8 +11,8 @@ const Alerts = {
       .then(() => {
         if (typeof then === 'function') then()
       })
-      .catch((e) => {
-        const { message } = ErrorsHandler(e)
+      .catch((error) => {
+        const { message } = ErrorsHandler(error)
         console.error('AlertService Error: ' + message)
       })
   },
@@ -25,8 +25,8 @@ const Alerts = {
       .then(() => {
         if (typeof then === 'function') then()
       })
-      .catch((e) => {
-        const { message } = ErrorsHandler(e)
+      .catch((error) => {
+        const { message } = ErrorsHandler(error)
         console.error('AlertService Error: ' + message)
       })
   },
@@ -39,8 +39,8 @@ const Alerts = {
       .then(() => {
         if (typeof then === 'function') then()
       })
-      .catch((e) => {
-        const { message } = ErrorsHandler(e)
+      .catch((error) => {
+        const { message } = ErrorsHandler(error)
         console.error('AlertService Error: ' + message)
       })
   },
@@ -53,8 +53,8 @@ const Alerts = {
       .then(() => {
         if (typeof then === 'function') then()
       })
-      .catch((e) => {
-        const { message } = ErrorsHandler(e)
+      .catch((error) => {
+        const { message } = ErrorsHandler(error)
         console.error('AlertService Error: ' + message)
       })
   },
@@ -67,8 +67,8 @@ const Alerts = {
       .then(() => {
         if (typeof then === 'function') then()
       })
-      .catch((e) => {
-        const { message } = ErrorsHandler(e)
+      .catch((error) => {
+        const { message } = ErrorsHandler(error)
         console.error('AlertService Error: ' + message)
       })
   }

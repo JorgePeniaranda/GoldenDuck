@@ -12,10 +12,10 @@ import { ForgotSchema } from '@/useCases/forgotUseCase'
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function PUT (req: NextRequest): Promise<NextResponse> {
+export async function PUT (request: NextRequest): Promise<NextResponse> {
   try {
     // get token and form data
-    const data = await req.json()
+    const data = await request.json()
 
     // validate email and password
     const { email, password } = await ForgotSchema.parseAsync(data).catch(
