@@ -66,7 +66,7 @@ export const validations = {
     invalid_type_error: 'Debe ingresar una fecha válida',
     required_error: 'La fecha de nacimiento es requerido'
   }),
-  sex: z.enum(['male', 'female'], {
+  sex: z.enum(['MALE', 'FEMALE'], {
     invalid_type_error: 'Debe ingresar una opción válida',
     required_error: 'El sexo es requerido'
   })

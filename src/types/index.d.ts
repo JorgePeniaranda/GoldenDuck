@@ -18,7 +18,7 @@ export interface RegisterForm {
   address: string
   email: string
   password: string
-  sex: 'male' | 'female'
+  sex: 'MALE' | 'FEMALE'
 }
 
 export interface ForgotForm {
