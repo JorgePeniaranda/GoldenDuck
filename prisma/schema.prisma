@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,6 +5,13 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Error {
+  id            Int           @id @default(autoincrement())
+  name          String?
+  message       String?
+  date          DateTime      @default(now())
 }
 
 enum role {
@@ -21,8 +25,8 @@ enum sex {
   FEMALE
 }
 
-model Users {
-  id            Int         @id @default(autoincrement())
+model User {
+  id            Int           @id @default(autoincrement())
   name          String
   lastName      String
   dni           BigInt
@@ -32,91 +36,101 @@ model Users {
   address       String
   birthDate     DateTime
   sex           sex
-  updateAt      DateTime    @default(now())
-  createAt      DateTime    @default(now())
-  deleted       Boolean     @default(false)
-  role          role        @default(USER)
-  accounts      Accounts[]
+  updateAt      DateTime      @default(now())
+  createAt      DateTime      @default(now())
+  deleted       Boolean       @default(false)
+  role          role          @default(USER)
+  account       Account[]
+  sessions      Session[]
 }
 
-model Accounts {
-  id            Int         @id @default(autoincrement())
-  idUser        Int       
-  balance       BigInt
+model Session {
+  id            Int           @id @default(autoincrement())
+  idUser        Int
+  ip            String?
+  userAgent     String?
+  createAt      DateTime      @default(now())
+  user          User          @relation(fields: [idUser], references: [id])
+}
+
+model Account {
+  id            Int           @id @default(autoincrement())
+  idUser        Int
+  balance       BigInt        @default(0)
   imgUrl        String?
-  updateAt      DateTime    @default(now())
-  createAt      DateTime    @default(now())
-  deleted       Boolean     @default(false)
-  user          Users       @relation(fields: [idUser], references: [id])
-  notifications Notifications[]
-  messages      Messages[]
-  cards         Cards[]
-  transactions  Transactions[]
-  loans         Loans[]
-  investments   Investments[]
+  updateAt      DateTime      @default(now())
+  createAt      DateTime      @default(now())
+  deleted       Boolean       @default(false)
+  user          User          @relation(fields: [idUser], references: [id])
+  notifications Notification[]
+  messages      Message[]
+  cards         Card[]
+  transactions  Transaction[]
+  loans         Loan[]
+  investments   Investment[]
 }
 
-model Messages {
-  id            Int         @id @default(autoincrement())
+model Message {
+  id            Int           @id @default(autoincrement())
   idAccount     Int
   from          Int
   to            Int
   message       String
-  read          Boolean     @default(false)
-  date          DateTime    @default(now())
-  account       Accounts    @relation(fields: [idAccount], references: [id])
+  read          Boolean       @default(false)
+  date          DateTime      @default(now())
+  account       Account       @relation(fields: [idAccount], references: [id])
 }
 
-model Notifications{
-  id            Int         @id @default(autoincrement())
+model Notification {
+  id            Int           @id @default(autoincrement())
   idAccount     Int
   message       String
-  read          Boolean     @default(false)
-  date          DateTime    @default(now())
-  account       Accounts    @relation(fields: [idAccount], references: [id])
+  read          Boolean       @default(false)
+  date          DateTime      @default(now())
+  account       Account       @relation(fields: [idAccount], references: [id])
 }
 
-model Categories {
-  id            Int         @id @default(autoincrement())
-  name          String      @unique
+model Category {
+  id            Int           @id @default(autoincrement())
+  name          String        @unique
 }
 
-model Cards {
-  id            Int         @id @default(autoincrement())
+model Card {
+  id            Int           @id @default(autoincrement())
   idAccount     Int
   number        BigInt
   cvv           Int
   expiration    DateTime
-  updateDate    DateTime    @default(now())
-  deleted       Boolean     @default(false)
-  account       Accounts    @relation(fields: [idAccount], references: [id])
+  updateDate    DateTime      @default(now())
+  deleted       Boolean       @default(false)
+  account       Account       @relation(fields: [idAccount], references: [id])
 }
 
-model Transactions {
-  id            Int         @id @default(autoincrement())
+model Transaction {
+  id            Int           @id @default(autoincrement())
   idAccount     Int
   amount        BigInt
   category      String?
-  date          DateTime    @default(now())
-  account       Accounts    @relation(fields: [idAccount], references: [id])
+  date          DateTime      @default(now())
+  account       Account       @relation(fields: [idAccount], references: [id])
 }
 
-model Loans {
-  id            Int         @id @default(autoincrement())
+model Loan {
+  id            Int           @id @default(autoincrement())
   idAccount     Int
   amount        BigInt
   interest      Float
-  date          DateTime    @default(now())
+  date          DateTime      @default(now())
   date_end      DateTime
-  account       Accounts    @relation(fields: [idAccount], references: [id])
+  account       Account       @relation(fields: [idAccount], references: [id])
 }
 
-model Investments {
-  id            Int         @id @default(autoincrement())
+model Investment {
+  id            Int           @id @default(autoincrement())
   idAccount     Int
   amount        BigInt
   interest      Float
-  date          DateTime    @default(now())
+  date          DateTime      @default(now())
   date_end      DateTime
-  account       Accounts    @relation(fields: [idAccount], references: [id])
+  account       Account       @relation(fields: [idAccount], references: [id])
 }
