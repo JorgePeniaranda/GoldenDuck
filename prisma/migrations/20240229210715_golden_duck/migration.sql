@@ -20,8 +20,8 @@ CREATE TABLE `User` (
     `address` VARCHAR(191) NOT NULL,
     `birthDate` DATETIME(3) NOT NULL,
     `sex` ENUM('MALE', 'FEMALE') NOT NULL,
-    `updateAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `deleted` BOOLEAN NOT NULL DEFAULT false,
     `role` ENUM('ADMIN', 'SUPPORT', 'USER') NOT NULL DEFAULT 'USER',
 
@@ -34,7 +34,7 @@ CREATE TABLE `Session` (
     `idUser` INTEGER NOT NULL,
     `ip` VARCHAR(191) NULL,
     `userAgent` VARCHAR(191) NULL,
-    `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `date` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -55,7 +55,6 @@ CREATE TABLE `Account` (
 -- CreateTable
 CREATE TABLE `Message` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `idAccount` INTEGER NOT NULL,
     `from` INTEGER NOT NULL,
     `to` INTEGER NOT NULL,
     `message` VARCHAR(191) NOT NULL,
@@ -77,15 +76,6 @@ CREATE TABLE `Notification` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Category` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(191) NOT NULL,
-
-    UNIQUE INDEX `Category_name_key`(`name`),
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `Card` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `idAccount` INTEGER NOT NULL,
@@ -99,11 +89,21 @@ CREATE TABLE `Card` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `Category` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `deleted` BOOLEAN NOT NULL DEFAULT false,
+
+    UNIQUE INDEX `Category_name_key`(`name`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `Transaction` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `idAccount` INTEGER NOT NULL,
     `amount` BIGINT NOT NULL,
-    `category` VARCHAR(191) NULL,
+    `idCategory` INTEGER NULL,
     `date` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)
@@ -140,7 +140,10 @@ ALTER TABLE `Session` ADD CONSTRAINT `Session_idUser_fkey` FOREIGN KEY (`idUser`
 ALTER TABLE `Account` ADD CONSTRAINT `Account_idUser_fkey` FOREIGN KEY (`idUser`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Message` ADD CONSTRAINT `Message_idAccount_fkey` FOREIGN KEY (`idAccount`) REFERENCES `Account`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Message` ADD CONSTRAINT `Message_to_fkey` FOREIGN KEY (`to`) REFERENCES `Account`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Message` ADD CONSTRAINT `Message_from_fkey` FOREIGN KEY (`from`) REFERENCES `Account`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Notification` ADD CONSTRAINT `Notification_idAccount_fkey` FOREIGN KEY (`idAccount`) REFERENCES `Account`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -150,6 +153,9 @@ ALTER TABLE `Card` ADD CONSTRAINT `Card_idAccount_fkey` FOREIGN KEY (`idAccount`
 
 -- AddForeignKey
 ALTER TABLE `Transaction` ADD CONSTRAINT `Transaction_idAccount_fkey` FOREIGN KEY (`idAccount`) REFERENCES `Account`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Transaction` ADD CONSTRAINT `Transaction_idCategory_fkey` FOREIGN KEY (`idCategory`) REFERENCES `Category`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Loan` ADD CONSTRAINT `Loan_idAccount_fkey` FOREIGN KEY (`idAccount`) REFERENCES `Account`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

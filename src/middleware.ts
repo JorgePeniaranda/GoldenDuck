@@ -12,10 +12,11 @@ const UnAuthorizedURLs = pathToRegexp(['/login', '/register', '/forgot'])
 const PublicApi = pathToRegexp([
   '/api',
   '/api/error',
-  '/api/login',
-  '/api/user',
+  '/api/verify-user',
   '/api/code',
-  '/api/code/:email*'
+  '/api/code/:email*',
+  '/api/login',
+  '/api/logout'
 ])
 
 export async function middleware (request: NextRequest): Promise<NextResponse> {

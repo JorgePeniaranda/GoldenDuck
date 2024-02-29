@@ -36,8 +36,8 @@ model User {
   address       String
   birthDate     DateTime
   sex           sex
-  updateAt      DateTime      @default(now())
-  createAt      DateTime      @default(now())
+  updatedAt     DateTime      @default(now())
+  createdAt     DateTime      @default(now())
   deleted       Boolean       @default(false)
   role          role          @default(USER)
   account       Account[]
@@ -49,7 +49,7 @@ model Session {
   idUser        Int
   ip            String?
   userAgent     String?
-  createAt      DateTime      @default(now())
+  date          DateTime      @default(now())
   user          User          @relation(fields: [idUser], references: [id])
 }
 
@@ -63,7 +63,8 @@ model Account {
   deleted       Boolean       @default(false)
   user          User          @relation(fields: [idUser], references: [id])
   notifications Notification[]
-  messages      Message[]
+  messagesTo    Message[]     @relation(name: "toAccount")
+  messagesFrom  Message[]     @relation(name: "fromAccount")
   cards         Card[]
   transactions  Transaction[]
   loans         Loan[]
@@ -72,13 +73,13 @@ model Account {
 
 model Message {
   id            Int           @id @default(autoincrement())
-  idAccount     Int
   from          Int
   to            Int
   message       String
   read          Boolean       @default(false)
   date          DateTime      @default(now())
-  account       Account       @relation(fields: [idAccount], references: [id])
+  accountTo     Account       @relation(name: "toAccount", fields: [to], references: [id])
+  accountFrom   Account       @relation(name: "fromAccount", fields: [from], references: [id])
 }
 
 model Notification {
@@ -88,11 +89,6 @@ model Notification {
   read          Boolean       @default(false)
   date          DateTime      @default(now())
   account       Account       @relation(fields: [idAccount], references: [id])
-}
-
-model Category {
-  id            Int           @id @default(autoincrement())
-  name          String        @unique
 }
 
 model Card {
@@ -106,13 +102,21 @@ model Card {
   account       Account       @relation(fields: [idAccount], references: [id])
 }
 
+model Category {
+  id            Int           @id @default(autoincrement())
+  name          String        @unique
+  deleted       Boolean       @default(false)
+  transactions  Transaction[]
+}
+
 model Transaction {
   id            Int           @id @default(autoincrement())
   idAccount     Int
   amount        BigInt
-  category      String?
+  idCategory    Int?
   date          DateTime      @default(now())
   account       Account       @relation(fields: [idAccount], references: [id])
+  category      Category?     @relation(fields: [idCategory], references: [id])
 }
 
 model Loan {

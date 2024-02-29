@@ -36,7 +36,7 @@ export async function PUT (request: NextRequest): Promise<NextResponse> {
       where: { id: user.id },
       data: {
         password: bcrypt.hashSync(password),
-        updateAt: new Date()
+        updatedAt: new Date()
       },
       select: {
         id: true
