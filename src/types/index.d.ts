@@ -24,7 +24,7 @@ export interface RegisterForm {
 export interface ForgotForm {
   email: string
   password: string
-  confirmPassword?: string
+  confirmPassword: string
 }
 
 export interface ErrorResponse {

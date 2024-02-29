@@ -8,7 +8,7 @@ import {
   NotFoundError,
   ValidationError
 } from '@/services/errorService'
-import validations from '@/services/validationService'
+import { LoginSchema } from '@/useCases/loginUseCase'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()
@@ -16,13 +16,10 @@ const jwt = new JWT()
 export async function POST (req: NextRequest): Promise<NextResponse> {
   try {
     // form data
-    const { email, password } = await req.json()
+    const data = await req.json()
 
     // check request
-    await validations.email.parseAsync(email).catch((error) => {
-      throw new ValidationError(error.errors[0].message)
-    })
-    await validations.password.parseAsync(password).catch((error) => {
+    const { email, password } = await LoginSchema.parseAsync(data).catch((error) => {
       throw new ValidationError(error.errors[0].message)
     })
 
@@ -37,7 +34,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     }
 
     // check password match
-    if (!bcrypt.compareSync(password as string, user.password)) {
+    if (!bcrypt.compareSync(password, user.password)) {
       throw new AuthorizationError('La contraseña es incorrecta')
     }
 

@@ -6,22 +6,23 @@ import {
   ValidationError
 } from '@/services/errorService'
 import validations from '@/services/validationService'
+import { z } from 'zod'
 
 const prisma = new PrismaClient()
 
+const Schema = z.object({
+  email: validations.email,
+  dni: validations.dni,
+  phoneNumber: validations.phoneNumber
+})
+
 // check if any account exist with that email
 export async function POST (req: NextRequest): Promise<NextResponse> {
-  const { email, dni, phoneNumber } = await req.json()
+  const data = await req.json()
 
   try {
     // validate data
-    await validations.email.parseAsync(email).catch((error) => {
-      throw new ValidationError(error.errors[0].message)
-    })
-    await validations.dni.parseAsync(dni).catch((error) => {
-      throw new ValidationError(error.errors[0].message)
-    })
-    await validations.phoneNumber.parseAsync(phoneNumber).catch((error) => {
+    const { email, dni, phoneNumber } = await Schema.parseAsync(data).catch((error) => {
       throw new ValidationError(error.errors[0].message)
     })
 

@@ -9,6 +9,15 @@ import validations from '@/services/validationService'
 import { type ForgotForm } from '@/types'
 import { z } from 'zod'
 
+export const ForgotSchema = z.object({
+  email: validations.email,
+  password: validations.password,
+  confirmPassword: validations.password
+}).refine((data) => data.password === data.confirmPassword, {
+  message: 'Las contraseñas no coinciden',
+  path: ['confirmPassword']
+})
+
 export const ForgotEmailSchema = z.object({
   email: validations.email
 })
@@ -16,6 +25,9 @@ export const ForgotEmailSchema = z.object({
 export const ForgotPasswordSchema = z.object({
   password: validations.password,
   confirmPassword: validations.password
+}).refine((data) => data.password === data.confirmPassword, {
+  message: 'Las contraseñas no coinciden',
+  path: ['confirmPassword']
 })
 
 export const onSubmitEmailForm = async (
@@ -56,12 +68,7 @@ export const onSubmitPasswordForm = async (
   email: string
 ): Promise<void> => {
   try {
-    if (form.password !== form.confirmPassword) {
-      Alerts.warning('Las contraseñas no coinciden')
-      return
-    }
-
-    await changePassword(form).catch((err) => {
+    await changePassword({ ...form, email }).catch((err) => {
       throw new ValidationError(err.response.data.error as string)
     })
 

@@ -7,7 +7,7 @@ import {
   NotFoundError,
   ValidationError
 } from '@/services/errorService'
-import validations from '@/services/validationService'
+import { ForgotSchema } from '@/useCases/forgotUseCase'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()
@@ -15,16 +15,11 @@ const jwt = new JWT()
 export async function POST (req: NextRequest): Promise<NextResponse> {
   try {
     // get token and form data
-    const { email: userEmail, password: userPassword } = await req.json()
+    const data = await req.json()
 
     // validate email and password
-    const email = await validations.email
-      .parseAsync(userEmail)
-      .catch((error) => {
-        throw new ValidationError(error.errors[0].message)
-      })
-    const password = await validations.password
-      .parseAsync(userPassword)
+    const { email, password } = await ForgotSchema
+      .parseAsync(data)
       .catch((error) => {
         throw new ValidationError(error.errors[0].message)
       })
