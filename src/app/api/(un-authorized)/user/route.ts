@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client'
 import { type NextRequest, NextResponse } from 'next/server'
+import { prisma } from '@/libs/prisma'
 import {
   GenerateErrorResponse,
   NotFoundError,
@@ -7,8 +7,6 @@ import {
 } from '@/services/errorService'
 import validations from '@/services/validationService'
 import { z } from 'zod'
-
-const prisma = new PrismaClient()
 
 const Schema = z.object({
   email: validations.email,
@@ -33,6 +31,9 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       where: {
         OR: [{ email }, { dni }, { phoneNumber }],
         deleted: false
+      },
+      select: {
+        id: true
       }
     })
 

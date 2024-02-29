@@ -1,6 +1,6 @@
-import JWT from '@/services/jwtService'
 import { type NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '@/libs/prisma'
+import JWT from '@/services/jwtService'
 import bcrypt from 'bcryptjs'
 import {
   GenerateErrorResponse,
@@ -9,7 +9,6 @@ import {
 } from '@/services/errorService'
 import { ForgotSchema } from '@/useCases/forgotUseCase'
 
-const prisma = new PrismaClient()
 const jwt = new JWT()
 
 export async function PUT (request: NextRequest): Promise<NextResponse> {
@@ -35,7 +34,22 @@ export async function PUT (request: NextRequest): Promise<NextResponse> {
     // update password
     const newUser = await prisma.user.update({
       where: { id: user.id },
-      data: { password: bcrypt.hashSync(password), updateAt: new Date() }
+      data: {
+        password: bcrypt.hashSync(password),
+        updateAt: new Date()
+      },
+      select: {
+        id: true
+      }
+    })
+
+    // log session
+    await prisma.session.create({
+      data: {
+        idUser: newUser.id,
+        userAgent: String(request.headers.get('user-agent')),
+        ip: String(request.headers.get('x-real-ip'))
+      }
     })
 
     // generate autorized token with id

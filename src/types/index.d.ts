@@ -1,3 +1,5 @@
+import { type sex } from '@prisma/client'
+
 export interface CheckUserRequest {
   email?: string
   dni?: string
@@ -12,13 +14,13 @@ export interface LoginForm {
 export interface RegisterForm {
   name: string
   lastName: string
-  phoneNumber: string
-  dni: string
-  birthDate: string
+  phoneNumber: string | number
+  dni: string | number
+  birthDate: string | Date
   address: string
   email: string
   password: string
-  sex: 'MALE' | 'FEMALE'
+  sex: sex
 }
 
 export interface ForgotForm {

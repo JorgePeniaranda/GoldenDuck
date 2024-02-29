@@ -1,8 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
-
-const prisma = new PrismaClient()
 
 export async function POST (request: NextRequest): Promise<NextResponse> {
   const { name, message } = await request.json()

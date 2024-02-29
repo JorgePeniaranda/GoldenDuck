@@ -17,6 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import ReactCodeInput from 'react-code-input'
 import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
 import useStep from '@/hooks/useStep'
+import { sex } from '@prisma/client'
 
 export default function Signin (): JSX.Element {
   const { step, handleNext, handleBack } = useStep()
@@ -132,14 +133,14 @@ export default function Signin (): JSX.Element {
               </label>
               <div id="sex">
                 <label>
-                  <input type="radio" value="MALE" {...register('sex')} />
+                  <input type="radio" value={sex.MALE} {...register('sex')} />
                   Masculino
                   <ErrorSpan show={errors.sex !== undefined} align="center">
                     {errors.sex?.message}
                   </ErrorSpan>
                 </label>
                 <label>
-                  <input type="radio" value="FEMALE" {...register('sex')} />
+                  <input type="radio" value={sex.FEMALE} {...register('sex')} />
                   Femenino
                   <ErrorSpan show={errors.sex !== undefined} align="center">
                     {errors.sex?.message}

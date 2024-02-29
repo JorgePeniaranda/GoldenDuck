@@ -1,8 +1,8 @@
 import JWT from '@/services/jwtService'
 import { type NextRequest, NextResponse } from 'next/server'
+import { prisma } from '@/libs/prisma'
 import { type RegisterForm } from '@/types'
 import { SignUpSchema } from '@/useCases/registerUseCase'
-import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import {
   ConflictError,
@@ -10,7 +10,6 @@ import {
   ValidationError
 } from '@/services/errorService'
 
-const prisma = new PrismaClient()
 const jwt = new JWT()
 
 export async function POST (request: NextRequest): Promise<NextResponse> {
@@ -40,17 +39,17 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
     }
 
     // Create new user
-    const newUser = await prisma.user.create({
-      data: {
-        ...data,
-        password: bcrypt.hashSync(data.password, 10)
-      }
+    const newUser = await prisma.user.createUser({
+      ...data,
+      password: bcrypt.hashSync(data.password, 10)
     })
 
-    // Create account for new user
-    await prisma.account.create({
+    // log session
+    await prisma.session.create({
       data: {
-        idUser: newUser.id
+        idUser: newUser.id,
+        userAgent: String(request.headers.get('user-agent')),
+        ip: String(request.headers.get('x-real-ip'))
       }
     })
 

@@ -1,6 +1,6 @@
-import JWT from '@/services/jwtService'
 import { type NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '@/libs/prisma'
+import JWT from '@/services/jwtService'
 import bcrypt from 'bcryptjs'
 import {
   AuthorizationError,
@@ -10,7 +10,6 @@ import {
 } from '@/services/errorService'
 import { LoginSchema } from '@/useCases/loginUseCase'
 
-const prisma = new PrismaClient()
 const jwt = new JWT()
 
 export async function POST (request: NextRequest): Promise<NextResponse> {
@@ -27,7 +26,8 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
 
     // find user
     const user = await prisma.user.findFirst({
-      where: { email, deleted: false }
+      where: { email, deleted: false },
+      select: { id: true, password: true }
     })
 
     // check if user exists
@@ -39,6 +39,15 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
     if (!bcrypt.compareSync(password, user.password)) {
       throw new AuthorizationError('La contraseña es incorrecta')
     }
+
+    // log session
+    await prisma.session.create({
+      data: {
+        idUser: user.id,
+        userAgent: String(request.headers.get('user-agent')),
+        ip: String(request.headers.get('x-real-ip'))
+      }
+    })
 
     // generate autorized token with id
     const token = jwt.generateToken({
