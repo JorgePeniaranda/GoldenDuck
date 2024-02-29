@@ -1,9 +1,7 @@
 import JWT from '@/services/jwtService'
 import { type NextRequest, NextResponse, userAgent } from 'next/server'
 import { PrismaClient } from '@prisma/client'
-import {
-  GenerateErrorResponse
-} from '@/services/errorService'
+import { GenerateErrorResponse } from '@/services/errorService'
 
 const prisma = new PrismaClient()
 const jwt = new JWT()

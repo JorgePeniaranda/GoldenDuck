@@ -19,9 +19,11 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     const data = await req.json()
 
     // check request
-    const { email, password } = await LoginSchema.parseAsync(data).catch((error) => {
-      throw new ValidationError(error.errors[0].message)
-    })
+    const { email, password } = await LoginSchema.parseAsync(data).catch(
+      (error) => {
+        throw new ValidationError(error.errors[0].message)
+      }
+    )
 
     // find user
     const user = await prisma.user.findFirst({

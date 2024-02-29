@@ -64,12 +64,18 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
       }
 
       // If user send token with mail or dni, validate if is same in the token
-      if (await request.clone().text() !== '') {
+      if ((await request.clone().text()) !== '') {
         const userData = await request.json()
-        if ((typeof email === 'string' || typeof userData.email === 'string') && email !== userData.email) {
+        if (
+          (typeof email === 'string' || typeof userData.email === 'string') &&
+          email !== userData.email
+        ) {
           throw new AuthorizationError('No autorizado')
         }
-        if ((typeof dni === 'string' || typeof userData.dni === 'string') && dni !== userData.dni) {
+        if (
+          (typeof dni === 'string' || typeof userData.dni === 'string') &&
+          dni !== userData.dni
+        ) {
           throw new AuthorizationError('No autorizado')
         }
       }

@@ -22,9 +22,11 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
 
   try {
     // validate data
-    const { email, dni, phoneNumber } = await Schema.parseAsync(data).catch((error) => {
-      throw new ValidationError(error.errors[0].message)
-    })
+    const { email, dni, phoneNumber } = await Schema.parseAsync(data).catch(
+      (error) => {
+        throw new ValidationError(error.errors[0].message)
+      }
+    )
 
     // check if any account exist
     const checkExist = await prisma.user.findFirst({

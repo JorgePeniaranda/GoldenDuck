@@ -18,11 +18,11 @@ export async function PUT (req: NextRequest): Promise<NextResponse> {
     const data = await req.json()
 
     // validate email and password
-    const { email, password } = await ForgotSchema
-      .parseAsync(data)
-      .catch((error) => {
+    const { email, password } = await ForgotSchema.parseAsync(data).catch(
+      (error) => {
         throw new ValidationError(error.errors[0].message)
-      })
+      }
+    )
 
     // get user and check if user exists
     const user = await prisma.user.findFirst({

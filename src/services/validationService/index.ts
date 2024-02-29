@@ -53,8 +53,9 @@ export const validations = {
       message:
         'La contraseña debe tener una mayúscula, una minúscula, un número y un caracter especial.'
     }),
-  confirmPassword: z
-    .string({ required_error: 'Es necesario confirmar la contraseña' }),
+  confirmPassword: z.string({
+    required_error: 'Es necesario confirmar la contraseña'
+  }),
   address: z
     .string({ required_error: 'La dirección es requerida' })
     .min(1, { message: 'La dirección es requerida' })

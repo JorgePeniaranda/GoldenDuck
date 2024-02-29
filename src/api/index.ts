@@ -7,7 +7,10 @@ import {
   type ForgotForm
 } from '@/types'
 
-export const sendError = async ({ name, message }: Error): Promise<AxiosResponse> => {
+export const sendError = async ({
+  name,
+  message
+}: Error): Promise<AxiosResponse> => {
   return await AxiosInstance.post('/api/error', { name, message })
 }
 
