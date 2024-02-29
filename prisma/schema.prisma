@@ -12,6 +12,7 @@ model Error {
   name          String?
   message       String?
   date          DateTime      @default(now())
+  deleted       Boolean       @default(false)
 }
 
 enum role {

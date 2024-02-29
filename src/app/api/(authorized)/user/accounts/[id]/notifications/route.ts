@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { GenerateErrorResponse, RequestError } from '@/services/errorService'
+import { GenerateErrorResponse, NotFoundError } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 
 const jwt = new JWT()
@@ -61,7 +61,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
     })
 
     if (data === null) {
-      throw new RequestError('No se ha encontrado la cuenta')
+      throw new NotFoundError('No se encontró la cuenta')
     }
 
     const notifications = data.account.reduce(
