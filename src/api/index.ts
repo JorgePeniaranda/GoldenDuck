@@ -7,6 +7,10 @@ import {
   type ForgotForm
 } from '@/types'
 
+export const sendError = async ({ name, message }: Error): Promise<AxiosResponse> => {
+  return await AxiosInstance.post('/api/error', { name, message })
+}
+
 export const checkUser = async ({
   email,
   dni,
@@ -36,7 +40,7 @@ export const registerUser = async (
 export const changePassword = async (
   form: ForgotForm
 ): Promise<AxiosResponse> => {
-  return await AxiosInstance.post('/api/forgot', {
+  return await AxiosInstance.put('/api/forgot', {
     email: form.email,
     password: form.password
   })

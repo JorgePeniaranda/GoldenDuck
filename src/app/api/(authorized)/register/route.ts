@@ -25,7 +25,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     )
 
     // Check if user already exists
-    const checkSameUser = await prisma.users.findFirst({
+    const checkSameUser = await prisma.user.findFirst({
       where: {
         OR: [
           { dni: data.dni },
@@ -40,7 +40,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     }
 
     // Create new user
-    const newUser = await prisma.users.create({
+    const newUser = await prisma.user.create({
       data: {
         ...data,
         password: bcrypt.hashSync(data.password, 10),
@@ -49,10 +49,9 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     })
 
     // Create account for new user
-    await prisma.accounts.create({
+    await prisma.account.create({
       data: {
-        idUser: 2,
-        balance: 0
+        idUser: newUser.id
       }
     })
 

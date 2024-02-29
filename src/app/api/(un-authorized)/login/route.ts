@@ -24,7 +24,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     })
 
     // find user
-    const user = await prisma.users.findFirst({
+    const user = await prisma.user.findFirst({
       where: { email, deleted: false }
     })
 

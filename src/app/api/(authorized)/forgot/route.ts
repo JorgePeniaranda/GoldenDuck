@@ -12,7 +12,7 @@ import { ForgotSchema } from '@/useCases/forgotUseCase'
 const prisma = new PrismaClient()
 const jwt = new JWT()
 
-export async function POST (req: NextRequest): Promise<NextResponse> {
+export async function PUT (req: NextRequest): Promise<NextResponse> {
   try {
     // get token and form data
     const data = await req.json()
@@ -25,7 +25,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
       })
 
     // get user and check if user exists
-    const user = await prisma.users.findFirst({
+    const user = await prisma.user.findFirst({
       where: { email, deleted: false }
     })
     if (user === undefined || user === null) {
@@ -33,7 +33,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     }
 
     // update password
-    const newUser = await prisma.users.update({
+    const newUser = await prisma.user.update({
       where: { id: user.id },
       data: { password: bcrypt.hashSync(password), updateAt: new Date() }
     })

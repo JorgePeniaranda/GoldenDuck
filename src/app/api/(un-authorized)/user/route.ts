@@ -27,7 +27,7 @@ export async function POST (req: NextRequest): Promise<NextResponse> {
     })
 
     // check if any account exist
-    const checkExist = await prisma.users.findFirst({
+    const checkExist = await prisma.user.findFirst({
       where: {
         OR: [{ email }, { dni }, { phoneNumber }],
         deleted: false
