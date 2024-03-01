@@ -28,6 +28,8 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
         address: true,
         birthDate: true,
         sex: true,
+        updatedAt: true,
+        createdAt: true,
         role: true
       }
     })
