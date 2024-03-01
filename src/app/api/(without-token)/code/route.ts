@@ -1,3 +1,4 @@
+import { messages } from '@/const/messages'
 import ConfirmationCode from '@/services/codeService'
 import {
   AuthorizationError,
@@ -34,7 +35,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
 
     // generate and send response
     const response = NextResponse.json(
-      { token, message: 'Se ha validado código exitosamente' },
+      { token, message: messages.validated },
       { status: StatusCodes.OK }
     )
 

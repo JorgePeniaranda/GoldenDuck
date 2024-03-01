@@ -1,9 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { AuthorizationError, ConflictError, GenerateErrorResponse } from '@/services/errorService'
-import { checkRole } from '@/utils'
+import { ConflictError, GenerateErrorResponse } from '@/services/errorService'
+import { verifyRoleOrThrow } from '@/utils'
 import { role } from '@prisma/client'
 import { StatusCodes } from 'http-status-codes'
+import { messages } from '@/const/messages'
 
 export async function GET (request: NextRequest): Promise<NextResponse> {
   const token = String(
@@ -12,7 +13,8 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
 
   try {
     let data
-    const authorized = await checkRole([role.ADMIN], token).catch((error) => {
+    // check if user is authorized
+    const authorized = await verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
       throw error
     })
 
@@ -41,12 +43,9 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
 
   try {
     // check if user is authorized
-    const authorized = await checkRole([role.ADMIN, role.SUPPORT], token).catch((error) => {
+    await verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
       throw error
     })
-    if (!authorized) {
-      throw new AuthorizationError('Permisos insuficientes')
-    }
 
     // check if category already exists
     const checkCategory = await prisma.category.findFirst({
@@ -55,11 +54,11 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       }
     })
     if (checkCategory !== null) {
-      throw new ConflictError('La categoria ya existe')
+      throw new ConflictError(messages.categoryExists)
     }
 
     // create category
-    const data = await prisma.category.create({
+    await prisma.category.create({
       data: {
         name
       },
@@ -69,7 +68,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       }
     })
 
-    return NextResponse.json(data, { status: StatusCodes.CREATED })
+    return NextResponse.json({ messages: messages.created }, { status: StatusCodes.CREATED })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

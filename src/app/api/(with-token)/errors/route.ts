@@ -1,8 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { AuthorizationError, GenerateErrorResponse } from '@/services/errorService'
+import { GenerateErrorResponse } from '@/services/errorService'
 import { role } from '@prisma/client'
-import { checkRole } from '@/utils'
+import { verifyRoleOrThrow } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
 
 export async function GET (request: NextRequest): Promise<NextResponse> {
@@ -12,12 +12,9 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
 
   try {
     // check if user is authorized
-    const authorized = await checkRole([role.ADMIN, role.SUPPORT], token).catch((error) => {
+    await verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
       throw error
     })
-    if (!authorized) {
-      throw new AuthorizationError('Permisos insuficientes')
-    }
 
     // get errors
     const data = await prisma.error.findMany()

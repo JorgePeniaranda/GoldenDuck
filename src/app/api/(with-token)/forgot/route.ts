@@ -9,6 +9,7 @@ import {
 } from '@/services/errorService'
 import { ForgotSchema } from '@/useCases/forgotUseCase'
 import { StatusCodes } from 'http-status-codes'
+import { messages } from '@/const/messages'
 
 const jwt = new JWT()
 
@@ -29,7 +30,7 @@ export async function PUT (request: NextRequest): Promise<NextResponse> {
       where: { email, deleted: false }
     })
     if (user === undefined || user === null) {
-      throw new NotFoundError('No existe cuenta creada con ese correo')
+      throw new NotFoundError(messages.userNotFound)
     }
 
     // update password
@@ -60,7 +61,7 @@ export async function PUT (request: NextRequest): Promise<NextResponse> {
 
     // generate and send response
     const response = NextResponse.json(
-      { token, message: 'Se ha actualizado la contraseña exitosamente' },
+      { token, message: messages.forgot },
       { status: StatusCodes.CREATED }
     )
     response.cookies.set('token', token, {

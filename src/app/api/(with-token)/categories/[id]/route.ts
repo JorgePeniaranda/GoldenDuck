@@ -1,9 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { AuthorizationError, GenerateErrorResponse } from '@/services/errorService'
+import { GenerateErrorResponse } from '@/services/errorService'
 import { role } from '@prisma/client'
-import { checkRole } from '@/utils'
+import { verifyRoleOrThrow } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
+import { messages } from '@/const/messages'
 
 export async function GET (request: NextRequest,
   { params: { id } }: { params: { id: string } }): Promise<NextResponse> {
@@ -31,12 +32,9 @@ export async function PUT (request: NextRequest,
 
   try {
     // check if user is authorized
-    const authorized = await checkRole([role.ADMIN], token).catch((error) => {
+    await verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
       throw error
     })
-    if (!authorized) {
-      throw new AuthorizationError('Permisos insuficientes')
-    }
 
     // update category
     await prisma.category.update({
@@ -48,7 +46,7 @@ export async function PUT (request: NextRequest,
       }
     })
 
-    return NextResponse.json({ message: 'Se ha modificado exitosamente' }, { status: StatusCodes.OK })
+    return NextResponse.json({ message: messages.updated }, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -62,12 +60,9 @@ export async function DELETE (request: NextRequest,
 
   try {
     // check if user is authorized
-    const authorized = await checkRole([role.ADMIN], token).catch((error) => {
+    await verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
       throw error
     })
-    if (!authorized) {
-      throw new AuthorizationError('Permisos insuficientes')
-    }
 
     // delete category
     await prisma.category.update({
@@ -79,7 +74,7 @@ export async function DELETE (request: NextRequest,
       }
     })
 
-    return NextResponse.json({ message: 'Se ha eliminado exitosamente' }, { status: StatusCodes.OK })
+    return NextResponse.json({ message: messages.deleted }, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

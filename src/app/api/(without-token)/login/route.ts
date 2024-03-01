@@ -10,6 +10,7 @@ import {
 } from '@/services/errorService'
 import { LoginSchema } from '@/useCases/loginUseCase'
 import { StatusCodes } from 'http-status-codes'
+import { messages } from '@/const/messages'
 
 const jwt = new JWT()
 
@@ -33,12 +34,12 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
 
     // check if user exists
     if (user === undefined || user === null) {
-      throw new NotFoundError('No existe cuenta creada con ese correo')
+      throw new NotFoundError(messages.userNotFound)
     }
 
     // check password match
     if (!bcrypt.compareSync(password, user.password)) {
-      throw new AuthorizationError('La contraseña es incorrecta')
+      throw new AuthorizationError(messages.incorrectPassword)
     }
 
     // log session
@@ -57,7 +58,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
 
     // generate and send response
     const response = NextResponse.json(
-      { token, message: 'Ha ingresado exitosamente' },
+      { token, message: messages.login },
       { status: StatusCodes.OK }
     )
 

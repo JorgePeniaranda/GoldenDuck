@@ -1,7 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { GenerateErrorResponse, NotFoundError } from '@/services/errorService'
+import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
+import { messages } from '@/const/messages'
 
 export async function GET (request: NextRequest,
   { params: { id, idAccount } }: { params: { id: string, idAccount: string } }): Promise<NextResponse> {
@@ -38,7 +39,7 @@ export async function GET (request: NextRequest,
 export async function DELETE (request: NextRequest,
   { params: { id, idAccount } }: { params: { id: string, idAccount: string } }): Promise<NextResponse> {
   try {
-    const data = await prisma.notification.update({
+    await prisma.notification.update({
       where: {
         id: Number(id),
         idAccount: Number(idAccount)
@@ -54,11 +55,7 @@ export async function DELETE (request: NextRequest,
       }
     })
 
-    if (data === null) {
-      throw new NotFoundError('No se encontró la notificación')
-    }
-
-    return NextResponse.json('Se ha eliminado exitosamente', { status: StatusCodes.OK })
+    return NextResponse.json(messages.created, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

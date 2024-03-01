@@ -3,6 +3,7 @@ import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { StatusCodes } from 'http-status-codes'
+import { messages } from '@/const/messages'
 
 const jwt = new JWT()
 
@@ -90,7 +91,7 @@ export async function POST (request: NextRequest,
       }
     })
 
-    return NextResponse.json('Se ha creado exitosamente', { status: StatusCodes.CREATED })
+    return NextResponse.json(messages.created, { status: StatusCodes.CREATED })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

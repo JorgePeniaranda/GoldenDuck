@@ -3,6 +3,7 @@ import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import { BigIntToJson } from '@/utils'
+import { messages } from '@/const/messages'
 
 export async function GET (request: NextRequest,
   { params: { id, idAccount } }: { params: { id: string, idAccount: string } }): Promise<NextResponse> {
@@ -45,7 +46,7 @@ export async function PUT (request: NextRequest,
       }
     })
 
-    return NextResponse.json('Se ha actualizado exitosamente', { status: StatusCodes.OK })
+    return NextResponse.json(messages.updated, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -64,7 +65,7 @@ export async function DELETE (request: NextRequest,
       }
     })
 
-    return NextResponse.json('Se ha eliminado exitosamente', { status: StatusCodes.OK })
+    return NextResponse.json(messages.deleted, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

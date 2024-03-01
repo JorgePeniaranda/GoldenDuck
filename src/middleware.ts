@@ -6,6 +6,7 @@ import {
   GenerateErrorResponse
 } from './services/errorService'
 import { pathToRegexp } from 'path-to-regexp'
+import { messages } from './const/messages'
 
 const withToken = pathToRegexp(['/dashboard', '/dashboard/:path*'])
 const withoutToken = pathToRegexp(['/login', '/register', '/forgot'])
@@ -62,7 +63,7 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
     try {
       // Validate if the user is authorized to access the api
       if (!authorized) {
-        throw new AuthorizationError('No autorizado')
+        throw new AuthorizationError(messages.unauthorized)
       }
 
       // If user send token with mail or dni, validate if is same in the token
@@ -72,13 +73,13 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
           (typeof email === 'string' || typeof userData.email === 'string') &&
           email !== userData.email
         ) {
-          throw new AuthorizationError('Permisos insuficientes')
+          throw new AuthorizationError(messages.noPermissions)
         }
         if (
           (typeof dni === 'string' || typeof userData.dni === 'string') &&
           dni !== userData.dni
         ) {
-          throw new AuthorizationError('Permisos insuficientes')
+          throw new AuthorizationError(messages.noPermissions)
         }
       }
 
@@ -91,7 +92,7 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
           headers: { token }
         }).then(async (res) => {
           if (res.status !== 200) {
-            throw new AuthorizationError('Permisos insuficientes')
+            throw new AuthorizationError(messages.noPermissions)
           }
         }).catch((error) => {
           throw error

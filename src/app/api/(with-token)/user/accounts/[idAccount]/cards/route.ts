@@ -3,6 +3,7 @@ import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import { BigIntToJson } from '@/utils'
+import { messages } from '@/const/messages'
 
 export async function GET (request: NextRequest,
   { params: { idAccount } }: { params: { idAccount: string } }): Promise<NextResponse> {
@@ -46,7 +47,7 @@ export async function POST (request: NextRequest,
       }
     })
 
-    return NextResponse.json('Se ha creado exitosamente', { status: StatusCodes.CREATED })
+    return NextResponse.json(messages.created, { status: StatusCodes.CREATED })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

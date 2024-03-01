@@ -10,6 +10,7 @@ import {
   ValidationError
 } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
+import { messages } from '@/const/messages'
 
 const jwt = new JWT()
 
@@ -39,7 +40,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       }
     })
     if (checkSameUser !== undefined && checkSameUser !== null) {
-      throw new ConflictError('Ya existe una cuenta con esos datos')
+      throw new ConflictError(messages.userExists)
     }
 
     // Create new user
@@ -64,7 +65,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
 
     // generate and send response
     const response = NextResponse.json(
-      { token, message: 'Se ha registrado exitosamente' },
+      { token, message: messages.register },
       { status: StatusCodes.CREATED }
     )
     response.cookies.set('token', token, {

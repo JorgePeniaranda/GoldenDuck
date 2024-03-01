@@ -1,4 +1,6 @@
+import { messages } from '@/const/messages'
 import { prisma } from '@/libs/prisma'
+import { AuthorizationError } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { type role } from '@prisma/client'
 
@@ -28,7 +30,7 @@ export const BigIntToJson = (param: any): any => {
   )
 }
 
-export const checkRole = async (authorizedRoles: role[], token: string): Promise<boolean> => {
+export const verifyRoleOrThrow = async (authorizedRoles: role[], token: string): Promise<boolean> => {
   const { id: userId } = new JWT().verifyToken(token)
 
   const user = await prisma.user.findUniqueOrThrow({
@@ -42,8 +44,8 @@ export const checkRole = async (authorizedRoles: role[], token: string): Promise
   })
 
   if (authorizedRoles.includes(user.role)) {
-    return true
+    throw new AuthorizationError(messages.noPermissions)
   }
 
-  return false
+  return true
 }

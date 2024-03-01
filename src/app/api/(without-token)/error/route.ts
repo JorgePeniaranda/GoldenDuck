@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
+import { messages } from '@/const/messages'
 
 export async function POST (request: NextRequest): Promise<NextResponse> {
   const { name, message } = await request.json()
@@ -17,7 +18,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
 
     // generate and send response
     const response = NextResponse.json(
-      { message: 'Se ha registrado el error exitosamente' },
+      { message: messages.created },
       { status: StatusCodes.CREATED }
     )
     return response
