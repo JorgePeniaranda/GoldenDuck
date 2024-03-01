@@ -51,8 +51,8 @@ model Account {
   idUser            Int
   balance           BigInt            @default(0)
   imgUrl            String?
-  updatedAt          DateTime          @default(now())
-  createdAt          DateTime          @default(now())
+  updatedAt         DateTime          @default(now())
+  createdAt         DateTime          @default(now())
   deleted           Boolean           @default(false)
   user              User              @relation(fields: [idUser], references: [id])
   notifications     Notification[]
@@ -72,6 +72,8 @@ model Message {
   message           String
   read              Boolean           @default(false)
   date              DateTime          @default(now())
+  updatedAt         DateTime          @default(now())
+  deleted           Boolean           @default(false)
   accountTo         Account           @relation(name: "toAccount", fields: [to], references: [id])
   accountFrom       Account           @relation(name: "fromAccount", fields: [from], references: [id])
 }
@@ -91,7 +93,7 @@ model Card {
   number            BigInt
   cvv               Int
   expiration        DateTime
-  updatedDate        DateTime          @default(now())
+  updatedDate       DateTime          @default(now())
   deleted           Boolean           @default(false)
   account           Account           @relation(fields: [idAccount], references: [id])
 }
@@ -121,7 +123,7 @@ model Loan {
   amount            BigInt
   interest          Float
   date              DateTime          @default(now())
-  dateEnd          DateTime
+  dateEnd           DateTime
   account           Account           @relation(fields: [idAccount], references: [id])
 }
 
@@ -131,7 +133,7 @@ model Investment {
   amount            BigInt
   interest          Float
   date              DateTime          @default(now())
-  dateEnd          DateTime
+  dateEnd           DateTime
   account           Account           @relation(fields: [idAccount], references: [id])
 }
 
