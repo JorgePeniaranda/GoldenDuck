@@ -18,6 +18,7 @@ const PublicApi = pathToRegexp([
   '/api/login',
   '/api/logout'
 ])
+const AccountsPath = pathToRegexp(['/api/user/accounts/:id*'])
 
 export async function middleware (request: NextRequest): Promise<NextResponse> {
   const token = String(
@@ -71,14 +72,30 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
           (typeof email === 'string' || typeof userData.email === 'string') &&
           email !== userData.email
         ) {
-          throw new AuthorizationError('No autorizado')
+          throw new AuthorizationError('Permisos insuficientes')
         }
         if (
           (typeof dni === 'string' || typeof userData.dni === 'string') &&
           dni !== userData.dni
         ) {
-          throw new AuthorizationError('No autorizado')
+          throw new AuthorizationError('Permisos insuficientes')
         }
+      }
+
+      // validate if the user is owner of the account in /accounts/:id
+      if (AccountsPath.test(request.nextUrl.pathname) as boolean) {
+        const idAccount = AccountsPath.exec(request.nextUrl.pathname)?.[1].split('/')[0]
+        await fetch('http://localhost:3000/api/user/verify-account/', {
+          method: 'POST',
+          body: JSON.stringify({ id: idAccount }),
+          headers: { token }
+        }).then(async (res) => {
+          if (res.status !== 200) {
+            throw new AuthorizationError('Permisos insuficientes')
+          }
+        }).catch((error) => {
+          throw error
+        })
       }
     } catch (error) {
       return GenerateErrorResponse(error)
