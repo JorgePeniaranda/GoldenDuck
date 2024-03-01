@@ -1,17 +1,30 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { AuthorizationError, ConflictError, GenerateErrorResponse } from '@/services/errorService'
-import { role } from '@prisma/client'
 import { checkRole } from '@/utils'
+import { role } from '@prisma/client'
 
 export async function GET (request: NextRequest): Promise<NextResponse> {
+  const token = String(
+    request.headers.get('token') ?? request.cookies.get('token')?.value
+  )
+
   try {
-    // get categories
-    const data = await prisma.category.findMany({
-      where: {
-        deleted: false
-      }
+    let data
+    const authorized = await checkRole([role.ADMIN], token).catch((error) => {
+      throw error
     })
+
+    if (authorized) {
+      // get categories
+      data = await prisma.category.findMany()
+    } else {
+      data = await prisma.category.findMany({
+        where: {
+          deleted: false
+        }
+      })
+    }
 
     return NextResponse.json(data, { status: 200 })
   } catch (error) {
@@ -48,6 +61,10 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
     const data = await prisma.category.create({
       data: {
         name
+      },
+      select: {
+        id: true,
+        name: true
       }
     })
 

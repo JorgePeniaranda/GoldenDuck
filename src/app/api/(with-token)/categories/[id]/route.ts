@@ -28,10 +28,10 @@ export async function GET (request: NextRequest,
 
 export async function PUT (request: NextRequest,
   { params: { id } }: { params: { id: string } }): Promise<NextResponse> {
+  const { name } = await request.json()
   const token = String(
     request.headers.get('token') ?? request.cookies.get('token')?.value
   )
-  const { name } = await request.json()
 
   try {
     // check if user is authorized
