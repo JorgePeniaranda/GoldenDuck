@@ -1,5 +1,4 @@
 import { prisma } from '@/libs/prisma'
-import { NotFoundError } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { type role } from '@prisma/client'
 
@@ -32,7 +31,7 @@ export const BigIntToJson = (param: any): any => {
 export const checkRole = async (authorizedRoles: role[], token: string): Promise<boolean> => {
   const { id: userId } = new JWT().verifyToken(token)
 
-  const user = await prisma.user.findFirst({
+  const user = await prisma.user.findUniqueOrThrow({
     where: {
       id: userId,
       deleted: false
@@ -41,10 +40,6 @@ export const checkRole = async (authorizedRoles: role[], token: string): Promise
       role: true
     }
   })
-
-  if (user === null) {
-    throw new NotFoundError('No se encontró la cuenta')
-  }
 
   if (authorizedRoles.includes(user.role)) {
     return true

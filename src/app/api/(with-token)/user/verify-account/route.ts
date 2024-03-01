@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { AuthorizationError, GenerateErrorResponse, NotFoundError } from '@/services/errorService'
+import { AuthorizationError, GenerateErrorResponse } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 
@@ -15,7 +15,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
   try {
     const { id: idUser } = jwt.verifyToken(token)
 
-    const data = await prisma.account.findFirst({
+    const data = await prisma.account.findUniqueOrThrow({
       where: {
         id: Number(id),
         deleted: false
@@ -24,10 +24,6 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
         id: true
       }
     })
-
-    if (data === null) {
-      throw new NotFoundError('Cuenta no encontrada')
-    }
 
     if (data.id !== idUser) {
       throw new AuthorizationError('Permisos insuficientes')

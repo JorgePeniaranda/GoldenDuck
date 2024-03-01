@@ -15,7 +15,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
   try {
     const { id } = jwt.verifyToken(token)
 
-    const data = await prisma.user.findFirst({
+    const data = await prisma.user.findUniqueOrThrow({
       where: {
         id,
         deleted: false

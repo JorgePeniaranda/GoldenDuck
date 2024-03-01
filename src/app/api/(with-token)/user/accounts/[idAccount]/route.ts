@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { GenerateErrorResponse, NotFoundError } from '@/services/errorService'
+import { GenerateErrorResponse } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { BigIntToJson } from '@/utils'
 
@@ -15,7 +15,7 @@ export async function GET (request: NextRequest,
   try {
     const { id } = jwt.verifyToken(token)
 
-    const data = await prisma.account.findFirst({
+    const data = await prisma.account.findUniqueOrThrow({
       where: {
         id: Number(idAccount),
         idUser: id,
@@ -29,10 +29,6 @@ export async function GET (request: NextRequest,
         createdAt: true
       }
     })
-
-    if (data === null) {
-      throw new NotFoundError('Cuenta no encontrada')
-    }
 
     return NextResponse.json(BigIntToJson(data), { status: 200 })
   } catch (error) {

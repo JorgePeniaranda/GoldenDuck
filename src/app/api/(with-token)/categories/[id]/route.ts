@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { AuthorizationError, GenerateErrorResponse, NotFoundError } from '@/services/errorService'
+import { AuthorizationError, GenerateErrorResponse } from '@/services/errorService'
 import { role } from '@prisma/client'
 import { checkRole } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
@@ -9,17 +9,12 @@ export async function GET (request: NextRequest,
   { params: { id } }: { params: { id: string } }): Promise<NextResponse> {
   try {
     // get category
-    const data = await prisma.category.findUnique({
+    const data = await prisma.category.findUniqueOrThrow({
       where: {
         id: Number(id),
         deleted: false
       }
     })
-
-    // check if category exists
-    if (data === null) {
-      throw new NotFoundError('No se encontró la categoria')
-    }
 
     return NextResponse.json(data, { status: 200 })
   } catch (error) {
@@ -44,7 +39,7 @@ export async function PUT (request: NextRequest,
     }
 
     // update category
-    const data = await prisma.category.update({
+    await prisma.category.update({
       where: {
         id: Number(id)
       },
@@ -52,11 +47,6 @@ export async function PUT (request: NextRequest,
         name
       }
     })
-
-    // check if category exists
-    if (data === null) {
-      throw new NotFoundError('No se encontró la categoria')
-    }
 
     return NextResponse.json({ message: 'Se ha modificado exitosamente' }, { status: StatusCodes.OK })
   } catch (error) {
@@ -80,7 +70,7 @@ export async function DELETE (request: NextRequest,
     }
 
     // delete category
-    const data = await prisma.category.update({
+    await prisma.category.update({
       where: {
         id: Number(id)
       },
@@ -88,11 +78,6 @@ export async function DELETE (request: NextRequest,
         deleted: true
       }
     })
-
-    // check if category exists
-    if (data === null) {
-      throw new NotFoundError('No se encontró la categoria')
-    }
 
     return NextResponse.json({ message: 'Se ha eliminado exitosamente' }, { status: StatusCodes.OK })
   } catch (error) {

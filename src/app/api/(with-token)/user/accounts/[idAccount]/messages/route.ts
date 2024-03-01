@@ -15,7 +15,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
     const { id } = jwt.verifyToken(token)
 
     // check if any account exist
-    const data = await prisma.user.findUnique({
+    const data = await prisma.user.findUniqueOrThrow({
       where: {
         id,
         deleted: false
@@ -71,10 +71,6 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
         }
       }
     })
-
-    if (data === null) {
-      return NextResponse.json({ message: 'No hay mensajes' }, { status: 204 })
-    }
 
     return NextResponse.json(data.account, { status: StatusCodes.OK })
   } catch (error) {

@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { AuthorizationError, GenerateErrorResponse, NotFoundError } from '@/services/errorService'
+import { AuthorizationError, GenerateErrorResponse } from '@/services/errorService'
 import { role } from '@prisma/client'
 import { checkRole } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
@@ -21,17 +21,12 @@ export async function GET (request: NextRequest,
     }
 
     // get error
-    const data = await prisma.error.findUnique({
+    const data = await prisma.error.findUniqueOrThrow({
       where: {
         id: Number(id),
         deleted: false
       }
     })
-
-    // check if error exists
-    if (data === null) {
-      throw new NotFoundError('No se encontró el error')
-    }
 
     return NextResponse.json(data, { status: StatusCodes.OK })
   } catch (error) {
@@ -56,7 +51,7 @@ export async function PUT (request: NextRequest,
     }
 
     // update error
-    const data = await prisma.error.update({
+    await prisma.error.update({
       where: {
         id: Number(id),
         deleted: false
@@ -66,11 +61,6 @@ export async function PUT (request: NextRequest,
         message
       }
     })
-
-    // check if error exists
-    if (data === null) {
-      throw new NotFoundError('No se encontró el error')
-    }
 
     return NextResponse.json({ message: 'Se ha modificado exitosamente' }, { status: StatusCodes.OK })
   } catch (error) {
@@ -94,7 +84,7 @@ export async function DELETE (request: NextRequest,
     }
 
     // delete error
-    const data = await prisma.error.update({
+    await prisma.error.update({
       where: {
         id: Number(id)
       },
@@ -102,11 +92,6 @@ export async function DELETE (request: NextRequest,
         deleted: true
       }
     })
-
-    // check if error exists
-    if (data === null) {
-      throw new NotFoundError('No se encontró el error')
-    }
 
     return NextResponse.json({ message: 'Se ha modificado exitosamente' }, { status: StatusCodes.OK })
   } catch (error) {

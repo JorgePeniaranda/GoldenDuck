@@ -7,7 +7,7 @@ import { BigIntToJson } from '@/utils'
 export async function GET (request: NextRequest,
   { params: { idAccount } }: { params: { idAccount: string } }): Promise<NextResponse> {
   try {
-    const data = await prisma.account.findUnique({
+    const data = await prisma.account.findUniqueOrThrow({
       where: {
         id: Number(idAccount)
       },
@@ -23,10 +23,6 @@ export async function GET (request: NextRequest,
         }
       }
     })
-
-    if (data === null) {
-      return NextResponse.json({ message: 'No hay prestamos' }, { status: 204 })
-    }
 
     return NextResponse.json(BigIntToJson(data.loans), { status: StatusCodes.OK })
   } catch (error) {

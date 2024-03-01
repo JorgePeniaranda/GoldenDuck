@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { GenerateErrorResponse, NotFoundError } from '@/services/errorService'
+import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import JWT from '@/services/jwtService'
 
@@ -15,7 +15,7 @@ export async function GET (request: NextRequest,
   try {
     const { id } = jwt.verifyToken(token)
 
-    const data = await prisma.session.findFirst({
+    const data = await prisma.session.findUniqueOrThrow({
       where: {
         id: Number(id),
         idUser: Number(idAccount)
@@ -27,10 +27,6 @@ export async function GET (request: NextRequest,
         date: true
       }
     })
-
-    if (data === null) {
-      throw new NotFoundError('No se encontró la notificación')
-    }
 
     return NextResponse.json(data, { status: StatusCodes.OK })
   } catch (error) {

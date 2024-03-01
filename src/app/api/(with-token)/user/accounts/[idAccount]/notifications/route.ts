@@ -14,7 +14,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
   try {
     const { id } = jwt.verifyToken(token)
 
-    const data = await prisma.user.findUnique({
+    const data = await prisma.user.findUniqueOrThrow({
       where: {
         id,
         deleted: false
@@ -59,10 +59,6 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
         }
       }
     })
-
-    if (data === null) {
-      return NextResponse.json({ message: 'No hay notificaciones' }, { status: 204 })
-    }
 
     const notifications = data.account.reduce(
       (acc, value) => {
