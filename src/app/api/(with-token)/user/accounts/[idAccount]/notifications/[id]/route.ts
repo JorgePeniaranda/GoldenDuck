@@ -4,8 +4,10 @@ import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
 
-export async function GET (request: NextRequest,
-  { params: { id, idAccount } }: { params: { id: string, idAccount: string } }): Promise<NextResponse> {
+export async function GET (
+  request: NextRequest,
+  { params: { id, idAccount } }: { params: { id: string, idAccount: string } }
+): Promise<NextResponse> {
   try {
     const data = await prisma.notification.findUniqueOrThrow({
       where: {
@@ -36,8 +38,10 @@ export async function GET (request: NextRequest,
   }
 }
 
-export async function DELETE (request: NextRequest,
-  { params: { id, idAccount } }: { params: { id: string, idAccount: string } }): Promise<NextResponse> {
+export async function DELETE (
+  request: NextRequest,
+  { params: { idAccount, id } }: { params: { idAccount: string, id: string } }
+): Promise<NextResponse> {
   try {
     await prisma.notification.update({
       where: {

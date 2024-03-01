@@ -84,8 +84,10 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
   }
 }
 
-export async function POST (request: NextRequest,
-  { params: { idAccount } }: { params: { idAccount: string } }): Promise<NextResponse> {
+export async function POST (
+  request: NextRequest,
+  { params: { idAccount } }: { params: { idAccount: string } }
+): Promise<NextResponse> {
   const { message } = await request.json()
 
   try {

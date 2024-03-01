@@ -38,18 +38,12 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
     })
 
   // If the user is authorized and the URL is not authorized, redirect to dashboard
-  if (
-    (withoutToken.test(request.nextUrl.pathname) as boolean) &&
-    authorized
-  ) {
+  if ((withoutToken.test(request.nextUrl.pathname) as boolean) && authorized) {
     return NextResponse.redirect(new URL('/dashboard', request.nextUrl))
   }
 
   // If the user is not authorized and the URL is authorized, redirect to login
-  if (
-    (withToken.test(request.nextUrl.pathname) as boolean) &&
-    !authorized
-  ) {
+  if ((withToken.test(request.nextUrl.pathname) as boolean) && !authorized) {
     const response = NextResponse.redirect(new URL('/login', request.nextUrl))
     response.cookies.delete('token')
     return response
@@ -85,18 +79,22 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
 
       // validate if the user is owner of the account in /accounts/:id
       if (AccountsPath.test(request.nextUrl.pathname) as boolean) {
-        const idAccount = AccountsPath.exec(request.nextUrl.pathname)?.[1].split('/')[0]
+        const idAccount = AccountsPath.exec(
+          request.nextUrl.pathname
+        )?.[1].split('/')[0]
         await fetch('http://localhost:3000/api/user/verify-account/', {
           method: 'POST',
           body: JSON.stringify({ id: idAccount }),
           headers: { token }
-        }).then(async (res) => {
-          if (res.status !== 200) {
-            throw new AuthorizationError(messages.noPermissions)
-          }
-        }).catch((error) => {
-          throw error
         })
+          .then(async (res) => {
+            if (res.status !== 200) {
+              throw new AuthorizationError(messages.noPermissions)
+            }
+          })
+          .catch((error) => {
+            throw error
+          })
       }
     } catch (error) {
       return GenerateErrorResponse(error)

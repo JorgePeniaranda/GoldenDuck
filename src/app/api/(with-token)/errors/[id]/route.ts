@@ -6,8 +6,10 @@ import { verifyRoleOrThrow } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
 
-export async function GET (request: NextRequest,
-  { params: { id } }: { params: { id: string } }): Promise<NextResponse> {
+export async function GET (
+  request: NextRequest,
+  { params: { id } }: { params: { id: string } }
+): Promise<NextResponse> {
   const token = String(
     request.headers.get('token') ?? request.cookies.get('token')?.value
   )
@@ -32,8 +34,10 @@ export async function GET (request: NextRequest,
   }
 }
 
-export async function PUT (request: NextRequest,
-  { params: { id } }: { params: { id: string } }): Promise<NextResponse> {
+export async function PUT (
+  request: NextRequest,
+  { params: { id } }: { params: { id: string } }
+): Promise<NextResponse> {
   const token = String(
     request.headers.get('token') ?? request.cookies.get('token')?.value
   )
@@ -56,14 +60,19 @@ export async function PUT (request: NextRequest,
       }
     })
 
-    return NextResponse.json({ message: messages.updated }, { status: StatusCodes.OK })
+    return NextResponse.json(
+      { message: messages.updated },
+      { status: StatusCodes.OK }
+    )
   } catch (error) {
     return GenerateErrorResponse(error)
   }
 }
 
-export async function DELETE (request: NextRequest,
-  { params: { id } }: { params: { id: string } }): Promise<NextResponse> {
+export async function DELETE (
+  request: NextRequest,
+  { params: { id } }: { params: { id: string } }
+): Promise<NextResponse> {
   const token = String(
     request.headers.get('token') ?? request.cookies.get('token')?.value
   )
@@ -83,7 +92,10 @@ export async function DELETE (request: NextRequest,
       }
     })
 
-    return NextResponse.json({ message: messages.updated }, { status: StatusCodes.OK })
+    return NextResponse.json(
+      { message: messages.updated },
+      { status: StatusCodes.OK }
+    )
   } catch (error) {
     return GenerateErrorResponse(error)
   }

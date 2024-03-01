@@ -1,11 +1,16 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { AuthorizationError, GenerateErrorResponse } from '@/services/errorService'
+import {
+  AuthorizationError,
+  GenerateErrorResponse
+} from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
 
-export async function GET (request: NextRequest,
-  { params: { id } }: { params: { id: string } }): Promise<NextResponse> {
+export async function GET (
+  request: NextRequest,
+  { params: { id } }: { params: { id: string } }
+): Promise<NextResponse> {
   try {
     const data = await prisma.account.findFirstOrThrow({
       where: {
@@ -67,10 +72,15 @@ export async function GET (request: NextRequest,
       }
     })
 
-    const conversation = data.messagesFrom.concat(data.messagesTo).reduce<any>((acc, value) => {
+    const conversation = data.messagesFrom
+      .concat(data.messagesTo)
+      .reduce<any>((acc, value) => {
       return [...acc, value]
     }, [])
-      .sort((a: { date: string }, b: { date: string }) => new Date(a.date).getTime() - new Date(b.date).getTime())
+      .sort(
+        (a: { date: string }, b: { date: string }) =>
+          new Date(a.date).getTime() - new Date(b.date).getTime()
+      )
 
     return NextResponse.json(conversation, { status: StatusCodes.OK })
   } catch (error) {
@@ -78,8 +88,10 @@ export async function GET (request: NextRequest,
   }
 }
 
-export async function POST (request: NextRequest,
-  { params: { idAccount, id } }: { params: { idAccount: string, id: string } }): Promise<NextResponse> {
+export async function POST (
+  request: NextRequest,
+  { params: { idAccount, id } }: { params: { idAccount: string, id: string } }
+): Promise<NextResponse> {
   const { message } = await request.json()
 
   try {
@@ -107,22 +119,26 @@ export async function POST (request: NextRequest,
   }
 }
 
-export async function PUT (request: NextRequest,
-  { params: { idAccount, id } }: { params: { idAccount: string, id: string } }): Promise<NextResponse> {
+export async function PUT (
+  request: NextRequest,
+  { params: { idAccount, id } }: { params: { idAccount: string, id: string } }
+): Promise<NextResponse> {
   const { message } = await request.json()
 
   try {
-    await prisma.message.update({
-      where: {
-        id: Number(id),
-        from: Number(idAccount)
-      },
-      data: {
-        message
-      }
-    }).catch(() => {
-      throw new AuthorizationError(messages.noPermissions)
-    })
+    await prisma.message
+      .update({
+        where: {
+          id: Number(id),
+          from: Number(idAccount)
+        },
+        data: {
+          message
+        }
+      })
+      .catch(() => {
+        throw new AuthorizationError(messages.noPermissions)
+      })
 
     return NextResponse.json(messages.updated, { status: StatusCodes.OK })
   } catch (error) {
@@ -130,20 +146,24 @@ export async function PUT (request: NextRequest,
   }
 }
 
-export async function DELETE (request: NextRequest,
-  { params: { idAccount, id } }: { params: { idAccount: string, id: string } }): Promise<NextResponse> {
+export async function DELETE (
+  request: NextRequest,
+  { params: { idAccount, id } }: { params: { idAccount: string, id: string } }
+): Promise<NextResponse> {
   try {
-    await prisma.message.update({
-      where: {
-        id: Number(id),
-        from: Number(idAccount)
-      },
-      data: {
-        message: 'messages.deleted'
-      }
-    }).catch(() => {
-      throw new AuthorizationError(messages.noPermissions)
-    })
+    await prisma.message
+      .update({
+        where: {
+          id: Number(id),
+          from: Number(idAccount)
+        },
+        data: {
+          message: 'messages.deleted'
+        }
+      })
+      .catch(() => {
+        throw new AuthorizationError(messages.noPermissions)
+      })
 
     return NextResponse.json(messages.deleted, { status: StatusCodes.OK })
   } catch (error) {

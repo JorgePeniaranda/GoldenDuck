@@ -4,8 +4,10 @@ import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import { BigIntToJson } from '@/utils'
 
-export async function GET (request: NextRequest,
-  { params: { id, idAccount } }: { params: { id: string, idAccount: string } }): Promise<NextResponse> {
+export async function GET (
+  request: NextRequest,
+  { params: { idAccount, id } }: { params: { idAccount: string, id: string } }
+): Promise<NextResponse> {
   try {
     const data = await prisma.investment.findUniqueOrThrow({
       where: {

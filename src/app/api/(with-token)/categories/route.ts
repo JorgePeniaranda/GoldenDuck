@@ -14,9 +14,11 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
   try {
     let data
     // check if user is authorized
-    const authorized = await verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
-      throw error
-    })
+    const authorized = await verifyRoleOrThrow([role.ADMIN], token).catch(
+      (error) => {
+        throw error
+      }
+    )
 
     if (authorized) {
       // get categories
@@ -68,7 +70,10 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       }
     })
 
-    return NextResponse.json({ messages: messages.created }, { status: StatusCodes.CREATED })
+    return NextResponse.json(
+      { messages: messages.created },
+      { status: StatusCodes.CREATED }
+    )
   } catch (error) {
     return GenerateErrorResponse(error)
   }

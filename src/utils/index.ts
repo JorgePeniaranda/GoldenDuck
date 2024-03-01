@@ -23,14 +23,16 @@ export const checkPasswordStrong = (value: string): boolean =>
 
 export const BigIntToJson = (param: any): any => {
   return JSON.parse(
-    JSON.stringify(
-      param,
-      (key, value) => (typeof value === 'bigint' ? value.toString() : value)
+    JSON.stringify(param, (key, value) =>
+      typeof value === 'bigint' ? value.toString() : value
     )
   )
 }
 
-export const verifyRoleOrThrow = async (authorizedRoles: role[], token: string): Promise<boolean> => {
+export const verifyRoleOrThrow = async (
+  authorizedRoles: role[],
+  token: string
+): Promise<boolean> => {
   const { id: userId } = new JWT().verifyToken(token)
 
   const user = await prisma.user.findUniqueOrThrow({

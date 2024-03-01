@@ -20,58 +20,18 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
         deleted: false
       },
       select: {
-        account: {
+        sessions: {
           select: {
-            notifications: {
-              where: {
-                read: false
-              },
-              select: {
-                id: true,
-                idAccount: true,
-                message: true,
-                date: true
-              }
-            },
-            messagesFrom: {
-              where: {
-                read: false
-              },
-              select: {
-                id: true,
-                from: true,
-                message: true,
-                date: true,
-                accountFrom: {
-                  select: {
-                    user: {
-                      select: {
-                        name: true,
-                        lastName: true
-                      }
-                    },
-                    imgUrl: true
-                  }
-                }
-              }
-            }
+            id: true,
+            ip: true,
+            userAgent: true,
+            date: true
           }
         }
       }
     })
 
-    const notifications = data.account.reduce(
-      (acc, value) => {
-        return {
-          ...acc,
-          notifications: [...acc.notifications.concat(value.notifications)],
-          messages: [...acc.messages.concat(value.messagesFrom)]
-        }
-      },
-      { notifications: [] as any, messages: [] as any }
-    )
-
-    return NextResponse.json(notifications, { status: StatusCodes.OK })
+    return NextResponse.json(data, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

@@ -1,6 +1,9 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { AuthorizationError, GenerateErrorResponse } from '@/services/errorService'
+import {
+  AuthorizationError,
+  GenerateErrorResponse
+} from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'

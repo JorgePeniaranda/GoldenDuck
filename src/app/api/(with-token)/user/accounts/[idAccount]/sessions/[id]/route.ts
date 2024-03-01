@@ -6,19 +6,21 @@ import JWT from '@/services/jwtService'
 
 const jwt = new JWT()
 
-export async function GET (request: NextRequest,
-  { params: { id, idAccount } }: { params: { id: string, idAccount: string } }): Promise<NextResponse> {
+export async function GET (
+  request: NextRequest,
+  { params: { id } }: { params: { id: string } }
+): Promise<NextResponse> {
   const token = String(
     request.headers.get('token') ?? request.cookies.get('token')?.value
   )
 
   try {
-    const { id } = jwt.verifyToken(token)
+    const { id: idUser } = jwt.verifyToken(token)
 
     const data = await prisma.session.findUniqueOrThrow({
       where: {
         id: Number(id),
-        idUser: Number(idAccount)
+        idUser: Number(idUser)
       },
       select: {
         id: true,

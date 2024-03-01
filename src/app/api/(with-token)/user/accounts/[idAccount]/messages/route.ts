@@ -3,8 +3,10 @@ import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 
-export async function GET (request: NextRequest,
-  { params: { idAccount } }: { params: { idAccount: string } }): Promise<NextResponse> {
+export async function GET (
+  request: NextRequest,
+  { params: { idAccount } }: { params: { idAccount: string } }
+): Promise<NextResponse> {
   try {
     const data = await prisma.account.findUniqueOrThrow({
       where: {

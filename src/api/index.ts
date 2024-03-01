@@ -19,7 +19,11 @@ export const checkUser = async ({
   dni,
   phoneNumber
 }: CheckUserRequest): Promise<AxiosResponse> => {
-  return await AxiosInstance.post('/api/verify-user', { email, dni, phoneNumber })
+  return await AxiosInstance.post('/api/verify-user', {
+    email,
+    dni,
+    phoneNumber
+  })
 }
 
 export const generateCode = async (email: string): Promise<AxiosResponse> => {

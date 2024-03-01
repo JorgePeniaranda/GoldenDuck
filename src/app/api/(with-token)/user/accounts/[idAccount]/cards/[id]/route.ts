@@ -5,8 +5,10 @@ import { StatusCodes } from 'http-status-codes'
 import { BigIntToJson } from '@/utils'
 import { messages } from '@/const/messages'
 
-export async function GET (request: NextRequest,
-  { params: { id, idAccount } }: { params: { id: string, idAccount: string } }): Promise<NextResponse> {
+export async function GET (
+  request: NextRequest,
+  { params: { id, idAccount } }: { params: { id: string, idAccount: string } }
+): Promise<NextResponse> {
   try {
     const data = await prisma.card.findUniqueOrThrow({
       where: {
@@ -28,8 +30,10 @@ export async function GET (request: NextRequest,
   }
 }
 
-export async function PUT (request: NextRequest,
-  { params: { id, idAccount } }: { params: { id: string, idAccount: string } }): Promise<NextResponse> {
+export async function PUT (
+  request: NextRequest,
+  { params: { idAccount, id } }: { params: { idAccount: string, id: string } }
+): Promise<NextResponse> {
   const { number, cvv, expiration } = await request.json()
 
   try {
@@ -52,8 +56,10 @@ export async function PUT (request: NextRequest,
   }
 }
 
-export async function DELETE (request: NextRequest,
-  { params: { id, idAccount } }: { params: { id: string, idAccount: string } }): Promise<NextResponse> {
+export async function DELETE (
+  request: NextRequest,
+  { params: { id, idAccount } }: { params: { id: string, idAccount: string } }
+): Promise<NextResponse> {
   try {
     await prisma.card.update({
       where: {

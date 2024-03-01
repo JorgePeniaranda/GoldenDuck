@@ -1,9 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import {
-  GenerateErrorResponse,
-  ValidationError
-} from '@/services/errorService'
+import { GenerateErrorResponse, ValidationError } from '@/services/errorService'
 import validations from '@/services/validationService'
 import { z } from 'zod'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'

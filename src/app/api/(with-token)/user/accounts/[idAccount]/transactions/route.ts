@@ -5,8 +5,10 @@ import { StatusCodes } from 'http-status-codes'
 import { BigIntToJson } from '@/utils'
 import { messages } from '@/const/messages'
 
-export async function GET (request: NextRequest,
-  { params: { idAccount } }: { params: { idAccount: string } }): Promise<NextResponse> {
+export async function GET (
+  request: NextRequest,
+  { params: { idAccount } }: { params: { idAccount: string } }
+): Promise<NextResponse> {
   try {
     const data = await prisma.account.findUniqueOrThrow({
       where: {
@@ -69,8 +71,10 @@ export async function GET (request: NextRequest,
   }
 }
 
-export async function POST (request: NextRequest,
-  { params: { idAccount } }: { params: { idAccount: string } }): Promise<NextResponse> {
+export async function POST (
+  request: NextRequest,
+  { params: { idAccount } }: { params: { idAccount: string } }
+): Promise<NextResponse> {
   const { to, amount } = await request.json()
 
   try {

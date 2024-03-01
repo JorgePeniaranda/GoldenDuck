@@ -5,8 +5,10 @@ import { StatusCodes } from 'http-status-codes'
 import { BigIntToJson } from '@/utils'
 import { messages } from '@/const/messages'
 
-export async function GET (request: NextRequest,
-  { params: { idAccount } }: { params: { idAccount: string } }): Promise<NextResponse> {
+export async function GET (
+  request: NextRequest,
+  { params: { idAccount } }: { params: { idAccount: string } }
+): Promise<NextResponse> {
   try {
     const data = await prisma.account.findUniqueOrThrow({
       where: {
@@ -25,14 +27,18 @@ export async function GET (request: NextRequest,
       }
     })
 
-    return NextResponse.json(BigIntToJson(data.investments), { status: StatusCodes.OK })
+    return NextResponse.json(BigIntToJson(data.investments), {
+      status: StatusCodes.OK
+    })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
 }
 
-export async function POST (request: NextRequest,
-  { params: { idAccount } }: { params: { idAccount: string } }): Promise<NextResponse> {
+export async function POST (
+  request: NextRequest,
+  { params: { idAccount } }: { params: { idAccount: string } }
+): Promise<NextResponse> {
   const { amount, dateEnd, interest } = await request.json()
 
   try {
