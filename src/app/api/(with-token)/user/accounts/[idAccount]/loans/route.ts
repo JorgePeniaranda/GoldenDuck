@@ -16,7 +16,7 @@ export async function GET (request: NextRequest,
           select: {
             id: true,
             amount: true,
-            date_end: true,
+            dateEnd: true,
             interest: true,
             date: true
           }
@@ -39,7 +39,7 @@ export async function POST (request: NextRequest,
       data: {
         idAccount: Number(idAccount),
         amount,
-        date_end: new Date(String(dateEnd)),
+        dateEnd: new Date(String(dateEnd)),
         interest
       }
     })

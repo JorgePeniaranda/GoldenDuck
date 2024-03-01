@@ -15,7 +15,7 @@ export async function GET (request: NextRequest,
       select: {
         id: true,
         amount: true,
-        date_end: true,
+        dateEnd: true,
         interest: true,
         date: true
       }

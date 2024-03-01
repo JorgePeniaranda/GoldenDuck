@@ -6,7 +6,7 @@ import { StatusCodes } from 'http-status-codes'
 export async function GET (request: NextRequest,
   { params: { id, idAccount } }: { params: { id: string, idAccount: string } }): Promise<NextResponse> {
   try {
-    const data = await prisma.notification.findFirst({
+    const data = await prisma.notification.findUniqueOrThrow({
       where: {
         id: Number(id),
         idAccount: Number(idAccount)
@@ -28,10 +28,6 @@ export async function GET (request: NextRequest,
         }
       }
     })
-
-    if (data === null) {
-      throw new NotFoundError('No se encontró la notificación')
-    }
 
     return NextResponse.json(data, { status: StatusCodes.OK })
   } catch (error) {
