@@ -14,6 +14,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
   try {
     const { id } = jwt.verifyToken(token)
 
+    // check if any account exist
     const data = await prisma.user.findUnique({
       where: {
         id,
@@ -22,18 +23,29 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
       select: {
         account: {
           select: {
-            notifications: {
+            messagesFrom: {
               where: {
                 read: false
               },
               select: {
                 id: true,
-                idAccount: true,
+                from: true,
                 message: true,
-                date: true
+                date: true,
+                accountFrom: {
+                  select: {
+                    user: {
+                      select: {
+                        name: true,
+                        lastName: true
+                      }
+                    },
+                    imgUrl: true
+                  }
+                }
               }
             },
-            messagesFrom: {
+            messagesTo: {
               where: {
                 read: false
               },
@@ -61,21 +73,10 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
     })
 
     if (data === null) {
-      return NextResponse.json({ message: 'No hay notificaciones' }, { status: 204 })
+      return NextResponse.json({ message: 'No hay mensajes' }, { status: 204 })
     }
 
-    const notifications = data.account.reduce(
-      (acc, value) => {
-        return {
-          ...acc,
-          notifications: [...acc.notifications.concat(value.notifications)],
-          messages: [...acc.messages.concat(value.messagesFrom)]
-        }
-      },
-      { notifications: [] as any, messages: [] as any }
-    )
-
-    return NextResponse.json(notifications, { status: StatusCodes.OK })
+    return NextResponse.json(data.account, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

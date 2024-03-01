@@ -121,7 +121,7 @@ model Loan {
   amount            BigInt
   interest          Float
   date              DateTime          @default(now())
-  date_end          DateTime
+  dateEnd          DateTime
   account           Account           @relation(fields: [idAccount], references: [id])
 }
 
@@ -131,7 +131,7 @@ model Investment {
   amount            BigInt
   interest          Float
   date              DateTime          @default(now())
-  date_end          DateTime
+  dateEnd          DateTime
   account           Account           @relation(fields: [idAccount], references: [id])
 }
 
