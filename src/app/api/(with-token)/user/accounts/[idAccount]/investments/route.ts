@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { GenerateErrorResponse } from '@/services/errorService'
+import { GenerateErrorResponse, RequestError } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import { BigIntToJson } from '@/utils'
 import { messages } from '@/const/messages'
@@ -36,12 +36,38 @@ export async function POST (request: NextRequest,
   const { amount, dateEnd, interest } = await request.json()
 
   try {
+    // check if the account has enough balance
+    const account = await prisma.account.findUniqueOrThrow({
+      where: {
+        id: Number(idAccount)
+      },
+      select: {
+        balance: true
+      }
+    })
+    if (account.balance < BigInt(String(amount))) {
+      throw new RequestError(messages.insufficientBalance)
+    }
+
+    // create the investment
     await prisma.investment.create({
       data: {
         idAccount: Number(idAccount),
         amount,
         dateEnd: new Date(String(dateEnd)),
         interest
+      }
+    })
+
+    // remove the amount from the account
+    await prisma.account.update({
+      where: {
+        id: Number(idAccount)
+      },
+      data: {
+        balance: {
+          decrement: BigInt(String(amount))
+        }
       }
     })
 
