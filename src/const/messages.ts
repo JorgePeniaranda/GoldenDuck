@@ -18,5 +18,6 @@ export const messages = {
   codeSent: 'Código enviado exitosamente',
   codeValidated: 'Código validado exitosamente',
   codeInvalid: 'El código es inválido',
-  noCode: 'No se ha enviado el código'
+  noCode: 'No se ha enviado el código',
+  insufficientBalance: 'Saldo insuficiente'
 }
