@@ -45,7 +45,6 @@ export async function PUT (request: NextRequest,
       throw error
     })
 
-    // update error
     await prisma.error.update({
       where: {
         id: Number(id),
@@ -75,7 +74,6 @@ export async function DELETE (request: NextRequest,
       throw error
     })
 
-    // delete error
     await prisma.error.update({
       where: {
         id: Number(id)

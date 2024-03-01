@@ -25,7 +25,6 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       }
     )
 
-    // check if any account exist
     await prisma.user.findFirstOrThrow({
       where: {
         OR: [{ email }, { dni }, { phoneNumber }],

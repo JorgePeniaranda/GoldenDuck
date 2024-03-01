@@ -15,7 +15,6 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
   try {
     const { id } = jwt.verifyToken(token)
 
-    // check if any account exist
     const data = await prisma.user.findUniqueOrThrow({
       where: {
         id,

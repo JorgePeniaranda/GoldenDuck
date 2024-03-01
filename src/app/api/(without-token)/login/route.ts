@@ -16,7 +16,6 @@ const jwt = new JWT()
 
 export async function POST (request: NextRequest): Promise<NextResponse> {
   try {
-    // form data
     const data = await request.json()
 
     // check request

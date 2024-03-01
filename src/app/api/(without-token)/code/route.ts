@@ -21,13 +21,13 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
 
     // validate request
     if (userCode === undefined) {
-      throw new RequestError('No se ha enviado el código')
+      throw new RequestError(messages.noCode)
     }
 
     // verify token and code
     const { email, code } = jwt.verifyTempToken(userToken)
     if (!CodeService.checkCode(String(userCode), String(code))) {
-      throw new AuthorizationError('El código es invalido')
+      throw new AuthorizationError(messages.codeInvalid)
     }
 
     // generate token with email

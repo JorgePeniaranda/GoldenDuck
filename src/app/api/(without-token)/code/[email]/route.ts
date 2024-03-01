@@ -1,3 +1,4 @@
+import { messages } from '@/const/messages'
 import ConfirmationCode from '@/services/codeService'
 import { GenerateErrorResponse, ValidationError } from '@/services/errorService'
 import JWT from '@/services/jwtService'
@@ -32,7 +33,7 @@ export async function GET (
 
     // generate and send response
     const response = NextResponse.json(
-      { token, message: 'Se ha enviado el código de verificación' },
+      { token, message: messages.codeSent },
       { status: StatusCodes.OK }
     )
 

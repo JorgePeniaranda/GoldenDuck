@@ -64,7 +64,6 @@ export async function DELETE (request: NextRequest,
       throw error
     })
 
-    // delete category
     await prisma.category.update({
       where: {
         id: Number(id)

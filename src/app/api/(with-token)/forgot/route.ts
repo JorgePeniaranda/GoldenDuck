@@ -15,7 +15,6 @@ const jwt = new JWT()
 
 export async function PUT (request: NextRequest): Promise<NextResponse> {
   try {
-    // get token and form data
     const data = await request.json()
 
     // validate email and password

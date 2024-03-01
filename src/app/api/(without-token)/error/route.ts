@@ -8,7 +8,6 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
   const { name, message } = await request.json()
 
   try {
-    // Create account for new user
     await prisma.error.create({
       data: {
         name,
@@ -16,7 +15,6 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       }
     })
 
-    // generate and send response
     const response = NextResponse.json(
       { message: messages.created },
       { status: StatusCodes.CREATED }
