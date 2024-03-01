@@ -1,7 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { GenerateErrorResponse, NotFoundError } from '@/services/errorService'
+import { GenerateErrorResponse } from '@/services/errorService'
 import JWT from '@/services/jwtService'
+import { StatusCodes } from 'http-status-codes'
 
 const jwt = new JWT()
 
@@ -61,7 +62,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
     })
 
     if (data === null) {
-      throw new NotFoundError('No se encontró la cuenta')
+      return NextResponse.json({ message: 'No hay notificaciones' }, { status: 204 })
     }
 
     const notifications = data.account.reduce(
@@ -75,7 +76,25 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
       { notifications: [] as any, messages: [] as any }
     )
 
-    return NextResponse.json(notifications, { status: 200 })
+    return NextResponse.json(notifications, { status: StatusCodes.OK })
+  } catch (error) {
+    return GenerateErrorResponse(error)
+  }
+}
+
+export async function POST (request: NextRequest,
+  { params: { idAccount } }: { params: { idAccount: string } }): Promise<NextResponse> {
+  const { message } = await request.json()
+
+  try {
+    const data = await prisma.notification.create({
+      data: {
+        idAccount: Number(idAccount),
+        message
+      }
+    })
+
+    return NextResponse.json(data, { status: StatusCodes.CREATED })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

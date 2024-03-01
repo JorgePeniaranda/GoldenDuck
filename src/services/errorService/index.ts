@@ -92,6 +92,7 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
         status: StatusCodes.INTERNAL_SERVER_ERROR
       }
     default:
+      console.log(error)
       return {
         type: 'UnknownError',
         code: ReasonPhrases.INTERNAL_SERVER_ERROR,
