@@ -14,7 +14,6 @@ const Schema = z.object({
   phoneNumber: validations.phoneNumber
 })
 
-// check if any account exist with that email
 export async function POST (request: NextRequest): Promise<NextResponse> {
   const data = await request.json()
 

@@ -72,11 +72,8 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
           messages: [...acc.messages.concat(value.messagesFrom)]
         }
       },
-      { notifications: [], messages: [] }
+      { notifications: [] as any, messages: [] as any }
     )
-
-    notifications.notifications.splice(5)
-    notifications.messages.splice(5)
 
     return NextResponse.json(notifications, { status: 200 })
   } catch (error) {

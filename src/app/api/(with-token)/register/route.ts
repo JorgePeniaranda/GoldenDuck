@@ -32,6 +32,9 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
           { phoneNumber: data.phoneNumber }
         ],
         deleted: false
+      },
+      select: {
+        id: true
       }
     })
     if (checkSameUser !== undefined && checkSameUser !== null) {

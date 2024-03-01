@@ -7,8 +7,8 @@ import {
 } from './services/errorService'
 import { pathToRegexp } from 'path-to-regexp'
 
-const AuthorizedURLs = pathToRegexp(['/dashboard', '/dashboard/:path*'])
-const UnAuthorizedURLs = pathToRegexp(['/login', '/register', '/forgot'])
+const withToken = pathToRegexp(['/dashboard', '/dashboard/:path*'])
+const withoutToken = pathToRegexp(['/login', '/register', '/forgot'])
 const PublicApi = pathToRegexp([
   '/api',
   '/api/error',
@@ -37,7 +37,7 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
 
   // If the user is authorized and the URL is not authorized, redirect to dashboard
   if (
-    (UnAuthorizedURLs.test(request.nextUrl.pathname) as boolean) &&
+    (withoutToken.test(request.nextUrl.pathname) as boolean) &&
     authorized
   ) {
     return NextResponse.redirect(new URL('/dashboard', request.nextUrl))
@@ -45,7 +45,7 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
 
   // If the user is not authorized and the URL is authorized, redirect to login
   if (
-    (AuthorizedURLs.test(request.nextUrl.pathname) as boolean) &&
+    (withToken.test(request.nextUrl.pathname) as boolean) &&
     !authorized
   ) {
     const response = NextResponse.redirect(new URL('/login', request.nextUrl))

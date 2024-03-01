@@ -1,10 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { AuthorizationError, GenerateErrorResponse, NotFoundError } from '@/services/errorService'
-import JWT from '@/services/jwtService'
 import { role } from '@prisma/client'
-
-const jwt = new JWT()
+import { checkRole } from '@/utils'
 
 export async function GET (request: NextRequest,
   { params: { id } }: { params: { id: string } }): Promise<NextResponse> {
@@ -13,26 +11,15 @@ export async function GET (request: NextRequest,
   )
 
   try {
-    const { userId } = jwt.verifyToken(token)
-
-    const user = await prisma.user.findFirst({
-      where: {
-        id: userId,
-        deleted: false
-      },
-      select: {
-        role: true
-      }
+    // check if user is authorized
+    const authorized = await checkRole([role.ADMIN], token).catch((error) => {
+      throw error
     })
-
-    if (user === null) {
-      throw new NotFoundError('No se encontró la cuenta')
-    }
-
-    if (user.role !== role.ADMIN && user.role !== role.SUPPORT) {
+    if (!authorized) {
       throw new AuthorizationError('No autorizado')
     }
 
+    // get error
     const data = await prisma.error.findUnique({
       where: {
         id: Number(id),
@@ -40,6 +27,7 @@ export async function GET (request: NextRequest,
       }
     })
 
+    // check if error exists
     if (data === null) {
       throw new NotFoundError('No se encontró el error')
     }
@@ -58,26 +46,15 @@ export async function PUT (request: NextRequest,
   const { name, message } = await request.json()
 
   try {
-    const { userId } = jwt.verifyToken(token)
-
-    const user = await prisma.user.findFirst({
-      where: {
-        id: userId,
-        deleted: false
-      },
-      select: {
-        role: true
-      }
+    // check if user is authorized
+    const authorized = await checkRole([role.ADMIN], token).catch((error) => {
+      throw error
     })
-
-    if (user === null) {
-      throw new NotFoundError('No se encontró la cuenta')
-    }
-
-    if (user.role !== role.ADMIN && user.role !== role.SUPPORT) {
+    if (!authorized) {
       throw new AuthorizationError('No autorizado')
     }
 
+    // update error
     const data = await prisma.error.update({
       where: {
         id: Number(id),
@@ -89,6 +66,7 @@ export async function PUT (request: NextRequest,
       }
     })
 
+    // check if error exists
     if (data === null) {
       throw new NotFoundError('No se encontró el error')
     }
@@ -106,26 +84,15 @@ export async function DELETE (request: NextRequest,
   )
 
   try {
-    const { userId } = jwt.verifyToken(token)
-
-    const user = await prisma.user.findFirst({
-      where: {
-        id: userId,
-        deleted: false
-      },
-      select: {
-        role: true
-      }
+    // check if user is authorized
+    const authorized = await checkRole([role.ADMIN], token).catch((error) => {
+      throw error
     })
-
-    if (user === null) {
-      throw new NotFoundError('No se encontró la cuenta')
-    }
-
-    if (user.role !== role.ADMIN && user.role !== role.SUPPORT) {
+    if (!authorized) {
       throw new AuthorizationError('No autorizado')
     }
 
+    // delete error
     const data = await prisma.error.update({
       where: {
         id: Number(id)
@@ -135,6 +102,7 @@ export async function DELETE (request: NextRequest,
       }
     })
 
+    // check if error exists
     if (data === null) {
       throw new NotFoundError('No se encontró el error')
     }
