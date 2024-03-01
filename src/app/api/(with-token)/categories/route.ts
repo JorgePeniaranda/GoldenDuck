@@ -31,7 +31,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       throw error
     })
     if (!authorized) {
-      throw new AuthorizationError('No autorizado')
+      throw new AuthorizationError('Permisos insuficientes')
     }
 
     // check if category already exists

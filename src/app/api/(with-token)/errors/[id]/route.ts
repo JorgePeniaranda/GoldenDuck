@@ -16,7 +16,7 @@ export async function GET (request: NextRequest,
       throw error
     })
     if (!authorized) {
-      throw new AuthorizationError('No autorizado')
+      throw new AuthorizationError('Permisos insuficientes')
     }
 
     // get error
@@ -51,7 +51,7 @@ export async function PUT (request: NextRequest,
       throw error
     })
     if (!authorized) {
-      throw new AuthorizationError('No autorizado')
+      throw new AuthorizationError('Permisos insuficientes')
     }
 
     // update error
@@ -89,7 +89,7 @@ export async function DELETE (request: NextRequest,
       throw error
     })
     if (!authorized) {
-      throw new AuthorizationError('No autorizado')
+      throw new AuthorizationError('Permisos insuficientes')
     }
 
     // delete error

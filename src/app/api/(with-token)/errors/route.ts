@@ -15,7 +15,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
       throw error
     })
     if (!authorized) {
-      throw new AuthorizationError('No autorizado')
+      throw new AuthorizationError('Permisos insuficientes')
     }
 
     // get errors

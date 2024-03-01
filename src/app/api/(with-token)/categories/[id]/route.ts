@@ -39,7 +39,7 @@ export async function PUT (request: NextRequest,
       throw error
     })
     if (!authorized) {
-      throw new AuthorizationError('No autorizado')
+      throw new AuthorizationError('Permisos insuficientes')
     }
 
     // update category
@@ -75,7 +75,7 @@ export async function DELETE (request: NextRequest,
       throw error
     })
     if (!authorized) {
-      throw new AuthorizationError('No autorizado')
+      throw new AuthorizationError('Permisos insuficientes')
     }
 
     // delete category
