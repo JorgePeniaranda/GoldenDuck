@@ -27,6 +27,9 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
               where: {
                 read: false
               },
+              orderBy: {
+                date: 'desc'
+              },
               select: {
                 id: true,
                 idAccount: true,
@@ -38,6 +41,9 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
               where: {
                 read: false
               },
+              orderBy: {
+                date: 'desc'
+              },
               select: {
                 id: true,
                 from: true,
@@ -45,13 +51,13 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
                 date: true,
                 accountFrom: {
                   select: {
+                    imgUrl: true,
                     user: {
                       select: {
                         name: true,
                         lastName: true
                       }
-                    },
-                    imgUrl: true
+                    }
                   }
                 }
               }
