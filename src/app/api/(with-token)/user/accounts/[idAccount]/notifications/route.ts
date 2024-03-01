@@ -87,14 +87,14 @@ export async function POST (request: NextRequest,
   const { message } = await request.json()
 
   try {
-    const data = await prisma.notification.create({
+    await prisma.notification.create({
       data: {
         idAccount: Number(idAccount),
         message
       }
     })
 
-    return NextResponse.json(data, { status: StatusCodes.CREATED })
+    return NextResponse.json('Se ha creado exitosamente', { status: StatusCodes.CREATED })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

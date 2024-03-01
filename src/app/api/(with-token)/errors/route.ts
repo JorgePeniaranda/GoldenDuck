@@ -3,6 +3,7 @@ import { prisma } from '@/libs/prisma'
 import { AuthorizationError, GenerateErrorResponse } from '@/services/errorService'
 import { role } from '@prisma/client'
 import { checkRole } from '@/utils'
+import { StatusCodes } from 'http-status-codes'
 
 export async function GET (request: NextRequest): Promise<NextResponse> {
   const token = String(
@@ -21,7 +22,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
     // get errors
     const data = await prisma.error.findMany()
 
-    return NextResponse.json(data, { status: 200 })
+    return NextResponse.json(data, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

@@ -3,6 +3,7 @@ import { prisma } from '@/libs/prisma'
 import { AuthorizationError, ConflictError, GenerateErrorResponse } from '@/services/errorService'
 import { checkRole } from '@/utils'
 import { role } from '@prisma/client'
+import { StatusCodes } from 'http-status-codes'
 
 export async function GET (request: NextRequest): Promise<NextResponse> {
   const token = String(
@@ -26,7 +27,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
       })
     }
 
-    return NextResponse.json(data, { status: 200 })
+    return NextResponse.json(data, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -68,7 +69,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       }
     })
 
-    return NextResponse.json(data, { status: 201 })
+    return NextResponse.json(data, { status: StatusCodes.CREATED })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

@@ -3,6 +3,7 @@ import { prisma } from '@/libs/prisma'
 import { AuthorizationError, GenerateErrorResponse, NotFoundError } from '@/services/errorService'
 import { role } from '@prisma/client'
 import { checkRole } from '@/utils'
+import { StatusCodes } from 'http-status-codes'
 
 export async function GET (request: NextRequest,
   { params: { id } }: { params: { id: string } }): Promise<NextResponse> {
@@ -57,7 +58,7 @@ export async function PUT (request: NextRequest,
       throw new NotFoundError('No se encontró la categoria')
     }
 
-    return NextResponse.json({ message: 'Se ha modificado exitosamente' }, { status: 200 })
+    return NextResponse.json({ message: 'Se ha modificado exitosamente' }, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -93,7 +94,7 @@ export async function DELETE (request: NextRequest,
       throw new NotFoundError('No se encontró la categoria')
     }
 
-    return NextResponse.json({ message: 'Se ha eliminado exitosamente' }, { status: 200 })
+    return NextResponse.json({ message: 'Se ha eliminado exitosamente' }, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

@@ -62,7 +62,7 @@ export async function DELETE (request: NextRequest,
       throw new NotFoundError('No se encontró la notificación')
     }
 
-    return NextResponse.json(data, { status: StatusCodes.OK })
+    return NextResponse.json('Se ha eliminado exitosamente', { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

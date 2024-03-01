@@ -9,6 +9,7 @@ import {
   GenerateErrorResponse,
   ValidationError
 } from '@/services/errorService'
+import { StatusCodes } from 'http-status-codes'
 
 const jwt = new JWT()
 
@@ -64,7 +65,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
     // generate and send response
     const response = NextResponse.json(
       { token, message: 'Se ha registrado exitosamente' },
-      { status: 201 }
+      { status: StatusCodes.CREATED }
     )
     response.cookies.set('token', token, {
       httpOnly: true,

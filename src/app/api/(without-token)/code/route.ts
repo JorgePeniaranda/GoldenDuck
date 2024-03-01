@@ -5,6 +5,7 @@ import {
   RequestError
 } from '@/services/errorService'
 import JWT from '@/services/jwtService'
+import { StatusCodes } from 'http-status-codes'
 import { type NextRequest, NextResponse } from 'next/server'
 
 const CodeService = new ConfirmationCode()
@@ -34,7 +35,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
     // generate and send response
     const response = NextResponse.json(
       { token, message: 'Se ha validado código exitosamente' },
-      { status: 200 }
+      { status: StatusCodes.OK }
     )
 
     response.cookies.set('token', token, {

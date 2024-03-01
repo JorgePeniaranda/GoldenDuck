@@ -9,6 +9,7 @@ import {
   ValidationError
 } from '@/services/errorService'
 import { LoginSchema } from '@/useCases/loginUseCase'
+import { StatusCodes } from 'http-status-codes'
 
 const jwt = new JWT()
 
@@ -57,7 +58,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
     // generate and send response
     const response = NextResponse.json(
       { token, message: 'Ha ingresado exitosamente' },
-      { status: 200 }
+      { status: StatusCodes.OK }
     )
 
     response.cookies.set('token', token, {

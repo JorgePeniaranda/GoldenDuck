@@ -8,6 +8,7 @@ import {
   ValidationError
 } from '@/services/errorService'
 import { ForgotSchema } from '@/useCases/forgotUseCase'
+import { StatusCodes } from 'http-status-codes'
 
 const jwt = new JWT()
 
@@ -60,7 +61,7 @@ export async function PUT (request: NextRequest): Promise<NextResponse> {
     // generate and send response
     const response = NextResponse.json(
       { token, message: 'Se ha actualizado la contraseña exitosamente' },
-      { status: 201 }
+      { status: StatusCodes.CREATED }
     )
     response.cookies.set('token', token, {
       httpOnly: true,

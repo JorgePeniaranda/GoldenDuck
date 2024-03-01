@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { AuthorizationError, GenerateErrorResponse, NotFoundError } from '@/services/errorService'
 import JWT from '@/services/jwtService'
+import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 
 const jwt = new JWT()
 
@@ -32,7 +33,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       throw new AuthorizationError('Permisos insuficientes')
     }
 
-    return NextResponse.json({}, { status: 200 })
+    return NextResponse.json(ReasonPhrases.OK, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

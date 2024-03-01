@@ -2,6 +2,7 @@ import ConfirmationCode from '@/services/codeService'
 import { GenerateErrorResponse, ValidationError } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import validations from '@/services/validationService'
+import { StatusCodes } from 'http-status-codes'
 import { type NextRequest, NextResponse } from 'next/server'
 
 const jwt = new JWT()
@@ -32,7 +33,7 @@ export async function GET (
     // generate and send response
     const response = NextResponse.json(
       { token, message: 'Se ha enviado el código de verificación' },
-      { status: 200 }
+      { status: StatusCodes.OK }
     )
 
     response.cookies.set('token', token, {

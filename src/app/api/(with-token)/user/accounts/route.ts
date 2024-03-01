@@ -3,6 +3,7 @@ import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { BigIntToJson } from '@/utils'
+import { StatusCodes } from 'http-status-codes'
 
 const jwt = new JWT()
 
@@ -35,7 +36,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
       }
     })
 
-    return NextResponse.json(BigIntToJson(data), { status: 200 })
+    return NextResponse.json(BigIntToJson(data), { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

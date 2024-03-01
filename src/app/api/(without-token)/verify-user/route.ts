@@ -7,6 +7,7 @@ import {
 } from '@/services/errorService'
 import validations from '@/services/validationService'
 import { z } from 'zod'
+import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 
 const Schema = z.object({
   email: validations.email,
@@ -40,7 +41,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       throw new NotFoundError('No existe una cuenta creada con ese correo')
     }
 
-    return NextResponse.json({}, { status: 200 })
+    return NextResponse.json(ReasonPhrases.OK, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
