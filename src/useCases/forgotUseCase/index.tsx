@@ -40,7 +40,7 @@ export const onSubmitEmailForm = async (
 ): Promise<void> => {
   try {
     await generateCode(form.email).catch((error) => {
-      throw new RequestError(error.response.data.message)
+      throw new RequestError(error.response.data.error.message)
     })
 
     if (typeof callback === 'function') callback()
@@ -57,7 +57,7 @@ export const onSubmitCodeForm = async (
 ): Promise<void> => {
   try {
     await checkCode(code).catch((error) => {
-      throw new RequestError(error.response.data.message)
+      throw new RequestError(error.response.data.error.message)
     })
 
     if (typeof callback === 'function') callback()
@@ -73,7 +73,7 @@ export const onSubmitPasswordForm = async (
 ): Promise<void> => {
   try {
     await changePassword({ ...form, email }).catch((error) => {
-      throw new ValidationError(error.response.data.message as string)
+      throw new ValidationError(error.response.data.error.message)
     })
 
     Alerts.success('Se ha actualizado la contraseña exitosamente', () => {

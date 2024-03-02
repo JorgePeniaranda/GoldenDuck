@@ -13,7 +13,7 @@ export const LoginSchema = z.object({
 export const onSubmit = async (form: LoginForm): Promise<void> => {
   try {
     await login(form).catch((error) => {
-      throw new ValidationError(error.response.data.message)
+      throw new ValidationError(error.response.data.error.message)
     })
 
     Alerts.success('Ha ingresado exitosamente', () => {

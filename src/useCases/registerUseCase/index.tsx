@@ -33,12 +33,12 @@ export const onSubmitData = async (
       })
       .catch((error) => {
         if (error.response.status !== 404) {
-          throw new RequestError(error.response.data.message)
+          throw new RequestError(error.response.data.error.message)
         }
       })
 
     await generateCode(email).catch((error) => {
-      throw new RequestError(error.response.data.message)
+      throw new RequestError(error.response.data.error.message)
     })
 
     if (typeof callback === 'function') callback()
@@ -54,11 +54,11 @@ export const onSubmitCode = async (
 ): Promise<void> => {
   try {
     await checkCode(code).catch((error) => {
-      throw new RequestError(error.response.data.message)
+      throw new RequestError(error.response.data.error.message)
     })
 
     await registerUser(form).catch((error) => {
-      throw new RequestError(error.response.data.meesage)
+      throw new RequestError(error.response.data.error.meesage)
     })
 
     Alerts.success('Usuario creado con exito', () => {
