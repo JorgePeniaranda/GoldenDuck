@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse, RequestError } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
-import { BigIntToJson } from '@/utils'
+import { BigIntToJson, getRequestData } from '@/utils'
 import { messages } from '@/const/messages'
 
 export async function GET (
@@ -85,10 +85,10 @@ export async function POST (
   request: NextRequest,
   { params: { idAccount } }: { params: { idAccount: string } }
 ): Promise<NextResponse> {
-  const { to, amount: requestAmount } = await request.json()
-  const amount = BigInt(String(requestAmount))
-
   try {
+    const { to, amount: requestAmount } = await getRequestData(request)
+    const amount = BigInt(String(requestAmount))
+
     // check if the account exists
     await prisma.account.findUniqueOrThrow({
       where: {

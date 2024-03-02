@@ -1,8 +1,5 @@
-import { messages } from '@/const/messages'
-import { prisma } from '@/libs/prisma'
-import { AuthorizationError } from '@/services/errorService'
-import JWT from '@/services/jwtService'
-import { type role } from '@prisma/client'
+import { RequestError } from '@/services/errorService'
+import { type NextRequest } from 'next/server'
 
 export const randomAlphanumeric = (length: number): string => {
   const characters =
@@ -29,48 +26,24 @@ export const BigIntToJson = (param: any): any => {
   )
 }
 
-export const verifyRole = async (
-  authorizedRoles: role[],
-  token: string
-): Promise<boolean> => {
-  const { id: userId } = new JWT().verifyToken(token)
-
-  const user = await prisma.user.findUniqueOrThrow({
-    where: {
-      id: userId,
-      deleted: false
-    },
-    select: {
-      role: true
-    }
-  })
-
-  if (authorizedRoles.includes(user.role)) {
-    return false
+export const getRequestData = async (request: NextRequest): Promise<any> => {
+  if (await request.clone().text() === '') {
+    throw new RequestError('No se ha enviado ningun dato en el cuerpo de la petición')
   }
 
-  return true
-}
+  const contentType = request.headers.get('content-type')
 
-export const verifyRoleOrThrow = async (
-  authorizedRoles: role[],
-  token: string
-): Promise<boolean> => {
-  const { id: userId } = new JWT().verifyToken(token)
-
-  const user = await prisma.user.findUniqueOrThrow({
-    where: {
-      id: userId,
-      deleted: false
-    },
-    select: {
-      role: true
-    }
-  })
-
-  if (authorizedRoles.includes(user.role)) {
-    throw new AuthorizationError(messages.noPermissions)
+  if (contentType?.includes('application/json') === true) {
+    return await request.json()
   }
 
-  return true
+  if (contentType?.includes('application/x-www-form-urlencoded') === true) {
+    return await request.formData()
+  }
+
+  if (contentType?.includes('multipart/form-data') === true) {
+    return await request.formData()
+  }
+
+  return await request.text()
 }

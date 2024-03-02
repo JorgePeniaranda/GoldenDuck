@@ -11,12 +11,13 @@ import {
 import { LoginSchema } from '@/useCases/loginUseCase'
 import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
+import { getRequestData } from '@/utils'
 
 const jwt = new JWT()
 
 export async function POST (request: NextRequest): Promise<NextResponse> {
   try {
-    const data = await request.json()
+    const data = await getRequestData(request)
 
     // check request
     const { email, password } = await LoginSchema.parseAsync(data).catch(

@@ -6,6 +6,7 @@ import {
   RequestError
 } from '@/services/errorService'
 import JWT from '@/services/jwtService'
+import { getRequestData } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
 import { type NextRequest, NextResponse } from 'next/server'
 
@@ -14,7 +15,8 @@ const jwt = new JWT()
 
 export async function POST (request: NextRequest): Promise<NextResponse> {
   try {
-    const { code: userCode } = await request.json()
+    const { code: userCode } = await getRequestData(request)
+
     const userToken = String(
       request.headers.get('token') ?? request.cookies.get('token')?.value
     )

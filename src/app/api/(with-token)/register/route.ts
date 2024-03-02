@@ -11,12 +11,13 @@ import {
 } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
+import { getRequestData } from '@/utils'
 
 const jwt = new JWT()
 
 export async function POST (request: NextRequest): Promise<NextResponse> {
   try {
-    const userData = await request.json()
+    const userData = await getRequestData(request)
 
     // validate data
     const data = await SignUpSchema.parseAsync(userData as RegisterForm).catch(

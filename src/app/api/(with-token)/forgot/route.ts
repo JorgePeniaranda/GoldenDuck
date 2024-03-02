@@ -10,12 +10,13 @@ import {
 import { ForgotSchema } from '@/useCases/forgotUseCase'
 import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
+import { getRequestData } from '@/utils'
 
 const jwt = new JWT()
 
 export async function PUT (request: NextRequest): Promise<NextResponse> {
   try {
-    const data = await request.json()
+    const data = await getRequestData(request)
 
     // validate email and password
     const { email, password } = await ForgotSchema.parseAsync(data).catch(

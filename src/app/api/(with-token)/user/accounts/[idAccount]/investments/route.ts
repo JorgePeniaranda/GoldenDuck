@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse, RequestError } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
-import { BigIntToJson } from '@/utils'
+import { BigIntToJson, getRequestData } from '@/utils'
 import { messages } from '@/const/messages'
 
 export async function GET (
@@ -39,9 +39,9 @@ export async function POST (
   request: NextRequest,
   { params: { idAccount } }: { params: { idAccount: string } }
 ): Promise<NextResponse> {
-  const { amount, dateEnd, interest } = await request.json()
-
   try {
+    const { amount, dateEnd, interest } = await getRequestData(request)
+
     // check if the account has enough balance
     const account = await prisma.account.findUniqueOrThrow({
       where: {

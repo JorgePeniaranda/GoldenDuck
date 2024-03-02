@@ -3,11 +3,12 @@ import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
+import { getRequestData } from '@/utils'
 
 export async function POST (request: NextRequest): Promise<NextResponse> {
-  const { name, message } = await request.json()
-
   try {
+    const { name, message } = await getRequestData(request)
+
     await prisma.error.create({
       data: {
         name,

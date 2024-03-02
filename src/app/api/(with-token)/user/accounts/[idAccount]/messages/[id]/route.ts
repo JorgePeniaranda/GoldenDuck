@@ -6,6 +6,7 @@ import {
 } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
+import { getRequestData } from '@/utils'
 
 export async function GET (
   request: NextRequest,
@@ -92,9 +93,9 @@ export async function POST (
   request: NextRequest,
   { params: { idAccount, id } }: { params: { idAccount: string, id: string } }
 ): Promise<NextResponse> {
-  const { message } = await request.json()
-
   try {
+    const { message } = await getRequestData(request)
+
     // check if account exists
     await prisma.account.findUniqueOrThrow({
       where: {
@@ -141,9 +142,9 @@ export async function PUT (
   request: NextRequest,
   { params: { idAccount, id } }: { params: { idAccount: string, id: string } }
 ): Promise<NextResponse> {
-  const { message } = await request.json()
-
   try {
+    const { message } = await getRequestData(request)
+
     const updatedMessage = await prisma.message
       .update({
         where: {

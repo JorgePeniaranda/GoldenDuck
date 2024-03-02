@@ -4,6 +4,7 @@ import { GenerateErrorResponse, ValidationError } from '@/services/errorService'
 import validations from '@/services/validationService'
 import { z } from 'zod'
 import { StatusCodes } from 'http-status-codes'
+import { getRequestData } from '@/utils'
 
 const Schema = z.object({
   email: validations.email.optional(),
@@ -12,9 +13,9 @@ const Schema = z.object({
 })
 
 export async function POST (request: NextRequest): Promise<NextResponse> {
-  const data = await request.json()
-
   try {
+    const data = await getRequestData(request)
+
     // validate data
     const { email, dni, phoneNumber } = await Schema.parseAsync(data).catch(
       (error) => {
@@ -33,7 +34,6 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       status: StatusCodes.NO_CONTENT
     })
   } catch (error) {
-    console.log(error)
     return GenerateErrorResponse(error)
   }
 }

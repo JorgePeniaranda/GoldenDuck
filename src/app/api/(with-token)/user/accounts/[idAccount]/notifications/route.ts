@@ -3,6 +3,7 @@ import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { StatusCodes } from 'http-status-codes'
+import { getRequestData } from '@/utils'
 
 const jwt = new JWT()
 
@@ -87,9 +88,9 @@ export async function POST (
   request: NextRequest,
   { params: { idAccount } }: { params: { idAccount: string } }
 ): Promise<NextResponse> {
-  const { message } = await request.json()
-
   try {
+    const { message } = await getRequestData(request)
+
     const newNotification = await prisma.notification.create({
       data: {
         idAccount: Number(idAccount),

@@ -7,16 +7,18 @@ import {
 import JWT from '@/services/jwtService'
 import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
+import { getRequestData } from '@/utils'
 
 const jwt = new JWT()
 
 export async function POST (request: NextRequest): Promise<NextResponse> {
-  const { id } = await request.json()
   const token = String(
     request.headers.get('token') ?? request.cookies.get('token')?.value
   )
 
   try {
+    const { id } = await getRequestData(request)
+
     const { id: idUser } = jwt.verifyToken(token)
 
     const data = await prisma.account.findUniqueOrThrow({

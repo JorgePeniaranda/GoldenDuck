@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
-import { BigIntToJson } from '@/utils'
+import { BigIntToJson, getRequestData } from '@/utils'
 
 export async function GET (
   request: NextRequest,
@@ -40,9 +40,9 @@ export async function POST (
   request: NextRequest,
   { params: { idAccount } }: { params: { idAccount: string } }
 ): Promise<NextResponse> {
-  const { number, cvv, expiration } = await request.json()
-
   try {
+    const { number, cvv, expiration } = await getRequestData(request)
+
     const newCard = await prisma.card.create({
       data: {
         idAccount: Number(idAccount),
