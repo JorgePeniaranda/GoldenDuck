@@ -1,3 +1,4 @@
+import { ValidationDictionary } from '@/const/messages'
 import {
   checkAlphanumeric,
   checkOnlyLetters,
@@ -7,68 +8,82 @@ import { z } from 'zod'
 
 export const validations = {
   name: z
-    .string({ required_error: 'El nombre es requerido' })
-    .min(1, { message: 'El nombre es requerido' })
+    .string({
+      required_error: ValidationDictionary.name.required,
+      invalid_type_error: ValidationDictionary.name.invalidType
+    })
+    .min(1, { message: ValidationDictionary.name.required })
     .refine(checkOnlyLetters, {
-      message: 'El nombre debe contener solo letras.'
+      message: ValidationDictionary.name.onlyLetters
     }),
   lastName: z
     .string({
-      required_error: 'El apellido es requerido'
+      required_error: ValidationDictionary.lastName.required,
+      invalid_type_error: ValidationDictionary.lastName.invalidType
     })
-    .min(1, { message: 'El apellido es requerido' })
+    .min(1, { message: ValidationDictionary.lastName.required })
     .refine(checkOnlyLetters, {
-      message: 'El apellido debe contener solo letras.'
+      message: ValidationDictionary.lastName.onlyLetters
     }),
   dni: z.coerce
     .number({
-      required_error: 'El DNI es requerido',
-      invalid_type_error: 'El DNI debe ser un número'
+      required_error: ValidationDictionary.dni.required,
+      invalid_type_error: ValidationDictionary.dni.invalidType
     })
-    .min(1, { message: 'El DNI es requerido' })
-    .min(10000000, { message: 'El DNI debe contener 8 dígitos' })
-    .max(99999999, { message: 'El DNI debe contener 8 dígitos' }),
+    .min(1, { message: ValidationDictionary.dni.required })
+    .min(10000000, { message: ValidationDictionary.dni.length })
+    .max(99999999, { message: ValidationDictionary.dni.length }),
   email: z
-    .string({ required_error: 'El email es requerido' })
-    .email({ message: 'El email debe ser valido' })
-    .min(1, { message: 'El email es requerido' }),
+    .string({
+      required_error: ValidationDictionary.email.required,
+      invalid_type_error: ValidationDictionary.email.invalidType
+    })
+    .email({ message: ValidationDictionary.email.invalidEmail })
+    .min(1, { message: ValidationDictionary.email.required }),
   phoneNumber: z.coerce
     .number({
-      required_error: 'El número telefónico es requerido',
-      invalid_type_error: 'El número telefónico debe ser un número'
+      required_error: ValidationDictionary.phoneNumber.required,
+      invalid_type_error: ValidationDictionary.phoneNumber.invalidType
     })
-    .min(1, { message: 'El número telefónico es requerido' })
+    .min(1, { message: ValidationDictionary.phoneNumber.required })
     .min(1000000000, {
-      message: 'El número telefónico debe contener 10 dígitos'
+      message: ValidationDictionary.phoneNumber.length
     })
     .max(9999999999, {
-      message: 'El número telefónico debe contener 10 dígitos'
+      message: ValidationDictionary.phoneNumber.length
     }),
   password: z
-    .string({ required_error: 'La contraseña es requerida' })
-    .min(1, { message: 'La contraseña es requerida' })
-    .min(8, { message: 'La contraseña debe tener al menos 8 caracteres' })
-    .max(72, { message: 'La contraseña debe tener menos de 72 caracteres' })
+    .string({
+      required_error: ValidationDictionary.password.required,
+      invalid_type_error: ValidationDictionary.password.invalidType
+    })
+    .min(1, { message: ValidationDictionary.password.required })
+    .min(8, { message: ValidationDictionary.password.min })
+    .max(72, { message: ValidationDictionary.password.max })
     .refine(checkPasswordStrong, {
       message:
-        'La contraseña debe tener una mayúscula, una minúscula, un número y un caracter especial.'
+        ValidationDictionary.password.strong
     }),
   confirmPassword: z.string({
-    required_error: 'Es necesario confirmar la contraseña'
+    required_error: ValidationDictionary.confirmPassword.required,
+    invalid_type_error: ValidationDictionary.confirmPassword.invalidType
   }),
   address: z
-    .string({ required_error: 'La dirección es requerida' })
-    .min(1, { message: 'La dirección es requerida' })
+    .string({
+      required_error: ValidationDictionary.address.required,
+      invalid_type_error: ValidationDictionary.address.invalidType
+    })
+    .min(1, { message: ValidationDictionary.address.required })
     .refine(checkAlphanumeric, {
-      message: 'La dirección no puede tener caracteres especiales.'
+      message: ValidationDictionary.address.onlyLetters
     }),
   birthDate: z.coerce.date({
-    invalid_type_error: 'Debe ingresar una fecha válida',
-    required_error: 'La fecha de nacimiento es requerido'
+    required_error: ValidationDictionary.birthDate.required,
+    invalid_type_error: ValidationDictionary.birthDate.invalidType
   }),
   sex: z.enum(['MALE', 'FEMALE'], {
-    invalid_type_error: 'Debe ingresar una opción válida',
-    required_error: 'El sexo es requerido'
+    required_error: ValidationDictionary.sex.required,
+    invalid_type_error: ValidationDictionary.sex.invalidType
   })
 }
 

@@ -1,4 +1,5 @@
 import { changePassword, checkCode, generateCode } from '@/api'
+import { ValidationDictionary } from '@/const/messages'
 import Alerts from '@/services/alertService'
 import {
   ErrorsHandler,
@@ -16,7 +17,7 @@ export const ForgotSchema = z
     confirmPassword: validations.confirmPassword
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: 'Las contraseñas no coinciden',
+    message: ValidationDictionary.confirmPassword.match,
     path: ['confirmPassword']
   })
 
@@ -30,7 +31,7 @@ export const ForgotPasswordSchema = z
     confirmPassword: validations.confirmPassword
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: 'Las contraseñas no coinciden',
+    message: ValidationDictionary.confirmPassword.match,
     path: ['confirmPassword']
   })
 
