@@ -1,9 +1,9 @@
-import { type NextRequest, NextResponse } from 'next/server'
+import { NextResponse, type NextRequest } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse, ValidationError } from '@/services/errorService'
 import validations from '@/services/validationService'
 import { z } from 'zod'
-import { ReasonPhrases, StatusCodes } from 'http-status-codes'
+import { StatusCodes } from 'http-status-codes'
 
 const Schema = z.object({
   email: validations.email.optional(),
@@ -29,8 +29,11 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       }
     })
 
-    return NextResponse.json(ReasonPhrases.OK, { status: StatusCodes.OK })
+    return new NextResponse(null, {
+      status: StatusCodes.NO_CONTENT
+    })
   } catch (error) {
+    console.log(error)
     return GenerateErrorResponse(error)
   }
 }

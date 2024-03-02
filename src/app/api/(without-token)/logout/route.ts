@@ -1,12 +1,10 @@
-import { messages } from '@/const/messages'
 import { StatusCodes } from 'http-status-codes'
 import { NextResponse } from 'next/server'
 
 const response = (): NextResponse => {
-  const response = NextResponse.json(
-    { message: messages.logout },
-    { status: StatusCodes.OK }
-  )
+  const response = new NextResponse(null, {
+    status: StatusCodes.NO_CONTENT
+  })
 
   response.cookies.set('token', '', {
     httpOnly: true,

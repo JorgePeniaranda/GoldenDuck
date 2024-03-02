@@ -5,7 +5,7 @@ import {
   GenerateErrorResponse
 } from '@/services/errorService'
 import JWT from '@/services/jwtService'
-import { ReasonPhrases, StatusCodes } from 'http-status-codes'
+import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
 
 const jwt = new JWT()
@@ -33,7 +33,9 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       throw new AuthorizationError(messages.noPermissions)
     }
 
-    return NextResponse.json(ReasonPhrases.OK, { status: StatusCodes.OK })
+    return new NextResponse(null, {
+      status: StatusCodes.NO_CONTENT
+    })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
