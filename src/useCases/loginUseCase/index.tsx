@@ -4,6 +4,7 @@ import { z } from 'zod'
 import Alerts from '@/services/alertService'
 import { ErrorsHandler, ValidationError } from '@/services/errorService'
 import { login } from '@/api'
+import { AlertsDictionary } from '@/const/messages'
 
 export const LoginSchema = z.object({
   email: validations.email,
@@ -16,7 +17,7 @@ export const onSubmit = async (form: LoginForm): Promise<void> => {
       throw new ValidationError(error.response.data.error.message)
     })
 
-    Alerts.success('Ha ingresado exitosamente', () => {
+    Alerts.success(AlertsDictionary.LoginSuccess, () => {
       location.replace('/dashboard')
     })
   } catch (error) {

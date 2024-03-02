@@ -8,7 +8,7 @@ import {
   ValidationError
 } from '@/services/errorService'
 import { checkCode, checkUser, generateCode, registerUser } from '@/api'
-import { ErrorsDictionary } from '@/const/messages'
+import { AlertsDictionary, ErrorsDictionary } from '@/const/messages'
 
 export const SignUpSchema = z.object({
   name: validations.name,
@@ -61,7 +61,7 @@ export const onSubmitCode = async (
       throw new RequestError(error.response.data.error.meesage)
     })
 
-    Alerts.success('Usuario creado con exito', () => {
+    Alerts.success(AlertsDictionary.RegisterSuccess, () => {
       location.href = '/dashboard'
     })
   } catch (error) {

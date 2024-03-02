@@ -1,5 +1,5 @@
 import { changePassword, checkCode, generateCode } from '@/api'
-import { ValidationDictionary } from '@/const/messages'
+import { AlertsDictionary, ValidationDictionary } from '@/const/messages'
 import Alerts from '@/services/alertService'
 import {
   ErrorsHandler,
@@ -77,7 +77,7 @@ export const onSubmitPasswordForm = async (
       throw new ValidationError(error.response.data.error.message)
     })
 
-    Alerts.success('Se ha actualizado la contraseña exitosamente', () => {
+    Alerts.success(AlertsDictionary.PasswordChanged, () => {
       location.href = '/dashboard'
     })
   } catch (error) {
