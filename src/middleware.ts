@@ -6,7 +6,7 @@ import {
   GenerateErrorResponse
 } from './services/errorService'
 import { pathToRegexp } from 'path-to-regexp'
-import { messages } from './const/messages'
+import { ErrorsDictionary } from './const/messages'
 
 const withToken = pathToRegexp(['/dashboard', '/dashboard/:path*'])
 const withoutToken = pathToRegexp(['/login', '/register', '/forgot'])
@@ -57,7 +57,7 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
     try {
       // Validate if the user is authorized to access the api
       if (!authorized) {
-        throw new AuthorizationError(messages.unauthorized)
+        throw new AuthorizationError(ErrorsDictionary.NoLogged)
       }
 
       // If user send token with mail or dni, validate if is same in the token
@@ -67,13 +67,13 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
           (typeof email === 'string' || typeof userData.email === 'string') &&
           email !== userData.email
         ) {
-          throw new AuthorizationError(messages.noPermissions)
+          throw new AuthorizationError(ErrorsDictionary.NoPermissions)
         }
         if (
           (typeof dni === 'string' || typeof userData.dni === 'string') &&
           dni !== userData.dni
         ) {
-          throw new AuthorizationError(messages.noPermissions)
+          throw new AuthorizationError(ErrorsDictionary.NoPermissions)
         }
       }
 
@@ -89,7 +89,7 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
         })
           .then(async (response) => {
             if (!response.ok) {
-              throw new AuthorizationError(messages.noPermissions)
+              throw new AuthorizationError(ErrorsDictionary.NoPermissions)
             }
           })
           .catch((error) => {

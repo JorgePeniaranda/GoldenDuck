@@ -1,3 +1,4 @@
+import { ErrorsDictionary } from '@/const/messages'
 import { type ErrorResponse } from '@/types'
 import { StatusCodes, getReasonPhrase } from 'http-status-codes'
 import { NextResponse } from 'next/server'
@@ -24,19 +25,19 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
     case 'PrismaClientInitializationError':
       return {
         type: 'ORMError',
-        message: 'No se ha podido conectar a la base de datos',
+        message: ErrorsDictionary.DatabaseConnectionError,
         status: StatusCodes.SERVICE_UNAVAILABLE
       }
     case 'JsonWebTokenError':
       return {
         type: 'TokenError',
-        message: 'El token es invalido',
+        message: ErrorsDictionary.InvalidToken,
         status: StatusCodes.UNAUTHORIZED
       }
     case 'TokenExpiredError':
       return {
         type: 'TokenError',
-        message: 'El token es invalido',
+        message: ErrorsDictionary.InvalidToken,
         status: StatusCodes.UNAUTHORIZED
       }
     case 'ConfigError':
@@ -84,7 +85,7 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
     default:
       return {
         type: 'UnknownError',
-        message: 'Ha ocurrido un error',
+        message: ErrorsDictionary.UnknownError,
         status: StatusCodes.INTERNAL_SERVER_ERROR
       }
   }

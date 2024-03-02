@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { AuthorizationError, ConfigError } from '../errorService'
+import { ErrorsDictionary } from '@/const/messages'
 
 export default class JWT {
   private readonly secretKey: string
@@ -10,8 +11,7 @@ export default class JWT {
     const JWT_TEMP_SECRET = process.env.JWT_TEMP_SECRET
 
     if (JWT_SECRET === undefined || JWT_TEMP_SECRET === undefined) {
-      throw new ConfigError(
-        'La variable de entorno JWT_SECRET no está configurada'
+      throw new ConfigError(ErrorsDictionary.NoVariableEnv('JWT_SECRET')
       )
     }
 

@@ -1,4 +1,4 @@
-import { messages } from '@/const/messages'
+import { type NextRequest, NextResponse } from 'next/server'
 import ConfirmationCode from '@/services/codeService'
 import {
   AuthorizationError,
@@ -8,7 +8,7 @@ import {
 import JWT from '@/services/jwtService'
 import { getRequestData } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
-import { type NextRequest, NextResponse } from 'next/server'
+import { ErrorsDictionary } from '@/const/messages'
 
 const CodeService = new ConfirmationCode()
 const jwt = new JWT()
@@ -23,13 +23,13 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
 
     // validate request
     if (userCode === undefined) {
-      throw new RequestError(messages.noCode)
+      throw new RequestError(ErrorsDictionary.NoCodeSent)
     }
 
     // verify token and code
     const { email, code } = jwt.verifyTempToken(userToken)
     if (!CodeService.checkCode(String(userCode), String(code))) {
-      throw new AuthorizationError(messages.codeInvalid)
+      throw new AuthorizationError(ErrorsDictionary.IncorrectCode)
     }
 
     // generate token with email

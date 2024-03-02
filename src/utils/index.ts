@@ -1,3 +1,4 @@
+import { ErrorsDictionary } from '@/const/messages'
 import { RequestError } from '@/services/errorService'
 import { type NextRequest } from 'next/server'
 
@@ -28,7 +29,7 @@ export const BigIntToJson = (param: any): any => {
 
 export const getRequestData = async (request: NextRequest): Promise<any> => {
   if (await request.clone().text() === '') {
-    throw new RequestError('No se ha enviado ningun dato en el cuerpo de la petición')
+    throw new RequestError(ErrorsDictionary.NoBodyRequest)
   }
 
   const contentType = request.headers.get('content-type')

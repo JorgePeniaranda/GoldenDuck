@@ -8,6 +8,7 @@ import {
   ValidationError
 } from '@/services/errorService'
 import { checkCode, checkUser, generateCode, registerUser } from '@/api'
+import { ErrorsDictionary } from '@/const/messages'
 
 export const SignUpSchema = z.object({
   name: validations.name,
@@ -28,7 +29,7 @@ export const onSubmitData = async (
   try {
     await checkUser({ email, dni, phoneNumber })
       .then(() => {
-        throw new ValidationError('El usuario ya existe')
+        throw new ValidationError(ErrorsDictionary.UserAlreadyExists)
       })
       .catch((error) => {
         if (error.response.status !== 404) {

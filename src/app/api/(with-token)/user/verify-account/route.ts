@@ -6,7 +6,7 @@ import {
 } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { StatusCodes } from 'http-status-codes'
-import { messages } from '@/const/messages'
+import { ErrorsDictionary } from '@/const/messages'
 import { getRequestData } from '@/utils'
 
 const jwt = new JWT()
@@ -32,7 +32,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
     })
 
     if (data.id !== idUser) {
-      throw new AuthorizationError(messages.noPermissions)
+      throw new AuthorizationError(ErrorsDictionary.NoPermissions)
     }
 
     return new NextResponse(null, {

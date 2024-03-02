@@ -9,7 +9,7 @@ import {
 } from '@/services/errorService'
 import { ForgotSchema } from '@/useCases/forgotUseCase'
 import { StatusCodes } from 'http-status-codes'
-import { messages } from '@/const/messages'
+import { ErrorsDictionary } from '@/const/messages'
 import { BigIntToJson, getRequestData } from '@/utils'
 
 const jwt = new JWT()
@@ -30,7 +30,7 @@ export async function PUT (request: NextRequest): Promise<NextResponse> {
       where: { email, deleted: false }
     })
     if (user === undefined || user === null) {
-      throw new NotFoundError(messages.userNotFound)
+      throw new NotFoundError(ErrorsDictionary.UserNotFound)
     }
 
     // update password

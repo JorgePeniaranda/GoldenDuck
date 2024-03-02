@@ -5,7 +5,7 @@ import {
   GenerateErrorResponse
 } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
-import { messages } from '@/const/messages'
+import { ErrorsDictionary } from '@/const/messages'
 import { getRequestData } from '@/utils'
 
 export async function GET (
@@ -174,7 +174,7 @@ export async function PUT (
         }
       })
       .catch(() => {
-        throw new AuthorizationError(messages.noPermissions)
+        throw new AuthorizationError(ErrorsDictionary.NoPermissions)
       })
 
     return NextResponse.json(updatedMessage, { status: StatusCodes.OK })
@@ -199,7 +199,7 @@ export async function DELETE (
         }
       })
       .catch(() => {
-        throw new AuthorizationError(messages.noPermissions)
+        throw new AuthorizationError(ErrorsDictionary.NoPermissions)
       })
 
     return new NextResponse(null, {

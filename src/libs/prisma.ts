@@ -1,4 +1,4 @@
-import { messages } from '@/const/messages'
+import { ErrorsDictionary } from '@/const/messages'
 import { AuthorizationError } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { type RegisterForm } from '@/types'
@@ -75,7 +75,7 @@ export const prisma = new PrismaClient().$extends({
         })
 
         if (!authorizedRoles.includes(user.role)) {
-          throw new AuthorizationError(messages.noPermissions)
+          throw new AuthorizationError(ErrorsDictionary.NoPermissions)
         }
 
         return true

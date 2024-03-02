@@ -3,7 +3,7 @@ import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse, RequestError } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import { BigIntToJson, getRequestData } from '@/utils'
-import { messages } from '@/const/messages'
+import { ErrorsDictionary } from '@/const/messages'
 
 export async function GET (
   request: NextRequest,
@@ -52,7 +52,7 @@ export async function POST (
       }
     })
     if (account.balance < BigInt(String(amount))) {
-      throw new RequestError(messages.insufficientBalance)
+      throw new RequestError(ErrorsDictionary.InsufficientBalance)
     }
 
     // create the investment

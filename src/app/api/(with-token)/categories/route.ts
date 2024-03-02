@@ -3,7 +3,7 @@ import { prisma } from '@/libs/prisma'
 import { ConflictError, GenerateErrorResponse } from '@/services/errorService'
 import { role } from '@prisma/client'
 import { StatusCodes } from 'http-status-codes'
-import { messages } from '@/const/messages'
+import { ErrorsDictionary } from '@/const/messages'
 import { getRequestData } from '@/utils'
 
 export async function GET (request: NextRequest): Promise<NextResponse> {
@@ -55,7 +55,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       }
     })
     if (checkCategory !== null) {
-      throw new ConflictError(messages.categoryExists)
+      throw new ConflictError(ErrorsDictionary.CategoryNotFount)
     }
 
     // create category

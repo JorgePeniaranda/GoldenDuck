@@ -1,6 +1,7 @@
 import { Resend } from 'resend'
 import { ConfigError, EmailError } from '../errorService'
 import TemplateCodeEmail from '@/components/templates/email/TemplateCodeEmail'
+import { ErrorsDictionary } from '@/const/messages'
 
 export default class Email {
   private readonly resend: Resend
@@ -8,9 +9,7 @@ export default class Email {
   constructor () {
     const RESEND_API_KEY = process.env.RESEND_API_KEY
     if (RESEND_API_KEY === undefined) {
-      throw new ConfigError(
-        'La variable de entorno RESEND_API_KEY no está configurada'
-      )
+      throw new ConfigError(ErrorsDictionary.NoVariableEnv('RESEND_API_KEY'))
     }
     this.resend = new Resend(RESEND_API_KEY)
   }
@@ -26,7 +25,7 @@ export default class Email {
         })
       })
       .catch(() => {
-        throw new EmailError('No se ha podido enviar el mail')
+        throw new EmailError(ErrorsDictionary.NoEmail)
       })
   }
 }

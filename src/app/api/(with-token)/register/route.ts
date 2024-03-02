@@ -10,7 +10,7 @@ import {
   ValidationError
 } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
-import { messages } from '@/const/messages'
+import { ErrorsDictionary } from '@/const/messages'
 import { BigIntToJson, getRequestData } from '@/utils'
 
 const jwt = new JWT()
@@ -41,7 +41,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       }
     })
     if (checkSameUser !== undefined && checkSameUser !== null) {
-      throw new ConflictError(messages.userExists)
+      throw new ConflictError(ErrorsDictionary.UserAlreadyExists)
     }
 
     // Create new user

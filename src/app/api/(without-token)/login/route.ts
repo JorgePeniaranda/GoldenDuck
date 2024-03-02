@@ -10,7 +10,7 @@ import {
 } from '@/services/errorService'
 import { LoginSchema } from '@/useCases/loginUseCase'
 import { StatusCodes } from 'http-status-codes'
-import { messages } from '@/const/messages'
+import { ErrorsDictionary } from '@/const/messages'
 import { getRequestData } from '@/utils'
 
 const jwt = new JWT()
@@ -34,12 +34,12 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
 
     // check if user exists
     if (user === undefined || user === null) {
-      throw new NotFoundError(messages.userNotFound)
+      throw new NotFoundError(ErrorsDictionary.UserNotFound)
     }
 
     // check password match
     if (!bcrypt.compareSync(password, user.password)) {
-      throw new AuthorizationError(messages.incorrectPassword)
+      throw new AuthorizationError(ErrorsDictionary.IncorrectPassword)
     }
 
     // log session
