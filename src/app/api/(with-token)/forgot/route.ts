@@ -10,7 +10,7 @@ import {
 import { ForgotSchema } from '@/useCases/forgotUseCase'
 import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
-import { getRequestData } from '@/utils'
+import { BigIntToJson, getRequestData } from '@/utils'
 
 const jwt = new JWT()
 
@@ -69,7 +69,7 @@ export async function PUT (request: NextRequest): Promise<NextResponse> {
 
     // generate and send response
     const response = NextResponse.json(
-      { token, ...updatedUser },
+      { token, ...BigIntToJson(updatedUser) },
       { status: StatusCodes.CREATED }
     )
     response.cookies.set('token', token, {

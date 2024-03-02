@@ -4,14 +4,18 @@ import {
   type RegisterForm,
   type LoginForm,
   type CheckUserRequest,
-  type ForgotForm
+  type ForgotForm,
+  type Token,
+  type ReportError,
+  type RegisterResponse,
+  type ForgotResponse
 } from '@/types'
 
 export const sendError = async ({
   name,
   message
 }: Error): Promise<AxiosResponse> => {
-  return await AxiosInstance.post('/api/error', { name, message })
+  return await AxiosInstance.post<ReportError>('/api/error', { name, message })
 }
 
 export const checkUser = async ({
@@ -27,27 +31,27 @@ export const checkUser = async ({
 }
 
 export const generateCode = async (email: string): Promise<AxiosResponse> => {
-  return await AxiosInstance.get(`/api/code/${email}`)
+  return await AxiosInstance.get<Token>(`/api/code/${email}`)
 }
 
 export const checkCode = async (code: string): Promise<AxiosResponse> => {
-  return await AxiosInstance.post('/api/code/', { code })
+  return await AxiosInstance.post<Token>('/api/code/', { code })
 }
 
 export const login = async (form: LoginForm): Promise<AxiosResponse> => {
-  return await AxiosInstance.post('/api/login', form)
+  return await AxiosInstance.post<Token>('/api/login', form)
 }
 
 export const registerUser = async (
   form: RegisterForm
 ): Promise<AxiosResponse> => {
-  return await AxiosInstance.post('/api/register', form)
+  return await AxiosInstance.post<RegisterResponse>('/api/register', form)
 }
 
 export const changePassword = async (
   form: ForgotForm
 ): Promise<AxiosResponse> => {
-  return await AxiosInstance.put('/api/forgot', {
+  return await AxiosInstance.put<ForgotResponse>('/api/forgot', {
     email: form.email,
     password: form.password
   })

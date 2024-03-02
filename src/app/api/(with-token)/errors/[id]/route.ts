@@ -24,6 +24,12 @@ export async function GET (
       where: {
         id: Number(id),
         deleted: false
+      },
+      select: {
+        id: true,
+        name: true,
+        message: true,
+        date: true
       }
     })
 
