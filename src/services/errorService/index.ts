@@ -1,5 +1,5 @@
 import { type ErrorResponse } from '@/types'
-import { ReasonPhrases, StatusCodes } from 'http-status-codes'
+import { StatusCodes, getReasonPhrase } from 'http-status-codes'
 import { NextResponse } from 'next/server'
 
 export const createErrorFactory = function (name: string): any {
@@ -24,78 +24,66 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
     case 'PrismaClientInitializationError':
       return {
         type: 'ORMError',
-        code: ReasonPhrases.SERVICE_UNAVAILABLE,
         message: 'No se ha podido conectar a la base de datos',
         status: StatusCodes.SERVICE_UNAVAILABLE
       }
     case 'JsonWebTokenError':
       return {
         type: 'TokenError',
-        code: ReasonPhrases.UNAUTHORIZED,
         message: 'El token es invalido',
         status: StatusCodes.UNAUTHORIZED
       }
     case 'TokenExpiredError':
       return {
         type: 'TokenError',
-        code: ReasonPhrases.UNAUTHORIZED,
         message: 'El token es invalido',
         status: StatusCodes.UNAUTHORIZED
       }
     case 'ConfigError':
       return {
         type: 'ConfigError',
-        code: ReasonPhrases.INTERNAL_SERVER_ERROR,
         message: error.message,
         status: StatusCodes.INTERNAL_SERVER_ERROR
       }
     case 'ValidationError':
       return {
         type: 'ValidationError',
-        code: ReasonPhrases.BAD_REQUEST,
         message: error.message,
         status: StatusCodes.BAD_REQUEST
       }
     case 'NotFoundError':
       return {
         type: 'NotFoundError',
-        code: ReasonPhrases.NOT_FOUND,
         message: error.message,
         status: StatusCodes.NOT_FOUND
       }
     case 'AuthorizationError':
       return {
         type: 'AuthorizationError',
-        code: ReasonPhrases.UNAUTHORIZED,
         message: error.message,
         status: StatusCodes.UNAUTHORIZED
       }
     case 'ConflictError':
       return {
         type: 'ConflictError',
-        code: ReasonPhrases.CONFLICT,
         message: error.message,
         status: StatusCodes.CONFLICT
       }
     case 'EmailError':
       return {
         type: 'EmailError',
-        code: ReasonPhrases.INTERNAL_SERVER_ERROR,
         message: error.message,
         status: StatusCodes.INTERNAL_SERVER_ERROR
       }
     case 'RequestError':
       return {
         type: 'RequestError',
-        code: ReasonPhrases.INTERNAL_SERVER_ERROR,
         message: error.message,
-        status: StatusCodes.INTERNAL_SERVER_ERROR
+        status: StatusCodes.BAD_REQUEST
       }
     default:
-      console.log(error)
       return {
         type: 'UnknownError',
-        code: ReasonPhrases.INTERNAL_SERVER_ERROR,
         message: 'Ha ocurrido un error',
         status: StatusCodes.INTERNAL_SERVER_ERROR
       }
@@ -103,6 +91,6 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
 }
 
 export const GenerateErrorResponse = (error: any): NextResponse => {
-  const { code, message, status, type } = ErrorsHandler(error)
-  return NextResponse.json({ type, code, message }, { status })
+  const { message, status, type } = ErrorsHandler(error)
+  return NextResponse.json({ status: getReasonPhrase(status), errror: { type, message } }, { status })
 }

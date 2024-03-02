@@ -32,7 +32,6 @@ export interface ForgotForm {
 export interface ErrorResponse {
   status: number
   type: string
-  code: string
   message: string
 }
 
