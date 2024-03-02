@@ -14,9 +14,11 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
   try {
     let categories
     // check if user is authorized
-    const authorized = await prisma.user.verifyRole([role.ADMIN], token).catch((error) => {
-      throw error
-    })
+    const authorized = await prisma.user
+      .verifyRole([role.ADMIN], token)
+      .catch((error) => {
+        throw error
+      })
 
     if (authorized) {
       // get categories

@@ -61,8 +61,7 @@ export const validations = {
     .min(8, { message: ValidationDictionary.password.min })
     .max(72, { message: ValidationDictionary.password.max })
     .refine(checkPasswordStrong, {
-      message:
-        ValidationDictionary.password.strong
+      message: ValidationDictionary.password.strong
     }),
   confirmPassword: z.string({
     required_error: ValidationDictionary.confirmPassword.required,

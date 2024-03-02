@@ -1,19 +1,20 @@
 export const ErrorsDictionary = {
   CategoryNotFount: 'La categoría ya existe',
-  NoPermissions: 'Permisos insuficientes',
-  UserNotFound: 'Usuario no encontrado',
-  UserAlreadyExists: 'El usuario ya existe',
-  IncorrectPassword: 'Contraseña incorrecta',
-  NoCodeSent: 'No se ha enviado el código',
-  IncorrectCode: 'El código es incorrecto',
-  InsufficientBalance: 'Saldo insuficiente',
-  NoLogged: 'No has iniciado sesión',
-  NoBodyRequest: 'No se ha enviado ningun dato en el cuerpo de la petición',
-  NoVariableEnv: (variable: string): string => `No se ha encontrado la variable de entorno "${variable}"`,
-  NoEmail: 'No se ha enviado el correo electrónico',
   DatabaseConnectionError: 'Error al conectar con la base de datos',
+  IncorrectCode: 'El código es incorrecto',
+  IncorrectPassword: 'Contraseña incorrecta',
+  InsufficientBalance: 'Saldo insuficiente',
   InvalidToken: 'El token es invalido',
-  UnknownError: 'Ha ocurrido un error'
+  NoBodyRequest: 'No se ha enviado ningun dato en el cuerpo de la petición',
+  NoCodeSent: 'No se ha enviado el código',
+  NoEmail: 'No se ha enviado el correo electrónico',
+  NoLogged: 'No has iniciado sesión',
+  NoPermissions: 'Permisos insuficientes',
+  NoVariableEnv: (variable: string): string =>
+    `No se ha encontrado la variable de entorno "${variable}"`,
+  UnknownError: 'Ha ocurrido un error',
+  UserAlreadyExists: 'El usuario ya existe',
+  UserNotFound: 'Usuario no encontrado'
 }
 
 export const ValidationDictionary = {
@@ -46,7 +47,8 @@ export const ValidationDictionary = {
     required: 'La contraseña es requerida',
     min: 'La contraseña debe tener al menos 8 caracteres',
     max: 'La contraseña debe tener menos de 72 caracteres',
-    strong: 'La contraseña debe tener una mayúscula, una minúscula, un número y un caracter especial',
+    strong:
+      'La contraseña debe tener una mayúscula, una minúscula, un número y un caracter especial',
     invalidType: 'La contraseña debe ser un texto'
   },
   confirmPassword: {

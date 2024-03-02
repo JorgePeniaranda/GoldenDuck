@@ -152,9 +152,11 @@ export interface ErrorResponse {
   message: string
 }
 
-export type ForgotResponse = Token & Omit<User, 'createdAt' | 'updatedAt' | 'role'>
+export type ForgotResponse = Token &
+Omit<User, 'createdAt' | 'updatedAt' | 'role'>
 
-export type RegisterResponse = Token & Omit<User, 'createdAt' | 'updatedAt' | 'role'>
+export type RegisterResponse = Token &
+Omit<User, 'createdAt' | 'updatedAt' | 'role'>
 
 export interface ReportError {
   id: number

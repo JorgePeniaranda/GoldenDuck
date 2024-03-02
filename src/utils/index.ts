@@ -28,7 +28,7 @@ export const BigIntToJson = (param: any): any => {
 }
 
 export const getRequestData = async (request: NextRequest): Promise<any> => {
-  if (await request.clone().text() === '') {
+  if ((await request.clone().text()) === '') {
     throw new RequestError(ErrorsDictionary.NoBodyRequest)
   }
 

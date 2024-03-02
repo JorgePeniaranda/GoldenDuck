@@ -93,5 +93,8 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
 
 export const GenerateErrorResponse = (error: any): NextResponse => {
   const { message, status, type } = ErrorsHandler(error)
-  return NextResponse.json({ status: getReasonPhrase(status), error: { type, message } }, { status })
+  return NextResponse.json(
+    { status: getReasonPhrase(status), error: { type, message } },
+    { status }
+  )
 }

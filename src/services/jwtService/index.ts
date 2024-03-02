@@ -11,8 +11,7 @@ export default class JWT {
     const JWT_TEMP_SECRET = process.env.JWT_TEMP_SECRET
 
     if (JWT_SECRET === undefined || JWT_TEMP_SECRET === undefined) {
-      throw new ConfigError(ErrorsDictionary.NoVariableEnv('JWT_SECRET')
-      )
+      throw new ConfigError(ErrorsDictionary.NoVariableEnv('JWT_SECRET'))
     }
 
     this.secretKey = JWT_SECRET
