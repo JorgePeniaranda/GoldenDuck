@@ -79,6 +79,28 @@ export const prisma = new PrismaClient().$extends({
         }
 
         return true
+      },
+      deleteUser: async (id: number) => {
+        await prisma.account.updateMany({
+          where: {
+            idUser: id,
+            deleted: false
+          },
+          data: {
+            deleted: true
+          }
+        })
+
+        // delete user
+        await prisma.user.update({
+          where: {
+            id,
+            deleted: false
+          },
+          data: {
+            deleted: true
+          }
+        })
       }
     }
   }
