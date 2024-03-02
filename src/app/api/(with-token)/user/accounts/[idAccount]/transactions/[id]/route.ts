@@ -9,7 +9,7 @@ export async function GET (
   { params: { idAccount, id } }: { params: { idAccount: string, id: string } }
 ): Promise<NextResponse> {
   try {
-    const data = await prisma.transaction.findFirstOrThrow({
+    const transaction = await prisma.transaction.findFirstOrThrow({
       where: {
         id: Number(id),
         OR: [{ to: Number(idAccount) }, { from: Number(idAccount) }]
@@ -20,6 +20,11 @@ export async function GET (
         to: true,
         amount: true,
         date: true,
+        category: {
+          select: {
+            name: true
+          }
+        },
         accountTo: {
           select: {
             imgUrl: true,
@@ -34,7 +39,9 @@ export async function GET (
       }
     })
 
-    return NextResponse.json(BigIntToJson(data), { status: StatusCodes.OK })
+    return NextResponse.json(BigIntToJson(transaction), {
+      status: StatusCodes.OK
+    })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

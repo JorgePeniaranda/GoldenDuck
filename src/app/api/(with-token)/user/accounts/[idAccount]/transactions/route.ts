@@ -26,6 +26,11 @@ export async function GET (
             to: true,
             amount: true,
             date: true,
+            category: {
+              select: {
+                name: true
+              }
+            },
             accountTo: {
               select: {
                 imgUrl: true,
@@ -49,6 +54,11 @@ export async function GET (
             to: true,
             amount: true,
             date: true,
+            category: {
+              select: {
+                name: true
+              }
+            },
             accountFrom: {
               select: {
                 imgUrl: true,
@@ -75,7 +85,8 @@ export async function POST (
   request: NextRequest,
   { params: { idAccount } }: { params: { idAccount: string } }
 ): Promise<NextResponse> {
-  const { to, amount } = await request.json()
+  const { to, amount: requestAmount } = await request.json()
+  const amount = BigInt(String(requestAmount))
 
   try {
     // check if the account exists
@@ -100,11 +111,34 @@ export async function POST (
     }
 
     // create the transaction
-    await prisma.transaction.create({
+    const newTransaction = await prisma.transaction.create({
       data: {
         from: Number(idAccount),
         to: Number(to),
-        amount: BigInt(String(amount))
+        amount
+      },
+      select: {
+        id: true,
+        from: true,
+        to: true,
+        amount: true,
+        date: true,
+        category: {
+          select: {
+            name: true
+          }
+        },
+        accountFrom: {
+          select: {
+            imgUrl: true,
+            user: {
+              select: {
+                name: true,
+                lastName: true
+              }
+            }
+          }
+        }
       }
     })
 
@@ -115,7 +149,7 @@ export async function POST (
       },
       data: {
         balance: {
-          decrement: BigInt(String(amount))
+          decrement: amount
         }
       }
     })
@@ -127,15 +161,22 @@ export async function POST (
       },
       data: {
         balance: {
-          increment: BigInt(String(amount))
+          increment: amount
         }
       }
     })
 
     // [TODO] send notification
 
-    return NextResponse.json(messages.updated, { status: StatusCodes.OK })
+    return NextResponse.json(
+      {
+        newBalance: String(account.balance - amount),
+        transaction: BigIntToJson(newTransaction)
+      },
+      { status: StatusCodes.OK }
+    )
   } catch (error) {
+    console.log(error)
     return GenerateErrorResponse(error)
   }
 }

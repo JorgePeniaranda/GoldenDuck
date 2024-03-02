@@ -4,7 +4,6 @@ import { GenerateErrorResponse } from '@/services/errorService'
 import { role } from '@prisma/client'
 import { verifyRoleOrThrow } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
-import { messages } from '@/const/messages'
 
 export async function GET (
   request: NextRequest,
@@ -21,14 +20,14 @@ export async function GET (
     })
 
     // get error
-    const data = await prisma.error.findUniqueOrThrow({
+    const errors = await prisma.error.findUniqueOrThrow({
       where: {
         id: Number(id),
         deleted: false
       }
     })
 
-    return NextResponse.json(data, { status: StatusCodes.OK })
+    return NextResponse.json(errors, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -49,7 +48,7 @@ export async function PUT (
       throw error
     })
 
-    await prisma.error.update({
+    const updatedError = await prisma.error.update({
       where: {
         id: Number(id),
         deleted: false
@@ -57,13 +56,16 @@ export async function PUT (
       data: {
         name,
         message
+      },
+      select: {
+        id: true,
+        name: true,
+        message: true,
+        date: true
       }
     })
 
-    return NextResponse.json(
-      { message: messages.updated },
-      { status: StatusCodes.OK }
-    )
+    return NextResponse.json(updatedError, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -92,10 +94,9 @@ export async function DELETE (
       }
     })
 
-    return NextResponse.json(
-      { message: messages.updated },
-      { status: StatusCodes.OK }
-    )
+    return new NextResponse(null, {
+      status: StatusCodes.NO_CONTENT
+    })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

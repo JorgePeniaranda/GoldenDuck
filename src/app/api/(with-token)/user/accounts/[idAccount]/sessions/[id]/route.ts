@@ -17,7 +17,7 @@ export async function GET (
   try {
     const { id: idUser } = jwt.verifyToken(token)
 
-    const data = await prisma.session.findUniqueOrThrow({
+    const session = await prisma.session.findUniqueOrThrow({
       where: {
         id: Number(id),
         idUser: Number(idUser)
@@ -30,7 +30,7 @@ export async function GET (
       }
     })
 
-    return NextResponse.json(data, { status: StatusCodes.OK })
+    return NextResponse.json(session, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

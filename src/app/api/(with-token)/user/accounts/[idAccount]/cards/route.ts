@@ -3,14 +3,13 @@ import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
 import { BigIntToJson } from '@/utils'
-import { messages } from '@/const/messages'
 
 export async function GET (
   request: NextRequest,
   { params: { idAccount } }: { params: { idAccount: string } }
 ): Promise<NextResponse> {
   try {
-    const data = await prisma.account.findUniqueOrThrow({
+    const { cards } = await prisma.account.findUniqueOrThrow({
       where: {
         id: Number(idAccount)
       },
@@ -29,7 +28,7 @@ export async function GET (
       }
     })
 
-    return NextResponse.json(BigIntToJson(data.cards), {
+    return NextResponse.json(BigIntToJson(cards), {
       status: StatusCodes.OK
     })
   } catch (error) {
@@ -44,7 +43,7 @@ export async function POST (
   const { number, cvv, expiration } = await request.json()
 
   try {
-    await prisma.card.create({
+    const newCard = await prisma.card.create({
       data: {
         idAccount: Number(idAccount),
         number,
@@ -53,7 +52,7 @@ export async function POST (
       }
     })
 
-    return NextResponse.json(messages.created, { status: StatusCodes.CREATED })
+    return NextResponse.json(newCard, { status: StatusCodes.CREATED })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

@@ -16,9 +16,16 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
       throw error
     })
 
-    const data = await prisma.error.findMany()
+    const errors = await prisma.error.findMany({
+      select: {
+        id: true,
+        name: true,
+        message: true,
+        date: true
+      }
+    })
 
-    return NextResponse.json(data, { status: StatusCodes.OK })
+    return NextResponse.json(errors, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

@@ -1,4 +1,3 @@
-import { messages } from '@/const/messages'
 import ConfirmationCode from '@/services/codeService'
 import { GenerateErrorResponse, ValidationError } from '@/services/errorService'
 import JWT from '@/services/jwtService'
@@ -32,10 +31,7 @@ export async function GET (
     const token = jwt.generateTempToken(tokenData)
 
     // generate and send response
-    const response = NextResponse.json(
-      { token, message: messages.codeSent },
-      { status: StatusCodes.OK }
-    )
+    const response = NextResponse.json({ token }, { status: StatusCodes.OK })
 
     response.cookies.set('token', token, {
       httpOnly: true,

@@ -34,10 +34,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
     const token = jwt.generateToken({ email })
 
     // generate and send response
-    const response = NextResponse.json(
-      { token, message: messages.validated },
-      { status: StatusCodes.OK }
-    )
+    const response = NextResponse.json({ token }, { status: StatusCodes.OK })
 
     response.cookies.set('token', token, {
       httpOnly: true,

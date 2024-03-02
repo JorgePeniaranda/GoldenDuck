@@ -25,7 +25,7 @@ export async function PUT (request: NextRequest): Promise<NextResponse> {
     )
 
     // get user and check if user exists
-    const user = await prisma.user.findFirst({
+    const user = await prisma.user.findFirstOrThrow({
       where: { email, deleted: false }
     })
     if (user === undefined || user === null) {
@@ -33,21 +33,29 @@ export async function PUT (request: NextRequest): Promise<NextResponse> {
     }
 
     // update password
-    const newUser = await prisma.user.update({
+    const updatedUser = await prisma.user.update({
       where: { id: user.id },
       data: {
         password: bcrypt.hashSync(password),
         updatedAt: new Date()
       },
       select: {
-        id: true
+        id: true,
+        name: true,
+        lastName: true,
+        dni: true,
+        email: true,
+        phoneNumber: true,
+        address: true,
+        birthDate: true,
+        sex: true
       }
     })
 
     // log session
     await prisma.session.create({
       data: {
-        idUser: newUser.id,
+        idUser: updatedUser.id,
         userAgent: String(request.headers.get('user-agent')),
         ip: String(request.headers.get('x-real-ip'))
       }
@@ -55,12 +63,12 @@ export async function PUT (request: NextRequest): Promise<NextResponse> {
 
     // generate autorized token with id
     const token = jwt.generateToken({
-      id: newUser.id
+      id: updatedUser.id
     })
 
     // generate and send response
     const response = NextResponse.json(
-      { token, message: messages.forgot },
+      { token, ...updatedUser },
       { status: StatusCodes.CREATED }
     )
     response.cookies.set('token', token, {

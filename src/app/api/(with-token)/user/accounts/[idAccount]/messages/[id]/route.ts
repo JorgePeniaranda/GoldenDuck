@@ -12,7 +12,7 @@ export async function GET (
   { params: { id } }: { params: { id: string } }
 ): Promise<NextResponse> {
   try {
-    const data = await prisma.account.findFirstOrThrow({
+    const conversation = await prisma.account.findFirstOrThrow({
       where: {
         deleted: false
       },
@@ -72,8 +72,8 @@ export async function GET (
       }
     })
 
-    const conversation = data.messagesFrom
-      .concat(data.messagesTo)
+    const formatedConversation = conversation.messagesFrom
+      .concat(conversation.messagesTo)
       .reduce<any>((acc, value) => {
       return [...acc, value]
     }, [])
@@ -82,7 +82,7 @@ export async function GET (
           new Date(a.date).getTime() - new Date(b.date).getTime()
       )
 
-    return NextResponse.json(conversation, { status: StatusCodes.OK })
+    return NextResponse.json(formatedConversation, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -103,17 +103,35 @@ export async function POST (
     })
 
     // create message
-    await prisma.message.create({
+    const newMessage = await prisma.message.create({
       data: {
         from: Number(idAccount),
         to: Number(id),
         message
+      },
+      select: {
+        id: true,
+        from: true,
+        to: true,
+        message: true,
+        date: true,
+        accountFrom: {
+          select: {
+            user: {
+              select: {
+                name: true,
+                lastName: true
+              }
+            },
+            imgUrl: true
+          }
+        }
       }
     })
 
     // [TO-DO] create notification
 
-    return NextResponse.json(messages.created, { status: StatusCodes.CREATED })
+    return NextResponse.json(newMessage, { status: StatusCodes.CREATED })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -126,7 +144,7 @@ export async function PUT (
   const { message } = await request.json()
 
   try {
-    await prisma.message
+    const updatedMessage = await prisma.message
       .update({
         where: {
           id: Number(id),
@@ -134,13 +152,31 @@ export async function PUT (
         },
         data: {
           message
+        },
+        select: {
+          id: true,
+          from: true,
+          to: true,
+          message: true,
+          date: true,
+          accountFrom: {
+            select: {
+              user: {
+                select: {
+                  name: true,
+                  lastName: true
+                }
+              },
+              imgUrl: true
+            }
+          }
         }
       })
       .catch(() => {
         throw new AuthorizationError(messages.noPermissions)
       })
 
-    return NextResponse.json(messages.updated, { status: StatusCodes.OK })
+    return NextResponse.json(updatedMessage, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -158,14 +194,16 @@ export async function DELETE (
           from: Number(idAccount)
         },
         data: {
-          message: 'messages.deleted'
+          deleted: true
         }
       })
       .catch(() => {
         throw new AuthorizationError(messages.noPermissions)
       })
 
-    return NextResponse.json(messages.deleted, { status: StatusCodes.OK })
+    return new NextResponse(null, {
+      status: StatusCodes.NO_CONTENT
+    })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

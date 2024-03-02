@@ -8,7 +8,7 @@ export async function GET (
   { params: { idAccount } }: { params: { idAccount: string } }
 ): Promise<NextResponse> {
   try {
-    const data = await prisma.account.findUniqueOrThrow({
+    const messages = await prisma.account.findUniqueOrThrow({
       where: {
         id: Number(idAccount),
         deleted: false
@@ -66,7 +66,7 @@ export async function GET (
       }
     })
 
-    return NextResponse.json(data, { status: StatusCodes.OK })
+    return NextResponse.json(messages, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

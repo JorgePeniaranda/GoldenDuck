@@ -15,8 +15,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
   try {
     const { id } = jwt.verifyToken(token)
 
-    // get user data
-    const data = await prisma.user.findUniqueOrThrow({
+    const user = await prisma.user.findUniqueOrThrow({
       where: {
         id,
         deleted: false
@@ -36,7 +35,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
       }
     })
 
-    return NextResponse.json(BigIntToJson(data), { status: StatusCodes.OK })
+    return NextResponse.json(BigIntToJson(user), { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

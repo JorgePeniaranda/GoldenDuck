@@ -17,7 +17,7 @@ export async function GET (
   try {
     const { id } = jwt.verifyToken(token)
 
-    const data = await prisma.account.findUniqueOrThrow({
+    const account = await prisma.account.findUniqueOrThrow({
       where: {
         id: Number(idAccount),
         idUser: id,
@@ -32,7 +32,7 @@ export async function GET (
       }
     })
 
-    return NextResponse.json(BigIntToJson(data), { status: 200 })
+    return NextResponse.json(BigIntToJson(account), { status: 200 })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

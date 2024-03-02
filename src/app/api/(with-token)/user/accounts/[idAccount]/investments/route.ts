@@ -10,7 +10,7 @@ export async function GET (
   { params: { idAccount } }: { params: { idAccount: string } }
 ): Promise<NextResponse> {
   try {
-    const data = await prisma.account.findUniqueOrThrow({
+    const { investments } = await prisma.account.findUniqueOrThrow({
       where: {
         id: Number(idAccount)
       },
@@ -27,7 +27,7 @@ export async function GET (
       }
     })
 
-    return NextResponse.json(BigIntToJson(data.investments), {
+    return NextResponse.json(BigIntToJson(investments), {
       status: StatusCodes.OK
     })
   } catch (error) {
@@ -56,12 +56,19 @@ export async function POST (
     }
 
     // create the investment
-    await prisma.investment.create({
+    const newInvestment = await prisma.investment.create({
       data: {
         idAccount: Number(idAccount),
         amount,
         dateEnd: new Date(String(dateEnd)),
         interest
+      },
+      select: {
+        id: true,
+        amount: true,
+        interest: true,
+        dateEnd: true,
+        date: true
       }
     })
 
@@ -77,7 +84,9 @@ export async function POST (
       }
     })
 
-    return NextResponse.json(messages.created, { status: StatusCodes.CREATED })
+    return NextResponse.json(BigIntToJson(newInvestment), {
+      status: StatusCodes.CREATED
+    })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

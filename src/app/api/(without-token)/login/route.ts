@@ -56,10 +56,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
     })
 
     // generate and send response
-    const response = NextResponse.json(
-      { token, message: messages.login },
-      { status: StatusCodes.OK }
-    )
+    const response = NextResponse.json({ token }, { status: StatusCodes.OK })
 
     response.cookies.set('token', token, {
       httpOnly: true,

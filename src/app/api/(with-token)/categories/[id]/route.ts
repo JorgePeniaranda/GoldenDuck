@@ -4,7 +4,6 @@ import { GenerateErrorResponse } from '@/services/errorService'
 import { role } from '@prisma/client'
 import { verifyRoleOrThrow } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
-import { messages } from '@/const/messages'
 
 export async function GET (
   request: NextRequest,
@@ -12,14 +11,18 @@ export async function GET (
 ): Promise<NextResponse> {
   try {
     // get category
-    const data = await prisma.category.findUniqueOrThrow({
+    const category = await prisma.category.findUniqueOrThrow({
       where: {
         id: Number(id),
         deleted: false
+      },
+      select: {
+        id: true,
+        name: true
       }
     })
 
-    return NextResponse.json(data, { status: 200 })
+    return NextResponse.json(category, { status: 200 })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -41,19 +44,20 @@ export async function PUT (
     })
 
     // update category
-    await prisma.category.update({
+    const updatedCategory = await prisma.category.update({
       where: {
         id: Number(id)
       },
       data: {
         name
+      },
+      select: {
+        id: true,
+        name: true
       }
     })
 
-    return NextResponse.json(
-      { message: messages.updated },
-      { status: StatusCodes.OK }
-    )
+    return NextResponse.json(updatedCategory, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -79,13 +83,16 @@ export async function DELETE (
       },
       data: {
         deleted: true
+      },
+      select: {
+        id: true,
+        name: true
       }
     })
 
-    return NextResponse.json(
-      { message: messages.deleted },
-      { status: StatusCodes.OK }
-    )
+    return new NextResponse(null, {
+      status: StatusCodes.NO_CONTENT
+    })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

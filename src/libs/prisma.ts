@@ -17,7 +17,15 @@ export const prisma = new PrismaClient().$extends({
             dni: Number(data.dni)
           },
           select: {
-            id: true
+            id: true,
+            name: true,
+            lastName: true,
+            dni: true,
+            email: true,
+            phoneNumber: true,
+            address: true,
+            birthDate: true,
+            sex: true
           }
         })
 

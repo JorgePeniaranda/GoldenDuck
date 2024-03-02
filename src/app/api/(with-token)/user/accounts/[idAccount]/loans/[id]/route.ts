@@ -9,7 +9,7 @@ export async function GET (
   { params: { idAccount, id } }: { params: { idAccount: string, id: string } }
 ): Promise<NextResponse> {
   try {
-    const data = await prisma.loan.findUniqueOrThrow({
+    const loan = await prisma.loan.findUniqueOrThrow({
       where: {
         id: Number(id),
         idAccount: Number(idAccount)
@@ -23,7 +23,7 @@ export async function GET (
       }
     })
 
-    return NextResponse.json(BigIntToJson(data), { status: StatusCodes.OK })
+    return NextResponse.json(BigIntToJson(loan), { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

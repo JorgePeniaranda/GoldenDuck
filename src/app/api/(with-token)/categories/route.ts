@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { ConflictError, GenerateErrorResponse } from '@/services/errorService'
-import { verifyRoleOrThrow } from '@/utils'
+import { verifyRole, verifyRoleOrThrow } from '@/utils'
 import { role } from '@prisma/client'
 import { StatusCodes } from 'http-status-codes'
 import { messages } from '@/const/messages'
@@ -12,26 +12,24 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
   )
 
   try {
-    let data
+    let categories
     // check if user is authorized
-    const authorized = await verifyRoleOrThrow([role.ADMIN], token).catch(
-      (error) => {
-        throw error
-      }
-    )
+    const authorized = await verifyRole([role.ADMIN], token).catch((error) => {
+      throw error
+    })
 
     if (authorized) {
       // get categories
-      data = await prisma.category.findMany()
+      categories = await prisma.category.findMany()
     } else {
-      data = await prisma.category.findMany({
+      categories = await prisma.category.findMany({
         where: {
           deleted: false
         }
       })
     }
 
-    return NextResponse.json(data, { status: StatusCodes.OK })
+    return NextResponse.json(categories, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -60,7 +58,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
     }
 
     // create category
-    await prisma.category.create({
+    const newCategory = await prisma.category.create({
       data: {
         name
       },
@@ -70,10 +68,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
       }
     })
 
-    return NextResponse.json(
-      { messages: messages.created },
-      { status: StatusCodes.CREATED }
-    )
+    return NextResponse.json(newCategory, { status: StatusCodes.CREATED })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

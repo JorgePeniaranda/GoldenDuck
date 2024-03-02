@@ -2,14 +2,13 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import { StatusCodes } from 'http-status-codes'
-import { messages } from '@/const/messages'
 
 export async function GET (
   request: NextRequest,
   { params: { id, idAccount } }: { params: { id: string, idAccount: string } }
 ): Promise<NextResponse> {
   try {
-    const data = await prisma.notification.findUniqueOrThrow({
+    const notification = await prisma.notification.findUniqueOrThrow({
       where: {
         id: Number(id),
         idAccount: Number(idAccount)
@@ -20,19 +19,19 @@ export async function GET (
         date: true,
         account: {
           select: {
+            imgUrl: true,
             user: {
               select: {
                 name: true,
                 lastName: true
               }
-            },
-            imgUrl: true
+            }
           }
         }
       }
     })
 
-    return NextResponse.json(data, { status: StatusCodes.OK })
+    return NextResponse.json(notification, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -55,11 +54,23 @@ export async function DELETE (
         id: true,
         message: true,
         date: true,
-        read: true
+        account: {
+          select: {
+            user: {
+              select: {
+                name: true,
+                lastName: true
+              }
+            },
+            imgUrl: true
+          }
+        }
       }
     })
 
-    return NextResponse.json(messages.created, { status: StatusCodes.OK })
+    return new NextResponse(null, {
+      status: StatusCodes.NO_CONTENT
+    })
   } catch (error) {
     return GenerateErrorResponse(error)
   }

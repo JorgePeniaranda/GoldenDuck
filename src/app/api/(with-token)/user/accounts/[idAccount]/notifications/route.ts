@@ -3,7 +3,6 @@ import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { StatusCodes } from 'http-status-codes'
-import { messages } from '@/const/messages'
 
 const jwt = new JWT()
 
@@ -15,7 +14,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
   try {
     const { id } = jwt.verifyToken(token)
 
-    const data = await prisma.user.findUniqueOrThrow({
+    const notifications = await prisma.user.findUniqueOrThrow({
       where: {
         id,
         deleted: false
@@ -67,7 +66,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
       }
     })
 
-    const notifications = data.account.reduce(
+    const formatedNotifications = notifications.account.reduce(
       (acc, value) => {
         return {
           ...acc,
@@ -78,7 +77,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
       { notifications: [] as any, messages: [] as any }
     )
 
-    return NextResponse.json(notifications, { status: StatusCodes.OK })
+    return NextResponse.json(formatedNotifications, { status: StatusCodes.OK })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
@@ -91,14 +90,30 @@ export async function POST (
   const { message } = await request.json()
 
   try {
-    await prisma.notification.create({
+    const newNotification = await prisma.notification.create({
       data: {
         idAccount: Number(idAccount),
         message
+      },
+      select: {
+        id: true,
+        message: true,
+        date: true,
+        account: {
+          select: {
+            user: {
+              select: {
+                name: true,
+                lastName: true
+              }
+            },
+            imgUrl: true
+          }
+        }
       }
     })
 
-    return NextResponse.json(messages.created, { status: StatusCodes.CREATED })
+    return NextResponse.json(newNotification, { status: StatusCodes.CREATED })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
