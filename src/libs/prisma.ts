@@ -1,5 +1,10 @@
+import { messages } from '@/const/messages'
+import { AuthorizationError } from '@/services/errorService'
+import JWT from '@/services/jwtService'
 import { type RegisterForm } from '@/types'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, type role } from '@prisma/client'
+
+const jwt = new JWT()
 
 export const prisma = new PrismaClient().$extends({
   model: {
@@ -36,6 +41,44 @@ export const prisma = new PrismaClient().$extends({
         })
 
         return user
+      },
+      verifyRole: async (authorizedRoles: role[], token: string) => {
+        const { id: userId } = jwt.verifyToken(token)
+
+        const user = await prisma.user.findUniqueOrThrow({
+          where: {
+            id: userId,
+            deleted: false
+          },
+          select: {
+            role: true
+          }
+        })
+
+        if (authorizedRoles.includes(user.role)) {
+          return false
+        }
+
+        return true
+      },
+      verifyRoleOrThrow: async (authorizedRoles: role[], token: string) => {
+        const { id: userId } = jwt.verifyToken(token)
+
+        const user = await prisma.user.findUniqueOrThrow({
+          where: {
+            id: userId,
+            deleted: false
+          },
+          select: {
+            role: true
+          }
+        })
+
+        if (!authorizedRoles.includes(user.role)) {
+          throw new AuthorizationError(messages.noPermissions)
+        }
+
+        return true
       }
     }
   }

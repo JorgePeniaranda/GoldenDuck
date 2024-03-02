@@ -2,7 +2,6 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import { role } from '@prisma/client'
-import { verifyRoleOrThrow } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
 
 export async function GET (request: NextRequest): Promise<NextResponse> {
@@ -12,7 +11,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
 
   try {
     // check if user is authorized
-    await verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
+    await prisma.user.verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
       throw error
     })
 

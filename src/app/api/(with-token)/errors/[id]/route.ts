@@ -2,8 +2,8 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { GenerateErrorResponse } from '@/services/errorService'
 import { role } from '@prisma/client'
-import { verifyRoleOrThrow } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
+import { getRequestData } from '@/utils'
 
 export async function GET (
   request: NextRequest,
@@ -15,7 +15,7 @@ export async function GET (
 
   try {
     // check if user is authorized
-    await verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
+    await prisma.user.verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
       throw error
     })
 
@@ -40,11 +40,12 @@ export async function PUT (
   const token = String(
     request.headers.get('token') ?? request.cookies.get('token')?.value
   )
-  const { name, message } = await request.json()
 
   try {
+    const { name, message } = await getRequestData(request)
+
     // check if user is authorized
-    await verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
+    await prisma.user.verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
       throw error
     })
 
@@ -81,7 +82,7 @@ export async function DELETE (
 
   try {
     // check if user is authorized
-    await verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
+    await prisma.user.verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
       throw error
     })
 
