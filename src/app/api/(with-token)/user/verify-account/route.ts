@@ -18,7 +18,6 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
 
   try {
     const { id } = await getRequestData(request)
-
     const { id: idUser } = jwt.verifyToken(token)
 
     const data = await prisma.account.findUniqueOrThrow({

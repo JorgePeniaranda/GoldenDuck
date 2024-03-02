@@ -85,7 +85,10 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
         await fetch('http://localhost:3000/api/user/verify-account/', {
           method: 'POST',
           body: JSON.stringify({ id: idAccount }),
-          headers: { token }
+          headers: {
+            'Content-Type': 'application/json',
+            token
+          }
         })
           .then(async (response) => {
             if (!response.ok) {
