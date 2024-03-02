@@ -29,6 +29,29 @@ export const BigIntToJson = (param: any): any => {
   )
 }
 
+export const verifyRole = async (
+  authorizedRoles: role[],
+  token: string
+): Promise<boolean> => {
+  const { id: userId } = new JWT().verifyToken(token)
+
+  const user = await prisma.user.findUniqueOrThrow({
+    where: {
+      id: userId,
+      deleted: false
+    },
+    select: {
+      role: true
+    }
+  })
+
+  if (authorizedRoles.includes(user.role)) {
+    return false
+  }
+
+  return true
+}
+
 export const verifyRoleOrThrow = async (
   authorizedRoles: role[],
   token: string
