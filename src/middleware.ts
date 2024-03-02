@@ -87,8 +87,8 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
           body: JSON.stringify({ id: idAccount }),
           headers: { token }
         })
-          .then(async (res) => {
-            if (res.status !== 200) {
+          .then(async (response) => {
+            if (!response.ok) {
               throw new AuthorizationError(messages.noPermissions)
             }
           })
