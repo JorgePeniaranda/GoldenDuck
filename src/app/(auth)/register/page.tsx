@@ -136,14 +136,14 @@ export default function Signin (): JSX.Element {
                   <input type="radio" value={sex.MALE} {...register('sex')} />
                   Masculino
                   <ErrorSpan show={errors.sex !== undefined} align="center">
-                    {errors.sex?.message}
+                    {errors.sex?.message?.toString()}
                   </ErrorSpan>
                 </label>
                 <label>
                   <input type="radio" value={sex.FEMALE} {...register('sex')} />
                   Femenino
                   <ErrorSpan show={errors.sex !== undefined} align="center">
-                    {errors.sex?.message}
+                    {errors.sex?.message?.toString()}
                   </ErrorSpan>
                 </label>
               </div>
