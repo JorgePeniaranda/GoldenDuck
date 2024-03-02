@@ -83,6 +83,7 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
         status: StatusCodes.BAD_REQUEST
       }
     default:
+      console.log(error)
       return {
         type: 'UnknownError',
         message: ErrorsDictionary.UnknownError,

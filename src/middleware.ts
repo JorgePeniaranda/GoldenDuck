@@ -8,18 +8,17 @@ import {
 import { pathToRegexp } from 'path-to-regexp'
 import { ErrorsDictionary } from './const/messages'
 
-const withToken = pathToRegexp(['/dashboard', '/dashboard/:path*'])
+const withToken = pathToRegexp('/dashboard/:path*')
 const withoutToken = pathToRegexp(['/login', '/register', '/forgot'])
 const PublicApi = pathToRegexp([
   '/api',
   '/api/error',
   '/api/verify-user',
-  '/api/code',
   '/api/code/:email*',
   '/api/login',
   '/api/logout'
 ])
-const AccountsPath = pathToRegexp(['/api/user/accounts/:id*'])
+const AccountsPath = pathToRegexp(['/api/user/accounts/:id+'])
 
 export async function middleware (request: NextRequest): Promise<NextResponse> {
   const token = String(
@@ -109,9 +108,7 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
 
 export const config = {
   matcher: [
-    '/api/',
     '/api/:path*',
-    '/dashboard',
     '/dashboard/:path*',
     '/login',
     '/register',
