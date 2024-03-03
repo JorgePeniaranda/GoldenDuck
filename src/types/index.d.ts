@@ -1,5 +1,11 @@
 import { type $Enums } from '@prisma/client'
 
+export interface ErrorInfo {
+  status: number
+  type: string
+  message: string
+}
+
 export interface Movement {
   to: string
   value: number
@@ -147,9 +153,8 @@ export interface Token {
 }
 
 export interface ErrorResponse {
-  status: number
-  type: string
-  message: string
+  status: string
+  error: Omit<ErrorInfo, 'status'>
 }
 
 export type ForgotResponse = Token &

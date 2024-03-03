@@ -1,9 +1,9 @@
 import { ErrorsDictionary } from '@/const/messages'
-import { type ErrorResponse } from '@/types'
+import { type ErrorInfo } from '@/types'
 import { StatusCodes, getReasonPhrase } from 'http-status-codes'
 import { NextResponse } from 'next/server'
 
-export const createErrorFactory = function (name: string): any {
+const createErrorFactory = function (name: string): any {
   return class CustomizedError extends Error {
     constructor (message: string) {
       super(message)
@@ -20,7 +20,7 @@ export const ConflictError = createErrorFactory('ConflictError')
 export const EmailError = createErrorFactory('EmailError')
 export const RequestError = createErrorFactory('RequestError')
 
-export const ErrorsHandler = (error: any): ErrorResponse => {
+export const ErrorsHandler = (error: any): ErrorInfo => {
   switch (error.name) {
     // Prisma ORM errors
     case 'PrismaClientInitializationError':
