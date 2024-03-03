@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs'
 import { randomAlphanumeric } from '@/utils'
 import { validations } from '../validationService'
-import { ErrorsHandler, ValidationError } from '../errorService'
-// import Email from '../emailService'
+import { EmailError, ErrorsHandler, ValidationError } from '../errorService'
+import Email from '../emailService'
 
-// const EmailService = new Email()
+const EmailService = new Email()
 
 export default class ConfirmationCode {
   private readonly code: string
@@ -29,6 +29,11 @@ export default class ConfirmationCode {
       if (process.env.NODE_ENV === 'development') {
         console.log('Código enviado: ' + this.code)
       }
+
+      EmailService.sendCode(email, this.code).catch((e) => {
+        const { message } = ErrorsHandler(e)
+        throw new EmailError(message)
+      })
     } catch (e) {
       const { message } = ErrorsHandler(e)
       console.error('CodeService Error: ' + message)
