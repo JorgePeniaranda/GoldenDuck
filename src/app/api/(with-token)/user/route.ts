@@ -1,6 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { AuthorizationError, GenerateErrorResponse, ValidationError } from '@/services/errorService'
+import {
+  AuthorizationError,
+  GenerateErrorResponse,
+  ValidationError
+} from '@/services/errorService'
 import JWT from '@/services/jwtService'
 import { BigIntToJson, getRequestData } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
@@ -88,9 +92,11 @@ export async function DELETE (request: NextRequest): Promise<NextResponse> {
     const { id } = jwt.verifyToken(token)
 
     // validate password
-    const password = await validations.password.parseAsync(userPassword).catch((error) => {
-      throw new ValidationError(error.errors[0].message)
-    })
+    const password = await validations.password
+      .parseAsync(userPassword)
+      .catch((error) => {
+        throw new ValidationError(error.errors[0].message)
+      })
 
     // check user password
     const user = await prisma.user.findUniqueOrThrow({

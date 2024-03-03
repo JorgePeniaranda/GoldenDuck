@@ -18,31 +18,27 @@ export default class JWT {
     this.tempSecretKey = JWT_TEMP_SECRET
   }
 
+  public generateToken = ({ ...data }): string => {
+    return jwt.sign({ ...data }, this.secretKey, {
+      expiresIn: '30m'
+    })
+  }
+
   public verifyToken = (token: string): jwt.JwtPayload => {
     const decoded = jwt.verify(token, this.secretKey)
     if (typeof decoded === 'string') throw new AuthorizationError(decoded)
     return decoded
   }
 
-  public generateToken = ({ ...data }): string => {
-    const token = jwt.sign({ ...data }, this.secretKey, {
-      expiresIn: '30m'
+  public generateTempToken = ({ ...data }): string => {
+    return jwt.sign({ ...data }, this.tempSecretKey, {
+      expiresIn: '5m'
     })
-
-    return token
   }
 
   public verifyTempToken = (token: string): jwt.JwtPayload => {
     const decoded = jwt.verify(token, this.tempSecretKey)
     if (typeof decoded === 'string') throw new AuthorizationError(decoded)
     return decoded
-  }
-
-  public generateTempToken = ({ ...data }): string => {
-    const token = jwt.sign({ ...data }, this.tempSecretKey, {
-      expiresIn: '5m'
-    })
-
-    return token
   }
 }

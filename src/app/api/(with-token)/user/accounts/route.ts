@@ -42,9 +42,7 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
   }
 }
 
-export async function POST (
-  request: NextRequest
-): Promise<NextResponse> {
+export async function POST (request: NextRequest): Promise<NextResponse> {
   const token = String(
     request.headers.get('token') ?? request.cookies.get('token')?.value
   )
@@ -67,7 +65,9 @@ export async function POST (
       }
     })
 
-    return NextResponse.json(BigIntToJson(newAccount), { status: StatusCodes.CREATED })
+    return NextResponse.json(BigIntToJson(newAccount), {
+      status: StatusCodes.CREATED
+    })
   } catch (error) {
     console.log(error)
     return GenerateErrorResponse(error)
