@@ -1,9 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
-import { GenerateErrorResponse } from '@/services/errorService'
+import { ConflictError, GenerateErrorResponse } from '@/services/errorService'
 import { role } from '@prisma/client'
 import { getRequestData } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
+import { ErrorsDictionary } from '@/const/messages'
 
 export async function GET (
   request: NextRequest,
@@ -43,6 +44,16 @@ export async function PUT (
     await prisma.user.verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
       throw error
     })
+
+    // check if category already exists
+    const checkCategory = await prisma.category.findFirst({
+      where: {
+        name
+      }
+    })
+    if (checkCategory !== null) {
+      throw new ConflictError(ErrorsDictionary.CategoryNotFount)
+    }
 
     // update category
     const updatedCategory = await prisma.category.update({
