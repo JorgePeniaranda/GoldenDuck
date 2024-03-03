@@ -51,8 +51,5 @@ export const registerUser = async (
 export const changePassword = async (
   form: ForgotForm
 ): Promise<AxiosResponse> => {
-  return await AxiosInstance.put<ForgotResponse>('/api/forgot', {
-    email: form.email,
-    password: form.password
-  })
+  return await AxiosInstance.put<ForgotResponse>('/api/forgot', form)
 }
