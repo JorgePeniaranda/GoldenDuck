@@ -24,9 +24,33 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
   switch (error.name) {
     case 'PrismaClientInitializationError':
       return {
-        type: 'ORMError',
+        type: 'ServerError',
         message: ErrorsDictionary.DatabaseConnectionError,
         status: StatusCodes.SERVICE_UNAVAILABLE
+      }
+    case 'PrismaClientKnownRequestError':
+      return {
+        type: 'ORMError',
+        message: ErrorsDictionary.KnownRequestError,
+        status: StatusCodes.INTERNAL_SERVER_ERROR
+      }
+    case 'PrismaClientUnknownRequestError':
+      return {
+        type: 'UnknownORMError',
+        message: ErrorsDictionary.UnknownRequestError,
+        status: StatusCodes.INTERNAL_SERVER_ERROR
+      }
+    case 'PrismaClientRustPanicError':
+      return {
+        type: 'FatalORMError',
+        message: ErrorsDictionary.PanicError,
+        status: StatusCodes.INTERNAL_SERVER_ERROR
+      }
+    case 'PrismaClientValidationError':
+      return {
+        type: 'RequestError',
+        message: ErrorsDictionary.ValidationError,
+        status: StatusCodes.BAD_REQUEST
       }
     case 'JsonWebTokenError':
       return {
