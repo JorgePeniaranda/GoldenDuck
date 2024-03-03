@@ -22,6 +22,7 @@ export const RequestError = createErrorFactory('RequestError')
 
 export const ErrorsHandler = (error: any): ErrorResponse => {
   switch (error.name) {
+    // Prisma ORM errors
     case 'PrismaClientInitializationError':
       return {
         type: 'ServerError',
@@ -52,18 +53,25 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
         message: ErrorsDictionary.ValidationError,
         status: StatusCodes.BAD_REQUEST
       }
+    // JSON Web Token errors
     case 'JsonWebTokenError':
-      return {
-        type: 'TokenError',
-        message: ErrorsDictionary.InvalidToken,
-        status: StatusCodes.UNAUTHORIZED
-      }
     case 'TokenExpiredError':
+    case 'NotBeforeError':
       return {
         type: 'TokenError',
         message: ErrorsDictionary.InvalidToken,
         status: StatusCodes.UNAUTHORIZED
       }
+    // Jose Web Token errors
+    case 'JWTClaimValidationFailed':
+    case 'JWTExpired':
+    case 'JWTInvalid':
+      return {
+        type: 'TokenError',
+        message: ErrorsDictionary.InvalidToken,
+        status: StatusCodes.UNAUTHORIZED
+      }
+    // Custom errors
     case 'ConfigError':
       return {
         type: 'ConfigError',
@@ -106,8 +114,8 @@ export const ErrorsHandler = (error: any): ErrorResponse => {
         message: error.message,
         status: StatusCodes.BAD_REQUEST
       }
+    // Default error
     default:
-      console.log(error)
       return {
         type: 'UnknownError',
         message: ErrorsDictionary.UnknownError,

@@ -1,6 +1,7 @@
 export const ErrorsDictionary = {
   CategoryNotFount: 'La categoría ya existe',
   DatabaseConnectionError: 'Error al conectar con la base de datos',
+  FailedValidationToken: 'El token es invalido',
   IncorrectCode: 'El código es incorrecto',
   IncorrectPassword: 'Contraseña incorrecta',
   InsufficientBalance: 'Saldo insuficiente',
