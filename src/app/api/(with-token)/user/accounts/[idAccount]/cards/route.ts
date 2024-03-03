@@ -52,7 +52,7 @@ export async function POST (
       }
     })
 
-    return NextResponse.json(newCard, { status: StatusCodes.CREATED })
+    return NextResponse.json(BigIntToJson(newCard), { status: StatusCodes.CREATED })
   } catch (error) {
     return GenerateErrorResponse(error)
   }
