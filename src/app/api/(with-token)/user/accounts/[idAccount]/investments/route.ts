@@ -40,7 +40,8 @@ export async function POST (
   { params: { idAccount } }: { params: { idAccount: string } }
 ): Promise<NextResponse> {
   try {
-    const { amount, dateEnd, interest } = await getRequestData(request)
+    const { amount: requestAmount, dateEnd, interest } = await getRequestData(request)
+    const amount = BigInt(String(requestAmount))
 
     // check if the account has enough balance
     const account = await prisma.account.findUniqueOrThrow({
@@ -51,7 +52,7 @@ export async function POST (
         balance: true
       }
     })
-    if (account.balance < BigInt(String(amount))) {
+    if (account.balance < amount) {
       throw new RequestError(ErrorsDictionary.InsufficientBalance)
     }
 
@@ -79,12 +80,15 @@ export async function POST (
       },
       data: {
         balance: {
-          decrement: BigInt(String(amount))
+          decrement: amount
         }
       }
     })
 
-    return NextResponse.json(BigIntToJson(newInvestment), {
+    return NextResponse.json({
+      newBalance: String(account.balance - amount),
+      investment: BigIntToJson(newInvestment)
+    }, {
       status: StatusCodes.CREATED
     })
   } catch (error) {
