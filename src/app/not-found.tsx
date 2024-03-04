@@ -10,12 +10,12 @@ export default function NotFound (): JSX.Element {
       <Navbar />
       <main>
         <section>
-          <article className="w-full h-[calc(100dvh-var(--base-nav-height))] grid place-items-center gap-10 select-none">
-            <figure className="transition hover:scale-110">
-              <InternalLinkText href="/" arialLabel="Go Home">
+          <article className="w-full h-[calc(100dvh-var(--base-nav-height))] flex flex-col justify-center items-center gap-10 select-none">
+            <figure className="transition hover:scale-110 h-3/4">
+              <InternalLinkText href="/" arialLabel="Go Home" className='h-full'>
                 <Image
-                  className="h-3/4"
                   src="/assets/img/designs/404.webp"
+                  className='h-full object-contain'
                   width={500}
                   height={600}
                   alt="404 Página no encontrada"

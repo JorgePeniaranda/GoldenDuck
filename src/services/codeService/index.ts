@@ -19,8 +19,6 @@ export default class ConfirmationCode {
 
   sendCode (email: string): void {
     try {
-      // const code = this.code
-
       const checkEmail = validations.email.safeParse(email)
       if (!checkEmail.success) {
         throw new ValidationError(checkEmail.error.errors[0].message)
