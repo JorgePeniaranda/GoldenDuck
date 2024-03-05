@@ -40,7 +40,11 @@ export async function POST (
   { params: { idAccount } }: { params: { idAccount: string } }
 ): Promise<NextResponse> {
   try {
-    const { amount: requestAmount, dateEnd, interest } = await getRequestData(request)
+    const {
+      amount: requestAmount,
+      dateEnd,
+      interest
+    } = await getRequestData(request)
     const amount = BigInt(String(requestAmount))
 
     // check if the account has enough balance
@@ -85,12 +89,15 @@ export async function POST (
       }
     })
 
-    return NextResponse.json({
-      newBalance: String(account.balance - amount),
-      investment: BigIntToJson(newInvestment)
-    }, {
-      status: StatusCodes.CREATED
-    })
+    return NextResponse.json(
+      {
+        newBalance: String(account.balance - amount),
+        investment: BigIntToJson(newInvestment)
+      },
+      {
+        status: StatusCodes.CREATED
+      }
+    )
   } catch (error) {
     return GenerateErrorResponse(error)
   }
