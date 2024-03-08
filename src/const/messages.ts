@@ -68,7 +68,8 @@ export const ValidationDictionary = {
   },
   birthDate: {
     required: 'La fecha de nacimiento es requerida',
-    invalidType: 'Debe ingresar una fecha válida'
+    invalidType: 'Debe ingresar una fecha válida',
+    invalidAge: 'Debe ser mayor de 18 años'
   },
   sex: {
     required: 'El sexo es requerido',

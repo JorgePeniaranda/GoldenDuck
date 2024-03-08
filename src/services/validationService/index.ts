@@ -80,7 +80,12 @@ export const validations = {
   birthDate: z.coerce.date({
     required_error: ValidationDictionary.birthDate.required,
     invalid_type_error: ValidationDictionary.birthDate.invalidType
-  }),
+  }).refine(date => {
+    const now = new Date()
+    const minAge = 18
+    const minDate = new Date(now.getFullYear() - minAge, now.getMonth(), now.getDate())
+    return date <= minDate
+  }, { message: ValidationDictionary.birthDate.invalidAge }),
   sex: z.enum([$Enums.sex.MALE, $Enums.sex.FEMALE], {
     required_error: ValidationDictionary.sex.required,
     invalid_type_error: ValidationDictionary.sex.invalidType
