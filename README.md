@@ -48,7 +48,7 @@ This project is intended for educational and illustrative purposes only and is n
 1. Clone the repository
 
 ```bash
-git clone https://github.com/JorgePeniaranda/GoldenDuck/
+git clone https://github.com/Lycokat/GoldenDuck/
 ```
 
 <br/>
