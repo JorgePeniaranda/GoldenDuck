@@ -4,6 +4,22 @@
   "private": true,
   "author": "Lycokat",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lycokat/GoldenDuck/issues"
+  },
+  "homepage": "https://github.com/Lycokat/GoldenDuck#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lycokat/GoldenDuck.git"
+  },
+  "keywords": [
+    "nextjs",
+    "react",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">20"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
