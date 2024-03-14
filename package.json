@@ -1,6 +1,7 @@
 {
   "name": "goldenduck",
   "version": "2.0.0",
+  "description": "Online banking platform for money management, investments, and essential service payments.",
   "private": true,
   "author": "Lycokat",
   "license": "MIT",
