@@ -2,6 +2,8 @@
   "name": "goldenduck",
   "version": "2.0.0",
   "private": true,
+  "author": "Lycokat",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
