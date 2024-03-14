@@ -32,6 +32,10 @@ This project is intended for educational and illustrative purposes only and is n
   <img src="https://jestjs.io/img/jest.png" height="40" alt="jest logo"  />
   <img width="12" />
   <img src="https://testing-library.com/img/octopus-64x64.png" height="40" alt="testing-library logo"  />
+  <img src="https://eslint.org/favicon.ico" height="40" alt="eslint logo"  />
+  <img width="12" />
+  <img src="https://standardjs.com/android-chrome-192x192.png" height="40" alt="standardjs logo"  />
+  <img width="12" />
 </div>
 
 ## Requirements to Start GoldenDuck
