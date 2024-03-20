@@ -11,8 +11,6 @@ This project is intended for educational and illustrative purposes only and is n
 ## Technology Stack
 
 <div align="center">
-  <img src="https://www.prisma.io/images/favicon-32x32.png" height="40" alt="prisma logo"  />
-  <img width="12" />
   <img src="https://nextjs.org/favicon.ico" height="40" alt="nextjs logo"  />
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="react logo"  />
