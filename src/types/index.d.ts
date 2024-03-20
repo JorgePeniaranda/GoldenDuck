@@ -1,5 +1,3 @@
-import { type $Enums } from '@prisma/client'
-
 export interface ErrorInfo {
   status: number
   type: string
@@ -28,10 +26,10 @@ export interface User {
   phoneNumber: number | string
   address: string
   birthDate: Date
-  sex: $Enums.sex
+  sex: 'MALE' | 'FEMALE'
   updatedAt: Date
   createdAt: Date
-  role: $Enums.role
+  role: 'ADMIN' | 'SUPPORT' | 'USER'
 }
 
 export interface Account {

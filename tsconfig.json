@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/api/(authorized)/account/cards/.gitkeep"
-  ],
+, "src/services/errorService/indextest"  ],
   "exclude": ["node_modules"]
 }
