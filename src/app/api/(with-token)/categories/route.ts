@@ -1,10 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { ConflictError, GenerateErrorResponse } from '@/services/errorService'
-import { role } from '@prisma/client'
 import { StatusCodes } from 'http-status-codes'
 import { ErrorsDictionary } from '@/const/messages'
 import { getRequestData } from '@/utils'
+import { Role } from '@/types'
 
 export async function GET (request: NextRequest): Promise<NextResponse> {
   const token = String(
@@ -15,12 +15,12 @@ export async function GET (request: NextRequest): Promise<NextResponse> {
     let categories
     // check if user is authorized
     const authorized = await prisma.user
-      .verifyRole([role.ADMIN], token)
+      .verifyRole([Role.ADMIN], token)
       .catch((error) => {
         throw error
       })
 
-    if (authorized) {
+    if (authorized === true) {
       // get categories
       categories = await prisma.category.findMany()
     } else {
@@ -46,7 +46,7 @@ export async function POST (request: NextRequest): Promise<NextResponse> {
     const { name } = await getRequestData(request)
 
     // check if user is authorized
-    await prisma.user.verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
+    await prisma.user.verifyRoleOrThrow([Role.ADMIN], token).catch((error) => {
       throw error
     })
 

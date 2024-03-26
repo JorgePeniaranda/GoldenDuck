@@ -1,10 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
 import { ConflictError, GenerateErrorResponse } from '@/services/errorService'
-import { role } from '@prisma/client'
 import { getRequestData } from '@/utils'
 import { StatusCodes } from 'http-status-codes'
 import { ErrorsDictionary } from '@/const/messages'
+import { Role } from '@/types'
 
 export async function GET (
   request: NextRequest,
@@ -41,7 +41,7 @@ export async function PUT (
     const { name } = await getRequestData(request)
 
     // check if user is authorized
-    await prisma.user.verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
+    await prisma.user.verifyRoleOrThrow([Role.ADMIN], token).catch((error) => {
       throw error
     })
 
@@ -85,7 +85,7 @@ export async function DELETE (
 
   try {
     // check if user is authorized
-    await prisma.user.verifyRoleOrThrow([role.ADMIN], token).catch((error) => {
+    await prisma.user.verifyRoleOrThrow([Role.ADMIN], token).catch((error) => {
       throw error
     })
 

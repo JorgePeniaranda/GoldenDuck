@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
-import { type RegisterForm } from '@/types'
+import { Sex, type RegisterForm } from '@/types'
 import {
   SignUpSchema,
   onSubmitCode,
@@ -17,7 +17,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import ReactCodeInput from 'react-code-input'
 import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
 import useStep from '@/hooks/useStep'
-import { sex } from '@prisma/client'
 
 export default function Signin (): JSX.Element {
   const { step, handleNext, handleBack } = useStep()
@@ -133,14 +132,14 @@ export default function Signin (): JSX.Element {
               </label>
               <div id="sex">
                 <label>
-                  <input type="radio" value={sex.MALE} {...register('sex')} />
+                  <input type="radio" value={Sex.MALE} {...register('sex')} />
                   Masculino
                   <ErrorSpan show={errors.sex !== undefined} align="center">
                     {errors.sex?.message?.toString()}
                   </ErrorSpan>
                 </label>
                 <label>
-                  <input type="radio" value={sex.FEMALE} {...register('sex')} />
+                  <input type="radio" value={Sex.FEMALE} {...register('sex')} />
                   Femenino
                   <ErrorSpan show={errors.sex !== undefined} align="center">
                     {errors.sex?.message?.toString()}

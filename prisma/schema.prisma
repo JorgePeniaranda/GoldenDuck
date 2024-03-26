@@ -3,20 +3,20 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-enum role {
-  ADMIN
-  SUPPORT
-  USER
-}
+// enum role {
+//   ADMIN
+//   SUPPORT
+//   USER
+// }
 
-enum sex {
-  MALE
-  FEMALE
-}
+// enum sex {
+//   MALE
+//   FEMALE
+// }
 
 model User {
   id                Int               @id @default(autoincrement())
@@ -28,11 +28,11 @@ model User {
   password          String
   address           String
   birthDate         DateTime
-  sex               sex
+  sex               String
   updatedAt         DateTime          @default(now())
   createdAt         DateTime          @default(now())
   deleted           Boolean           @default(false)
-  role              role              @default(USER)
+  role              String            @default("admin")
   account           Account[]
   sessions          Session[]
 }

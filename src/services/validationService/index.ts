@@ -5,7 +5,7 @@ import {
   checkPasswordStrong
 } from '../../utils'
 import { z } from 'zod'
-import { $Enums } from '@prisma/client'
+import { Sex } from '../../types/index.d'
 
 export const validations = {
   name: z
@@ -86,7 +86,7 @@ export const validations = {
     const minDate = new Date(now.getFullYear() - minAge, now.getMonth(), now.getDate())
     return date <= minDate
   }, { message: ValidationDictionary.birthDate.invalidAge }),
-  sex: z.enum([$Enums.sex.MALE, $Enums.sex.FEMALE], {
+  sex: z.enum([Sex.MALE, Sex.FEMALE], {
     required_error: ValidationDictionary.sex.required,
     invalid_type_error: ValidationDictionary.sex.invalidType
   })
