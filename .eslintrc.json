@@ -4,9 +4,9 @@
     "es2021": true
   },
   "extends": [
-    "standard-with-typescript",
     "plugin:react/recommended",
-    "plugin:@next/next/recommended"
+    "plugin:@next/next/recommended",
+    "love"
   ],
   "settings": {
     "react": {
@@ -14,6 +14,7 @@
     }
   },
   "parserOptions": {
+    "project": "tsconfig.json",
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
