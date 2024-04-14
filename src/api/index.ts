@@ -1,15 +1,15 @@
 import { AxiosInstance } from '@/libs/axiosInstance'
-import { type AxiosResponse } from 'axios'
 import {
-  type RegisterForm,
-  type LoginForm,
   type CheckUserRequest,
   type ForgotForm,
-  type Token,
-  type ReportError,
+  type ForgotResponse,
+  type LoginForm,
+  type RegisterForm,
   type RegisterResponse,
-  type ForgotResponse
+  type ReportError,
+  type Token
 } from '@/types'
+import { type AxiosResponse } from 'axios'
 
 export const sendError = async ({
   name,
@@ -39,7 +39,7 @@ export const checkCode = async (code: string): Promise<AxiosResponse> => {
 }
 
 export const login = async (form: LoginForm): Promise<AxiosResponse> => {
-  return await AxiosInstance.post<Token>('/api/login', form)
+  return await AxiosInstance.post<Token>('/auth', form)
 }
 
 export const registerUser = async (
