@@ -2,7 +2,7 @@ import React from 'react'
 import InfoCard from '@/components/molecules/cards/stats-card'
 import TablePaymentsCard from '@/components/molecules/cards/table-payments-card'
 import ExpenseChart from '@/components/molecules/charts/expense-chart'
-import { Currency, cardsIcons } from '@/constants/DashboardConst'
+import { Currency, cardsIcons } from '@/constants/components-config/DashboardConst'
 import { type Movement } from '@/types'
 
 interface Props {

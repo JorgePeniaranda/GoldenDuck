@@ -1,5 +1,5 @@
 import { AlertsDictionary } from '@/messages/alerts'
-import Alerts from '@/services/alertService'
+import Alerts from '@/services/alert'
 import { type ForgotForm } from '@/types'
 
 export const onSubmitEmailForm = async (

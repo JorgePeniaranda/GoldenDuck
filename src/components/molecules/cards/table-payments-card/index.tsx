@@ -1,5 +1,5 @@
 import React from 'react'
-import { Currency } from '@/constants/DashboardConst'
+import { Currency } from '@/constants/components-config/DashboardConst'
 import { type Movement } from '@/types'
 import classNames from 'classnames'
 import style from './styles.module.scss'

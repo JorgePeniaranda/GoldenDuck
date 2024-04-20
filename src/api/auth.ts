@@ -1,9 +1,9 @@
 'use server'
 
 import { env } from '@/constants/env'
-import { AxiosInstance } from '@/libs/axiosInstance'
-import { clearToken, getToken, saveToken } from '@/services/tokenService'
-import { type CheckUserRequest, type LoginForm } from '@/types'
+import { AxiosInstance } from '@/libs/axios-instance'
+import { clearToken, getToken, saveToken } from '@/services/token'
+import { type CheckUserForm, type LoginForm } from '@/types'
 import { type LoginResponse } from '@/types/response'
 import { type AxiosResponse } from 'axios'
 
@@ -46,7 +46,7 @@ export async function checkUser ({
   email,
   dni,
   phoneNumber
-}: CheckUserRequest): Promise<AxiosResponse> {
+}: CheckUserForm): Promise<AxiosResponse> {
   return await AxiosInstance.post('/user/find', {
     email,
     dni,

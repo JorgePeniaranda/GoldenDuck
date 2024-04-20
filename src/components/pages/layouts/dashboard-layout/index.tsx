@@ -9,12 +9,12 @@ import ButtonWithPopover, {
 } from '@/components/molecules/buttons/button-with-popover'
 import ProfileButton from '@/components/molecules/buttons/profile-button'
 import NavDisclosure from '@/components/molecules/disclosures/nav-disclosure'
-import { AsideIcons, NavIcons, NavLinks } from '@/constants/DashboardConst'
-import { userContext } from '@/context/userContext'
-import { DashboardUseCase } from '@/useCases/dashboardUseCase'
+import { AsideIcons, NavIcons, NavLinks } from '@/constants/components-config/DashboardConst'
+import { DashboardUseCase } from '@/useCases/dashboard'
 import Image from 'next/image'
 import React, { useContext } from 'react'
 import style from './styles.module.scss'
+import { userContext } from '@/context/user-context'
 
 interface Props {
   children: React.ReactNode

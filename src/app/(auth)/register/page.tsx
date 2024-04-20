@@ -6,15 +6,15 @@ import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import Text from '@/components/atoms/text/Text'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
-import useStep from '@/hooks/useStep'
 import { type RegisterForm } from '@/types'
-import { onSubmitCode, onSubmitData } from '@/useCases/registerUseCase'
+import { onSubmitCode, onSubmitData } from '@/useCases/register'
 import ReactCodeInput from 'react-code-input'
 import { useForm } from 'react-hook-form'
 import style from './styles.module.scss'
 import { RegisterSchema } from '@/schemas/register'
 import { UserEntitySex } from '@/types/entities.d'
 import { zodResolver } from '@hookform/resolvers/zod'
+import useStep from '@/hooks/use-step'
 
 export default function Register (): React.ReactNode {
   const { step, handleNext, handleBack } = useStep()

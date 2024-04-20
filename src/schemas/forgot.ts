@@ -1,5 +1,5 @@
 import { ValidationDictionary } from '@/messages/validations'
-import validations from '@/services/validationService'
+import validations from '@/services/validation'
 import { z } from 'zod'
 
 export const Email = z.object({

@@ -1,6 +1,6 @@
 import { Api } from '@/api'
 import { ErrorsDictionary } from '@/messages/errors'
-import Alerts from '@/services/alertService'
+import Alerts from '@/services/alert'
 import { type RegisterForm } from '@/types'
 
 export async function onSubmitData (

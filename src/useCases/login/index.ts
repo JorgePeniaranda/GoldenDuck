@@ -1,6 +1,6 @@
 import { Api } from '@/api'
 import { AlertsDictionary } from '@/messages/alerts'
-import Alerts from '@/services/alertService'
+import Alerts from '@/services/alert'
 import { type LoginForm } from '@/types'
 
 const onSubmit = async (form: LoginForm): Promise<void> => {
