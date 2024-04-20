@@ -65,6 +65,6 @@ const user = {
 
 export const userContext = createContext(user)
 
-export function UserProvider ({ children }: { children: React.ReactNode }): JSX.Element {
+export function UserProvider ({ children }: { children: React.ReactNode }): React.ReactNode {
   return <userContext.Provider value={user}>{children}</userContext.Provider>
 }

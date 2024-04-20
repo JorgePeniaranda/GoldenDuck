@@ -2,7 +2,7 @@ import React from 'react'
 import Text from '@/components/atoms/text/Text'
 import style from './styles.module.scss'
 
-export default function SedesSection (): JSX.Element {
+export default function SedesSection (): React.ReactNode {
   return (
     <section id="Sedes" className={style.Sedes}>
       <article className={style.text}>

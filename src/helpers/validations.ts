@@ -1,6 +1,11 @@
-export const checkAlphanumeric = (value: string): boolean => /^[a-zA-Z0-9]*$/.test(value)
+export function checkAlphanumeric (value: string): boolean {
+  return /^[a-zA-Z0-9]*$/.test(value)
+}
 
-export const checkOnlyLetters = (value: string): boolean => /^[a-zA-Z]+$/.test(value)
+export function checkOnlyLetters (value: string): boolean {
+  return /^[a-zA-Z]+$/.test(value)
+}
 
-export const checkPasswordStrong = (value: string): boolean =>
-  /^(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^0-9A-Za-z]).{8,72}$/.test(value)
+export function checkPasswordStrong (value: string): boolean {
+  return /^(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^0-9A-Za-z]).{8,72}$/.test(value)
+}

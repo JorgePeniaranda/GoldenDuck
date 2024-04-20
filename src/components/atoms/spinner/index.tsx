@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Spinner (): JSX.Element {
+export default function Spinner (): React.ReactNode {
   return (
     <figure role="status" id="Spinner">
       <svg

@@ -18,7 +18,7 @@ export default function InfoCard ({
   classname,
   icon,
   iconBGColor
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const classes = classNames(style.InfoCard, classname)
   const spanClasses = classNames(
     { [style.positive]: progress > 0 },

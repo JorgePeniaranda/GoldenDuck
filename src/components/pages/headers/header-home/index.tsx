@@ -21,7 +21,7 @@ const TypewriterWords = [
   ' Productividad'
 ]
 
-export default function HomeHeader (): JSX.Element {
+export default function HomeHeader (): React.ReactNode {
   return (
     <header className={style.header}>
       <article className={style.text}>

@@ -21,7 +21,7 @@ export const viewport: Viewport = {
     { media: '(prefers-color-scheme: light)', color: '#f9f7f7' },
     { media: '(prefers-color-scheme: dark)', color: '#1f1f1f' }
   ]
-}
+} as const
 
 export const metadata: Metadata = {
   title: 'Golden Duck',
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   manifest: '/manifest.json',
   publisher: 'Vercel'
-}
+} as const
 
-export default function RootLayout ({ children }: { children: React.ReactNode }): JSX.Element {
+export default function RootLayout ({ children }: { children: React.ReactNode }): React.ReactNode {
   return (
     <html lang="es">
       <body className={Poppins.className}>{children}</body>

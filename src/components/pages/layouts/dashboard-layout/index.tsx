@@ -20,7 +20,7 @@ interface Props {
   children: React.ReactNode
 }
 
-export default function DashboardLayout ({ children }: Props): JSX.Element {
+export default function DashboardLayout ({ children }: Props): React.ReactNode {
   const user = useContext(userContext)
 
   return (

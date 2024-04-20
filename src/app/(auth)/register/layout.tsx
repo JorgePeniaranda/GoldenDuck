@@ -6,9 +6,9 @@ import ContainerWithNavbar from '@/components/pages/container-with-navbar'
 
 export const metadata: Metadata = {
   title: 'Registrarse | Golden Duck'
-}
+} as const
 
-const SignInContainer = ({ children }: { children: React.ReactNode }): JSX.Element => {
+function SignInContainer ({ children }: { children: React.ReactNode }): React.ReactNode {
   return (
     <ContainerWithNavbar className={style.SignIn}>
       <Text tag="h1" size={'2.6rem'} weight="700">
@@ -19,6 +19,6 @@ const SignInContainer = ({ children }: { children: React.ReactNode }): JSX.Eleme
   )
 }
 
-export default function SigninLayout ({ children }: { children: React.ReactNode }): JSX.Element {
+export default function RegisterLayout ({ children }: { children: React.ReactNode }): React.ReactNode {
   return <SignInContainer>{children}</SignInContainer>
 }

@@ -17,9 +17,9 @@ export const ErrorsDictionary = {
   PanicError: 'Error fatal',
   UnknownError: 'Ha ocurrido un error',
   UnknownRequestError: 'Error desconocido',
-  UserAlreadyExists: 'El usuario ya existe',
   UserNotFound: 'Usuario no encontrado',
-  ValidationError: 'Error de validación'
+  ValidationError: 'Error de validación',
+  UserAlreadyExists: 'Ya existe un usuario con esos datos'
 } as const
 
 export const ValidationDictionary = {

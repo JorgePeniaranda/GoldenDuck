@@ -14,7 +14,7 @@ export default function ErrorSpan ({
   show,
   align,
   className
-}: Props): JSX.Element | undefined {
+}: Props): React.ReactNode | undefined {
   const classes = classNames(style.error, className, {
     'text-center': align === 'center',
     'text-start': align === 'left',

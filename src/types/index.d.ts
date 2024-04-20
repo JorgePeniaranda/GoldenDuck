@@ -109,7 +109,7 @@ export interface Transaction {
 
 // forms
 
-export interface CheckUserRequest {
+export interface CheckUserForm {
   email?: string
   dni?: string | number
   phoneNumber?: string | number

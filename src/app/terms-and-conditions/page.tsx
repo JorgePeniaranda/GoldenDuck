@@ -3,7 +3,7 @@ import ContainerWithNavbar from '@/components/pages/container-with-navbar'
 import Text from '@/components/atoms/text/Text'
 import style from './styles.module.scss'
 
-export default function TermsAndConditions (): JSX.Element {
+export default function TermsAndConditions (): React.ReactNode {
   return (
     <ContainerWithNavbar className={style.TermsAndConditions}>
       <Text tag="h1" size={'2rem'}>

@@ -14,7 +14,7 @@ export default function ExternalLinkText ({
   children,
   arialLabel,
   className
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const classes = classNames(className)
 
   return (

@@ -10,7 +10,7 @@ interface Props {
 export default function ProfileButton ({
   src = '/assets/img/misc/default-pfp.webp',
   name
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <div className={style.Profile}>
       <img src={src} width={32} height={32} alt="Profile Picture" />

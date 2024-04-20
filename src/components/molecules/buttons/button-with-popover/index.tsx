@@ -20,7 +20,7 @@ export const ButtonWithPopover = ({
   arialLabel,
   emptyText,
   className
-}: ButtonWithPopoverProps): JSX.Element => {
+}: ButtonWithPopoverProps): React.ReactNode => {
   return (
     <Popover className={style.Popover} aria-label={arialLabel}>
       <Popover.Button className={style.PopoverButton}>{PopoverIcon}</Popover.Button>
@@ -55,7 +55,7 @@ export const CardLinkPopover = ({
   href,
   children,
   className
-}: CardLinkPopoverProps): JSX.Element => {
+}: CardLinkPopoverProps): React.ReactNode => {
   return (
     <InternalLinkText href={href} className={`${style.CardPopover} ${className}`}>
       {children}
@@ -73,7 +73,7 @@ export const CardButtonPopover = ({
   onClick,
   children,
   className
-}: CardButtonPopoverProps): JSX.Element => {
+}: CardButtonPopoverProps): React.ReactNode => {
   return (
     <button onClick={onClick} className={`${style.CardPopover} ${className}`}>
       {children}

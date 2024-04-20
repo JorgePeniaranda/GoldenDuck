@@ -13,7 +13,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import style from './styles.module.scss'
 
-export default function Login (): JSX.Element {
+export default function Login (): React.ReactNode {
   const {
     register,
     handleSubmit,

@@ -72,7 +72,7 @@ const CardsInfo = [
   }
 ]
 
-export default function PossibilitiesSection (): JSX.Element {
+export default function PossibilitiesSection (): React.ReactNode {
   return (
     <section id="Possibilities" className={style.Possibilities}>
       <Text tag="h1" size={'2.3rem'} weight="700">

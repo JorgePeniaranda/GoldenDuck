@@ -4,7 +4,7 @@ import Text from '@/components/atoms/text/Text'
 import Image from 'next/image'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 
-export default function NotFound (): JSX.Element {
+export default function NotFound (): React.ReactNode {
   return (
     <>
       <Navbar />

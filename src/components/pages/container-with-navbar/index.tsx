@@ -13,7 +13,7 @@ export default function ContainerWithNavbar ({
   children,
   className,
   itemsCentered = true
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const classes = classNames(style.Container, className, {
     [style.CenterItems]: itemsCentered
   })

@@ -1,3 +1,4 @@
+import React from 'react'
 import InfoCard from '@/components/molecules/cards/stats-card'
 import TablePaymentsCard from '@/components/molecules/cards/table-payments-card'
 import ExpenseChart from '@/components/molecules/charts/expense-chart'
@@ -16,7 +17,7 @@ export default function MoneyTemplate ({
   earnedMoney,
   spentMoney,
   history
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   return (
     <>
       <div className="flex flex-wrap gap-7">

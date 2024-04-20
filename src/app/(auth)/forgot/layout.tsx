@@ -6,9 +6,9 @@ import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Cambiar contraseña | Golden Duck'
-}
+} as const
 
-const ForgotContainer = ({ children }: { children: React.ReactNode }): JSX.Element => {
+function ForgotContainer ({ children }: { children: React.ReactNode }): React.ReactNode {
   return (
     <main className={style.Forgot}>
       <section>
@@ -24,6 +24,6 @@ const ForgotContainer = ({ children }: { children: React.ReactNode }): JSX.Eleme
   )
 }
 
-export default function ForgotLayout ({ children }: { children: React.ReactNode }): JSX.Element {
+export default function ForgotLayout ({ children }: { children: React.ReactNode }): React.ReactNode {
   return <ForgotContainer>{children}</ForgotContainer>
 }

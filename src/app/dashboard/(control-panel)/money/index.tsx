@@ -4,7 +4,7 @@ import React, { useContext } from 'react'
 import MoneyTemplate from '@/components/templates/dashboard/money'
 import { userContext } from '@/context/userContext'
 
-export default function Money (): JSX.Element {
+export default function Money (): React.ReactNode {
   const user = useContext(userContext)
 
   return (

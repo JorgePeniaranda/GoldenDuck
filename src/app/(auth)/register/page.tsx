@@ -1,5 +1,6 @@
 'use client'
 
+import React, { useState } from 'react'
 import ErrorSpan from '@/components/atoms/text/ErrorSpan'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import Text from '@/components/atoms/text/Text'
@@ -7,14 +8,15 @@ import BaseButton from '@/components/molecules/buttons/base-button'
 import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
 import useStep from '@/hooks/useStep'
 import { type RegisterForm } from '@/types'
-import { RegisterSchema, onSubmitCode, onSubmitData } from '@/useCases/registerUseCase'
-import { zodResolver } from '@hookform/resolvers/zod'
-import React, { useState } from 'react'
+import { onSubmitCode, onSubmitData } from '@/useCases/registerUseCase'
 import ReactCodeInput from 'react-code-input'
 import { useForm } from 'react-hook-form'
 import style from './styles.module.scss'
+import { RegisterSchema } from '@/schemas/register'
+import { UserEntitySex } from '@/types/entities.d'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-export default function Signin (): React.ReactNode {
+export default function Register (): React.ReactNode {
   const { step, handleNext, handleBack } = useStep()
   const [code, setCode] = useState<string>('')
   const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -106,14 +108,14 @@ export default function Signin (): React.ReactNode {
               </label>
               <div id="sex">
                 <label>
-                  <input type="radio" value={sex.MALE} {...register('sex')} />
+                  <input type="radio" value={UserEntitySex.MALE} {...register('sex')} />
                   Masculino
                   <ErrorSpan show={errors.sex !== undefined} align="center">
                     {errors.sex?.message?.toString()}
                   </ErrorSpan>
                 </label>
                 <label>
-                  <input type="radio" value={sex.FEMALE} {...register('sex')} />
+                  <input type="radio" value={UserEntitySex.FEMALE} {...register('sex')} />
                   Femenino
                   <ErrorSpan show={errors.sex !== undefined} align="center">
                     {errors.sex?.message?.toString()}

@@ -9,7 +9,7 @@ import { type AxiosResponse } from 'axios'
 
 /* ---------- checkSession ---------- */ // MARK: checkSession
 export async function checkSession (): Promise<boolean> {
-  const authStatus = await fetch(`${env.API_URL}/auth`, {
+  const authStatus = await fetch(`${env.API_URL.href}/auth`, {
     headers: {
       Authorization: `Bearer ${getToken()}`
     }

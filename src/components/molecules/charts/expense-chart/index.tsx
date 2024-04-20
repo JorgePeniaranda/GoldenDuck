@@ -40,7 +40,7 @@ interface Props {
   className?: string
 }
 
-export default function ExpenseChart ({ className }: Props): JSX.Element {
+export default function ExpenseChart ({ className }: Props): React.ReactNode {
   return (
     <Line
       data={data}

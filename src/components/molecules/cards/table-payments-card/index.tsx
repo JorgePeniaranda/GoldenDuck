@@ -1,3 +1,4 @@
+import React from 'react'
 import { Currency } from '@/constants/DashboardConst'
 import { type Movement } from '@/types'
 import classNames from 'classnames'
@@ -9,7 +10,7 @@ interface Props {
   history: Movement[]
 }
 
-export default function TablePaymentsCard ({ title, classname, history }: Props): JSX.Element {
+export default function TablePaymentsCard ({ title, classname, history }: Props): React.ReactNode {
   const classes = classNames(style.TablePayments, classname)
 
   return (

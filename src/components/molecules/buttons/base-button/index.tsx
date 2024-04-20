@@ -31,7 +31,7 @@ export default function BaseButton ({
   fontColor,
   href,
   loading
-}: Props): JSX.Element {
+}: Props): React.ReactNode {
   const props = {
     className: classNames(style.BaseButton, className, {
       [style.loading]: loading

@@ -5,7 +5,7 @@ interface Props {
   code: string
 }
 
-export default function TemplateCodeEmail ({ code }: Props): JSX.Element {
+export default function TemplateCodeEmail ({ code }: Props): React.ReactNode {
   return (
     <Tailwind>
       <center className="w-full py-1 bg-[#1c1d25]">
