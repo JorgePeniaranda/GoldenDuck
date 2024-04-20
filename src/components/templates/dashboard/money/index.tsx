@@ -2,8 +2,8 @@ import React from 'react'
 import InfoCard from '@/components/molecules/cards/stats-card'
 import TablePaymentsCard from '@/components/molecules/cards/table-payments-card'
 import ExpenseChart from '@/components/molecules/charts/expense-chart'
-import { Currency, cardsIcons } from '@/constants/components-config/DashboardConst'
 import { type Movement } from '@/types'
+import { DashboardConfig } from '@/constants/configurations/Dashboard'
 
 interface Props {
   currentMoney: number
@@ -23,27 +23,27 @@ export default function MoneyTemplate ({
       <div className="flex flex-wrap gap-7">
         <InfoCard
           title="Tu dinero"
-          value={`${Currency}$${currentMoney}`}
+          value={`${DashboardConfig.Currency}$${currentMoney}`}
           progress={10}
           classname="flex-1"
-          icon={cardsIcons.Money.icon}
-          iconBGColor={cardsIcons.Money.color}
+          icon={DashboardConfig.cardsIcons.Money.icon}
+          iconBGColor={DashboardConfig.cardsIcons.Money.color}
         />
         <InfoCard
           title="Tus ganancias"
-          value={`${Currency}$${earnedMoney}`}
+          value={`${DashboardConfig.Currency}$${earnedMoney}`}
           progress={10}
           classname="flex-1"
-          icon={cardsIcons.Graph.icon}
-          iconBGColor={cardsIcons.Graph.color}
+          icon={DashboardConfig.cardsIcons.Graph.icon}
+          iconBGColor={DashboardConfig.cardsIcons.Graph.color}
         />
         <InfoCard
           title="Dinero gastado"
-          value={`${Currency}$${spentMoney}`}
+          value={`${DashboardConfig.Currency}$${spentMoney}`}
           progress={-10}
           classname="flex-1"
-          icon={cardsIcons.Expenses.icon}
-          iconBGColor={cardsIcons.Expenses.color}
+          icon={DashboardConfig.cardsIcons.Expenses.icon}
+          iconBGColor={DashboardConfig.cardsIcons.Expenses.color}
         />
       </div>
       <section className="flex gap-7 mt-7">

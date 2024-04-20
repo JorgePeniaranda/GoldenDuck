@@ -1,8 +1,8 @@
 import React from 'react'
-import { Currency } from '@/constants/components-config/DashboardConst'
 import { type Movement } from '@/types'
 import classNames from 'classnames'
 import style from './styles.module.scss'
+import { DashboardConfig } from '@/constants/configurations/Dashboard'
 
 interface Props {
   title: string
@@ -39,7 +39,7 @@ export default function TablePaymentsCard ({ title, classname, history }: Props)
                   </p>
                 </td>
                 <td>
-                  {Currency}${m.value}
+                  {DashboardConfig.Currency}${m.value}
                 </td>
               </tr>
             )

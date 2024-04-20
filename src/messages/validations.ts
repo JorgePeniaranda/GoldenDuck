@@ -28,7 +28,8 @@ export const ValidationDictionary = {
     required: 'La contraseña es requerida',
     min: 'La contraseña debe tener al menos 8 caracteres',
     max: 'La contraseña debe tener menos de 72 caracteres',
-    strong: 'La contraseña debe tener una mayúscula, una minúscula, un número y un caracter especial',
+    strong:
+      'La contraseña debe tener una mayúscula, una minúscula, un número y un caracter especial',
     invalidType: 'La contraseña debe ser un texto'
   },
   confirmPassword: {

@@ -19,6 +19,10 @@ function SignInContainer ({ children }: { children: React.ReactNode }): React.Re
   )
 }
 
-export default function RegisterLayout ({ children }: { children: React.ReactNode }): React.ReactNode {
+export default function RegisterLayout ({
+  children
+}: {
+  children: React.ReactNode
+}): React.ReactNode {
   return <SignInContainer>{children}</SignInContainer>
 }

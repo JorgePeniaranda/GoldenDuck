@@ -12,7 +12,8 @@ export const ErrorsDictionary = {
   NoEmail: 'No se ha enviado el correo electrónico',
   NoLogged: 'No has iniciado sesión',
   NoPermissions: 'Permisos insuficientes',
-  NoVariableEnv: (variable: string): string => `No se ha encontrado la variable de entorno "${variable}"`,
+  NoVariableEnv: (variable: string): string =>
+    `No se ha encontrado la variable de entorno "${variable}"`,
   PanicError: 'Error fatal',
   UnknownError: 'Ha ocurrido un error',
   UnknownRequestError: 'Error desconocido',

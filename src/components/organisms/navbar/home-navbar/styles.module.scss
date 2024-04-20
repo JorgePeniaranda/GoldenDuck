@@ -29,7 +29,7 @@
   }
   @media (width < 728px) {
     justify-content: space-between;
-    @import '@/constants/HomeConst.scss';
+    @import '@/constants/configurations/home.scss';
     padding-inline: $padding-section;
   }
 }

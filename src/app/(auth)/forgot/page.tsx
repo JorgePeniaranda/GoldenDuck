@@ -7,19 +7,15 @@ import Text from '@/components/atoms/text/Text'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import InsertIconToInput from '@/components/molecules/inputs/insert-icon-to-input'
 import InsertIconToSecretInput from '@/components/molecules/inputs/insert-icon-to-secret-input'
-import { EmailIcon, PasswordIcon } from '@/constants/components-config/ForgotConst'
 import { type ForgotForm } from '@/types'
-import {
-  onSubmitCodeForm,
-  onSubmitEmailForm,
-  onSubmitPasswordForm
-} from '@/useCases/forgot'
+import { onSubmitCodeForm, onSubmitEmailForm, onSubmitPasswordForm } from '@/useCases/forgot'
 import { zodResolver } from '@hookform/resolvers/zod'
 import ReactCodeInput from 'react-code-input'
 import { useForm } from 'react-hook-form'
 import style from './styles.module.scss'
 import { ForgotSchema } from '@/schemas/forgot'
 import useStep from '@/hooks/use-step'
+import { ForgotConfig } from '@/constants/configurations/Forgot'
 
 export default function Forgot (): React.ReactNode {
   const { step, handleNext, handleBack } = useStep()
@@ -42,7 +38,7 @@ export default function Forgot (): React.ReactNode {
         >
           <label>
             Email:
-            <InsertIconToInput icon={EmailIcon}>
+            <InsertIconToInput icon={ForgotConfig.EmailIcon}>
               <input type="text" autoFocus {...EmailForm.register('email')} />
             </InsertIconToInput>
             <ErrorSpan show={EmailForm.formState.errors.email !== undefined} align="center">
@@ -98,7 +94,7 @@ export default function Forgot (): React.ReactNode {
           <label>
             Nueva contraseña:
             <InsertIconToSecretInput
-              icon={PasswordIcon}
+              icon={ForgotConfig.PasswordIcon}
               show={showPasswords}
               setShow={setShowPasswords}
             >
@@ -115,7 +111,7 @@ export default function Forgot (): React.ReactNode {
           <label>
             Confirme su nueva contraseña:
             <InsertIconToSecretInput
-              icon={PasswordIcon}
+              icon={ForgotConfig.PasswordIcon}
               show={showPasswords}
               setShow={setShowPasswords}
             >

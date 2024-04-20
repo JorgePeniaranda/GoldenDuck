@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const Currency = 'ARS'
+const Currency = 'ARS'
 
-export const AsideIcons = {
+const AsideIcons = {
   messages: (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
       <path
@@ -21,7 +21,7 @@ export const AsideIcons = {
   )
 }
 
-export const NavLinks = {
+const NavLinks = {
   panel: [
     { href: '/dashboard', text: 'Tu dinero' },
     { href: '/dashboard/expenses', text: 'Gastos' },
@@ -40,7 +40,7 @@ export const NavLinks = {
   ]
 }
 
-export const NavIcons = {
+const NavIcons = {
   panel: (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
       <path
@@ -67,7 +67,7 @@ export const NavIcons = {
   )
 }
 
-export const cardsIcons = {
+const cardsIcons = {
   Money: {
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -101,4 +101,12 @@ export const cardsIcons = {
     ),
     color: 'oklch(63.68% 0.208 25.33)'
   }
+}
+
+export const DashboardConfig = {
+  Currency,
+  NavLinks,
+  NavIcons,
+  cardsIcons,
+  AsideIcons
 }

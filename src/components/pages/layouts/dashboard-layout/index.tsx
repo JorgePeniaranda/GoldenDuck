@@ -9,12 +9,12 @@ import ButtonWithPopover, {
 } from '@/components/molecules/buttons/button-with-popover'
 import ProfileButton from '@/components/molecules/buttons/profile-button'
 import NavDisclosure from '@/components/molecules/disclosures/nav-disclosure'
-import { AsideIcons, NavIcons, NavLinks } from '@/constants/components-config/DashboardConst'
 import { DashboardUseCase } from '@/useCases/dashboard'
 import Image from 'next/image'
 import React, { useContext } from 'react'
 import style from './styles.module.scss'
 import { userContext } from '@/context/user-context'
+import { DashboardConfig } from '@/constants/configurations/Dashboard'
 
 interface Props {
   children: React.ReactNode
@@ -39,9 +39,21 @@ export default function DashboardLayout ({ children }: Props): React.ReactNode {
         </figure>
         <hr />
         <div className={style.NavContainer}>
-          <NavDisclosure links={NavLinks.panel} category="Panel de control" icon={NavIcons.panel} />
-          <NavDisclosure links={NavLinks.services} category="Servicios" icon={NavIcons.services} />
-          <NavDisclosure links={NavLinks.support} category="Soporte" icon={NavIcons.support} />
+          <NavDisclosure
+            links={DashboardConfig.NavLinks.panel}
+            category="Panel de control"
+            icon={DashboardConfig.NavIcons.panel}
+          />
+          <NavDisclosure
+            links={DashboardConfig.NavLinks.services}
+            category="Servicios"
+            icon={DashboardConfig.NavIcons.services}
+          />
+          <NavDisclosure
+            links={DashboardConfig.NavLinks.support}
+            category="Soporte"
+            icon={DashboardConfig.NavIcons.support}
+          />
         </div>
       </nav>
       <aside className={style.DashboardAside}>
@@ -53,7 +65,7 @@ export default function DashboardLayout ({ children }: Props): React.ReactNode {
         </article>
         <div className={style.ButtonsAside}>
           <ButtonWithPopover
-            PopoverIcon={AsideIcons.messages}
+            PopoverIcon={DashboardConfig.AsideIcons.messages}
             className={style.MessagesButtonContainer}
             arialLabel="Mensajes"
             emptyText="No hay nuevos mensajes"
@@ -87,7 +99,7 @@ export default function DashboardLayout ({ children }: Props): React.ReactNode {
             })}
           </ButtonWithPopover>
           <ButtonWithPopover
-            PopoverIcon={AsideIcons.notifications}
+            PopoverIcon={DashboardConfig.AsideIcons.notifications}
             className={style.NotificationsButtonContainer}
             arialLabel="Notificaciones"
             emptyText="No hay notificaciones"

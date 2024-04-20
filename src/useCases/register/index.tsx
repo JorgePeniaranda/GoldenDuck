@@ -3,10 +3,7 @@ import { ErrorsDictionary } from '@/messages/errors'
 import Alerts from '@/services/alert'
 import { type RegisterForm } from '@/types'
 
-export async function onSubmitData (
-  form: RegisterForm,
-  callback?: () => void
-): Promise<void> {
+export async function onSubmitData (form: RegisterForm, callback?: () => void): Promise<void> {
   const userExists = await Api.user.findUser({
     dni: form.dni,
     email: form.email,

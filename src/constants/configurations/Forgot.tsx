@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const EmailIcon = (
+const EmailIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
     <path
       fill="currentColor"
@@ -9,7 +9,7 @@ export const EmailIcon = (
   </svg>
 )
 
-export const PasswordIcon = (
+const PasswordIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
     <path
       fill="currentColor"
@@ -19,3 +19,8 @@ export const PasswordIcon = (
     />
   </svg>
 )
+
+export const ForgotConfig = {
+  EmailIcon,
+  PasswordIcon
+}
