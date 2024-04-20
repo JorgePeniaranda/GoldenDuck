@@ -1,10 +1,10 @@
 'use client'
 
-import React from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import style from './styles.module.scss'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import { Popover, Transition } from '@headlessui/react'
 import classNames from 'classnames'
+import React from 'react'
+import style from './styles.module.scss'
 
 interface ButtonWithPopoverProps {
   PopoverIcon: React.ReactNode
@@ -61,10 +61,31 @@ export const CardLinkPopover = ({
   return (
     <InternalLinkText
       href={href}
-      className={`${style.CardLinkPopover} ${className}`}
+      className={`${style.CardPopover} ${className}`}
     >
       {children}
     </InternalLinkText>
+  )
+}
+
+interface CardButtonPopoverProps {
+  onClick: () => void
+  children: React.ReactNode
+  className?: string
+}
+
+export const CardButtonPopover = ({
+  onClick,
+  children,
+  className
+}: CardButtonPopoverProps): JSX.Element => {
+  return (
+    <button
+      onClick={onClick}
+      className={`${style.CardPopover} ${className}`}
+    >
+      {children}
+    </button>
   )
 }
 

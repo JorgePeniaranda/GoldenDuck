@@ -1,6 +1,6 @@
-import React from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Poppins as PoppinsFont } from 'next/font/google'
+import React from 'react'
 import './globals.css'
 
 const Poppins = PoppinsFont({

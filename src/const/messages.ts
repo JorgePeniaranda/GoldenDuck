@@ -20,7 +20,7 @@ export const ErrorsDictionary = {
   UserAlreadyExists: 'El usuario ya existe',
   UserNotFound: 'Usuario no encontrado',
   ValidationError: 'Error de validación'
-}
+} as const
 
 export const ValidationDictionary = {
   name: {
@@ -75,10 +75,10 @@ export const ValidationDictionary = {
     required: 'El sexo es requerido',
     invalidType: 'Debe ingresar una opción válida'
   }
-}
+} as const
 
 export const AlertsDictionary = {
   LoginSuccess: 'Ha ingresado exitosamente',
   RegisterSuccess: 'Usuario creado con exito',
   PasswordChanged: 'Contraseña cambiada con éxito'
-}
+} as const

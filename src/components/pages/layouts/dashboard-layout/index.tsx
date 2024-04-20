@@ -1,18 +1,20 @@
 'use client'
 
-import style from './styles.module.scss'
+import CurrentLocation from '@/components/atoms/text/CurrentLocation'
 import Text from '@/components/atoms/text/Text'
 import Breadcrumb from '@/components/molecules/breadcrumb'
-import Image from 'next/image'
-import React, { useContext } from 'react'
 import ButtonWithPopover, {
+  CardButtonPopover,
   CardLinkPopover
 } from '@/components/molecules/buttons/button-with-popover'
 import ProfileButton from '@/components/molecules/buttons/profile-button'
 import NavDisclosure from '@/components/molecules/disclosures/nav-disclosure'
 import { AsideIcons, NavIcons, NavLinks } from '@/const/DashboardConst'
-import CurrentLocation from '@/components/atoms/text/CurrentLocation'
 import { userContext } from '@/context/userContext'
+import onLogout from '@/useCases/dashboardUseCase'
+import Image from 'next/image'
+import React, { useContext } from 'react'
+import style from './styles.module.scss'
 
 interface Props {
   children: React.ReactNode
@@ -140,9 +142,9 @@ export default function DashboardLayout ({ children }: Props): JSX.Element {
             <CardLinkPopover href="/dashboard/" className={style.ProfileButton}>
               Configuración
             </CardLinkPopover>
-            <CardLinkPopover href="/" className={style.ProfileButton}>
+            <CardButtonPopover onClick={onLogout} className={style.ProfileButton}>
               Cerrar Sesión
-            </CardLinkPopover>
+            </CardButtonPopover>
           </ButtonWithPopover>
         </div>
       </aside>

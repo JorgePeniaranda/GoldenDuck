@@ -1,25 +1,24 @@
 'use client'
 
-import React, { useState } from 'react'
-import style from './styles.module.scss'
+import ErrorSpan from '@/components/atoms/text/ErrorSpan'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import Text from '@/components/atoms/text/Text'
+import BaseButton from '@/components/molecules/buttons/base-button'
+import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
+import useStep from '@/hooks/useStep'
 import { type RegisterForm } from '@/types'
 import {
-  SignUpSchema,
+  RegisterSchema,
   onSubmitCode,
   onSubmitData
 } from '@/useCases/registerUseCase'
-import Text from '@/components/atoms/text/Text'
-import BaseButton from '@/components/molecules/buttons/base-button'
-import ErrorSpan from '@/components/atoms/text/ErrorSpan'
-import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import React, { useState } from 'react'
 import ReactCodeInput from 'react-code-input'
-import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
-import useStep from '@/hooks/useStep'
-import { sex } from '@prisma/client'
+import { useForm } from 'react-hook-form'
+import style from './styles.module.scss'
 
-export default function Signin (): JSX.Element {
+export default function Signin (): React.ReactNode {
   const { step, handleNext, handleBack } = useStep()
   const [code, setCode] = useState<string>('')
   const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -29,7 +28,7 @@ export default function Signin (): JSX.Element {
     watch,
     formState: { errors, isSubmitting }
   } = useForm<RegisterForm>({
-    resolver: zodResolver(SignUpSchema)
+    resolver: zodResolver(RegisterSchema)
   })
 
   return (

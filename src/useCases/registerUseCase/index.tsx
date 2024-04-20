@@ -1,16 +1,15 @@
-import { type RegisterForm } from '@/types'
-import { validations } from '@/services/validationService'
-import { z } from 'zod'
+import { AlertsDictionary, ErrorsDictionary } from '@/const/messages'
 import Alerts from '@/services/alertService'
 import {
   ErrorsHandler,
   RequestError,
   ValidationError
 } from '@/services/errorService'
-import { checkCode, checkUser, generateCode, registerUser } from '@/api'
-import { AlertsDictionary, ErrorsDictionary } from '@/const/messages'
+import { validations } from '@/services/validationService'
+import { type RegisterForm } from '@/types'
+import { z } from 'zod'
 
-export const SignUpSchema = z.object({
+export const RegisterSchema = z.object({
   name: validations.name,
   lastName: validations.lastName,
   dni: validations.dni,
@@ -27,15 +26,7 @@ export const onSubmitData = async (
   callback?: () => void
 ): Promise<void> => {
   try {
-    await checkUser({ email, dni, phoneNumber })
-      .then(() => {
-        throw new ValidationError(ErrorsDictionary.UserAlreadyExists)
-      })
-      .catch((error) => {
-        if (error.response.status !== 404) {
-          throw new RequestError(error.response.data.error.message)
-        }
-      })
+    const data = await checkUser({ email, dni, phoneNumber })
 
     await generateCode(email).catch((error) => {
       throw new RequestError(error.response.data.error.message)

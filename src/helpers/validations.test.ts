@@ -2,7 +2,7 @@ import {
   checkAlphanumeric,
   checkOnlyLetters,
   checkPasswordStrong
-} from '.'
+} from './validations'
 
 describe('Check Alphanumeric', () => {
   it('checkAlphanumeric should be a function', () => {
