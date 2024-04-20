@@ -12,16 +12,7 @@ interface Props {
   yPadding?: string
   xPadding?: string
   backgroundColor?: string
-  fontWeight?:
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
+  fontWeight?: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
   fontSize?: string
   fontColor?: string
   href?: string

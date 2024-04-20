@@ -1,5 +1,4 @@
 import Swal from 'sweetalert2'
-import { ErrorsHandler } from '../errorService'
 
 const Alerts = {
   success: (message: string, then?: () => void) => {
@@ -11,9 +10,8 @@ const Alerts = {
       .then(() => {
         if (typeof then === 'function') then()
       })
-      .catch((error) => {
-        const { message } = ErrorsHandler(error)
-        console.error('AlertService Error: ' + message)
+      .catch(error => {
+        console.error('AlertService Error: ' + error)
       })
   },
   error: (message: string, then?: () => void) => {
@@ -25,9 +23,8 @@ const Alerts = {
       .then(() => {
         if (typeof then === 'function') then()
       })
-      .catch((error) => {
-        const { message } = ErrorsHandler(error)
-        console.error('AlertService Error: ' + message)
+      .catch(error => {
+        console.error('AlertService Error: ' + error)
       })
   },
   warning: (message: string, then?: () => void) => {
@@ -39,9 +36,8 @@ const Alerts = {
       .then(() => {
         if (typeof then === 'function') then()
       })
-      .catch((error) => {
-        const { message } = ErrorsHandler(error)
-        console.error('AlertService Error: ' + message)
+      .catch(error => {
+        console.error('AlertService Error: ' + error)
       })
   },
   info: (message: string, then?: () => void) => {
@@ -53,9 +49,8 @@ const Alerts = {
       .then(() => {
         if (typeof then === 'function') then()
       })
-      .catch((error) => {
-        const { message } = ErrorsHandler(error)
-        console.error('AlertService Error: ' + message)
+      .catch(error => {
+        console.error('AlertService Error: ' + error)
       })
   },
   question: (message: string, then?: () => void) => {
@@ -67,11 +62,10 @@ const Alerts = {
       .then(() => {
         if (typeof then === 'function') then()
       })
-      .catch((error) => {
-        const { message } = ErrorsHandler(error)
-        console.error('AlertService Error: ' + message)
+      .catch(error => {
+        console.error('AlertService Error: ' + error)
       })
   }
-}
+} as const
 
 export default Alerts

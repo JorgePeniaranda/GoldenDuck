@@ -62,13 +62,7 @@ export default function Slider ({ CardsInfo }: Props): JSX.Element {
     <section className={style.sliderContainer}>
       <SliderSlick {...settingsSlider}>
         {CardsInfo.map((card, index) => {
-          return (
-            <ContentWithTitleCard
-              key={index}
-              Logo={card.Logo}
-              text={card.text}
-            />
-          )
+          return <ContentWithTitleCard key={index} Logo={card.Logo} text={card.text} />
         })}
       </SliderSlick>
     </section>

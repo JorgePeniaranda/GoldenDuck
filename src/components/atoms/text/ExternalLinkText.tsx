@@ -18,13 +18,7 @@ export default function ExternalLinkText ({
   const classes = classNames(className)
 
   return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={arialLabel}
-      className={classes}
-    >
+    <Link href={href} target="_blank" rel="noreferrer" aria-label={arialLabel} className={classes}>
       {children}
     </Link>
   )

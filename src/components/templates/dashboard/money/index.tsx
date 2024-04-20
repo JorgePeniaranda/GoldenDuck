@@ -1,8 +1,7 @@
-import React from 'react'
 import InfoCard from '@/components/molecules/cards/stats-card'
 import TablePaymentsCard from '@/components/molecules/cards/table-payments-card'
-import { Currency, cardsIcons } from '@/const/DashboardConst'
 import ExpenseChart from '@/components/molecules/charts/expense-chart'
+import { Currency, cardsIcons } from '@/constants/DashboardConst'
 import { type Movement } from '@/types'
 
 interface Props {
@@ -51,11 +50,7 @@ export default function MoneyTemplate ({
           <h2 className="font-medium text-lg">Registro Semanal</h2>
           <ExpenseChart className="py-6 px-4" />
         </article>
-        <TablePaymentsCard
-          history={history}
-          title="Ultimos Movimientos"
-          classname="flex-1"
-        />
+        <TablePaymentsCard history={history} title="Ultimos Movimientos" classname="flex-1" />
       </section>
     </>
   )

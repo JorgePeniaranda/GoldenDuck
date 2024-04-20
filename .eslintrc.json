@@ -3,11 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "plugin:react/recommended",
-    "plugin:@next/next/recommended",
-    "love"
-  ],
+  "extends": ["plugin:react/recommended", "plugin:@next/next/recommended", "love"],
   "settings": {
     "react": {
       "version": "detect"
@@ -20,6 +16,7 @@
   },
   "plugins": ["react"],
   "rules": {
-    "@typescript-eslint/no-misused-promises": "off"
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-namespace": "off"
   }
 }

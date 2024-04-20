@@ -8,12 +8,7 @@ export default function AppMobileSection (): JSX.Element {
     <article id="AppMobile" className={style.AppMobile}>
       <figure className={style.phoneContainer}>
         <div className={style.phone}>
-          <Image
-            src="/assets/img/mockups/phone.webp"
-            width={472}
-            height={720}
-            alt="phone"
-          />
+          <Image src="/assets/img/mockups/phone.webp" width={472} height={720} alt="phone" />
 
           <picture>
             <source
@@ -41,16 +36,10 @@ export default function AppMobileSection (): JSX.Element {
           ¡Tenemos una app para Móvil!
         </Text>
         <Text size={'1.25rem'}>
-          Descarga GoldenDuck en tu celular y maneja tu dinero con un 200% de
-          eficiencia, lleva tu cartera online a donde sea que vayas para pagar
-          servicios o incluso tomar un café.
+          Descarga GoldenDuck en tu celular y maneja tu dinero con un 200% de eficiencia, lleva tu
+          cartera online a donde sea que vayas para pagar servicios o incluso tomar un café.
         </Text>
-        <Image
-          src="/assets/img/misc/qr-mobile-app.webp"
-          width={225}
-          height={225}
-          alt="AppQR"
-        />
+        <Image src="/assets/img/misc/qr-mobile-app.webp" width={225} height={225} alt="AppQR" />
       </article>
     </article>
   )

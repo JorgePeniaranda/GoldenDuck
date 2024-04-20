@@ -22,7 +22,7 @@ describe('Login valid form', () => {
 
   it('must have a valid inputs', () => {
     const component = render(<Login />)
-    inputs.forEach((input) => {
+    inputs.forEach(input => {
       const inputElement = component.getByPlaceholderText(input.placeholder)
       expect(inputElement.tagName).toBe('INPUT')
       expect(inputElement.getAttribute('type')).toBe(input.type)

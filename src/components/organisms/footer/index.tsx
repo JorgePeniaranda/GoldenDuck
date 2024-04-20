@@ -8,35 +8,19 @@ import Text from '@/components/atoms/text/Text'
 export default function Footer (): JSX.Element {
   return (
     <footer className={styles.footer}>
-      <Image
-        src="/assets/img/logos/lycokat.webp"
-        width={150}
-        height={150}
-        alt="Lycokat Logo"
-      />
+      <Image src="/assets/img/logos/lycokat.webp" width={150} height={150} alt="Lycokat Logo" />
       <Text size={'0.8rem'}>
         F
-        <TypewriterText
-          words={['ortuna y seguridad, en un solo lugar']}
-          cursor={false}
-        />
+        <TypewriterText words={['ortuna y seguridad, en un solo lugar']} cursor={false} />
       </Text>
       <div className={styles.SocialMedia}>
         <ExternalLinkText
           href="https://www.facebook.com/profile.php?id=100081120383944"
           arialLabel="Facebook"
         >
-          <Image
-            src="/assets/img/logos/Facebook.webp"
-            width={50}
-            height={50}
-            alt="Facebook logo"
-          />
+          <Image src="/assets/img/logos/Facebook.webp" width={50} height={50} alt="Facebook logo" />
         </ExternalLinkText>
-        <ExternalLinkText
-          href="https://www.instagram.com/lycokat"
-          arialLabel="Instagram"
-        >
+        <ExternalLinkText href="https://www.instagram.com/lycokat" arialLabel="Instagram">
           <Image
             src="/assets/img/logos/Instagram.webp"
             width={50}
@@ -45,34 +29,13 @@ export default function Footer (): JSX.Element {
           />
         </ExternalLinkText>
         <ExternalLinkText href="mailto:lycokat.co@gmail.Com" arialLabel="Email">
-          <Image
-            src="/assets/img/logos/Mail.webp"
-            width={50}
-            height={50}
-            alt="Email logo"
-          />
+          <Image src="/assets/img/logos/Mail.webp" width={50} height={50} alt="Email logo" />
         </ExternalLinkText>
-        <ExternalLinkText
-          href="https://www.linkedin.com/in/LycoKat"
-          arialLabel="Linkedin"
-        >
-          <Image
-            src="/assets/img/logos/Linkedin.webp"
-            width={50}
-            height={50}
-            alt="Linkedin logo"
-          />
+        <ExternalLinkText href="https://www.linkedin.com/in/LycoKat" arialLabel="Linkedin">
+          <Image src="/assets/img/logos/Linkedin.webp" width={50} height={50} alt="Linkedin logo" />
         </ExternalLinkText>
-        <ExternalLinkText
-          href="https://twitter.com/lycokat"
-          arialLabel="Twitter"
-        >
-          <Image
-            src="/assets/img/logos/Twitter.webp"
-            width={50}
-            height={50}
-            alt="Twitter logo"
-          />
+        <ExternalLinkText href="https://twitter.com/lycokat" arialLabel="Twitter">
+          <Image src="/assets/img/logos/Twitter.webp" width={50} height={50} alt="Twitter logo" />
         </ExternalLinkText>
       </div>
       <Text tag="small" size={'.6rem'} weight="300">

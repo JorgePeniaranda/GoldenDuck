@@ -1,14 +1,14 @@
 'use client'
 
-import React, { useState } from 'react'
-import style from './styles.module.scss'
-import InternalLinkText from '@/components/atoms/text/InternalLinkText'
-import InsertIconToInput from '@/components/molecules/inputs/insert-icon-to-input'
-import { EmailIcon, PasswordIcon } from '@/const/ForgotConst'
 import ErrorSpan from '@/components/atoms/text/ErrorSpan'
+import InternalLinkText from '@/components/atoms/text/InternalLinkText'
+import Text from '@/components/atoms/text/Text'
 import BaseButton from '@/components/molecules/buttons/base-button'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
+import InsertIconToInput from '@/components/molecules/inputs/insert-icon-to-input'
+import InsertIconToSecretInput from '@/components/molecules/inputs/insert-icon-to-secret-input'
+import { EmailIcon, PasswordIcon } from '@/constants/ForgotConst'
+import useStep from '@/hooks/useStep'
+import { type ForgotForm } from '@/types'
 import {
   ForgotEmailSchema,
   ForgotPasswordSchema,
@@ -16,11 +16,11 @@ import {
   onSubmitEmailForm,
   onSubmitPasswordForm
 } from '@/useCases/forgotUseCase'
-import { type ForgotForm } from '@/types'
-import Text from '@/components/atoms/text/Text'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import ReactCodeInput from 'react-code-input'
-import InsertIconToSecretInput from '@/components/molecules/inputs/insert-icon-to-secret-input'
-import useStep from '@/hooks/useStep'
+import { useForm } from 'react-hook-form'
+import style from './styles.module.scss'
 
 export default function Forgot (): JSX.Element {
   const { step, handleNext, handleBack } = useStep()
@@ -37,7 +37,7 @@ export default function Forgot (): JSX.Element {
     <>
       {step === 0 && (
         <form
-          onSubmit={EmailForm.handleSubmit(async (form) => {
+          onSubmit={EmailForm.handleSubmit(async form => {
             await onSubmitEmailForm(form, handleNext)
           })}
         >
@@ -46,10 +46,7 @@ export default function Forgot (): JSX.Element {
             <InsertIconToInput icon={EmailIcon}>
               <input type="text" autoFocus {...EmailForm.register('email')} />
             </InsertIconToInput>
-            <ErrorSpan
-              show={EmailForm.formState.errors.email !== undefined}
-              align="center"
-            >
+            <ErrorSpan show={EmailForm.formState.errors.email !== undefined} align="center">
               {EmailForm.formState.errors.email?.message}
             </ErrorSpan>
           </label>
@@ -64,15 +61,14 @@ export default function Forgot (): JSX.Element {
       )}
       {step === 1 && (
         <form
-          onSubmit={EmailForm.handleSubmit(async (form) => {
+          onSubmit={EmailForm.handleSubmit(async form => {
             await onSubmitCodeForm(form, code, handleNext)
           })}
           className={style.ConfirmUserEmail}
         >
           <Text>
-            Compruebe el correo <span>{EmailForm.watch('email')}</span> para
-            encontrar el codigo de verificación, recuerda que puede encontrarse
-            en {'"spam"'}
+            Compruebe el correo <span>{EmailForm.watch('email')}</span> para encontrar el codigo de
+            verificación, recuerda que puede encontrarse en {'"spam"'}
           </Text>
           <ReactCodeInput
             type="text"
@@ -80,7 +76,7 @@ export default function Forgot (): JSX.Element {
             inputMode="email"
             fields={6}
             value={code}
-            onChange={(e) => {
+            onChange={e => {
               setcode(e)
             }}
             autoFocus
@@ -96,7 +92,7 @@ export default function Forgot (): JSX.Element {
       )}
       {step === 2 && (
         <form
-          onSubmit={PasswordForm.handleSubmit(async (form) => {
+          onSubmit={PasswordForm.handleSubmit(async form => {
             await onSubmitPasswordForm(form, EmailForm.watch('email'))
           })}
         >
@@ -114,10 +110,7 @@ export default function Forgot (): JSX.Element {
               />
             </InsertIconToSecretInput>
           </label>
-          <ErrorSpan
-            show={PasswordForm.formState.errors.password !== undefined}
-            align="center"
-          >
+          <ErrorSpan show={PasswordForm.formState.errors.password !== undefined} align="center">
             {PasswordForm.formState.errors.password?.message}
           </ErrorSpan>
           <label>

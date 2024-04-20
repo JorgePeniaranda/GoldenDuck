@@ -1,4 +1,4 @@
-import { env } from '@/const/env'
+import { env } from '@/constants/env'
 import axios from 'axios'
 
 export const AxiosInstance = axios.create({

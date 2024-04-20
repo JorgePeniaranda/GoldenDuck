@@ -1,11 +1,7 @@
-import { changePassword, checkCode, generateCode } from '@/api'
-import { AlertsDictionary, ValidationDictionary } from '@/const/messages'
+import { changePassword, checkCode, generateCode } from '@/api/auth'
+import { AlertsDictionary, ValidationDictionary } from '@/constants/messages'
 import Alerts from '@/services/alertService'
-import {
-  ErrorsHandler,
-  RequestError,
-  ValidationError
-} from '@/services/errorService'
+import { ErrorsHandler, RequestError, ValidationError } from '@/services/errorService'
 import validations from '@/services/validationService'
 import { type ForgotForm } from '@/types'
 import { z } from 'zod'
@@ -16,7 +12,7 @@ export const ForgotSchema = z
     password: validations.password,
     confirmPassword: validations.confirmPassword
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine(data => data.password === data.confirmPassword, {
     message: ValidationDictionary.confirmPassword.match,
     path: ['confirmPassword']
   })
@@ -30,7 +26,7 @@ export const ForgotPasswordSchema = z
     password: validations.password,
     confirmPassword: validations.confirmPassword
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine(data => data.password === data.confirmPassword, {
     message: ValidationDictionary.confirmPassword.match,
     path: ['confirmPassword']
   })
@@ -40,7 +36,7 @@ export const onSubmitEmailForm = async (
   callback?: () => void
 ): Promise<void> => {
   try {
-    await generateCode(form.email).catch((error) => {
+    await generateCode(form.email).catch(error => {
       throw new RequestError(error.response.data.error.message)
     })
 
@@ -57,7 +53,7 @@ export const onSubmitCodeForm = async (
   callback?: () => void
 ): Promise<void> => {
   try {
-    await checkCode(code).catch((error) => {
+    await checkCode(code).catch(error => {
       throw new RequestError(error.response.data.error.message)
     })
 
@@ -68,12 +64,9 @@ export const onSubmitCodeForm = async (
   }
 }
 
-export const onSubmitPasswordForm = async (
-  form: ForgotForm,
-  email: string
-): Promise<void> => {
+export const onSubmitPasswordForm = async (form: ForgotForm, email: string): Promise<void> => {
   try {
-    await changePassword({ ...form, email }).catch((error) => {
+    await changePassword({ ...form, email }).catch(error => {
       throw new ValidationError(error.response.data.error.message)
     })
 

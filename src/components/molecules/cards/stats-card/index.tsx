@@ -34,9 +34,7 @@ export default function InfoCard ({
           <span className={spanClasses}>{Math.abs(progress)}</span> desde ayer
         </p>
       </article>
-      {icon !== undefined && (
-        <figure style={{ backgroundColor: iconBGColor }}>{icon}</figure>
-      )}
+      {icon !== undefined && <figure style={{ backgroundColor: iconBGColor }}>{icon}</figure>}
     </section>
   )
 }

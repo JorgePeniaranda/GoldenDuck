@@ -38,11 +38,7 @@ export const metadata: Metadata = {
   publisher: 'Vercel'
 }
 
-export default function RootLayout ({
-  children
-}: {
-  children: React.ReactNode
-}): JSX.Element {
+export default function RootLayout ({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <html lang="es">
       <body className={Poppins.className}>{children}</body>

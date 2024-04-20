@@ -28,9 +28,7 @@ export default function HomeNavbar ({ position }: Props): JSX.Element {
           <InternalLinkText href="#AppMobile">App Móvil</InternalLinkText>
         </li>
         <li>
-          <InternalLinkText href="#Possibilities">
-            Posibilidades
-          </InternalLinkText>
+          <InternalLinkText href="#Possibilities">Posibilidades</InternalLinkText>
         </li>
         <li>
           <InternalLinkText href="#Sedes">Sedes</InternalLinkText>

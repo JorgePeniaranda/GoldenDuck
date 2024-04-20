@@ -1,8 +1,7 @@
-import React from 'react'
-import style from './styles.module.scss'
-import classNames from 'classnames'
+import { Currency } from '@/constants/DashboardConst'
 import { type Movement } from '@/types'
-import { Currency } from '@/const/DashboardConst'
+import classNames from 'classnames'
+import style from './styles.module.scss'
 
 interface Props {
   title: string
@@ -10,11 +9,7 @@ interface Props {
   history: Movement[]
 }
 
-export default function TablePaymentsCard ({
-  title,
-  classname,
-  history
-}: Props): JSX.Element {
+export default function TablePaymentsCard ({ title, classname, history }: Props): JSX.Element {
   const classes = classNames(style.TablePayments, classname)
 
   return (

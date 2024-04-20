@@ -1,8 +1,4 @@
-import {
-  checkAlphanumeric,
-  checkOnlyLetters,
-  checkPasswordStrong
-} from './validations'
+import { checkAlphanumeric, checkOnlyLetters, checkPasswordStrong } from './validations'
 
 describe('Check Alphanumeric', () => {
   it('checkAlphanumeric should be a function', () => {

@@ -1,10 +1,6 @@
-import { ValidationDictionary } from '@/const/messages'
+import { ValidationDictionary } from '@/constants/messages'
 import { z } from 'zod'
-import {
-  checkAlphanumeric,
-  checkOnlyLetters,
-  checkPasswordStrong
-} from '../../helpers/validations'
+import { checkAlphanumeric, checkOnlyLetters, checkPasswordStrong } from '../../helpers/validations'
 
 export const validations = {
   name: z
@@ -76,15 +72,20 @@ export const validations = {
     .refine(checkAlphanumeric, {
       message: ValidationDictionary.address.onlyLetters
     }),
-  birthDate: z.coerce.date({
-    required_error: ValidationDictionary.birthDate.required,
-    invalid_type_error: ValidationDictionary.birthDate.invalidType
-  }).refine(date => {
-    const now = new Date()
-    const minAge = 18
-    const minDate = new Date(now.getFullYear() - minAge, now.getMonth(), now.getDate())
-    return date <= minDate
-  }, { message: ValidationDictionary.birthDate.invalidAge }),
+  birthDate: z.coerce
+    .date({
+      required_error: ValidationDictionary.birthDate.required,
+      invalid_type_error: ValidationDictionary.birthDate.invalidType
+    })
+    .refine(
+      date => {
+        const now = new Date()
+        const minAge = 18
+        const minDate = new Date(now.getFullYear() - minAge, now.getMonth(), now.getDate())
+        return date <= minDate
+      },
+      { message: ValidationDictionary.birthDate.invalidAge }
+    ),
   sex: z.enum(['MALE', 'FEMALE'], {
     required_error: ValidationDictionary.sex.required,
     invalid_type_error: ValidationDictionary.sex.invalidType

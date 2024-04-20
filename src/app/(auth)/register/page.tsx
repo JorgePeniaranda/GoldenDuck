@@ -7,11 +7,7 @@ import BaseButton from '@/components/molecules/buttons/base-button'
 import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
 import useStep from '@/hooks/useStep'
 import { type RegisterForm } from '@/types'
-import {
-  RegisterSchema,
-  onSubmitCode,
-  onSubmitData
-} from '@/useCases/registerUseCase'
+import { RegisterSchema, onSubmitCode, onSubmitData } from '@/useCases/registerUseCase'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React, { useState } from 'react'
 import ReactCodeInput from 'react-code-input'
@@ -35,7 +31,7 @@ export default function Signin (): React.ReactNode {
     <>
       {step === 0 && (
         <form
-          onSubmit={handleSubmit(async (form) => {
+          onSubmit={handleSubmit(async form => {
             await onSubmitData(form, handleNext)
           })}
           className={style.GetInfo}
@@ -50,11 +46,7 @@ export default function Signin (): React.ReactNode {
                 </ErrorSpan>
               </label>
               <label>
-                <input
-                  type="text"
-                  placeholder="apellido"
-                  {...register('lastName')}
-                />
+                <input type="text" placeholder="apellido" {...register('lastName')} />
                 <ErrorSpan show={errors.lastName !== undefined} align="center">
                   {errors.lastName?.message}
                 </ErrorSpan>
@@ -71,33 +63,19 @@ export default function Signin (): React.ReactNode {
             <Text tag="h2">Cuenta y Contacto</Text>
             <article>
               <label>
-                <input
-                  type="email"
-                  placeholder="email"
-                  {...register('email')}
-                />
+                <input type="email" placeholder="email" {...register('email')} />
                 <ErrorSpan show={errors.email !== undefined} align="center">
                   {errors.email?.message}
                 </ErrorSpan>
               </label>
               <label>
-                <input
-                  type="number"
-                  placeholder="telefono"
-                  {...register('phoneNumber')}
-                />
-                <ErrorSpan
-                  show={errors.phoneNumber !== undefined}
-                  align="center"
-                >
+                <input type="number" placeholder="telefono" {...register('phoneNumber')} />
+                <ErrorSpan show={errors.phoneNumber !== undefined} align="center">
                   {errors.phoneNumber?.message}
                 </ErrorSpan>
               </label>
               <label>
-                <ConvertToSecretInput
-                  show={showPassword}
-                  setShow={setShowPassword}
-                >
+                <ConvertToSecretInput show={showPassword} setShow={setShowPassword}>
                   <input
                     type={showPassword ? 'text' : 'password'}
                     placeholder="contraseña"
@@ -114,11 +92,7 @@ export default function Signin (): React.ReactNode {
             <Text tag="h2">Información</Text>
             <article>
               <label>
-                <input
-                  type="text"
-                  placeholder="domicilio"
-                  {...register('address')}
-                />
+                <input type="text" placeholder="domicilio" {...register('address')} />
                 <ErrorSpan show={errors.address !== undefined} align="center">
                   {errors.address?.message}
                 </ErrorSpan>
@@ -150,16 +124,10 @@ export default function Signin (): React.ReactNode {
           </section>
           <Text>
             Al continuar y enviar este formulario aceptá los{' '}
-            <InternalLinkText href="/terms-and-conditions">
-              Terminos y Condiciones
-            </InternalLinkText>{' '}
+            <InternalLinkText href="/terms-and-conditions">Terminos y Condiciones</InternalLinkText>{' '}
             de Golden Duck
           </Text>
-          <BaseButton
-            fontSize="1.1rem"
-            fontColor="var(--white)"
-            loading={isSubmitting}
-          >
+          <BaseButton fontSize="1.1rem" fontColor="var(--white)" loading={isSubmitting}>
             Siguiente
           </BaseButton>
         </form>
@@ -173,12 +141,12 @@ export default function Signin (): React.ReactNode {
               <Text tag="span" weight="700">
                 {watch('email')}
               </Text>{' '}
-              e ingresa el código recibido, Si no lo encuentras prueba buscarlo
-              en la categoria {'"Spam"'}
+              e ingresa el código recibido, Si no lo encuentras prueba buscarlo en la categoria{' '}
+              {'"Spam"'}
             </Text>
           </article>
           <form
-            onSubmit={handleSubmit(async (form) => {
+            onSubmit={handleSubmit(async form => {
               await onSubmitCode(form, code)
             })}
           >
@@ -188,15 +156,11 @@ export default function Signin (): React.ReactNode {
               inputMode="email"
               value={code}
               name="EmailCode"
-              onChange={(e) => {
+              onChange={e => {
                 setCode(e)
               }}
             />
-            <BaseButton
-              fontSize="1.1rem"
-              fontColor="var(--white)"
-              loading={isSubmitting}
-            >
+            <BaseButton fontSize="1.1rem" fontColor="var(--white)" loading={isSubmitting}>
               Confirmar
             </BaseButton>
           </form>

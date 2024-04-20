@@ -23,9 +23,7 @@ export const ButtonWithPopover = ({
 }: ButtonWithPopoverProps): JSX.Element => {
   return (
     <Popover className={style.Popover} aria-label={arialLabel}>
-      <Popover.Button className={style.PopoverButton}>
-        {PopoverIcon}
-      </Popover.Button>
+      <Popover.Button className={style.PopoverButton}>{PopoverIcon}</Popover.Button>
       <Transition
         enter="transition duration-150 ease-out"
         enterFrom="transform scale-95 opacity-0"
@@ -59,10 +57,7 @@ export const CardLinkPopover = ({
   className
 }: CardLinkPopoverProps): JSX.Element => {
   return (
-    <InternalLinkText
-      href={href}
-      className={`${style.CardPopover} ${className}`}
-    >
+    <InternalLinkText href={href} className={`${style.CardPopover} ${className}`}>
       {children}
     </InternalLinkText>
   )
@@ -80,10 +75,7 @@ export const CardButtonPopover = ({
   className
 }: CardButtonPopoverProps): JSX.Element => {
   return (
-    <button
-      onClick={onClick}
-      className={`${style.CardPopover} ${className}`}
-    >
+    <button onClick={onClick} className={`${style.CardPopover} ${className}`}>
       {children}
     </button>
   )

@@ -1,10 +1,6 @@
-import { AlertsDictionary, ErrorsDictionary } from '@/const/messages'
+import { AlertsDictionary } from '@/constants/messages'
 import Alerts from '@/services/alertService'
-import {
-  ErrorsHandler,
-  RequestError,
-  ValidationError
-} from '@/services/errorService'
+import { ErrorsHandler, RequestError } from '@/services/errorService'
 import { validations } from '@/services/validationService'
 import { type RegisterForm } from '@/types'
 import { z } from 'zod'
@@ -28,7 +24,7 @@ export const onSubmitData = async (
   try {
     const data = await checkUser({ email, dni, phoneNumber })
 
-    await generateCode(email).catch((error) => {
+    await generateCode(email).catch(error => {
       throw new RequestError(error.response.data.error.message)
     })
 
@@ -39,16 +35,13 @@ export const onSubmitData = async (
   }
 }
 
-export const onSubmitCode = async (
-  form: RegisterForm,
-  code: string
-): Promise<void> => {
+export const onSubmitCode = async (form: RegisterForm, code: string): Promise<void> => {
   try {
-    await checkCode(code).catch((error) => {
+    await checkCode(code).catch(error => {
       throw new RequestError(error.response.data.error.message)
     })
 
-    await registerUser(form).catch((error) => {
+    await registerUser(form).catch(error => {
       throw new RequestError(error.response.data.error.meesage)
     })
 

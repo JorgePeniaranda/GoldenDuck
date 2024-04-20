@@ -9,9 +9,9 @@ import ButtonWithPopover, {
 } from '@/components/molecules/buttons/button-with-popover'
 import ProfileButton from '@/components/molecules/buttons/profile-button'
 import NavDisclosure from '@/components/molecules/disclosures/nav-disclosure'
-import { AsideIcons, NavIcons, NavLinks } from '@/const/DashboardConst'
+import { AsideIcons, NavIcons, NavLinks } from '@/constants/DashboardConst'
 import { userContext } from '@/context/userContext'
-import onLogout from '@/useCases/dashboardUseCase'
+import { DashboardUseCase } from '@/useCases/dashboardUseCase'
 import Image from 'next/image'
 import React, { useContext } from 'react'
 import style from './styles.module.scss'
@@ -39,21 +39,9 @@ export default function DashboardLayout ({ children }: Props): JSX.Element {
         </figure>
         <hr />
         <div className={style.NavContainer}>
-          <NavDisclosure
-            links={NavLinks.panel}
-            category="Panel de control"
-            icon={NavIcons.panel}
-          />
-          <NavDisclosure
-            links={NavLinks.services}
-            category="Servicios"
-            icon={NavIcons.services}
-          />
-          <NavDisclosure
-            links={NavLinks.support}
-            category="Soporte"
-            icon={NavIcons.support}
-          />
+          <NavDisclosure links={NavLinks.panel} category="Panel de control" icon={NavIcons.panel} />
+          <NavDisclosure links={NavLinks.services} category="Servicios" icon={NavIcons.services} />
+          <NavDisclosure links={NavLinks.support} category="Soporte" icon={NavIcons.support} />
         </div>
       </nav>
       <aside className={style.DashboardAside}>
@@ -72,11 +60,7 @@ export default function DashboardLayout ({ children }: Props): JSX.Element {
           >
             {user.messages.map((m, i) => {
               return (
-                <CardLinkPopover
-                  key={i}
-                  href="/"
-                  className={style.MessagesButton}
-                >
+                <CardLinkPopover key={i} href="/" className={style.MessagesButton}>
                   <figure>
                     <img
                       src={m.profileURL ?? '/assets/img/misc/default-pfp.webp'}
@@ -110,11 +94,7 @@ export default function DashboardLayout ({ children }: Props): JSX.Element {
           >
             {user.notifications.map((n, i) => {
               return (
-                <CardLinkPopover
-                  key={i}
-                  href="/"
-                  className={style.NotificationsButton}
-                >
+                <CardLinkPopover key={i} href="/" className={style.NotificationsButton}>
                   <Text>{n.message}</Text>
                   <Text tag="span" size=".8rem">
                     {n.date.toLocaleTimeString('es-AR', {
@@ -127,22 +107,17 @@ export default function DashboardLayout ({ children }: Props): JSX.Element {
             })}
           </ButtonWithPopover>
           <ButtonWithPopover
-            PopoverIcon={
-              <ProfileButton name={user.name} src={user.profileURL} />
-            }
+            PopoverIcon={<ProfileButton name={user.name} src={user.profileURL} />}
             className={style.ProfileButtonContainer}
             arialLabel="Perfil"
           >
-            <CardLinkPopover
-              href="/dashboard/profile"
-              className={style.ProfileButton}
-            >
+            <CardLinkPopover href="/dashboard/profile" className={style.ProfileButton}>
               Perfil
             </CardLinkPopover>
             <CardLinkPopover href="/dashboard/" className={style.ProfileButton}>
               Configuración
             </CardLinkPopover>
-            <CardButtonPopover onClick={onLogout} className={style.ProfileButton}>
+            <CardButtonPopover onClick={DashboardUseCase.onLogout} className={style.ProfileButton}>
               Cerrar Sesión
             </CardButtonPopover>
           </ButtonWithPopover>

@@ -8,11 +8,7 @@ export const metadata: Metadata = {
   title: 'Registrarse | Golden Duck'
 }
 
-const SignInContainer = ({
-  children
-}: {
-  children: React.ReactNode
-}): JSX.Element => {
+const SignInContainer = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return (
     <ContainerWithNavbar className={style.SignIn}>
       <Text tag="h1" size={'2.6rem'} weight="700">
@@ -23,10 +19,6 @@ const SignInContainer = ({
   )
 }
 
-export default function SigninLayout ({
-  children
-}: {
-  children: React.ReactNode
-}): JSX.Element {
+export default function SigninLayout ({ children }: { children: React.ReactNode }): JSX.Element {
   return <SignInContainer>{children}</SignInContainer>
 }

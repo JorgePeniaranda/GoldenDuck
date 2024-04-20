@@ -1,9 +1,16 @@
-import { logout } from '@/api'
+import { Api } from '@/api'
 
-export default function onLogout (): void {
-  logout().then(() => {
-    window.location.href = '/'
-  }).catch((err) => {
-    console.error(err)
-  })
+function onLogout (): void {
+  Api.auth
+    .logout()
+    .then(() => {
+      window.location.href = '/'
+    })
+    .catch(err => {
+      console.error(err)
+    })
 }
+
+export const DashboardUseCase = {
+  onLogout
+} as const

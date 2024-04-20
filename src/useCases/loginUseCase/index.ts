@@ -1,19 +1,18 @@
-import { login } from '@/api'
-import { validations } from '@/services/validationService'
+import { Api } from '@/api'
+import { AlertsDictionary } from '@/constants/messages'
+import Alerts from '@/services/alertService'
 import { type LoginForm } from '@/types'
-import { z } from 'zod'
 
-export const LoginSchema = z.object({
-  email: validations.email,
-  password: validations.password
-})
-
-export const onSubmit = async (form: LoginForm): Promise<void> => {
-  await login(form).catch(() => {
+const onSubmit = async (form: LoginForm): Promise<void> => {
+  await Api.auth.login(form).catch(() => {
     console.log('error')
   })
 
-  // Alerts.success(AlertsDictionary.LoginSuccess, () => {
-  //   location.replace('/dashboard')
-  // })
+  Alerts.success(AlertsDictionary.LoginSuccess, () => {
+    location.replace('/dashboard')
+  })
+}
+
+export const LoginUseCase = {
+  onSubmit
 }

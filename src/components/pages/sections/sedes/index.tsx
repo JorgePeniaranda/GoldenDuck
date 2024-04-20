@@ -10,15 +10,13 @@ export default function SedesSection (): JSX.Element {
           Nuestras Sedes
         </Text>
         <Text>
-          Aquí podrás comunicarte con nosotros en caso de tener algún problema.
-          Como robo, perdida de la cuenta, problemas a la hora de hacer
-          transacciones o cualquier cosa que necesites.
+          Aquí podrás comunicarte con nosotros en caso de tener algún problema. Como robo, perdida
+          de la cuenta, problemas a la hora de hacer transacciones o cualquier cosa que necesites.
         </Text>
         <Text>
-          También podrás ingresar dinero, recibir préstamos, obtener plazos
-          fijos... Cosa que también puedes hacer en la aplicación. Pero hey, si
-          quieres lo puedes tramitar del método tradicional, sin ningún tipo de
-          problema.
+          También podrás ingresar dinero, recibir préstamos, obtener plazos fijos... Cosa que
+          también puedes hacer en la aplicación. Pero hey, si quieres lo puedes tramitar del método
+          tradicional, sin ningún tipo de problema.
         </Text>
       </article>
       <div className={style.map}>

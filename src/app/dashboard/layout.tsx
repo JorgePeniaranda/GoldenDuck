@@ -7,11 +7,7 @@ export const metadata: Metadata = {
   title: 'Panel de control | Golden Duck'
 }
 
-export default function DashboardLayout ({
-  children
-}: {
-  children: React.ReactNode
-}): JSX.Element {
+export default function DashboardLayout ({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <UserProvider>
       <DashboardContainer>{children}</DashboardContainer>

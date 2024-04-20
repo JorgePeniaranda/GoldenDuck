@@ -8,21 +8,12 @@ export const metadata: Metadata = {
   title: 'Cambiar contraseña | Golden Duck'
 }
 
-const ForgotContainer = ({
-  children
-}: {
-  children: React.ReactNode
-}): JSX.Element => {
+const ForgotContainer = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return (
     <main className={style.Forgot}>
       <section>
         <article>
-          <Image
-            src="/assets/img/logos/GoldenDuck.webp"
-            alt="Logo"
-            width={100}
-            height={100}
-          />
+          <Image src="/assets/img/logos/GoldenDuck.webp" alt="Logo" width={100} height={100} />
           <Text tag="h1" size={'1.6rem'} weight="700">
             Cambiar Contraseña
           </Text>
@@ -33,10 +24,6 @@ const ForgotContainer = ({
   )
 }
 
-export default function ForgotLayout ({
-  children
-}: {
-  children: React.ReactNode
-}): JSX.Element {
+export default function ForgotLayout ({ children }: { children: React.ReactNode }): JSX.Element {
   return <ForgotContainer>{children}</ForgotContainer>
 }
