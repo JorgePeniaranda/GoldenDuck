@@ -1,4 +1,4 @@
-import { ValidationDictionary } from '@/constants/messages'
+import { ValidationDictionary } from '@/messages/validations'
 import validations from '@/services/validationService'
 import { z } from 'zod'
 

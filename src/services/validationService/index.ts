@@ -1,4 +1,4 @@
-import { ValidationDictionary } from '@/constants/messages'
+import { ValidationDictionary } from '@/messages/validations'
 import { z } from 'zod'
 import { checkAlphanumeric, checkOnlyLetters, checkPasswordStrong } from '../../helpers/validations'
 

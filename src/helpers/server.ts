@@ -1,4 +1,4 @@
-import { ErrorsDictionary } from '@/constants/messages'
+import { ErrorsDictionary } from '@/messages/errors'
 
 export function getEnvValue (envName: string, defaultValue?: string): string {
   const envValue = process.env[envName]

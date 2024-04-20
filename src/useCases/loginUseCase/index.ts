@@ -1,5 +1,5 @@
 import { Api } from '@/api'
-import { AlertsDictionary } from '@/constants/messages'
+import { AlertsDictionary } from '@/messages/alerts'
 import Alerts from '@/services/alertService'
 import { type LoginForm } from '@/types'
 

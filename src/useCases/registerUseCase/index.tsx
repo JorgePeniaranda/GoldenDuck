@@ -1,5 +1,5 @@
 import { Api } from '@/api'
-import { ErrorsDictionary } from '@/constants/messages'
+import { ErrorsDictionary } from '@/messages/errors'
 import Alerts from '@/services/alertService'
 import { type RegisterForm } from '@/types'
 

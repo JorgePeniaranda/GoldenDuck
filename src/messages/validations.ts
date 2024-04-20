@@ -1,27 +1,3 @@
-export const ErrorsDictionary = {
-  CategoryNotFount: 'La categoría ya existe',
-  DatabaseConnectionError: 'Error al conectar con la base de datos',
-  FailedValidationToken: 'El token es invalido',
-  IncorrectCode: 'El código es incorrecto',
-  IncorrectPassword: 'Contraseña incorrecta',
-  InsufficientBalance: 'Saldo insuficiente',
-  InvalidToken: 'El token es invalido',
-  KnownRequestError: 'Error conocido',
-  NoBodyRequest: 'No se ha enviado ningun dato en el cuerpo de la petición',
-  NoCodeSent: 'No se ha enviado el código',
-  NoEmail: 'No se ha enviado el correo electrónico',
-  NoLogged: 'No has iniciado sesión',
-  NoPermissions: 'Permisos insuficientes',
-  NoVariableEnv: (variable: string): string =>
-    `No se ha encontrado la variable de entorno "${variable}"`,
-  PanicError: 'Error fatal',
-  UnknownError: 'Ha ocurrido un error',
-  UnknownRequestError: 'Error desconocido',
-  UserNotFound: 'Usuario no encontrado',
-  ValidationError: 'Error de validación',
-  UserAlreadyExists: 'Ya existe un usuario con esos datos'
-} as const
-
 export const ValidationDictionary = {
   name: {
     required: 'El nombre es requerido',
@@ -52,8 +28,7 @@ export const ValidationDictionary = {
     required: 'La contraseña es requerida',
     min: 'La contraseña debe tener al menos 8 caracteres',
     max: 'La contraseña debe tener menos de 72 caracteres',
-    strong:
-      'La contraseña debe tener una mayúscula, una minúscula, un número y un caracter especial',
+    strong: 'La contraseña debe tener una mayúscula, una minúscula, un número y un caracter especial',
     invalidType: 'La contraseña debe ser un texto'
   },
   confirmPassword: {
@@ -75,10 +50,4 @@ export const ValidationDictionary = {
     required: 'El sexo es requerido',
     invalidType: 'Debe ingresar una opción válida'
   }
-} as const
-
-export const AlertsDictionary = {
-  LoginSuccess: 'Ha ingresado exitosamente',
-  RegisterSuccess: 'Usuario creado con exito',
-  PasswordChanged: 'Contraseña cambiada con éxito'
 } as const
