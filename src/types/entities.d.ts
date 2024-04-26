@@ -2,9 +2,9 @@ export interface UserEntity {
   readonly id: number
   name: string
   lastName: string
-  readonly dni: string | bigint
+  readonly dni: string | bigint | number
   email: string
-  phoneNumber: string | bigint
+  phoneNumber: string | bigint | number
   password: string
   address: string
   readonly birthDate: Date

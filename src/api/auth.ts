@@ -2,14 +2,16 @@
 
 import { env } from '@/constants/env'
 import { AxiosInstance } from '@/libs/axios-instance'
+import { saveCode } from '@/services/code'
 import { clearToken, getToken, saveToken } from '@/services/token'
-import { type CheckUserForm, type LoginForm } from '@/types'
-import { type LoginResponse } from '@/types/response'
+import { type LoginForm } from '@/types'
+import { UserEntity } from '@/types/entities'
+import { CodeResponse, type LoginResponse } from '@/types/response'
 import { type AxiosResponse } from 'axios'
 
 /* ---------- checkSession ---------- */ // MARK: checkSession
 export async function checkSession (): Promise<boolean> {
-  const authStatus = await fetch(`${env.API_URL.href}/auth`, {
+  const authStatus = await fetch(`${env.API_URL.origin}/auth`, {
     headers: {
       Authorization: `Bearer ${getToken()}`
     }
@@ -21,35 +23,41 @@ export async function checkSession (): Promise<boolean> {
 }
 
 /* ---------- login ---------- */ // MARK: login
-export async function login ({ email, password }: LoginForm): Promise<AxiosResponse> {
-  const response = await AxiosInstance.post<LoginResponse>('/auth', {
+export async function login ({ email, password }: LoginForm): Promise<void> {
+  await AxiosInstance.post<LoginResponse>('/auth', {
     email,
     password
   })
-    .then(res => {
-      saveToken(res.data.token)
-    })
-    .catch(err => {
-      return err
-    })
+  .then(res => {
+    saveToken(res.data.token)
+  })
+}
 
-  return response
+/* ---------- sendCode ---------- */ // MARK: sendCode
+export async function sendCode ({ email, phoneNumber }: {
+  email: UserEntity['email']
+  phoneNumber: UserEntity['phoneNumber']
+}): Promise<void> {
+  console.log(email)
+  console.log(phoneNumber)
+  await AxiosInstance.post<CodeResponse>('/code', {
+    email,
+  })
+    .then(res => {
+      saveCode(res.data.id)
+      console.log("object")
+    }).catch(err => {
+      console.log(err)
+    })
 }
 
 /* ---------- logout ---------- */ // MARK: logout
 export async function logout (): Promise<void> {
-  clearToken()
-}
-
-/* ---------- checkUser ---------- */ // MARK: checkUser
-export async function checkUser ({
-  email,
-  dni,
-  phoneNumber
-}: CheckUserForm): Promise<AxiosResponse> {
-  return await AxiosInstance.post('/user/find', {
-    email,
-    dni,
-    phoneNumber
+  await AxiosInstance.get('/auth/logout', {
+    headers: {
+      Authorization: `Bearer ${getToken()}`
+    }
   })
+
+  clearToken()
 }

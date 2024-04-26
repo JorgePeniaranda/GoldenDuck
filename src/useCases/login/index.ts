@@ -4,12 +4,10 @@ import Alerts from '@/services/alert'
 import { type LoginForm } from '@/types'
 
 const onSubmit = async (form: LoginForm): Promise<void> => {
-  await Api.auth.login(form).catch(() => {
-    console.log('error')
-  })
-
-  Alerts.success(AlertsDictionary.LoginSuccess, () => {
-    location.replace('/dashboard')
+  await Api.auth.login(form).then(() => {
+    Alerts.success(AlertsDictionary.LoginSuccess, () => {
+      location.replace('/dashboard')
+    })
   })
 }
 

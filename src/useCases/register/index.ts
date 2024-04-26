@@ -15,9 +15,16 @@ export async function onSubmitData (form: RegisterForm, callback?: () => void): 
     return
   }
 
+  await Api.auth.sendCode({
+    email: form.email,
+    phoneNumber: form.phoneNumber
+  })
+
   await Api.user.Create(form)
 
   if (typeof callback === 'function') callback()
 }
 
-export const onSubmitCode = async (_form: RegisterForm, _code: string): Promise<void> => {}
+export const onSubmitCode = async (_form: RegisterForm, _code: string): Promise<void> => {
+  
+}
