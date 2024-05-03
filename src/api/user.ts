@@ -24,6 +24,7 @@ export async function Create (form: RegisterForm): Promise<UserEntity> {
       return res.data
     })
     .catch(err => {
+      console.log(err)
       throw err
     })
 

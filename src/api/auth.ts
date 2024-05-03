@@ -7,7 +7,6 @@ import { clearToken, getToken, saveToken } from '@/services/token'
 import { type LoginForm } from '@/types'
 import { UserEntity } from '@/types/entities'
 import { CodeResponse, type LoginResponse } from '@/types/response'
-import { type AxiosResponse } from 'axios'
 
 /* ---------- checkSession ---------- */ // MARK: checkSession
 export async function checkSession (): Promise<boolean> {
@@ -30,6 +29,8 @@ export async function login ({ email, password }: LoginForm): Promise<void> {
   })
   .then(res => {
     saveToken(res.data.token)
+  }).catch(err => {
+    console.log(err)
   })
 }
 
