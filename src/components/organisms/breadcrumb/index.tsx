@@ -1,24 +1,24 @@
-import { ChevronDownIcon } from "lucide-react";
-import Link from "next/link";
-import React from "react";
+import { ChevronDownIcon } from 'lucide-react'
+import Link from 'next/link'
+import React from 'react'
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+  BreadcrumbSeparator
+} from '@/components/ui/breadcrumb'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import type { BreadCrumbItem, BreadCrumbProps } from "./breadcrumb";
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+import type { BreadCrumbItem, BreadCrumbProps } from './breadcrumb'
 
 interface Props extends BreadCrumbProps {
-  breadcrumbs: BreadCrumbItem[];
+  breadcrumbs: BreadCrumbItem[]
 }
 
 export default function CustomBreadcrumb({ breadcrumbs, ...props }: Props) {
@@ -32,7 +32,7 @@ export default function CustomBreadcrumb({ breadcrumbs, ...props }: Props) {
                 <CustomBreadcrumbDropdown name={name} sub={sub} />
                 {index !== breadcrumbs.length - 1 && <BreadcrumbSeparator />}
               </React.Fragment>
-            );
+            )
           }
 
           return (
@@ -40,11 +40,11 @@ export default function CustomBreadcrumb({ breadcrumbs, ...props }: Props) {
               <CustomBreadcrumbItem name={name} path={path} />
               {index !== breadcrumbs.length - 1 && <BreadcrumbSeparator />}
             </React.Fragment>
-          );
+          )
         })}
       </BreadcrumbList>
     </Breadcrumb>
-  );
+  )
 }
 
 function CustomBreadcrumbItem({ name, path }: BreadCrumbItem) {
@@ -55,19 +55,19 @@ function CustomBreadcrumbItem({ name, path }: BreadCrumbItem) {
           <Link href={path}>{name}</Link>
         </BreadcrumbLink>
       </BreadcrumbItem>
-    );
+    )
   }
 
   return (
     <BreadcrumbItem>
       <BreadcrumbPage>{name}</BreadcrumbPage>
     </BreadcrumbItem>
-  );
+  )
 }
 
 function CustomBreadcrumbDropdown({ name, sub }: BreadCrumbItem) {
   if (sub === undefined) {
-    return null;
+    return null
   }
 
   return (
@@ -83,16 +83,16 @@ function CustomBreadcrumbDropdown({ name, sub }: BreadCrumbItem) {
               <DropdownMenuItem key={index}>
                 <CustomBreadcrumbDropdown name={name} sub={sub} />
               </DropdownMenuItem>
-            );
+            )
           }
 
           return (
             <DropdownMenuItem key={index}>
               <CustomBreadcrumbItem name={name} path={path} />
             </DropdownMenuItem>
-          );
+          )
         })}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

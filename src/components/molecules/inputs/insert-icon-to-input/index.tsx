@@ -10,7 +10,7 @@ interface Props {
   children: ReactNode
 }
 
-export default function InsertIconToInput ({
+export default function InsertIconToInput({
   icon,
   position = 'left',
   className,

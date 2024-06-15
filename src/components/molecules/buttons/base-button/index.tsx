@@ -19,7 +19,7 @@ interface Props {
   loading?: boolean
 }
 
-export default function BaseButton ({
+export default function BaseButton({
   children,
   className,
   type = 'button',

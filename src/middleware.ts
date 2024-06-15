@@ -6,7 +6,7 @@ import { GETVerifySession } from './modules/authentication/api/check-session'
 const withToken = pathToRegexp('/dashboard/:path*')
 const withoutToken = pathToRegexp(['/login', '/register', '/forgot'])
 
-export async function middleware (request: NextRequest): Promise<NextResponse> {
+export async function middleware(request: NextRequest): Promise<NextResponse> {
   const authorized = await GETVerifySession()
 
   // If the user is authorized and the URL is not authorized, redirect to dashboard

@@ -1,4 +1,4 @@
-import { getEnvValue } from "@/helpers/env";
+import { getEnvValue } from '@/helpers/env'
 
 export const env = {
   API_URL: new URL(getEnvValue('NEXT_PUBLIC_API_URL', 'http://localhost:3002')),

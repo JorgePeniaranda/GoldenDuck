@@ -3,7 +3,7 @@ import Text from '@/components/atoms/text/Text'
 import Image from 'next/image'
 import style from './styles.module.scss'
 
-export default function AppMobileSection (): React.ReactNode {
+export default function AppMobileSection(): React.ReactNode {
   return (
     <article id="AppMobile" className={style.AppMobile}>
       <figure className={style.phoneContainer}>

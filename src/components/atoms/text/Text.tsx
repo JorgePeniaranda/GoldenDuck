@@ -9,7 +9,7 @@ interface Props {
   className?: string
 }
 
-export default function Text ({
+export default function Text({
   tag = 'p',
   weight = '400',
   size = '1rem',

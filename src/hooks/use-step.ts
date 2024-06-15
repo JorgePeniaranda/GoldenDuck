@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function useStep (): {
+export default function useStep(): {
   step: number
   setStep: React.Dispatch<React.SetStateAction<number>>
   handleNext: () => void

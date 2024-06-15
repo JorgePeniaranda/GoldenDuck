@@ -57,7 +57,7 @@ interface CardContent {
   text: string
 }
 
-export default function Slider ({ CardsInfo }: Props): React.ReactNode {
+export default function Slider({ CardsInfo }: Props): React.ReactNode {
   return (
     <section className={style.sliderContainer}>
       <SliderSlick {...settingsSlider}>

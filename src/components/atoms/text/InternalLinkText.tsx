@@ -11,7 +11,7 @@ interface Props {
   style?: CSSProperties
 }
 
-export default function InternalLinkText ({
+export default function InternalLinkText({
   href,
   children,
   arialLabel,

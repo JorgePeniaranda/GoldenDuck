@@ -10,7 +10,11 @@ import { ForgotConfig } from '@/constants/configurations/Forgot'
 import useStep from '@/hooks/use-step'
 import { ForgotSchema } from '@/modules/authentication/schemas/forgot'
 import { ForgotDTO } from '@/modules/authentication/types/dto'
-import { onSubmitCodeForm, onSubmitEmailForm, onSubmitPasswordForm } from '@/modules/authentication/use-cases/forgot'
+import {
+  onSubmitCodeForm,
+  onSubmitEmailForm,
+  onSubmitPasswordForm
+} from '@/modules/authentication/use-cases/forgot'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React, { useState } from 'react'
 import ReactCodeInput from 'react-code-input'
@@ -137,17 +141,15 @@ export default function Forgot(): React.ReactNode {
           </BaseButton>
         </form>
       )}
-      {step === 0
-        ? (
-          <InternalLinkText href="/login" className={style.LinkStyle}>
-            Ya tengo una cuenta
-          </InternalLinkText>
-        )
-        : (
-          <p onClick={handleBack} className={style.LinkStyle}>
-            Volver
-          </p>
-        )}
+      {step === 0 ? (
+        <InternalLinkText href="/login" className={style.LinkStyle}>
+          Ya tengo una cuenta
+        </InternalLinkText>
+      ) : (
+        <p onClick={handleBack} className={style.LinkStyle}>
+          Volver
+        </p>
+      )}
     </>
   )
 }

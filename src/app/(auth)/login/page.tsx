@@ -68,10 +68,13 @@ export default function Login(): React.ReactNode {
             Ingresar
           </BaseButton>
         </form>
-        <div className='fixed'>
-          <Toaster richColors style={{
-            position: "fixed"
-          }} />
+        <div className="fixed">
+          <Toaster
+            richColors
+            style={{
+              position: 'fixed'
+            }}
+          />
         </div>
       </section>
     </ContainerWithNavbar>

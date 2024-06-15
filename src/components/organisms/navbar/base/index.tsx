@@ -3,7 +3,7 @@ import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import Image from 'next/image'
 import style from './styles.module.scss'
 
-export default function Navbar (): React.ReactNode {
+export default function Navbar(): React.ReactNode {
   return (
     <nav className={style.nav}>
       <Image

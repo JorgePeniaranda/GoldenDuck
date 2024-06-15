@@ -9,7 +9,7 @@ interface Props {
   className?: string
 }
 
-export default function ErrorSpan ({
+export default function ErrorSpan({
   children,
   show,
   align,

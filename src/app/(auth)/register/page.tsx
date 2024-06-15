@@ -168,17 +168,15 @@ export default function Register(): React.ReactNode {
           </form>
         </section>
       )}
-      {step === 0
-        ? (
-          <InternalLinkText href="/login" className={style.LinkStyle}>
-            Ya tengo una cuenta
-          </InternalLinkText>
-        )
-        : (
-          <p onClick={handleBack} className={style.LinkStyle}>
-            Volver
-          </p>
-        )}
+      {step === 0 ? (
+        <InternalLinkText href="/login" className={style.LinkStyle}>
+          Ya tengo una cuenta
+        </InternalLinkText>
+      ) : (
+        <p onClick={handleBack} className={style.LinkStyle}>
+          Volver
+        </p>
+      )}
     </>
   )
 }

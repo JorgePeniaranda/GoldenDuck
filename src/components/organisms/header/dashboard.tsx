@@ -1,33 +1,29 @@
-import { NAVBAR_ENTRIES_DATA } from "@/constants/navbar-data";
-import { PanelLeft, Search } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
-import CustomBreadcrumb from "@/components/organisms/breadcrumb";
-import type { BreadCrumbItem } from "@/components/organisms/breadcrumb/breadcrumb";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components//ui/button";
+import { NAVBAR_ENTRIES_DATA } from '@/constants/navbar-data'
+import { PanelLeft, Search } from 'lucide-react'
+import Link from 'next/link'
+import Image from 'next/image'
+import CustomBreadcrumb from '@/components/organisms/breadcrumb'
+import type { BreadCrumbItem } from '@/components/organisms/breadcrumb/breadcrumb'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components//ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components//ui/dropdown-menu";
-import { Input } from "@/components//ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/components//ui/sheet";
+  DropdownMenuTrigger
+} from '@/components//ui/dropdown-menu'
+import { Input } from '@/components//ui/input'
+import { Sheet, SheetContent, SheetTrigger } from '@/components//ui/sheet'
 
 interface Props {
-  avatarSrc?: string;
-  avatarFallback?: string;
-  breadcrumbs: BreadCrumbItem[];
+  avatarSrc?: string
+  avatarFallback?: string
+  breadcrumbs: BreadCrumbItem[]
 }
 
-export default function DashboardHeader({
-  avatarSrc,
-  avatarFallback,
-  breadcrumbs,
-}: Props) {
+export default function DashboardHeader({ avatarSrc, avatarFallback, breadcrumbs }: Props) {
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
       <Sheet>
@@ -44,13 +40,7 @@ export default function DashboardHeader({
               className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
             >
               <picture>
-                <Image
-                  src=""
-                  alt="Logo"
-                  width="16"
-                  height="16"
-                  className="h-5 w-5"
-                />
+                <Image src="" alt="Logo" width="16" height="16" className="h-5 w-5" />
               </picture>
               <span className="sr-only">MONTON</span>
             </Link>
@@ -78,11 +68,7 @@ export default function DashboardHeader({
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="overflow-hidden rounded-full"
-          >
+          <Button variant="outline" size="icon" className="overflow-hidden rounded-full">
             <Avatar>
               <AvatarImage src={avatarSrc} />
               <AvatarFallback>{avatarFallback}</AvatarFallback>
@@ -96,22 +82,16 @@ export default function DashboardHeader({
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/protected/user/settings">
-              User Settings
-            </Link>
+            <Link href="/protected/user/settings">User Settings</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/protected/admin/settings">
-              Admin Settings
-            </Link>
+            <Link href="/protected/admin/settings">Admin Settings</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>Help</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            Logout
-          </DropdownMenuItem>
+          <DropdownMenuItem>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>
-  );
+  )
 }

@@ -1,6 +1,10 @@
 import { ValidationDictionary } from '@/modules/user/messages/validations'
 import { z } from 'zod'
-import { checkAlphanumeric, checkOnlyLetters, checkPasswordStrong } from '../../../helpers/validations'
+import {
+  checkAlphanumeric,
+  checkOnlyLetters,
+  checkPasswordStrong
+} from '../../../helpers/validations'
 
 export const UserValidations = {
   name: z

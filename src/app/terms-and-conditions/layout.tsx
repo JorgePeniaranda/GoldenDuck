@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Términos y Condiciones | Golden Duck'
 } as const
 
-export default function TermsAndConditionsLayout ({
+export default function TermsAndConditionsLayout({
   children
 }: {
   children: React.ReactNode

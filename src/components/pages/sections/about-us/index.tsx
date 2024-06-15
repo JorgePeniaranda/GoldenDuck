@@ -2,7 +2,7 @@ import React from 'react'
 import Text from '@/components/atoms/text/Text'
 import style from './styles.module.scss'
 
-export default function AboutUsSection (): React.ReactNode {
+export default function AboutUsSection(): React.ReactNode {
   return (
     <article id="AboutUs" className={style.AboutUs}>
       <Text tag="h1" size={'2.8rem'} weight="700">

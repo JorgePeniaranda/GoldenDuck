@@ -8,7 +8,7 @@ interface Props {
   cursor?: boolean
 }
 
-export default function TypewriterText ({ words, cursor = true }: Props): React.ReactNode {
+export default function TypewriterText({ words, cursor = true }: Props): React.ReactNode {
   const [text] = useTypewriter({
     words,
     loop: 0,

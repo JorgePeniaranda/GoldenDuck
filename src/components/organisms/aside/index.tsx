@@ -1,12 +1,7 @@
-import { NAVBAR_ENTRIES_DATA } from "@/constants/navbar-data";
-import Link from "next/link";
-import Image from "next/image";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { NAVBAR_ENTRIES_DATA } from '@/constants/navbar-data'
+import Link from 'next/link'
+import Image from 'next/image'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 export default function DashboardAside() {
   return (
@@ -45,5 +40,5 @@ export default function DashboardAside() {
         ))}
       </nav>
     </aside>
-  );
+  )
 }

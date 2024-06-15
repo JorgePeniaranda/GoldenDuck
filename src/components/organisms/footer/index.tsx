@@ -5,7 +5,7 @@ import ExternalLinkText from '@/components/atoms/text/ExternalLinkText'
 import TypewriterText from '@/components/atoms/text/TypewriterText'
 import Text from '@/components/atoms/text/Text'
 
-export default function Footer (): React.ReactNode {
+export default function Footer(): React.ReactNode {
   return (
     <footer className={styles.footer}>
       <Image src="/assets/img/logos/lycokat.webp" width={150} height={150} alt="Lycokat Logo" />

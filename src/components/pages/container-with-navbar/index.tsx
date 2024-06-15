@@ -9,7 +9,7 @@ interface Props {
   itemsCentered?: boolean
 }
 
-export default function ContainerWithNavbar ({
+export default function ContainerWithNavbar({
   children,
   className,
   itemsCentered = true

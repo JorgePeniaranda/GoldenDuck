@@ -1,3 +1,1 @@
-
-export function onLogout (): void {
-}
+export function onLogout(): void {}

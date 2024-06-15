@@ -9,7 +9,7 @@ interface Props {
   className?: string
 }
 
-export default function ExternalLinkText ({
+export default function ExternalLinkText({
   href,
   children,
   arialLabel,

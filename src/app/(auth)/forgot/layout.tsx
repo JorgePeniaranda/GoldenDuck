@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Cambiar contraseña | Golden Duck'
 } as const
 
-function ForgotContainer ({ children }: { children: React.ReactNode }): React.ReactNode {
+function ForgotContainer({ children }: { children: React.ReactNode }): React.ReactNode {
   return (
     <main className={style.Forgot}>
       <section>
@@ -24,6 +24,6 @@ function ForgotContainer ({ children }: { children: React.ReactNode }): React.Re
   )
 }
 
-export default function ForgotLayout ({ children }: { children: React.ReactNode }): React.ReactNode {
+export default function ForgotLayout({ children }: { children: React.ReactNode }): React.ReactNode {
   return <ForgotContainer>{children}</ForgotContainer>
 }

@@ -8,7 +8,7 @@ interface Props {
   position?: 'fixed' | 'absolute' | 'relative' | 'static' | 'sticky'
 }
 
-export default function HomeNavbar ({ position }: Props): React.ReactNode {
+export default function HomeNavbar({ position }: Props): React.ReactNode {
   return (
     <nav className={style.navbar} style={{ position }}>
       <Image

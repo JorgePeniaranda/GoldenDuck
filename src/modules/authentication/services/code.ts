@@ -1,7 +1,7 @@
 import { env } from '@/constants/env'
 import { cookies } from 'next/headers'
 
-export function saveCode (code: string): void {
+export function saveCode(code: string): void {
   console.log(code)
   cookies().set({
     name: env.CODE_KEY_VALUE,
@@ -13,10 +13,10 @@ export function saveCode (code: string): void {
   })
 }
 
-export function getCode (): string | undefined {
+export function getCode(): string | undefined {
   return cookies().get(env.CODE_KEY_VALUE)?.value
 }
 
-export function clearCode (): void {
+export function clearCode(): void {
   cookies().delete(env.CODE_KEY_VALUE)
 }

@@ -1,4 +1,4 @@
-export function getEnvValue (envName: string, defaultValue?: string): string {
+export function getEnvValue(envName: string, defaultValue?: string): string {
   const envValue = process.env[envName]
 
   if (typeof envValue === 'string' && envValue.length > 0) {
