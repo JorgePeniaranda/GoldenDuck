@@ -1,5 +1,3 @@
-import { AlertsDictionary } from '@/messages/alerts'
-import Alerts from '@/services/alert'
 import { type ForgotForm } from '@/types'
 
 export const onSubmitEmailForm = async (
@@ -18,7 +16,4 @@ export const onSubmitCodeForm = async (
 }
 
 export const onSubmitPasswordForm = async (_form: ForgotForm, _email: string): Promise<void> => {
-  Alerts.success(AlertsDictionary.PasswordChanged, () => {
-    location.href = '/dashboard'
-  })
 }

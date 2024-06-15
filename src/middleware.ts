@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { pathToRegexp } from 'path-to-regexp'
-import { GETVerifySession } from './modules/authentication/api/login'
+import { GETVerifySession } from './modules/authentication/api/check-session'
 
 const withToken = pathToRegexp('/dashboard/:path*')
 const withoutToken = pathToRegexp(['/login', '/register', '/forgot'])

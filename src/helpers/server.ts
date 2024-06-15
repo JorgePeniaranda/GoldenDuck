@@ -1,5 +1,3 @@
-import { ErrorsDictionary } from '@/messages/errors'
-
 export function getEnvValue (envName: string, defaultValue?: string): string {
   const envValue = process.env[envName]
 
@@ -8,9 +6,9 @@ export function getEnvValue (envName: string, defaultValue?: string): string {
   }
 
   if (typeof defaultValue === 'string') {
-    console.warn(ErrorsDictionary.NoVariableEnv(envName))
+    console.warn(`No value found for ${envName}. Using default value: ${defaultValue}`)
     return defaultValue
   }
 
-  throw new Error(ErrorsDictionary.NoVariableEnv(envName))
+  throw new Error(`No value found for ${envName} and no default value provided`)
 }

@@ -1,4 +1,4 @@
-export interface UserEntity {
+export interface IUser {
   readonly id: number
   name: string
   lastName: string
@@ -8,21 +8,21 @@ export interface UserEntity {
   password: string
   address: string
   readonly birthDate: Date
-  readonly sex: (typeof UserSex)[keyof typeof UserSex]
+  readonly sex: (typeof IUserSex)[keyof typeof IUserSex]
   imgUrl?: string
   readonly updatedAt: Date
   readonly createdAt: Date
   actived: boolean
   deleted: boolean
-  role: (typeof UserRoles)[keyof typeof UserRoles]
+  role: (typeof IUserRoles)[keyof typeof IUserRoles]
 }
 
-export const UserEntitySex = {
+export const IUserSex = {
   MALE: 'MALE',
   FEMALE: 'FEMALE'
 }
 
-export const UserEntityRoles = {
+export const IUserRoles = {
   ADMIN: 'ADMIN',
   SUPPORT: 'SUPPORT',
   USER: 'USER'

@@ -7,16 +7,16 @@ import Text from '@/components/atoms/text/Text'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
 import { type RegisterForm } from '@/types'
-import { onSubmitCode, onSubmitData } from '@/useCases/register'
+import { onSubmitCode, onSubmitData } from '@/modules/authentication/use-cases/register'
 import ReactCodeInput from 'react-code-input'
 import { useForm } from 'react-hook-form'
 import style from './styles.module.scss'
-import { RegisterSchema } from '@/schemas/register'
-import { UserEntitySex } from '@/types/entities.d'
+import { RegisterSchema } from '@/modules/authentication/schemas/register'
 import { zodResolver } from '@hookform/resolvers/zod'
 import useStep from '@/hooks/use-step'
+import { IUserSex } from '@/modules/user/types/entity'
 
-export default function Register (): React.ReactNode {
+export default function Register(): React.ReactNode {
   const { step, handleNext, handleBack } = useStep()
   const [code, setCode] = useState<string>('')
   const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -108,14 +108,14 @@ export default function Register (): React.ReactNode {
               </label>
               <div id="sex">
                 <label>
-                  <input type="radio" value={UserEntitySex.MALE} {...register('sex')} />
+                  <input type="radio" value={IUserSex.MALE} {...register('sex')} />
                   Masculino
                   <ErrorSpan show={errors.sex !== undefined} align="center">
                     {errors.sex?.message?.toString()}
                   </ErrorSpan>
                 </label>
                 <label>
-                  <input type="radio" value={UserEntitySex.FEMALE} {...register('sex')} />
+                  <input type="radio" value={IUserSex.FEMALE} {...register('sex')} />
                   Femenino
                   <ErrorSpan show={errors.sex !== undefined} align="center">
                     {errors.sex?.message?.toString()}
@@ -170,15 +170,15 @@ export default function Register (): React.ReactNode {
       )}
       {step === 0
         ? (
-        <InternalLinkText href="/login" className={style.LinkStyle}>
-          Ya tengo una cuenta
-        </InternalLinkText>
-          )
+          <InternalLinkText href="/login" className={style.LinkStyle}>
+            Ya tengo una cuenta
+          </InternalLinkText>
+        )
         : (
-        <p onClick={handleBack} className={style.LinkStyle}>
-          Volver
-        </p>
-          )}
+          <p onClick={handleBack} className={style.LinkStyle}>
+            Volver
+          </p>
+        )}
     </>
   )
 }

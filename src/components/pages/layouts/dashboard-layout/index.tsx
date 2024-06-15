@@ -9,18 +9,18 @@ import ButtonWithPopover, {
 } from '@/components/molecules/buttons/button-with-popover'
 import ProfileButton from '@/components/molecules/buttons/profile-button'
 import NavDisclosure from '@/components/molecules/disclosures/nav-disclosure'
-import { DashboardUseCase } from '@/useCases/dashboard'
 import Image from 'next/image'
 import React, { useContext } from 'react'
 import style from './styles.module.scss'
 import { userContext } from '@/context/user-context'
 import { DashboardConfig } from '@/constants/configurations/Dashboard'
+import { onLogout } from '@/modules/authentication/use-cases/logout'
 
 interface Props {
   children: React.ReactNode
 }
 
-export default function DashboardLayout ({ children }: Props): React.ReactNode {
+export default function DashboardLayout({ children }: Props): React.ReactNode {
   const user = useContext(userContext)
 
   return (
@@ -129,7 +129,7 @@ export default function DashboardLayout ({ children }: Props): React.ReactNode {
             <CardLinkPopover href="/dashboard/" className={style.ProfileButton}>
               Configuración
             </CardLinkPopover>
-            <CardButtonPopover onClick={DashboardUseCase.onLogout} className={style.ProfileButton}>
+            <CardButtonPopover onClick={onLogout} className={style.ProfileButton}>
               Cerrar Sesión
             </CardButtonPopover>
           </ButtonWithPopover>

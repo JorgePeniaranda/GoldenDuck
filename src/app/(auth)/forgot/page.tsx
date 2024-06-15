@@ -8,16 +8,16 @@ import BaseButton from '@/components/molecules/buttons/base-button'
 import InsertIconToInput from '@/components/molecules/inputs/insert-icon-to-input'
 import InsertIconToSecretInput from '@/components/molecules/inputs/insert-icon-to-secret-input'
 import { type ForgotForm } from '@/types'
-import { onSubmitCodeForm, onSubmitEmailForm, onSubmitPasswordForm } from '@/useCases/forgot'
+import { onSubmitCodeForm, onSubmitEmailForm, onSubmitPasswordForm } from '@/modules/authentication/use-cases/forgot'
 import { zodResolver } from '@hookform/resolvers/zod'
 import ReactCodeInput from 'react-code-input'
 import { useForm } from 'react-hook-form'
 import style from './styles.module.scss'
-import { ForgotSchema } from '@/schemas/forgot'
+import { ForgotSchema } from '@/modules/authentication/schemas/forgot'
 import useStep from '@/hooks/use-step'
 import { ForgotConfig } from '@/constants/configurations/Forgot'
 
-export default function Forgot (): React.ReactNode {
+export default function Forgot(): React.ReactNode {
   const { step, handleNext, handleBack } = useStep()
   const [code, setcode] = useState<string>('')
   const [showPasswords, setShowPasswords] = useState<boolean>(false)
@@ -139,15 +139,15 @@ export default function Forgot (): React.ReactNode {
       )}
       {step === 0
         ? (
-        <InternalLinkText href="/login" className={style.LinkStyle}>
-          Ya tengo una cuenta
-        </InternalLinkText>
-          )
+          <InternalLinkText href="/login" className={style.LinkStyle}>
+            Ya tengo una cuenta
+          </InternalLinkText>
+        )
         : (
-        <p onClick={handleBack} className={style.LinkStyle}>
-          Volver
-        </p>
-          )}
+          <p onClick={handleBack} className={style.LinkStyle}>
+            Volver
+          </p>
+        )}
     </>
   )
 }

@@ -1,8 +1,8 @@
-import { ValidationDictionary } from '@/messages/validations'
+import { ValidationDictionary } from '@/modules/user/messages/validations'
 import { z } from 'zod'
-import { checkAlphanumeric, checkOnlyLetters, checkPasswordStrong } from '../../helpers/validations'
+import { checkAlphanumeric, checkOnlyLetters, checkPasswordStrong } from '../../../helpers/validations'
 
-export const validations = {
+export const UserValidations = {
   name: z
     .string({
       required_error: ValidationDictionary.name.required,
@@ -92,4 +92,4 @@ export const validations = {
   })
 }
 
-export default validations
+export default UserValidations
