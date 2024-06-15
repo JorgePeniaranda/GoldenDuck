@@ -1,10 +1,11 @@
 import { AxiosInstance } from '@/libs/axios-instance'
 import { type CheckUserForm, type RegisterForm } from '@/types'
 import { type UserEntity } from '@/types/entities'
+import axios from 'axios'
 
 /* ---------- findUser ---------- */ // MARK: findUser
 export async function findUser (form: CheckUserForm): Promise<boolean> {
-  const data = await AxiosInstance.post<null>('/user/find', form)
+  const data = await axios.post<null>('/user/find', form)
     .then(() => {
       console.log('si')
       return true

@@ -1,13 +1,13 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { pathToRegexp } from 'path-to-regexp'
-import { Api } from './api'
+import { GETVerifySession } from './modules/authentication/api/login'
 
 const withToken = pathToRegexp('/dashboard/:path*')
 const withoutToken = pathToRegexp(['/login', '/register', '/forgot'])
 
 export async function middleware (request: NextRequest): Promise<NextResponse> {
-  const authorized = await Api.auth.checkSession()
+  const authorized = await GETVerifySession()
 
   // If the user is authorized and the URL is not authorized, redirect to dashboard
   if (withoutToken.test(request.nextUrl.pathname) && authorized) {
@@ -25,5 +25,5 @@ export async function middleware (request: NextRequest): Promise<NextResponse> {
 }
 
 export const config = {
-  matcher: ['/api/:path*', '/dashboard/:path*', '/login', '/register', '/forgot']
+  matcher: ['/dashboard/:path*', '/login', '/register', '/forgot']
 }

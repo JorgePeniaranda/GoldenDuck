@@ -16,7 +16,6 @@
 
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": true,
-    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "newLine": "lf",
     "noFallthroughCasesInSwitch": true,

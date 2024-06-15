@@ -1,7 +1,3 @@
-export interface LoginResponse {
-  token: string
-}
-
 export interface CodeResponse {
   id: string
   idUser: number

@@ -1,24 +1,25 @@
 'use client'
 
-import React from 'react'
 import ErrorSpan from '@/components/atoms/text/ErrorSpan'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import Text from '@/components/atoms/text/Text'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import ContainerWithNavbar from '@/components/pages/container-with-navbar'
+import { LoginDTO } from '@/modules/authentication/types/dto'
+import { login } from '@/modules/authentication/use-cases/login'
 import { LoginSchema } from '@/schemas/login'
-import { type LoginForm } from '@/types'
-import { LoginUseCase } from '@/useCases/login'
 import { zodResolver } from '@hookform/resolvers/zod'
+import React from 'react'
 import { useForm } from 'react-hook-form'
+import { Toaster } from 'sonner'
 import style from './styles.module.scss'
 
-export default function Login (): React.ReactNode {
+export default function Login(): React.ReactNode {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
-  } = useForm<LoginForm>({
+  } = useForm<LoginDTO>({
     resolver: zodResolver(LoginSchema)
   })
 
@@ -45,7 +46,7 @@ export default function Login (): React.ReactNode {
         </BaseButton>
       </section>
       <section className={style.FormSide}>
-        <form onSubmit={handleSubmit(LoginUseCase.onSubmit)}>
+        <form onSubmit={handleSubmit(login)}>
           <Text tag="h1" size={'1.9rem'} weight="700">
             Iniciar Sesión
           </Text>
@@ -67,6 +68,11 @@ export default function Login (): React.ReactNode {
             Ingresar
           </BaseButton>
         </form>
+        <div className='fixed'>
+          <Toaster richColors style={{
+            position: "fixed"
+          }} />
+        </div>
       </section>
     </ContainerWithNavbar>
   )
