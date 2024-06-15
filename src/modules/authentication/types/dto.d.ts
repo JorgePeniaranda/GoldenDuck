@@ -14,3 +14,9 @@ export interface RegisterDTO {
   password: string
   sex: sex
 }
+
+export interface ForgotDTO {
+  email: string
+  password: string
+  confirmPassword: string
+}

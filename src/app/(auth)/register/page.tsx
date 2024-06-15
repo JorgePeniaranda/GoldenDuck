@@ -6,7 +6,6 @@ import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import Text from '@/components/atoms/text/Text'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import ConvertToSecretInput from '@/components/molecules/inputs/convert-to-secret-input'
-import { type RegisterForm } from '@/types'
 import { onSubmitCode, onSubmitData } from '@/modules/authentication/use-cases/register'
 import ReactCodeInput from 'react-code-input'
 import { useForm } from 'react-hook-form'
@@ -15,6 +14,7 @@ import { RegisterSchema } from '@/modules/authentication/schemas/register'
 import { zodResolver } from '@hookform/resolvers/zod'
 import useStep from '@/hooks/use-step'
 import { IUserSex } from '@/modules/user/types/entity'
+import { RegisterDTO } from '@/modules/authentication/types/dto'
 
 export default function Register(): React.ReactNode {
   const { step, handleNext, handleBack } = useStep()
@@ -25,7 +25,7 @@ export default function Register(): React.ReactNode {
     handleSubmit,
     watch,
     formState: { errors, isSubmitting }
-  } = useForm<RegisterForm>({
+  } = useForm<RegisterDTO>({
     resolver: zodResolver(RegisterSchema)
   })
 

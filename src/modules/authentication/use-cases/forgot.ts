@@ -1,4 +1,4 @@
-import { type ForgotForm } from '@/types'
+import { ForgotDTO } from "../types/dto"
 
 export const onSubmitEmailForm = async (
   _form: { email: string },
@@ -15,5 +15,5 @@ export const onSubmitCodeForm = async (
   if (typeof callback === 'function') callback()
 }
 
-export const onSubmitPasswordForm = async (_form: ForgotForm, _email: string): Promise<void> => {
+export const onSubmitPasswordForm = async (_form: ForgotDTO, _email: string): Promise<void> => {
 }

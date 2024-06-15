@@ -1,30 +1,30 @@
 'use client'
 
-import React, { useState } from 'react'
 import ErrorSpan from '@/components/atoms/text/ErrorSpan'
 import InternalLinkText from '@/components/atoms/text/InternalLinkText'
 import Text from '@/components/atoms/text/Text'
 import BaseButton from '@/components/molecules/buttons/base-button'
 import InsertIconToInput from '@/components/molecules/inputs/insert-icon-to-input'
 import InsertIconToSecretInput from '@/components/molecules/inputs/insert-icon-to-secret-input'
-import { type ForgotForm } from '@/types'
+import { ForgotConfig } from '@/constants/configurations/Forgot'
+import useStep from '@/hooks/use-step'
+import { ForgotSchema } from '@/modules/authentication/schemas/forgot'
+import { ForgotDTO } from '@/modules/authentication/types/dto'
 import { onSubmitCodeForm, onSubmitEmailForm, onSubmitPasswordForm } from '@/modules/authentication/use-cases/forgot'
 import { zodResolver } from '@hookform/resolvers/zod'
+import React, { useState } from 'react'
 import ReactCodeInput from 'react-code-input'
 import { useForm } from 'react-hook-form'
 import style from './styles.module.scss'
-import { ForgotSchema } from '@/modules/authentication/schemas/forgot'
-import useStep from '@/hooks/use-step'
-import { ForgotConfig } from '@/constants/configurations/Forgot'
 
 export default function Forgot(): React.ReactNode {
   const { step, handleNext, handleBack } = useStep()
   const [code, setcode] = useState<string>('')
   const [showPasswords, setShowPasswords] = useState<boolean>(false)
-  const EmailForm = useForm<ForgotForm>({
+  const EmailForm = useForm<ForgotDTO>({
     resolver: zodResolver(ForgotSchema.Email)
   })
-  const PasswordForm = useForm<ForgotForm>({
+  const PasswordForm = useForm<ForgotDTO>({
     resolver: zodResolver(ForgotSchema.Password)
   })
 
