@@ -1,4 +1,4 @@
-import { AxiosInstance } from "@/libs/axios-instance"
+import { AxiosInstance } from "@/lib/axios-instance"
 import { clearToken, getToken } from "../services/token"
 
 export async function GETLogout() {

@@ -1,4 +1,4 @@
-import { AxiosInstance } from "@/libs/axios-instance"
+import { AxiosInstance } from "@/lib/axios-instance"
 import { IUser } from "@/modules/user/types/entity"
 import { ErrorMessages } from "../messages/error"
 import { RegisterDTO } from "../types/dto"
