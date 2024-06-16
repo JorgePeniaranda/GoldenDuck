@@ -11,6 +11,8 @@ This project is intended for educational and illustrative purposes only and is n
 ## Technology Stack
 
 <div align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg" height="40" alt="graphql logo"  />
+  <img width="12" />
   <img src="https://nextjs.org/favicon.ico" height="40" alt="nextjs logo"  />
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="react logo"  />
@@ -23,17 +25,17 @@ This project is intended for educational and illustrative purposes only and is n
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40" alt="typescript logo"  />
   <img width="12" />
-  <img src="https://tailwindcss.com/favicons/favicon-32x32.png?v=3" height="40" alt="tailwindcss logo"  />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" height="40" alt="tailwindcss logo"  />
   <img width="12" />
-  <img src="https://sass-lang.com/favicon.ico" height="40" alt="sass logo"  />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg" height="40" alt="sass logo"  />
   <img width="12" />
-  <img src="https://jestjs.io/img/jest.png" height="40" alt="jest logo"  />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jest/jest-plain.svg" height="40" alt="jest logo"  />
   <img width="12" />
   <img src="https://testing-library.com/img/octopus-64x64.png" height="40" alt="testing-library logo"  />
-  <img src="https://eslint.org/favicon.ico" height="40" alt="eslint logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg" height="40" alt="eslint logo"  />
   <img width="12" />
   <img src="https://standardjs.com/android-chrome-192x192.png" height="40" alt="standardjs logo"  />
-  <img width="12" />
 </div>
 
 ## Requirements to Start GoldenDuck
