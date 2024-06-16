@@ -16,14 +16,16 @@ import {
 } from '@/components//ui/dropdown-menu'
 import { Input } from '@/components//ui/input'
 import { Sheet, SheetContent, SheetTrigger } from '@/components//ui/sheet'
+import Logo from '@/assets/images/golden-duck.webp'
 
 interface Props {
   avatarSrc?: string
   avatarFallback?: string
   breadcrumbs: BreadCrumbItem[]
+  name: string
 }
 
-export default function DashboardHeader({ avatarSrc, avatarFallback, breadcrumbs }: Props) {
+export default function DashboardHeader({ avatarSrc, avatarFallback, breadcrumbs, name }: Props) {
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
       <Sheet>
@@ -40,9 +42,9 @@ export default function DashboardHeader({ avatarSrc, avatarFallback, breadcrumbs
               className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
             >
               <picture>
-                <Image src="" alt="Logo" width="16" height="16" className="h-5 w-5" />
+                <Image src={Logo} alt="Logo" className="w-14" />
               </picture>
-              <span className="sr-only">MONTON</span>
+              <span className="sr-only">Golden Duck</span>
             </Link>
             {NAVBAR_ENTRIES_DATA.map(({ icon: Icon, name, path }, index) => (
               <Link
@@ -77,17 +79,18 @@ export default function DashboardHeader({ avatarSrc, avatarFallback, breadcrumbs
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>
-            <div>Mike C.</div>
-            <div>Bewise</div>
+            {name}
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/protected/user/settings">User Settings</Link>
+            <Link href="/dashboard/profile">Perfil</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/protected/admin/settings">Admin Settings</Link>
+            <Link href="/dashboard/settings">Configuración</Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>Help</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/dashboard/help">Ayuda</Link>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Logout</DropdownMenuItem>
         </DropdownMenuContent>

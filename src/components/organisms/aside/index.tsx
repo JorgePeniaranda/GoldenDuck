@@ -2,6 +2,7 @@ import { NAVBAR_ENTRIES_DATA } from '@/constants/navbar-data'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import Logo from '@/assets/images/golden-duck.webp'
 
 export default function DashboardAside() {
   return (
@@ -11,15 +12,7 @@ export default function DashboardAside() {
           href="/"
           className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
-          <picture className="hidden bg-muted lg:block">
-            <Image
-              src=""
-              alt="Logo"
-              width="16"
-              height="16"
-              className="h-4 w-4 transition-all group-hover:scale-110"
-            />
-          </picture>
+          <Image src={Logo} alt="Logo" className="w-8" />
           <span className="sr-only">Logo</span>
         </Link>
         {NAVBAR_ENTRIES_DATA.map(({ icon: Icon, name, path }, index) => (

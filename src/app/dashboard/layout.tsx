@@ -12,10 +12,16 @@ export default function DashboardLayout({ children }: Props) {
   return (
     <>
       <DashboardAside />
-      <main>
-        <DashboardHeader breadcrumbs={[]} />
+      <div className="flex min-h-screen w-full flex-col bg-muted/40 sm:gap-4 sm:py-4 sm:pl-14">
+        <DashboardHeader breadcrumbs={[{
+          name: "1"
+        }, {
+          name: "2"
+        }, {
+          name: "3"
+        }]} name='user' />
         {children}
-      </main>
+      </div>
     </>
   )
 }
